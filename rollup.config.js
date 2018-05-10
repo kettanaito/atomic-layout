@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import minify from 'rollup-plugin-babel-minify'
+import visualizer from 'rollup-plugin-visualizer'
 
 export default {
   input: 'src/index.js',
@@ -11,7 +12,7 @@ export default {
     format: 'umd',
     globals: {
       react: 'react',
-      styled: 'styled-components',
+      'styled-components': 'styled',
     },
   },
   plugins: [
@@ -25,6 +26,7 @@ export default {
     minify({
       comments: false,
     }),
+    visualizer(),
   ],
   treeshake: true,
 }

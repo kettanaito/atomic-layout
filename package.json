@@ -1,20 +1,27 @@
 {
   "name": "react-grid",
   "version": "0.1.0",
-  "description": "",
+  "description": "The React component to distribute spacial relation between your atom components using CSS Grid",
   "main": "lib/index.js",
   "scripts": {
-    "prettify": "node_modules/.bin/prettier 'config/**/*.js' --write",
-    "test": "jest",
-    "build": "NODE_ENV=production rollup -c",
+    "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
+    "test": "BABEL_ENV=test jest",
+    "build": "rollup -c",
     "prepublishOnly": "npm test && npm run build"
   },
-  "pre-push": ["prettify", "test"],
+  "pre-push": [
+    "prettify",
+    "test"
+  ],
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "styled-components": "^3.0.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -23,11 +30,13 @@
     "chai": "^4.1.2",
     "jest": "^22.4.3",
     "pre-push": "^0.1.1",
+    "prettier": "^1.12.1",
     "react": "^16.3.2",
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-babel-minify": "^4.0.0",
     "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-visualizer": "^0.6.0",
     "styled-components": "^3.2.6"
   }
 }

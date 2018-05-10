@@ -4,24 +4,26 @@ import styled from 'styled-components'
 import parseTemplate from './parseTemplate'
 import applyStyles from './applyStyles'
 
-const GridContainer = styled.div`
+const LayoutWrapper = styled.div`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
   ${(props) => applyStyles(props)};
 `
 
-GridContainer.displayName = 'withStyle(Grid)'
+LayoutWrapper.displayName = 'styled(Layout)'
 
-export default class Grid extends React.Component {
+export default class Layout extends React.Component {
   constructor(props) {
     super(props)
-    this.gridAreas = parseTemplate(props.template)
+    this.layoutAreas = parseTemplate(props.template)
   }
 
   render() {
     const { children } = this.props
 
     return (
-      <GridContainer {...this.props}>{children(this.gridAreas)}</GridContainer>
+      <LayoutWrapper {...this.props}>
+        {children(this.layoutAreas)}
+      </LayoutWrapper>
     )
   }
 }
