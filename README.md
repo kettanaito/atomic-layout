@@ -12,6 +12,51 @@ Implementation of atom components is straightforward. But when it comes to compo
 
 We are using a jaw-droppingly powerful (and standardized) [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and combining it with the simplicity and flexibility of [React](https://reactjs.org/). You can depict this library like an easier way to declare and maintain CSS Grid in your React application.
 
+## Getting started
+
+```jsx
+import React from 'react'
+// import the "Layout" from the library
+import Layout from 'atomic-layout'
+
+// declare templates ("grid-template-areas")
+const templateMobile = `
+  'thumbnail'
+  'heading'
+  'subheading'
+`
+
+// including for different screen sizes
+const templateDesktop = `
+  'thumbnail heading'
+  'thumbnail subheading'
+`
+
+export default class Card extends React.Component {
+  render() {
+    return (
+      {/* Configure the Layout */}
+      <Layout template={templateMobile} templateSmUp={templateDesktop}>
+        {/* Get the components out of your grid areas */}
+        {({ Thumbnail, Heading, Subheading }) => (
+          <React.Fragment>
+            <Thumbnail>
+              <img src="foo.png" />
+            </Thumbnail>
+            <Heading>
+              <h4>Juicy fruits</h4>
+            </Heading>
+            <Subheading>
+              <p>Healthy mind in a healthy body.</p>
+            </Subheading>
+          </React.Fragment>
+        )}
+      </Layout>
+    )
+  }
+}
+```
+
 ## Support
 
 See the [Support table](https://caniuse.com/#feat=css-grid).
