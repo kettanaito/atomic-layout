@@ -1,18 +1,16 @@
 {
-  "name": "react-grid",
+  "name": "react-layout",
   "version": "0.1.0",
-  "description": "The React component to distribute spacial relation between your atom components using CSS Grid",
-  "main": "lib/index.js",
+  "description":
+    "A single component to distribute the spacial relation between your atom components using CSS Grid",
+  "main": "./index.js",
   "scripts": {
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "test": "BABEL_ENV=test jest",
     "build": "rollup -c",
     "prepublishOnly": "npm test && npm run build"
   },
-  "pre-push": [
-    "prettify",
-    "test"
-  ],
+  "pre-push": ["prettify", "test"],
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
