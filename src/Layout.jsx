@@ -9,8 +9,6 @@ const LayoutWrapper = styled.div`
   ${(props) => applyStyles(props)};
 `
 
-LayoutWrapper.displayName = 'styled(Layout)'
-
 export default class Layout extends React.Component {
   constructor(props) {
     super(props)

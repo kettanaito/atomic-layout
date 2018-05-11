@@ -12,19 +12,26 @@ export default function parseTemplate(template) {
     return
   }
 
+  /* Remove all line breaks from the template string */
   const withoutLinebreaks = template.replace(/\r?\n|\r|\'/g, '')
+
+  /* Split the template areas into an array */
   const areaNames = withoutLinebreaks
     .trim()
     .split(' ')
     .filter(Boolean)
+
+  /* Filter out repeating areas */
   const uniqueAreaNames = Array.from(new Set(areaNames))
 
   return uniqueAreaNames.reduce((acc, areaName) => {
     const name = areaName[0].toUpperCase() + areaName.slice(1, areaName.length)
-    const AreaComponent = createLayoutArea(areaName)
-    AreaComponent.displayName = 'withStyle(LayoutArea)'
-    acc[name] = AreaComponent
 
+    /* Generate React components for each area with the respective name */
+    const AreaComponent = createLayoutArea(areaName)
+    AreaComponent.displayName = `layoutArea(${name})`
+
+    acc[name] = AreaComponent
     return acc
   }, {})
 }
