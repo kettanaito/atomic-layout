@@ -26,7 +26,9 @@ export default {
     minify({
       comments: false,
     }),
-    visualizer(),
+    visualizer({
+      filename: 'internal/stats.html',
+    }),
   ],
   treeshake: true,
 }

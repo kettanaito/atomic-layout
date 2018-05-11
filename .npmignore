@@ -3,3 +3,4 @@ rollup.*
 .babelrc
 .gitignore
 .prettierrc
+internal
