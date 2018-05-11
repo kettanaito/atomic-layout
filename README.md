@@ -2,15 +2,15 @@ A single component to distribute spacial relation between your atom components.
 
 ## Motivation
 
-[Atomic design](http://bradfrost.com/blog/post/atomic-web-design) is outstanding. A bunch of atoms composing a molecule, which composes an organism and, finally, the whole page.
+[Atomic design](http://bradfrost.com/blog/post/atomic-web-design) is outstanding. If this is the first time you hear about it, go check it out and don't forget to show it to your designer as well.
 
-While the implementation of atoms is fairly straightforward, when it comes to molecules there is a question on how to declare the relation between the atoms. People often end up writing more CSS to append molecule-specific styles to our atoms to change their positioning or add spacing. That changes the behavior of the atom to suit this very molecule. That is against the atom's principle.
+Implementation of atom components is straightforward. But when it comes to composing molecules how do you handle the relation between the atoms? Most likely, you are creating extra CSS to change position or add spacing to the atoms which are under a specific molecule. Not only that makes you write more CSS, but it also contradicts the idea of atom being independant, reusable, predictable.
 
-Wouldn't it be great to have a single component dedicated to distributing that spacial relation between atoms, without actually touching them? Well, this is what this package is about.
+**What if there was a single layer above the atoms that could distribute spacial relation to atoms without actually affecting them?** Well, this is what this repository is about.
 
-### How does this work?
+## Technology
 
-First, we take [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), which is jaw-droppingly powerful layout concept from the CSS spec, and then we combine it with simplicity and versatility of [React](https://reactjs.org/).
+We are using a jaw-droppingly powerful (and standardized) [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and combining it with the simplicity and flexibility of [React](https://reactjs.org/). You can depict this library like an easier way to declare and maintain CSS Grid in your React application.
 
 ## Support
 
