@@ -1,5 +1,5 @@
 {
-  "name": "react-layout",
+  "name": "atomic-layout",
   "version": "0.1.0",
   "description":
     "A single component to distribute the spacial relation between your atom components using CSS Grid",
@@ -11,6 +11,10 @@
     "prepublishOnly": "npm test && npm run build"
   },
   "pre-push": ["prettify", "test"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kettanaito/atomic-layout"
+  },
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
