@@ -1,7 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
 import minify from 'rollup-plugin-babel-minify'
-import visualizer from 'rollup-plugin-visualizer'
+// import visualizer from 'rollup-plugin-visualizer'
 
 export default {
   input: 'src/index.js',
@@ -26,9 +26,9 @@ export default {
     minify({
       comments: false,
     }),
-    visualizer({
-      filename: 'internal/stats.html',
-    }),
+    // visualizer({
+    //   filename: 'internal/stats.html',
+    // }),
   ],
   treeshake: true,
 }

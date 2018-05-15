@@ -1,5 +1,5 @@
+import * as R from 'ramda'
 import styled from 'styled-components'
-
 import applyStyles from './applyStyles'
 
 const createLayoutArea = (areaName) => styled.div`
@@ -7,31 +7,35 @@ const createLayoutArea = (areaName) => styled.div`
   ${(props) => applyStyles(props)};
 `
 
+const templateStringToArray = R.compose(
+  R.reduce((acc, areaName) => {
+    const capitalizedAreaName = R.replace(/^./, R.toUpper)(areaName)
+    const AreaComponent = createLayoutArea(areaName)
+    AreaComponent.displayName = `LayoutArea(${capitalizedAreaName})`
+    acc[capitalizedAreaName] = createLayoutArea(areaName)
+    return acc
+  }, {}),
+  R.uniq,
+  R.filter(Boolean),
+  R.split(' '),
+  R.trim,
+  R.replace(/\r?\n|\r|\'/g, ''),
+)
+
+/**
+ * Parse the given "grid-template-areas" value and generate
+ * React components for each present area.
+ * @param {string} template
+ */
 export default function parseTemplate(template) {
   if (!template) {
     return
   }
 
-  /* Remove all line breaks from the template string */
-  const withoutLinebreaks = template.replace(/\r?\n|\r|\'/g, '')
-
   /* Split the template areas into an array */
-  const areaNames = withoutLinebreaks
-    .trim()
-    .split(' ')
-    .filter(Boolean)
+  const areaComponents = templateStringToArray(template)
 
-  /* Filter out repeating areas */
-  const uniqueAreaNames = Array.from(new Set(areaNames))
+  console.log({ areaComponents })
 
-  return uniqueAreaNames.reduce((acc, areaName) => {
-    const name = areaName[0].toUpperCase() + areaName.slice(1, areaName.length)
-
-    /* Generate React components for each area with the respective name */
-    const AreaComponent = createLayoutArea(areaName)
-    AreaComponent.displayName = `layoutArea(${name})`
-
-    acc[name] = AreaComponent
-    return acc
-  }, {})
+  return areaComponents
 }

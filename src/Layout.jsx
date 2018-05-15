@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import parseTemplate from './parseTemplate'
 import applyStyles from './applyStyles'
 
