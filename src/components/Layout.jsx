@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import parseTemplate from './parseTemplate'
-import applyStyles from './applyStyles'
+import parseTemplate from '../utils/parseTemplate'
+import applyStyles from '../utils/applyStyles'
+import getPropByName from '../utils/getPropByName'
 
 const LayoutWrapper = styled.div`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
@@ -11,15 +12,17 @@ const LayoutWrapper = styled.div`
 export default class Layout extends React.Component {
   constructor(props) {
     super(props)
-    this.layoutAreas = parseTemplate(props.template)
+
+    const templates = getPropByName('template', props)
+
+    // This won't support value updates of "template" props
+    this.layoutAreas = parseTemplate(templates)
   }
 
   render() {
-    const { children } = this.props
-
     return (
       <LayoutWrapper {...this.props}>
-        {children(this.layoutAreas)}
+        {this.props.children(this.layoutAreas)}
       </LayoutWrapper>
     )
   }

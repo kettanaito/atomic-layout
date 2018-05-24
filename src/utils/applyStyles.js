@@ -1,9 +1,9 @@
-import propAliases from './const/propAliases'
-import mediaQueries, { mediaQueriesKeys } from './const/mediaQueries'
+import propAliases from '../const/propAliases'
+import mediaQueries, { mediaQueriesKeys } from '../const/mediaQueries'
 
 const behaviors = ['down', 'up', 'only']
 
-function parseResponsivePropName(propName) {
+export const parseResponsivePropName = (propName) => {
   const sanitizedPropName = propName.replace(/[A-Z]/g, (capitalLetter) => {
     return `-${capitalLetter}`.toLowerCase()
   })
@@ -11,6 +11,8 @@ function parseResponsivePropName(propName) {
 
   const res = splitPropName.reduce(
     (acc, part, index) => {
+      acc.originPropName = propName
+
       if (mediaQueriesKeys.includes(part)) {
         acc.mediaQuery = part
         return acc
@@ -27,10 +29,8 @@ function parseResponsivePropName(propName) {
           : part
       return acc
     },
-    { propName: '', mediaQuery: null, behavior: null },
+    { originPropName: '', propName: '', mediaQuery: null, behavior: null },
   )
-
-  console.log({ res })
 
   return res
 }
@@ -93,7 +93,6 @@ export default function applyStyles(pristineProps) {
   }, [])
 
   const f = res.join(' ')
-  console.warn(f)
 
   return f
 }

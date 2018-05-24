@@ -1,3 +1,2 @@
-import Layout from './Layout'
-
-export default Layout
+export Box from './components/Box'
+export default from './components/Layout'

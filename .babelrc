@@ -1,5 +1,6 @@
 {
   "presets": [["env", { "modules": false }], "react"],
+  "plugins": ["transform-export-extensions"],
   "env": {
     "test": {
       "presets": ["env", "react"]
