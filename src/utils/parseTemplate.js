@@ -21,7 +21,8 @@ const transformValue = R.compose(
 )
 
 function areasToComponents({ areas, shared }) {
-  console.log({ areas })
+  console.log('areasToComponents')
+  console.log('areas:', areas)
 
   return Object.keys(areas).reduce((components, areaName) => {
     const capitalizedAreaName = capitalize(areaName)
@@ -59,25 +60,35 @@ const templateStringToArray = R.compose(
       const { mediaQuery, behavior, propValue } = templateData
       const gridAreas = transformValue(propValue)
 
+      console.log('reducing template...')
+      console.log('templateData:', templateData)
+      console.log('gridAreas:', gridAreas)
+
       const nextAreas = gridAreas.reduce((areas, areaName) => {
         const prevMediaQueries = areas[areaName] || []
 
-        areas[areaName] = prevMediaQueries.concat({
-          behavior,
-          mediaQuery: mediaQuery || 'xs',
+        return Object.assign({}, areas, {
+          [areaName]: prevMediaQueries.concat({
+            behavior,
+            mediaQuery: mediaQuery || 'xs',
+          }),
         })
-
-        return areas
       }, acc.areas)
 
-      acc.areas = nextAreas
+      // acc.areas = nextAreas
 
       const prevShared = acc.shared
-      acc.shared = prevShared
+      const nextShared = prevShared
         ? R.intersection(prevShared, gridAreas)
         : gridAreas
 
-      return acc
+      console.log('next acc:', acc)
+      console.log(' ')
+
+      return {
+        areas: nextAreas,
+        shared: nextShared,
+      }
     },
     { areas: {}, shared: null },
   ),
