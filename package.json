@@ -1,8 +1,7 @@
 {
   "name": "atomic-layout",
-  "version": "0.1.0",
-  "description":
-    "A single component to distribute the spacial relation in your layouts using CSS Grid",
+  "version": "0.1.1",
+  "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
     "dev": "webpack --watch",
@@ -13,7 +12,10 @@
     "prepublishOnly": "npm test && npm run build",
     "build-storybook": "build-storybook"
   },
-  "pre-push": ["prettify", "test"],
+  "pre-push": [
+    "prettify",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
