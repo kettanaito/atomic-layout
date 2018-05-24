@@ -5,7 +5,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   externals: {
     react: 'umd react',
-    styled: 'umd styled-components',
+    'styled-components': 'umd styled-components',
   },
   output: {
     filename: 'index.js',
