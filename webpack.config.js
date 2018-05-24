@@ -2,7 +2,6 @@ const path = require('path')
 const nodeEnv = process.env.NODE_ENV || 'production'
 
 module.exports = {
-  mode: nodeEnv,
   entry: path.resolve(__dirname, 'src/index.js'),
   externals: {
     react: 'umd react',
@@ -20,7 +19,7 @@ module.exports = {
       {
         test: /\.jsx?/i,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        loaders: ['babel-loader'],
       },
     ],
   },

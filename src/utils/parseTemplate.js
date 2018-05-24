@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import React from 'react'
-import MediaQuery from 'react-responsive'
+// import MediaQuery from 'react-responsive'
 import styled from 'styled-components'
 import mediaQueries from '../const/mediaQueries'
 import applyStyles from './applyStyles'
@@ -42,11 +42,11 @@ function areasToComponents({ areas, shared }) {
     console.log({ behavior })
     console.log({ screenSize })
 
-    components[capitalizedAreaName] = (props) => (
-      <MediaQuery maxWidth={100}>
-        <AreaComponent {...props} />
-      </MediaQuery>
-    )
+    // components[capitalizedAreaName] = (props) => (
+    //   <MediaQuery maxWidth={100}>
+    //     <AreaComponent {...props} />
+    //   </MediaQuery>
+    // )
 
     return components
   }, {})

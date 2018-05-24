@@ -1,6 +1,11 @@
 src
 rollup.*
+webpack.*
+.vscode
 .babelrc
 .gitignore
 .prettierrc
+docs
 internal
+stories
+.storybook

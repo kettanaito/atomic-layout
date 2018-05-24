@@ -2,9 +2,7 @@ import React from 'react'
 import Layout from '../../'
 
 const template = `
-  'header'
-  'content'
-  'footer'
+  'header content footer'
 `
 
 export default class Playground extends React.Component {
