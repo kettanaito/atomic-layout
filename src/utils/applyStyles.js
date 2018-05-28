@@ -17,20 +17,19 @@ export const parseResponsivePropName = (propName) => {
   const res = splitPropName.reduce(
     (acc, part, index) => {
       if (resolutionNames.includes(part)) {
-        acc.mediaQuery = part
-        return acc
+        return Object.assign({}, acc, { mediaQuery: part })
       }
 
       if (behaviors.includes(part)) {
-        acc.behavior = part
-        return acc
+        return Object.assign({}, acc, { behavior: part })
       }
 
-      acc.propName +=
-        index > 0
+      const nextPropName =
+        acc.propName + index > 0
           ? part.slice(0, 1).toUpperCase() + part.slice(1, part.length)
           : part
-      return acc
+
+      return Object.assign({}, acc, { propName: nextPropName })
     },
     {
       propName: '',
