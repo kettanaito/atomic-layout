@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/v/atomic-layout.svg) ![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)
+
 # atomic-layout
 
 Atomic layout is an implementational paradigm that delegates distribution of spacial relation between composites to the dedicated layer.
