@@ -1,11 +1,12 @@
-import * as R from 'ramda'
+import replace from 'ramda/src/replace'
+import toUpper from 'ramda/src/toUpper'
 import React from 'react'
 import MediaQuery from 'react-responsive'
 import styled from 'styled-components'
 import applyStyles from './applyStyles'
 import getResponsiveGroups from './responsive/getResponsiveGroups'
 
-const capitalize = R.replace(/^./, R.toUpper)
+const capitalize = replace(/^./, toUpper)
 
 const wrap = (Component, resolutionGroups) => {
   return ({ children }) =>

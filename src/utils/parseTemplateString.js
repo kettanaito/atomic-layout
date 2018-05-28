@@ -1,4 +1,3 @@
-import * as R from 'ramda'
 import { getBreakpointFor } from '../const/breakpoints'
 import sanitizeTemplateString from './sanitizeTemplateString'
 import generateComponents from './generateComponents'
