@@ -9,14 +9,21 @@ const templateMobile = `
 `
 
 const templateTablet = `
+  'image content'
+  'image footer'
+`
+
+const templateDesktop = `
   'actions actions'
   'image content'
   'footer footer'
 `
 
-const templateDesktop = `
-  'image content'
-  'image footer'
+const templateTv = `
+  'image'
+  'actions'
+  'content'
+  'footer'
 `
 
 const Demo = () => (
@@ -25,6 +32,7 @@ const Demo = () => (
     template={templateMobile}
     templateSm={templateTablet}
     templateMd={templateDesktop}
+    templateLg={templateTv}
   >
     {({ Image, Content, Actions, Footer }) => (
       <React.Fragment>

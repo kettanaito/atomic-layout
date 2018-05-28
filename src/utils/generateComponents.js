@@ -1,16 +1,15 @@
-import replace from 'ramda/src/replace'
-import toUpper from 'ramda/src/toUpper'
 import React from 'react'
-import MediaQuery from 'react-responsive'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive/dist/react-responsive.min'
 import applyStyles from './applyStyles'
-import getResponsiveGroups from './responsive/getResponsiveGroups'
 
-const capitalize = replace(/^./, toUpper)
+const capitalize = (str) => {
+  return str.replace(/^./, (letter) => letter.toUpperCase())
+}
 
-const wrap = (Component, resolutionGroups) => {
+const withPlaceholder = (Component, resolutionGroups) => {
   return ({ children }) =>
-    resolutionGroups.map((resolutionGroup, i) => {
+    resolutionGroups.map((resolutionGroup, index) => {
       const mediaQueryProps = {
         minWidth: resolutionGroup.from,
         maxWidth: resolutionGroup.to,
@@ -18,7 +17,7 @@ const wrap = (Component, resolutionGroups) => {
 
       return (
         <MediaQuery
-          key={`${Component.displayName}_${i}`}
+          key={`${Component.displayName}_${index}`}
           {...mediaQueryProps}
           component={Component}
         >
@@ -49,7 +48,7 @@ export default function generateComponents(areas) {
 
     const endComponent = shouldAlwaysRender
       ? AreaComponent
-      : wrap(AreaComponent, areaBreakpoints)
+      : withPlaceholder(AreaComponent, areaBreakpoints)
 
     return Object.assign({}, components, {
       [capitalizedAreaName]: endComponent,

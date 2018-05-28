@@ -1,5 +1,10 @@
 const path = require('path')
+const webpack = require('webpack')
+const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 const nodeEnv = process.env.NODE_ENV || 'production'
+const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
@@ -23,6 +28,19 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+    }),
+    new BabelMinifyPlugin({
+      removeConsole: true,
+      removeDebugger: false,
+      mangle: {
+        topLevel: true,
+      },
+    }),
+    new BundleAnalyzer(),
+  ],
   resolve: {
     extensions: ['.jsx', '.js'],
   },
