@@ -2,7 +2,6 @@ import * as R from 'ramda'
 import React from 'react'
 import MediaQuery from 'react-responsive'
 import styled from 'styled-components'
-import resolutions from '../const/resolutions'
 import applyStyles from './applyStyles'
 import getResponsiveGroups from './responsive/getResponsiveGroups'
 
@@ -39,8 +38,8 @@ const createArea = (areaName) => styled.div`
 export default function generateComponents(areas) {
   return Object.keys(areas).reduce((components, areaName) => {
     const capitalizedAreaName = capitalize(areaName)
-    const areaResolutions = areas[areaName]
-    const shouldAlwaysRender = areaResolutions.every(
+    const areaBreakpoints = areas[areaName]
+    const shouldAlwaysRender = areaBreakpoints.every(
       (resolution) => !resolution.from && !resolution.to,
     )
 
@@ -49,7 +48,7 @@ export default function generateComponents(areas) {
 
     const endComponent = shouldAlwaysRender
       ? AreaComponent
-      : wrap(AreaComponent, areaResolutions)
+      : wrap(AreaComponent, areaBreakpoints)
 
     return Object.assign({}, components, {
       [capitalizedAreaName]: endComponent,

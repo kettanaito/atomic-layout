@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import resolutions, { getResolutionFor } from '../const/resolutions'
+import { getBreakpointFor } from '../const/breakpoints'
 import sanitizeTemplateString from './sanitizeTemplateString'
 import generateComponents from './generateComponents'
 
@@ -21,7 +21,7 @@ export default function parseTemplates(templates) {
   const reducedAreas = cleanTemplates.reduce((all, template, index) => {
     const { areas, behavior } = template
     const mediaQuery = template.mediaQuery || 'xs'
-    const areaResolution = getResolutionFor(mediaQuery)
+    const areaResolution = getBreakpointFor(mediaQuery)
     const isLast = index === templatesCount - 1
 
     return areas.reduce((allAreasOptions, areaName) => {

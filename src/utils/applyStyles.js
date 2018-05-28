@@ -1,10 +1,10 @@
 import propAliases from '../const/propAliases'
-import resolutions, {
-  getResolutionNames,
-  getResolutionFor,
-} from '../const/resolutions'
+import breakpoints, {
+  getBreakpointsNames,
+  getBreakpointFor,
+} from '../const/breakpoints'
 
-const resolutionNames = getResolutionNames()
+const breakpointsNames = getBreakpointsNames()
 const behaviors = ['down', 'up', 'only']
 
 export const parseResponsivePropName = (propName) => {
@@ -16,7 +16,7 @@ export const parseResponsivePropName = (propName) => {
 
   const res = splitPropName.reduce(
     (acc, part, index) => {
-      if (resolutionNames.includes(part)) {
+      if (breakpointsNames.includes(part)) {
         return Object.assign({}, acc, { mediaQuery: part })
       }
 
@@ -42,19 +42,19 @@ export const parseResponsivePropName = (propName) => {
 }
 
 const getMediaQueryString = (mediaQuery, behavior) => {
-  const resolution = getResolutionFor(mediaQuery)
+  const breakpoint = getBreakpointFor(mediaQuery)
 
   if (behavior === 'only') {
-    return `(min-width: ${resolution.from}px) and (max-width: ${
-      resolution.to
+    return `(min-width: ${breakpoint.from}px) and (max-width: ${
+      breakpoint.to
     }px)`
   }
 
   if (behavior === 'down') {
-    return `(max-width: ${resolution.to}px)`
+    return `(max-width: ${breakpoint.to}px)`
   }
 
-  return `(min-width: ${resolution.from}px)`
+  return `(min-width: ${breakpoint.from}px)`
 }
 
 const applyCssProps = (props, propValue, mediaQuery, behavior) => {
