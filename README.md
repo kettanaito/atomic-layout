@@ -1,72 +1,60 @@
 # atomic-layout
 
-## What is this?
+Atomic layout is an implementational paradigm that delegates distribution of spacial relation between composites to the dedicated layer.
 
-A single component to distribute the spacial relation in your layouts, inspired by [Atomic design](http://bradfrost.com/blog/post/atomic-web-design) composition.
+This library is a representative of that paradigm. **It's a single React component to declare spacial relation between any composites**. Inspired by and encourages [Atomic design](http://bradfrost.com/blog/post/atomic-web-design).
 
 ## Why?
 
-Because contextually adding spacial properties to atom components makes them contextual, which kills the purpose of atom components. Instead, you can design layouts using the composition of areas, describing their relation.
+Now, when you compose molecules out of atoms you add spacial properties to the atoms directly. Not only that makes you write more CSS, that contradicts the core principle of an atom being simple, reusable, predictable.
+
+Atomic layout introduces a higher layer that distributes spacial relation between **any** composites (atoms, molecules, organisms) without mutating their behavior.
 
 ## How does it work?
 
-It's a marvellous synergy of incredible (and standardized) CSS Grid and React.
+It's a flexible abstraction above [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) written in [React](https://reactjs.org/), powered by [styled-components](https://github.com/styled-components/styled-components).
 
-## Motivation
-
-[Atomic design](http://bradfrost.com/blog/post/atomic-web-design) is outstanding. If this is the first time you hear about it, go check it out and don't forget to show it to your designer as well.
-
-Implementation of atom components is quite straightforward, but when it comes to composing the molecules how do you handle the relation between the atoms? Most likely, you are writing some extra CSS to change the position or add spacing to the atoms, which are under a specific molecule. Not only that makes you write more CSS, but it also contradicts the idea of an atom being independant, reusable, predictable.
-
-**_What if there was a single layer above the atoms that could distribute the spacial relation between them without actually affecting them?_** And wouldn't it be great if that layer could be applied not only to the atoms, but also to molecules, templates, layouts?
-
-Well, this is what `atomic-layout` is about.
-
-## How does this work?
-
-We are using a jaw-droppingly powerful (and standardized) [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and combining it with the simplicity and flexibility of [React](https://reactjs.org/). You can depict this library as an easier way of declaring and maintaining CSS Grid in your React applications.
+You're probably thinking it's some sort of experimental hack. Well, in fact Atomic layout is built on technologies which have been around _for years_. It's stable, it's standardized, it's production-ready.
 
 ## Getting started
 
 ```jsx
 import React from 'react'
-import Layout from 'atomic-layout'
+import { Layout } from 'atomic-layout'
 
-// declare template areas ("grid-template-areas")
+// declare template areas
 const templateMobile = `
   'thumbnail'
   'heading'
   'subheading'
 `
 
-// including for different screen sizes
+// don't forget about responsive
 const templateDesktop = `
   'thumbnail heading'
   'thumbnail subheading'
 `
 
-export default class Card extends React.Component {
-  render() {
-    return (
-      <Layout template={templateMobile} templateSmUp={templateDesktop}>
-        {/* Get React components based on your grid areas */}
-        {({ Thumbnail, Heading, Subheading }) => (
-          <React.Fragment>
-            <Thumbnail>
-              <img src="foo.png" />
-            </Thumbnail>
-            <Heading>
-              <h4>Juicy fruits</h4>
-            </Heading>
-            <Subheading>
-              <p>Healthy mind in a healthy body.</p>
-            </Subheading>
-          </React.Fragment>
-        )}
-      </Layout>
-    )
-  }
-}
+const Card = () => (
+  <Layout template={templateMobile} templateSm={templateDesktop}>
+    {/* Get React components based on your grid areas */}
+    {({ Thumbnail, Heading, Subheading }) => (
+      <React.Fragment>
+        <Thumbnail>
+          <img src="foo.png" />
+        </Thumbnail>
+        <Heading>
+          <h4>Juicy fruits</h4>
+        </Heading>
+        <Subheading>
+          <p>Healthy mind in a healthy body.</p>
+        </Subheading>
+      </React.Fragment>
+    )}
+  </Layout>
+)
+
+export default Card
 ```
 
 ## Support
