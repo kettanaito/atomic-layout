@@ -34,10 +34,9 @@ export default function parseTemplates(templates) {
           (behavior === lastAreaOptions.behavior ||
             (lastAreaOptions.behavior === 'up' && behavior === 'down')))
 
-      if (shouldUpdateLast) {
-        const nextTo =
-          isLast && behavior === 'up' ? undefined : areaResolution.to
+      const nextTo = isLast && behavior === 'up' ? undefined : areaResolution.to
 
+      if (shouldUpdateLast) {
         prevAreaOptions[prevAreaOptions.length - 1] = {
           from: lastAreaOptions.from,
           to: nextTo,
@@ -51,7 +50,7 @@ export default function parseTemplates(templates) {
       const nextAreaOptions = prevAreaOptions.concat({
         behavior,
         from: areaResolution.from,
-        to: areaResolution.to,
+        to: nextTo,
       })
 
       return Object.assign({}, allAreasOptions, {
