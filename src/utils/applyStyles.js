@@ -1,19 +1,22 @@
 import propAliases from '../const/propAliases'
-import mediaQueries, { mediaQueriesKeys } from '../const/mediaQueries'
+import resolutions, {
+  getResolutionNames,
+  getResolutionFor,
+} from '../const/resolutions'
 
+const resolutionNames = getResolutionNames()
 const behaviors = ['down', 'up', 'only']
 
 export const parseResponsivePropName = (propName) => {
   const sanitizedPropName = propName.replace(/[A-Z]/g, (capitalLetter) => {
     return `-${capitalLetter}`.toLowerCase()
   })
+
   const splitPropName = sanitizedPropName.split('-')
 
   const res = splitPropName.reduce(
     (acc, part, index) => {
-      acc.originPropName = propName
-
-      if (mediaQueriesKeys.includes(part)) {
+      if (resolutionNames.includes(part)) {
         acc.mediaQuery = part
         return acc
       }
@@ -29,38 +32,41 @@ export const parseResponsivePropName = (propName) => {
           : part
       return acc
     },
-    { originPropName: '', propName: '', mediaQuery: null, behavior: null },
+    {
+      propName: '',
+      mediaQuery: null,
+      behavior: 'up',
+    },
   )
 
   return res
 }
 
-function getMediaQuery(mediaQuery, behavior) {
-  const mediaQueryIndex = mediaQueriesKeys.indexOf(mediaQuery)
-  const screenSize = mediaQueries[mediaQuery]
-  const prevMediaQuery = mediaQueriesKeys[mediaQueryIndex - 1]
-  const prevScreenSize = mediaQueries[prevMediaQuery]
+const getMediaQueryString = (mediaQuery, behavior) => {
+  const resolution = getResolutionFor(mediaQuery)
+
+  if (behavior === 'only') {
+    return `(min-width: ${resolution.from}px) and (max-width: ${
+      resolution.to
+    }px)`
+  }
 
   if (behavior === 'down') {
-    return `(max-width: ${screenSize}px)`
+    return `(max-width: ${resolution.to}px)`
   }
 
-  if (behavior === 'up') {
-    return `(min-width: ${screenSize}px)`
-  }
-
-  return `(min-width: ${prevScreenSize}px) and (max-width: ${screenSize}px)`
+  return `(min-width: ${resolution.from}px)`
 }
 
-function applyCssProps(props, propValue, mediaQuery, behavior) {
-  const propsLinesArr = props.map((propName) => {
+const applyCssProps = (props, propValue, mediaQuery, behavior) => {
+  const propLinesArr = props.map((propName) => {
     return `${propName}:${propValue};`
   })
 
-  let propsCss = propsLinesArr.join('')
+  let propsCss = propLinesArr.join('')
 
   if (mediaQuery) {
-    const query = getMediaQuery(mediaQuery, behavior)
+    const query = getMediaQueryString(mediaQuery, behavior)
     propsCss = `@media ${query} {${propsCss}}`
   }
 
@@ -68,31 +74,37 @@ function applyCssProps(props, propValue, mediaQuery, behavior) {
 }
 
 export default function applyStyles(pristineProps) {
-  const res = Object.keys(pristineProps).reduce((acc, pristinePropName) => {
-    let nextAcc = acc
+  const stylesArr = Object.keys(pristineProps).reduce(
+    (styles, originalPropName) => {
+      let nextStyles = styles
 
-    const { propName, mediaQuery, behavior } = parseResponsivePropName(
-      pristinePropName,
-    )
+      const { propName, mediaQuery, behavior } = parseResponsivePropName(
+        originalPropName,
+      )
 
-    const aliasOptions = propAliases[propName]
+      const aliasOptions = propAliases[propName]
 
-    if (!aliasOptions) {
-      return nextAcc
-    }
+      if (!aliasOptions) {
+        return nextStyles
+      }
 
-    const { props, transformValue } = aliasOptions
-    const propValue = pristineProps[pristinePropName]
-    const transformedPropValue = transformValue
-      ? transformValue(propValue)
-      : propValue
+      const { props, transformValue } = aliasOptions
+      const propValue = pristineProps[originalPropName]
+      const transformedPropValue = transformValue
+        ? transformValue(propValue)
+        : propValue
 
-    const css = applyCssProps(props, transformedPropValue, mediaQuery, behavior)
+      const css = applyCssProps(
+        props,
+        transformedPropValue,
+        mediaQuery,
+        behavior,
+      )
 
-    return nextAcc.concat(css)
-  }, [])
+      return nextStyles.concat(css)
+    },
+    [],
+  )
 
-  const f = res.join(' ')
-
-  return f
+  return stylesArr.join(' ')
 }

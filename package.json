@@ -5,9 +5,9 @@
   "main": "./index.js",
   "scripts": {
     "dev": "webpack --watch",
+    "start": "start-storybook -p 6006",
     "build": "NODE_ENV=production webpack",
     "test": "BABEL_ENV=test jest",
-    "storybook": "start-storybook -p 6006",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "prepublishOnly": "npm run build",
     "build-storybook": "build-storybook"
@@ -57,6 +57,7 @@
     "webpack": "^3.12.0"
   },
   "dependencies": {
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "react-responsive": "^4.1.0"
   }
 }

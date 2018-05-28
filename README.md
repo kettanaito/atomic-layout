@@ -1,4 +1,16 @@
-A single component to distribute the spacial relation in your layouts.
+# atomic-layout
+
+## What is this?
+
+A single component to distribute the spacial relation in your layouts, inspired by [Atomic design](http://bradfrost.com/blog/post/atomic-web-design) composition.
+
+## Why?
+
+Because contextually adding spacial properties to atom components makes them contextual, which kills the purpose of atom components. Instead, you can design layouts using the composition of areas, describing their relation.
+
+## How does it work?
+
+It's a marvellous synergy of incredible (and standardized) CSS Grid and React.
 
 ## Motivation
 
@@ -12,7 +24,7 @@ Well, this is what `atomic-layout` is about.
 
 ## How does this work?
 
-We are using a jaw-droppingly powerful (and standardized) [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and combining it with the simplicity and flexibility of [React](https://reactjs.org/). You can depict this library like an easier way to declare and maintain CSS Grid in your React application.
+We are using a jaw-droppingly powerful (and standardized) [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) and combining it with the simplicity and flexibility of [React](https://reactjs.org/). You can depict this library as an easier way of declaring and maintaining CSS Grid in your React applications.
 
 ## Getting started
 

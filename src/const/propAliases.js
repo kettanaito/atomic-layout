@@ -1,7 +1,13 @@
 import toRem from '../utils/toRem'
 
+/**
+ * Collection of prop aliases.
+ * Prop alias is a prop name accepted by a component which is later
+ * substituted by one or multiple CSS properties with a single value.
+ * Each prop value can have a value transformer.
+ */
 export default {
-  /* Grid */
+  /* CSS Grid */
   template: {
     props: ['grid-template-areas'],
     transformValue: (val) => val.trim(),

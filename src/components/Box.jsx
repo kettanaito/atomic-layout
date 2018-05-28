@@ -1,7 +1,7 @@
 /**
- * Box is a spacial primitive that supports various props shorthands
- * (i.e. "paddingHorizontal", "marginVertical", etc.) and is used for
- * generic spacial distribution.
+ * Box is a primitive that supports various props shorthands
+ * (i.e. "paddingHorizontal", "marginVertical", etc.) and is used
+ * for generic space distribution.
  */
 import React from 'react'
 import styled from 'styled-components'

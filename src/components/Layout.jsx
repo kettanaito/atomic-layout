@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import parseTemplate from '../utils/parseTemplate'
+import parseTemplateString from '../utils/parseTemplateString'
 import applyStyles from '../utils/applyStyles'
 import getPropByName from '../utils/getPropByName'
 
@@ -16,13 +16,13 @@ export default class Layout extends React.Component {
     const templates = getPropByName('template', props)
 
     // This won't support value updates of "template" props
-    this.layoutAreas = parseTemplate(templates)
+    this.areaComponents = parseTemplateString(templates)
   }
 
   render() {
     return (
       <LayoutWrapper {...this.props}>
-        {this.props.children(this.layoutAreas)}
+        {this.props.children(this.areaComponents)}
       </LayoutWrapper>
     )
   }
