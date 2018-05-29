@@ -1,5 +1,4 @@
 src
-rollup.*
 webpack.*
 .vscode
 .babelrc

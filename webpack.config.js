@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
-const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const nodeEnv = process.env.NODE_ENV || 'production'
 const PRODUCTION = nodeEnv === 'production'
@@ -39,7 +38,6 @@ module.exports = {
         topLevel: true,
       },
     }),
-    new BundleAnalyzer(),
   ],
   resolve: {
     extensions: ['.jsx', '.js'],
