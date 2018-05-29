@@ -59,6 +59,9 @@ const Card = () => (
 export default Card
 ```
 
+## API
+Please see the [Official documentation](https://redd.gitbook.io/atomic-layout/).
+
 ## Support
 
 See the [Support table](https://caniuse.com/#feat=css-grid).
