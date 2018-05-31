@@ -46,6 +46,10 @@ export default function generateComponents(areas) {
     const AreaComponent = createArea(areaName)
     AreaComponent.displayName = capitalizedAreaName
 
+    console.log('area:', areaName)
+    console.log('areaBreakpoints:', areaBreakpoints)
+    console.log('shouldAlwaysRender:', shouldAlwaysRender)
+
     const endComponent = shouldAlwaysRender
       ? AreaComponent
       : withPlaceholder(AreaComponent, areaBreakpoints)

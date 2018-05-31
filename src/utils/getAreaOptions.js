@@ -1,4 +1,5 @@
 import { getBreakpointFor } from '../const/breakpoints'
+import pop from './pop'
 
 export default function getAreaOptions(acc, template, isLast) {
   const { areas, mediaQuery: originalMediaQuery, behavior } = template
@@ -9,28 +10,27 @@ export default function getAreaOptions(acc, template, isLast) {
     const prevAreaOptions = allAreasOptions[areaName] || []
     const lastAreaOptions = prevAreaOptions[prevAreaOptions.length - 1]
 
+    const hasPrecedingArea = !!lastAreaOptions
+    const hasSiblingArea =
+      hasPrecedingArea && lastAreaOptions.to + 1 === areaResolution.from
+    const hasSameBehavior =
+      hasSiblingArea && behavior === lastAreaOptions.behavior
+
+    const hasInclusiveBehavior =
+      hasSiblingArea && lastAreaOptions.behavior === 'up' && behavior === 'down'
+
     const shouldUpdateLast =
-      !!lastAreaOptions &&
-      (lastAreaOptions.to + 1 === areaResolution.from ||
-        (behavior === lastAreaOptions.behavior ||
-          (lastAreaOptions.behavior === 'up' && behavior === 'down')))
+      !!lastAreaOptions && (hasSameBehavior || hasInclusiveBehavior)
 
     const nextTo = isLast && behavior === 'up' ? undefined : areaResolution.to
 
-    if (shouldUpdateLast) {
-      prevAreaOptions[prevAreaOptions.length - 1] = {
-        from: lastAreaOptions.from,
-        to: nextTo,
-      }
+    const optionsPool = shouldUpdateLast
+      ? pop(prevAreaOptions)
+      : prevAreaOptions
 
-      return Object.assign({}, allAreasOptions, {
-        [areaName]: prevAreaOptions,
-      })
-    }
-
-    const nextAreaOptions = prevAreaOptions.concat({
+    const nextAreaOptions = optionsPool.concat({
       behavior,
-      from: areaResolution.from,
+      from: shouldUpdateLast ? lastAreaOptions.from : areaResolution.from,
       to: nextTo,
     })
 
