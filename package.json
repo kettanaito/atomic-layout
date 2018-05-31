@@ -5,9 +5,9 @@
     "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
-    "dev": "webpack --watch",
+    "dev": "NODE_ENV=development webpack --watch",
     "start": "start-storybook -p 6006",
-    "build": "NODE_ENV=production webpack",
+    "build": "webpack",
     "test": "BABEL_ENV=test jest",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "prepublishOnly": "npm tets && npm run build",
