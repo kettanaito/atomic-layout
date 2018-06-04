@@ -1,10 +1,21 @@
-import { getBreakpointFor } from '../const/breakpoints'
+// @flow
+import type { TGridTemplate } from './parseTemplates'
+import type { TAreaBreakpoint, TAreasCollection } from './reduceAreas'
+import { getBreakpoint } from '../const/breakpoints'
 import pop from './pop'
 
-export default function getAreaOptions(acc, template, isLast) {
-  const { areas, mediaQuery: originalMediaQuery, behavior } = template
-  const mediaQuery = originalMediaQuery || 'xs'
-  const areaResolution = getBreakpointFor(mediaQuery)
+export default function getAreaOptions(
+  acc: TAreasCollection,
+  template: TGridTemplate,
+  isLast: boolean,
+): ?TAreasCollection {
+  const { areas, breakpointName: originalBreakpointName, behavior } = template
+  const breakpointName = originalBreakpointName || 'xs'
+  const areaBreakpoint = getBreakpoint(breakpointName)
+
+  if (!areaBreakpoint) {
+    return
+  }
 
   return areas.reduce((allAreasOptions, areaName) => {
     const prevAreaOptions = allAreasOptions[areaName] || []
@@ -12,7 +23,7 @@ export default function getAreaOptions(acc, template, isLast) {
 
     const hasPrecedingArea = !!lastAreaOptions
     const hasSiblingArea =
-      hasPrecedingArea && lastAreaOptions.to + 1 === areaResolution.from
+      hasPrecedingArea && lastAreaOptions.to + 1 === areaBreakpoint.from
     const hasSameBehavior =
       hasSiblingArea && behavior === lastAreaOptions.behavior
 
@@ -22,17 +33,22 @@ export default function getAreaOptions(acc, template, isLast) {
     const shouldUpdateLast =
       !!lastAreaOptions && (hasSameBehavior || hasInclusiveBehavior)
 
-    const nextTo = isLast && behavior === 'up' ? undefined : areaResolution.to
+    const nextTo = isLast && behavior === 'up' ? undefined : areaBreakpoint.to
+    const nextFrom = shouldUpdateLast
+      ? lastAreaOptions.from
+      : areaBreakpoint.from
 
     const optionsPool = shouldUpdateLast
       ? pop(prevAreaOptions)
       : prevAreaOptions
 
-    const nextAreaOptions = optionsPool.concat({
+    const newAreaOption: TAreaBreakpoint = {
       behavior,
-      from: shouldUpdateLast ? lastAreaOptions.from : areaResolution.from,
+      from: nextFrom,
       to: nextTo,
-    })
+    }
+
+    const nextAreaOptions = optionsPool.concat(newAreaOption)
 
     return Object.assign({}, allAreasOptions, {
       [areaName]: nextAreaOptions,

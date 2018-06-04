@@ -1,5 +1,5 @@
 {
-  "presets": [["env", { "modules": false }], "react"],
+  "presets": [["env", { "modules": false }], "react", "flow"],
   "plugins": ["transform-export-extensions"],
   "env": {
     "test": {

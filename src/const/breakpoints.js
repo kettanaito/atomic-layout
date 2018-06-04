@@ -1,7 +1,16 @@
+// @flow
+export type TBehavior = 'up' | 'down' | 'only'
+
+export type TBreakpoint = {
+  name: string,
+  from?: number,
+  to?: number,
+}
+
 /**
  * Default breakpoints based on Bootstrap grid.
  */
-const breakpoints = [
+const breakpoints: TBreakpoint[] = [
   {
     name: 'xs',
     to: 575,
@@ -27,11 +36,17 @@ const breakpoints = [
   },
 ]
 
+/**
+ * Returns the collection of the present breakpoint names.
+ */
 export const getBreakpointsNames = () =>
   breakpoints.map((breakpoint) => breakpoint.name)
 
-export const getBreakpointFor = (mediaQuery) => {
-  return breakpoints.find((breakpoint) => breakpoint.name === mediaQuery)
+/**
+ * Returns the options for the given breakpoint name.
+ */
+export const getBreakpoint = (breakpointName: string): ?TBreakpoint => {
+  return breakpoints.find((breakpoint) => breakpoint.name === breakpointName)
 }
 
 export default breakpoints

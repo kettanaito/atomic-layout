@@ -1,7 +1,5 @@
-/**
- * @param {Number|String|null} value
- */
-export default function toRem(value) {
+// @flow
+export default function toRem(value?: number | string): ?string {
   if (!value) {
     return
   }

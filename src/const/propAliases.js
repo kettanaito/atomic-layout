@@ -1,4 +1,16 @@
+// @flow
 import toRem from '../utils/toRem'
+
+type TValueTransformer<T> = (val: any) => T
+
+type TPropAliasOptions = {
+  props: string[],
+  transformValue?: TValueTransformer<?string>,
+}
+
+type TPropAliases = {
+  [propAlias: string]: TPropAliasOptions,
+}
 
 /**
  * Collection of prop aliases.
@@ -6,11 +18,11 @@ import toRem from '../utils/toRem'
  * substituted by one or multiple CSS properties with a single value.
  * Each prop value can have a value transformer.
  */
-export default {
+const propAliases: TPropAliases = {
   /* CSS Grid */
   template: {
     props: ['grid-template-areas'],
-    transformValue: (val) => val.trim(),
+    transformValue: (val: string) => val.trim(),
   },
   templateCols: {
     props: ['grid-template-columns'],
@@ -142,3 +154,5 @@ export default {
     transformValue: toRem,
   },
 }
+
+export default propAliases
