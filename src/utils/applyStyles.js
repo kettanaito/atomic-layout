@@ -1,13 +1,24 @@
+// @flow
+import type { TBehavior, TBreakpoint } from '../const/breakpoints'
+import type { TProps } from './getPropByName'
 import propAliases from '../const/propAliases'
 import breakpoints, {
   getBreakpointsNames,
-  getBreakpointFor,
+  getBreakpoint,
 } from '../const/breakpoints'
 
 const breakpointsNames = getBreakpointsNames()
-const behaviors = ['down', 'up', 'only']
+const allBehaviors: TBehavior[] = ['down', 'up', 'only']
 
-export const parseResponsivePropName = (propName) => {
+export type TParsedResponsiveProp = {
+  propName: string,
+  breakpointName: ?string,
+  behavior: TBehavior,
+}
+
+export const parseResponsivePropName = (
+  propName: string,
+): TParsedResponsiveProp => {
   const sanitizedPropName = propName.replace(/[A-Z]/g, (capitalLetter) => {
     return `-${capitalLetter}`.toLowerCase()
   })
@@ -17,23 +28,24 @@ export const parseResponsivePropName = (propName) => {
   const res = splitPropName.reduce(
     (acc, part, index) => {
       if (breakpointsNames.includes(part)) {
-        return Object.assign({}, acc, { mediaQuery: part })
+        return Object.assign({}, acc, { breakpointName: part })
       }
 
-      if (behaviors.includes(part)) {
+      if (allBehaviors.includes(part)) {
         return Object.assign({}, acc, { behavior: part })
       }
 
-      const nextPropName =
-        acc.propName + index > 0
+      const propNamePart =
+        index > 0
           ? part.slice(0, 1).toUpperCase() + part.slice(1, part.length)
           : part
+      const nextPropName = `${acc.propName}${propNamePart}`
 
       return Object.assign({}, acc, { propName: nextPropName })
     },
     {
       propName: '',
-      mediaQuery: null,
+      breakpointName: null,
       behavior: 'up',
     },
   )
@@ -41,50 +53,59 @@ export const parseResponsivePropName = (propName) => {
   return res
 }
 
-const getMediaQueryString = (mediaQuery, behavior) => {
-  const breakpoint = getBreakpointFor(mediaQuery)
+const getMediaQueryString = (
+  breakpointName: string,
+  behavior: TBehavior,
+): string => {
+  const breakpoint: ?TBreakpoint = getBreakpoint(breakpointName)
 
-  if (behavior === 'only') {
-    return `(min-width: ${breakpoint.from}px) and (max-width: ${
-      breakpoint.to
-    }px)`
+  if (!breakpoint) {
+    return ''
   }
 
-  if (behavior === 'down') {
-    return `(max-width: ${breakpoint.to}px)`
+  const { from, to } = breakpoint
+
+  if (behavior === 'only' && from && to) {
+    return `(min-width: ${from}px) and (max-width: ${to}px)`
   }
 
-  return `(min-width: ${breakpoint.from}px)`
+  if (behavior === 'down' && to) {
+    return `(max-width: ${to}px)`
+  }
+
+  return from ? `(min-width: ${from}px)` : ''
 }
 
-const applyCssProps = (props, propValue, mediaQuery, behavior) => {
+const applyCssProps = (
+  props: string[],
+  propValue: mixed,
+  breakpointName: ?string,
+  behavior: TBehavior,
+) => {
   const propLinesArr = props.map((propName) => {
-    return `${propName}:${propValue};`
+    return `${propName}:${String(propValue)};`
   })
 
   let propsCss = propLinesArr.join('')
 
-  if (mediaQuery) {
-    const query = getMediaQueryString(mediaQuery, behavior)
+  if (breakpointName) {
+    const query = getMediaQueryString(breakpointName, behavior)
     propsCss = `@media ${query} {${propsCss}}`
   }
 
   return propsCss
 }
 
-export default function applyStyles(pristineProps) {
+export default function applyStyles(pristineProps: TProps): string {
   const stylesArr = Object.keys(pristineProps).reduce(
-    (styles, originalPropName) => {
-      let nextStyles = styles
-
-      const { propName, mediaQuery, behavior } = parseResponsivePropName(
+    (allStyles, originalPropName) => {
+      const { propName, breakpointName, behavior } = parseResponsivePropName(
         originalPropName,
       )
 
       const aliasOptions = propAliases[propName]
-
       if (!aliasOptions) {
-        return nextStyles
+        return allStyles
       }
 
       const { props, transformValue } = aliasOptions
@@ -96,11 +117,11 @@ export default function applyStyles(pristineProps) {
       const css = applyCssProps(
         props,
         transformedPropValue,
-        mediaQuery,
+        breakpointName,
         behavior,
       )
 
-      return nextStyles.concat(css)
+      return allStyles.concat(css)
     },
     [],
   )

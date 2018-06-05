@@ -1,15 +1,18 @@
+// @flow
 import compose from './compose'
 
+type TSanitizeTemplateString = (str: string) => string[]
+
 /**
- * Takes a template string and returns an array of normalized
- * and unique grid areas based on that string.
+ * Returns an array of unique normalized grid areas
+ * from the given template string.
  */
-const sanitizeTemplateString = compose(
-  (arr) => Array.from(new Set(arr)),
-  (arr) => arr.filter(Boolean),
-  (str) => str.split(' '),
-  (str) => str.trim(),
-  (str) => str.replace(/\r?\n|\r|\'/g, ''),
+const sanitizeTemplateString: TSanitizeTemplateString = compose(
+  (arr: any[]) => Array.from(new Set(arr)),
+  (arr: any[]) => arr.filter(Boolean),
+  (str: string) => str.split(' '),
+  (str: string) => str.trim(),
+  (str: string) => str.replace(/\r?\n|\r|\'/g, ''),
 )
 
 export default sanitizeTemplateString

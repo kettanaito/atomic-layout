@@ -1,19 +1,22 @@
 {
   "name": "atomic-layout",
   "version": "0.2.0",
-  "description":
-    "A single component to distribute the spacial relation in your layouts using CSS Grid",
+  "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack --watch",
     "start": "start-storybook -p 6006",
     "build": "webpack",
+    "flow": "node_modules/.bin/flow",
     "test": "BABEL_ENV=test jest",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "prepublishOnly": "npm test && npm run build",
     "build-storybook": "build-storybook"
   },
-  "pre-push": ["prettify", "test"],
+  "pre-push": [
+    "prettify",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
@@ -41,7 +44,7 @@
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
-    "flow": "^0.2.3",
+    "flow-bin": "^0.54.1",
     "jest": "^22.4.4",
     "pre-push": "^0.1.1",
     "prettier": "^1.12.1",

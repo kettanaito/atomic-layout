@@ -1,15 +1,23 @@
-import React from 'react'
+// @flow
+import type { TBreakpoint } from '../const/breakpoints'
+import type { TAreaBreakpoint, TAreasCollection } from './reduceAreas'
+import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
+import capitalize from './capitalize'
 import applyStyles from './applyStyles'
 
-const capitalize = (str) => {
-  return str.replace(/^./, (letter) => letter.toUpperCase())
+export type TAreaComponent = Class<React.Component<any, void, void>>
+export type TAreaComponentsMap = {
+  [componentName: string]: TAreaComponent,
 }
 
-const withPlaceholder = (Component, resolutionGroups) => {
-  return ({ children }) =>
-    resolutionGroups.map((resolutionGroup, index) => {
+const withPlaceholder = (
+  AreaComponent: TAreaComponent,
+  breakpoints: TAreaBreakpoint[],
+) => {
+  return ({ children }: { children: React.Node }) =>
+    breakpoints.map((resolutionGroup, index) => {
       const mediaQueryProps = {
         minWidth: resolutionGroup.from,
         maxWidth: resolutionGroup.to,
@@ -17,9 +25,9 @@ const withPlaceholder = (Component, resolutionGroups) => {
 
       return (
         <MediaQuery
-          key={`${Component.displayName}_${index}`}
+          key={`${AreaComponent.displayName}_${index}`}
           {...mediaQueryProps}
-          component={Component}
+          component={AreaComponent}
         >
           {children}
         </MediaQuery>
@@ -27,28 +35,26 @@ const withPlaceholder = (Component, resolutionGroups) => {
     })
 }
 
-const createArea = (areaName) => styled.div`
+const createArea = (areaName: string): TAreaComponent => styled.div`
   grid-area: ${areaName};
   ${(props) => applyStyles(props)};
 `
 
 /**
- * Generates React components for the given areas.
+ * Generates React components for the given grid areas.
  */
-export default function generateComponents(areas) {
+export default function generateComponents(
+  areas: TAreasCollection,
+): TAreaComponentsMap {
   return Object.keys(areas).reduce((components, areaName) => {
     const capitalizedAreaName = capitalize(areaName)
     const areaBreakpoints = areas[areaName]
     const shouldAlwaysRender = areaBreakpoints.every(
-      (resolution) => !resolution.from && !resolution.to,
+      (breakpoint) => !breakpoint.from && !breakpoint.to,
     )
 
     const AreaComponent = createArea(areaName)
     AreaComponent.displayName = capitalizedAreaName
-
-    console.log('area:', areaName)
-    console.log('areaBreakpoints:', areaBreakpoints)
-    console.log('shouldAlwaysRender:', shouldAlwaysRender)
 
     const endComponent = shouldAlwaysRender
       ? AreaComponent
