@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import parseTemplates from '../utils/parseTemplates'
 import applyStyles from '../utils/applyStyles'
 import getPropByName from '../utils/getPropByName'
+import parseTemplates from '../utils/parseTemplates'
 
 const CompositionWrapper = styled.div`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};

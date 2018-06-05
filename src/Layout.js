@@ -1,37 +1,45 @@
 // @flow
-import type { TBreakpoint } from './const/defaultOptions'
+import type { TLayoutOptions, TBreakpoint } from './const/defaultOptions'
 import defaultOptions from './const/defaultOptions'
 
-interface ILayoutOptions {
-  defaultUnit: string;
-  breakpoints: TBreakpoint[];
-}
-
-class Layout implements ILayoutOptions {
+class Layout {
   defaultUnit: string
   breakpoints: TBreakpoint[]
 
-  constructor(options: ILayoutOptions) {
+  // TODO
+  // Improve options type to have params of Maybe type.
+  // This way you don't need to provide the entire config.
+  constructor(options: TLayoutOptions) {
     return this.configure(options)
   }
 
-  configure(options: ILayoutOptions) {
-    const nextOptions: ILayoutOptions = Object.assign(
+  /**
+   * Applies global layout options.
+   */
+  configure(options: TLayoutOptions) {
+    const nextOptions: TLayoutOptions = Object.assign(
       {},
       defaultOptions,
       options,
     )
 
-    this.defaultUnit = nextOptions.defaultUnit
-    this.breakpoints = nextOptions.breakpoints
+    Object.keys(nextOptions).forEach((optionName) => {
+      this[optionName] = nextOptions[optionName]
+    })
 
     return this
   }
 
+  /**
+   * Returns the collection of breakpoint names.
+   */
   getBreakpointsNames(): string[] {
     return this.breakpoints.map((breakpoint) => breakpoint.name)
   }
 
+  /**
+   * Returns breakpoint options by the breakpoint's name.
+   */
   getBreakpoint(breakpointName: string): ?TBreakpoint {
     return this.breakpoints.find(
       (breakpoint) => breakpoint.name == breakpointName,
