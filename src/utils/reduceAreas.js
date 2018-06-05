@@ -1,11 +1,11 @@
 // @flow
-import type { TBehavior, TBreakpoint } from '../const/breakpoints'
+import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import type { TGridTemplate } from './parseTemplates'
-import { getBreakpoint } from '../const/breakpoints'
+import Layout from '../Layout'
 import pop from './pop'
 
 export type TAreaBreakpoint = {
-  behavior: TBehavior,
+  behavior: TBreakpointBehavior,
   from: ?number,
   to: ?number,
 }
@@ -28,7 +28,7 @@ export default function templateToAreas(
         behavior,
       } = template
       const breakpointName = originalBreakpointName || 'xs'
-      const areaBreakpoint = getBreakpoint(breakpointName)
+      const areaBreakpoint = Layout.getBreakpoint(breakpointName)
 
       if (!areaBreakpoint) {
         return areasCollection

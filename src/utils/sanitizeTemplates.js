@@ -1,5 +1,4 @@
 // @flow
-import type { TBehavior } from '../const/breakpoints'
 import type { TParsedProp } from './getPropByName'
 import type { TGridTemplate } from './parseTemplates'
 import sanitizeTemplateString from './sanitizeTemplateString'

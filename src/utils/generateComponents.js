@@ -1,5 +1,5 @@
 // @flow
-import type { TBreakpoint } from '../const/breakpoints'
+import type { TBreakpoint } from '../const/defaultOptions'
 import type { TAreaBreakpoint, TAreasCollection } from './reduceAreas'
 import * as React from 'react'
 import styled from 'styled-components'

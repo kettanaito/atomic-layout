@@ -1,5 +1,5 @@
 // @flow
-import type { TBehavior } from '../const/breakpoints'
+import type { TBreakpointBehavior } from '../const/defaultOptions'
 import type { TParsedProp } from './getPropByName'
 import type { TAreaComponentsMap } from './generateComponents'
 import compose from './compose'
@@ -8,7 +8,7 @@ import generateComponents from './generateComponents'
 import reduceAreas from './reduceAreas'
 
 export type TGridTemplate = {
-  behavior: TBehavior,
+  behavior: TBreakpointBehavior,
   breakpointName: ?string,
   areas: string[],
 }

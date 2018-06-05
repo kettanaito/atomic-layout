@@ -1,2 +1,3 @@
 export Box from './components/Box'
-export Layout from './components/Layout'
+export Composition from './components/Composition'
+export default from './Layout.js'

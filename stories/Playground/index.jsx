@@ -1,6 +1,6 @@
 import React from 'react'
 import Square from '../Square'
-import { Layout } from '../../'
+import { Composition } from '../../'
 
 const template = `
   'header'
@@ -16,15 +16,19 @@ export default class Playground extends React.Component {
   render() {
     return (
       <div>
-        <Layout
+        <Composition
           template={`
           'col'
         `}
         >
           {({ Col }) => ['lorem', 'ipsum'].map((entry) => <Col>{entry}</Col>)}
-        </Layout>
+        </Composition>
 
-        <Layout template={template} templateSmUp={templateTablet} gutter={1}>
+        <Composition
+          template={template}
+          templateSmUp={templateTablet}
+          gutter={1}
+        >
           {({ Header, Content, Footer }) => (
             <React.Fragment>
               <Header>
@@ -38,7 +42,7 @@ export default class Playground extends React.Component {
               </Footer>
             </React.Fragment>
           )}
-        </Layout>
+        </Composition>
       </div>
     )
   }
