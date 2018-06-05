@@ -1,6 +1,13 @@
-![npm](https://img.shields.io/npm/v/atomic-layout.svg) ![](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)
+<p align="center">
+  <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="npm version" />
+  <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Library size (minzip)" />
+</p>
 
-# atomic-layout
+<p align="center">
+  <img src="./logo.png" alt="Atomic layout" />
+</p>
+
+<h1 align="center">atomic-layout</h1>
 
 Atomic layout is an implementational paradigm that delegates distribution of spacial relation between composites to the dedicated layer.
 
@@ -61,7 +68,7 @@ export default Card
 
 ## API
 
-Please see the [Official documentation](https://redd.gitbook.io/atomic-layout/).
+Please see the [Official documentation](https://redd.gitbook.io/atomic-layout).
 
 ## Support
 
