@@ -5,9 +5,6 @@ const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 const nodeEnv = process.env.NODE_ENV || 'production'
 const PRODUCTION = nodeEnv === 'production'
 
-console.log('nodeEnv:', nodeEnv)
-console.log('PRODUCTION:', PRODUCTION)
-
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   externals: {
