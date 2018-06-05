@@ -4,12 +4,12 @@ import parseTemplates from '../utils/parseTemplates'
 import applyStyles from '../utils/applyStyles'
 import getPropByName from '../utils/getPropByName'
 
-const LayoutWrapper = styled.div`
+const CompositionWrapper = styled.div`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
   ${(props) => applyStyles(props)};
 `
 
-export default class Layout extends React.Component {
+export default class Composition extends React.Component {
   constructor(props) {
     super(props)
 
@@ -21,9 +21,9 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <LayoutWrapper {...this.props}>
+      <CompositionWrapper {...this.props}>
         {this.props.children(this.areaComponents)}
-      </LayoutWrapper>
+      </CompositionWrapper>
     )
   }
 }

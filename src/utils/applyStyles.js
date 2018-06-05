@@ -1,19 +1,16 @@
 // @flow
-import type { TBehavior, TBreakpoint } from '../const/breakpoints'
+import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import type { TProps } from './getPropByName'
 import propAliases from '../const/propAliases'
-import breakpoints, {
-  getBreakpointsNames,
-  getBreakpoint,
-} from '../const/breakpoints'
+import Layout from '../Layout'
 
-const breakpointsNames = getBreakpointsNames()
-const allBehaviors: TBehavior[] = ['down', 'up', 'only']
+const breakpointsNames = Layout.getBreakpointsNames()
+const allBehaviors: TBreakpointBehavior[] = ['down', 'up', 'only']
 
 export type TParsedResponsiveProp = {
   propName: string,
   breakpointName: ?string,
-  behavior: TBehavior,
+  behavior: TBreakpointBehavior,
 }
 
 export const parseResponsivePropName = (
@@ -55,9 +52,9 @@ export const parseResponsivePropName = (
 
 const getMediaQueryString = (
   breakpointName: string,
-  behavior: TBehavior,
+  behavior: TBreakpointBehavior,
 ): string => {
-  const breakpoint: ?TBreakpoint = getBreakpoint(breakpointName)
+  const breakpoint: ?TBreakpoint = Layout.getBreakpoint(breakpointName)
 
   if (!breakpoint) {
     return ''
@@ -80,7 +77,7 @@ const applyCssProps = (
   props: string[],
   propValue: mixed,
   breakpointName: ?string,
-  behavior: TBehavior,
+  behavior: TBreakpointBehavior,
 ) => {
   const propLinesArr = props.map((propName) => {
     return `${propName}:${String(propValue)};`
