@@ -1,5 +1,5 @@
 // @flow
-export type TOptions = {
+export type TLayoutOptions = {
   defaultUnit: string,
   breakpoints: TBreakpoint[],
 }
@@ -12,7 +12,7 @@ export type TBreakpoint = {
 
 export type TBreakpointBehavior = 'up' | 'down' | 'only'
 
-const defaultOptions: TOptions = {
+const defaultOptions: TLayoutOptions = {
   defaultUnit: 'px',
   breakpoints: [
     {
