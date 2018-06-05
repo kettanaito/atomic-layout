@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/atomic-layout.svg)
+![npm](https://img.shields.io/npm/v/atomic-layout.svg) ![](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)
 
 # atomic-layout
 
