@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/atomic-layout.svg) ![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)
+![npm](https://img.shields.io/npm/v/atomic-layout.svg)
 
 # atomic-layout
 
@@ -60,6 +60,7 @@ export default Card
 ```
 
 ## API
+
 Please see the [Official documentation](https://redd.gitbook.io/atomic-layout/).
 
 ## Support
