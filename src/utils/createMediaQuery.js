@@ -1,6 +1,7 @@
 // @flow
 import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import toDashedString from './toDashedString'
+import toRem from './toRem'
 
 const shoulAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
@@ -21,7 +22,8 @@ export default function createMediaQuery(
 ): string {
   const mediaQueryParts = Object.keys(breakpoint).reduce(
     (acc: string[], propName) => {
-      const propValue: $Values<TBreakpoint> = breakpoint[propName]
+      const pristinePropValue: $Values<TBreakpoint> = breakpoint[propName]
+      const propValue = toRem(pristinePropValue)
       const dashedPropName = toDashedString(propName)
       const shouldConcat = shoulAppendProp(dashedPropName, behavior)
 
