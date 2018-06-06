@@ -1,6 +1,6 @@
 {
   "presets": [["env", { "modules": false }], "react", "flow"],
-  "plugins": ["transform-export-extensions"],
+  "plugins": ["transform-object-rest-spread", "transform-export-extensions"],
   "env": {
     "test": {
       "presets": ["env", "react"]
