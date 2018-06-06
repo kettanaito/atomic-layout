@@ -49,11 +49,6 @@ export default function generateComponents(
   return Object.keys(areas).reduce((components, areaName) => {
     const capitalizedAreaName = capitalize(areaName)
     const areaBreakpoints = areas[areaName]
-
-    // TODO
-    // This logic doesn't cover breakpoints props like "aspectRatio"
-    // and so on. That means that the component must still be wrapped
-    // in the <MediaQuery/> wrapper.
     const shouldAlwaysRender = areaBreakpoints.every(
       (breakpoint) => !breakpoint.minWidth && !breakpoint.maxWidth,
     )
