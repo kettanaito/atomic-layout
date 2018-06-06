@@ -14,9 +14,11 @@ type TRelativeUnits =
 export type TMeasurementUnit = TAbsoluteUnits | TRelativeUnits
 export type TLayoutOptions = {
   defaultUnit: TMeasurementUnit,
-  breakpoints: {
-    [breakpointName: string]: TBreakpoint,
-  },
+  breakpoints: TBreakpoints,
+}
+
+export type TBreakpoints = {
+  [breakpointName: string]: TBreakpoint,
 }
 
 export type TBreakpoint = {

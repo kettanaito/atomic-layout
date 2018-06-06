@@ -1,10 +1,14 @@
 // @flow
-import type { TLayoutOptions, TBreakpoint } from './const/defaultOptions'
+import type {
+  TLayoutOptions,
+  TBreakpoint,
+  TBreakpoints,
+} from './const/defaultOptions'
 import defaultOptions from './const/defaultOptions'
 
 class Layout {
   defaultUnit: string
-  breakpoints: TBreakpoint[]
+  breakpoints: TBreakpoints
 
   // TODO
   // Improve options type to have params of Maybe type.
@@ -35,17 +39,15 @@ class Layout {
    */
   getBreakpointsNames(): string[] {
     return Object.keys(this.breakpoints)
-    // return this.breakpoints.map((breakpoint) => breakpoint.name)
   }
 
   /**
    * Returns breakpoint options by the breakpoint's name.
    */
   getBreakpoint(breakpointName: ?string): ?TBreakpoint {
-    return this.breakpoints[breakpointName]
-    // return this.breakpoints.find(
-    //   (breakpoint) => breakpoint.name == breakpointName,
-    // )
+    if (breakpointName) {
+      return this.breakpoints[breakpointName]
+    }
   }
 }
 
