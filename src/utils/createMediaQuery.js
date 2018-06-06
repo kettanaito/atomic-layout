@@ -1,16 +1,36 @@
 // @flow
-import type { TBreakpoint } from '../const/defaultOptions'
+import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import toDashedString from './toDashedString'
 
-export default function createMediaQuery(breakpoint: TBreakpoint): string {
-  const arr: string[] = Object.keys(breakpoint).reduce(
-    (acc: string[], propName: string) => {
+const shoulAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
+  const [prefix, splitPropName] = propName.split('-')
+  const isDimensionalProp = ['height', 'width'].includes(splitPropName)
+  if (!isDimensionalProp) {
+    return true
+  }
+
+  return (
+    (prefix === 'min' && ['up', 'only'].includes(behavior)) ||
+    (prefix === 'max' && ['down', 'only'].includes(behavior))
+  )
+}
+
+export default function createMediaQuery(
+  breakpoint: TBreakpoint,
+  behavior: TBreakpointBehavior,
+): string {
+  const mediaQueryParts = Object.keys(breakpoint).reduce(
+    (acc: string[], propName) => {
       const propValue: $Values<TBreakpoint> = breakpoint[propName]
       const dashedPropName = toDashedString(propName)
-      return acc.concat(`(${dashedPropName}:${String(propValue)})`)
+      const shouldConcat = shoulAppendProp(dashedPropName, behavior)
+
+      return shouldConcat
+        ? acc.concat(`(${dashedPropName}:${String(propValue)})`)
+        : acc
     },
     [],
   )
 
-  return arr.join(' and ')
+  return mediaQueryParts.join(' and ')
 }
