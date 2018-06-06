@@ -1,10 +1,6 @@
 import React from 'react'
 import Square from './Square'
-import Layout, { Box, Composition } from '../'
-
-Layout.configure({
-  defaultUnit: 'rem',
-})
+import { Box, Composition } from '../'
 
 const templateMobile = `
   'actions'
@@ -33,7 +29,7 @@ const templateTv = `
 const Demo = () => (
   <div>
     <Composition
-      gutter={1}
+      gutter={16}
       template={templateMobile}
       templateSm={templateTablet}
       templateMd={templateDesktop}
