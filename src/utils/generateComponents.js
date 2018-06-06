@@ -16,7 +16,7 @@ const withPlaceholder = (
   AreaComponent: TAreaComponent,
   breakpoints: TAreaBreakpoint[],
 ) => {
-  return ({ children }: { children: React.Node }) =>
+  const Placeholder = ({ children }: { children: React.Node }) =>
     breakpoints.map((breakpointOptions, index) => {
       const { behavior, ...breakpointProps } = breakpointOptions
 
@@ -30,6 +30,9 @@ const withPlaceholder = (
         </MediaQuery>
       )
     })
+  Placeholder.displayName = `Placeholder(${AreaComponent.displayName})`
+
+  return Placeholder
 }
 
 const createArea = (areaName: string): TAreaComponent => styled.div`
