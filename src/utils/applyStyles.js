@@ -3,6 +3,8 @@ import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import type { TProps } from './getPropByName'
 import propAliases from '../const/propAliases'
 import Layout from '../Layout'
+import toDashedString from './toDashedString'
+import createMediaQuery from './createMediaQuery'
 
 const breakpointsNames = Layout.getBreakpointsNames()
 const allBehaviors: TBreakpointBehavior[] = ['down', 'up', 'only']
@@ -16,10 +18,7 @@ export type TParsedResponsiveProp = {
 export const parseResponsivePropName = (
   propName: string,
 ): TParsedResponsiveProp => {
-  const sanitizedPropName = propName.replace(/[A-Z]/g, (capitalLetter) => {
-    return `-${capitalLetter}`.toLowerCase()
-  })
-
+  const sanitizedPropName = toDashedString(propName)
   const splitPropName = sanitizedPropName.split('-')
 
   const res = splitPropName.reduce(
@@ -50,29 +49,6 @@ export const parseResponsivePropName = (
   return res
 }
 
-const getMediaQueryString = (
-  breakpointName: string,
-  behavior: TBreakpointBehavior,
-): string => {
-  const breakpoint: ?TBreakpoint = Layout.getBreakpoint(breakpointName)
-
-  if (!breakpoint) {
-    return ''
-  }
-
-  const { from, to } = breakpoint
-
-  if (behavior === 'only' && from && to) {
-    return `(min-width: ${from}px) and (max-width: ${to}px)`
-  }
-
-  if (behavior === 'down' && to) {
-    return `(max-width: ${to}px)`
-  }
-
-  return from ? `(min-width: ${from}px)` : ''
-}
-
 const applyCssProps = (
   props: string[],
   propValue: mixed,
@@ -84,11 +60,14 @@ const applyCssProps = (
   })
 
   let propsCss = propLinesArr.join('')
+  const breakpoint = Layout.getBreakpoint(breakpointName)
 
-  if (breakpointName) {
-    const query = getMediaQueryString(breakpointName, behavior)
-    propsCss = `@media ${query} {${propsCss}}`
+  if (breakpoint) {
+    const queryString = createMediaQuery(breakpoint, behavior)
+    propsCss = `@media ${queryString} {${propsCss}}`
   }
+
+  console.log(propsCss)
 
   return propsCss
 }

@@ -17,16 +17,13 @@ const withPlaceholder = (
   breakpoints: TAreaBreakpoint[],
 ) => {
   return ({ children }: { children: React.Node }) =>
-    breakpoints.map((resolutionGroup, index) => {
-      const mediaQueryProps = {
-        minWidth: resolutionGroup.from,
-        maxWidth: resolutionGroup.to,
-      }
+    breakpoints.map((breakpointOptions, index) => {
+      const { behavior, ...breakpointProps } = breakpointOptions
 
       return (
         <MediaQuery
           key={`${AreaComponent.displayName}_${index}`}
-          {...mediaQueryProps}
+          {...breakpointProps}
           component={AreaComponent}
         >
           {children}
@@ -49,8 +46,13 @@ export default function generateComponents(
   return Object.keys(areas).reduce((components, areaName) => {
     const capitalizedAreaName = capitalize(areaName)
     const areaBreakpoints = areas[areaName]
+
+    // TODO
+    // This logic doesn't cover breakpoints props like "aspectRatio"
+    // and so on. That means that the component must still be wrapped
+    // in the <MediaQuery/> wrapper.
     const shouldAlwaysRender = areaBreakpoints.every(
-      (breakpoint) => !breakpoint.from && !breakpoint.to,
+      (breakpoint) => !breakpoint.minWidth && !breakpoint.maxWidth,
     )
 
     const AreaComponent = createArea(areaName)

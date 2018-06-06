@@ -4,10 +4,14 @@ import type { TGridTemplate } from './parseTemplates'
 import Layout from '../Layout'
 import pop from './pop'
 
-export type TAreaBreakpoint = {
+// export type TAreaBreakpoint = {
+//   behavior: TBreakpointBehavior,
+//   from: ?number,
+//   to: ?number,
+// }
+
+export type TAreaBreakpoint = TBreakpoint & {
   behavior: TBreakpointBehavior,
-  from: ?number,
-  to: ?number,
 }
 
 export type TAreasCollection = {
@@ -40,7 +44,8 @@ export default function templateToAreas(
 
         const hasPrecedingArea = !!lastAreaOptions
         const hasSiblingArea =
-          hasPrecedingArea && lastAreaOptions.to + 1 === areaBreakpoint.from
+          hasPrecedingArea &&
+          lastAreaOptions.maxWidth + 1 === areaBreakpoint.minWidth
         const hasSameBehavior =
           hasSiblingArea && behavior === lastAreaOptions.behavior
 
@@ -52,11 +57,11 @@ export default function templateToAreas(
         const shouldUpdateLast =
           !!lastAreaOptions && (hasSameBehavior || hasInclusiveBehavior)
 
-        const nextTo =
-          isLast && behavior === 'up' ? undefined : areaBreakpoint.to
-        const nextFrom = shouldUpdateLast
-          ? lastAreaOptions.from
-          : areaBreakpoint.from
+        const nextMaxWidth =
+          isLast && behavior === 'up' ? undefined : areaBreakpoint.maxWidth
+        const nextMinWidth = shouldUpdateLast
+          ? lastAreaOptions.minWidth
+          : areaBreakpoint.minWidth
 
         const optionsPool = shouldUpdateLast
           ? pop(prevAreaOptions)
@@ -64,8 +69,8 @@ export default function templateToAreas(
 
         const newAreaOption: TAreaBreakpoint = {
           behavior,
-          from: nextFrom,
-          to: nextTo,
+          minWidth: nextMinWidth,
+          maxWidth: nextMaxWidth,
         }
 
         const nextAreaOptions = optionsPool.concat(newAreaOption)
