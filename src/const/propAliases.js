@@ -1,5 +1,5 @@
 // @flow
-import toRem from '../utils/toRem'
+import transformNumeric from '../utils/transformNumeric'
 
 type TValueTransformer<T> = (val: any) => T
 
@@ -50,15 +50,15 @@ const propAliases: TPropAliases = {
   },
   gutter: {
     props: ['grid-gap'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   gutterCol: {
     props: ['grid-column-gap'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   gutterRow: {
     props: ['grid-row-gap'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   align: {
     props: ['align-self'],
@@ -88,70 +88,70 @@ const propAliases: TPropAliases = {
   /* Dimensions */
   height: {
     props: ['height'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   width: {
     props: ['width'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
 
   /* Space */
   margin: {
     props: ['margin'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginTop: {
     props: ['margin-top'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginRight: {
     props: ['margin-right'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginBottom: {
     props: ['margin-bottom'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginLeft: {
     props: ['margin-left'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginVertical: {
     props: ['margin-top', 'margin-bottom'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   marginHorizontal: {
     props: ['margin-right', 'margin-left'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
 
   padding: {
     props: ['padding'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingTop: {
     props: ['padding-top'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingRight: {
     props: ['padding-right'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingBottom: {
     props: ['padding-bottom'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingLeft: {
     props: ['padding-left'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingVertical: {
     props: ['padding-top', 'padding-bottom'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
   paddingHorizontal: {
     props: ['padding-right', 'padding-left'],
-    transformValue: toRem,
+    transformValue: transformNumeric,
   },
 }
 
