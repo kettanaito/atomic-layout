@@ -1,28 +1,28 @@
 // @flow
-import type { TParsedResponsiveProp } from './applyStyles'
-import { parseResponsivePropName } from './applyStyles'
+import type { TParsedProp } from './parsePropName'
+import parsePropName from './parsePropName'
 
 export type TProps = {
   [propName: string]: mixed,
 }
 
-export type TParsedProp<T> = TParsedResponsiveProp & {
+export type TProp<T> = TParsedProp & {
   propValue: T,
 }
 
 export default function getPropByName(
   expectedPropName: string,
   props: TProps,
-): TParsedProp<mixed>[] {
+): TProp<mixed>[] {
   return Object.keys(props).reduce((acc, propName) => {
-    const data = parseResponsivePropName(propName)
+    const parsedProp = parsePropName(propName)
 
-    if (expectedPropName !== data.propName) {
+    if (expectedPropName !== parsedProp.purePropName) {
       return acc
     }
 
     const propValue = props[propName]
 
-    return acc.concat(Object.assign({}, data, { propValue }))
+    return acc.concat(Object.assign({}, parsedProp, { propValue }))
   }, [])
 }
