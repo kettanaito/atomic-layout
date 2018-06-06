@@ -6,12 +6,12 @@ test('Returns proper media query with "up" behavior', () => {
     {
       minWidth: 100,
       maxWidth: 200,
-      minResolution: '72dpi',
+      minAspectRatio: '72dpi',
     },
     'up',
   )
 
-  expect(mediaQuery).to.equal('(min-width:100) and (min-resolution:72dpi)')
+  expect(mediaQuery).to.equal('(min-width:100px) and (min-aspect-ratio:72dpi)')
 })
 
 test('Returns proper media query with "down" behavior', () => {
@@ -24,7 +24,7 @@ test('Returns proper media query with "down" behavior', () => {
     'down',
   )
 
-  expect(mediaQuery).to.equal('(max-width:200) and (min-resolution:300dpi)')
+  expect(mediaQuery).to.equal('(max-width:200px) and (min-resolution:300dpi)')
 })
 
 test('Returns proper media query with "only" behavior', () => {
@@ -38,6 +38,6 @@ test('Returns proper media query with "only" behavior', () => {
   )
 
   expect(mediaQuery).to.equal(
-    '(min-width:100) and (max-width:200) and (orientation:landscape)',
+    '(min-width:100px) and (max-width:200px) and (orientation:landscape)',
   )
 })
