@@ -1,7 +1,7 @@
 // @flow
 import Layout from '../Layout'
 
-export default function toRem(value?: number | string): ?string {
+export default function transformNumeric(value?: number | string): ?string {
   if (!value) {
     return
   }
