@@ -8,12 +8,10 @@ export type TParsedProp = {
   behavior: TBreakpointBehavior,
 }
 
-const createResult = (purePropName, breakpointName, behavior): TParsedProp => ({
-  purePropName,
-  breakpointName: breakpointName && breakpointName.toLowerCase(),
-  behavior: behavior ? behavior.toLowerCase() : 'up',
-})
-
+/**
+ * Returns a parsed prop summary, which includes pure prop name,
+ * an optional breakpoint name and breakpoint behavior.
+ */
 export default function parsePropName(propName: string): TParsedProp {
   const joinedBreakpointNames = Layout.getBreakpointsNames().join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
@@ -22,12 +20,14 @@ export default function parsePropName(propName: string): TParsedProp {
     'i',
   )
 
-  const parsed = regex.exec(propName)
+  const parsed = regex.exec(propName) || []
+  const parsedPurePropName = parsed[1]
+  const breakpointName = parsed[2]
+  const behavior = parsed[3]
 
-  if (!parsed) {
-    return createResult(propName)
+  return {
+    purePropName: parsedPurePropName || propName,
+    breakpointName: breakpointName && breakpointName.toLowerCase(),
+    behavior: behavior ? behavior.toLowerCase() : 'up',
   }
-
-  const [_, purePropName, breakpointName, behavior] = parsed
-  return createResult(purePropName, breakpointName, behavior)
 }
