@@ -27,21 +27,12 @@ export default function createMediaQuery(
       const dashedPropName = toDashedString(propName)
       const shouldConcat = shoulAppendProp(dashedPropName, behavior)
 
-      console.log(' ')
-      console.log('propName:', propName)
-      console.log('dashedPropName:', dashedPropName)
-      console.log('pristinePropValue:', pristinePropValue)
-      console.log('propValue:', propValue)
-      console.log('shouldConcat:', shouldConcat)
-
       return shouldConcat
         ? acc.concat(`(${dashedPropName}:${String(propValue)})`)
         : acc
     },
     [],
   )
-
-  console.log('mediaQueryParts:', mediaQueryParts)
 
   return mediaQueryParts.join(' and ')
 }
