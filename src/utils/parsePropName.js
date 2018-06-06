@@ -21,13 +21,13 @@ export default function parsePropName(propName: string): TParsedProp {
   )
 
   const parsed = regex.exec(propName) || []
-  const parsedPurePropName = parsed[1]
-  const breakpointName = parsed[2]
-  const behavior = parsed[3]
+  const parsedPurePropName: string = parsed[1]
+  const breakpointName: string = parsed[2]
+  const behavior: TBreakpointBehavior = parsed[3] && parsed[3].toLowerCase()
 
   return {
     purePropName: parsedPurePropName || propName,
     breakpointName: breakpointName && breakpointName.toLowerCase(),
-    behavior: behavior ? behavior.toLowerCase() : 'up',
+    behavior: behavior || 'up',
   }
 }
