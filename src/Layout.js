@@ -34,16 +34,18 @@ class Layout {
    * Returns the collection of breakpoint names.
    */
   getBreakpointsNames(): string[] {
-    return this.breakpoints.map((breakpoint) => breakpoint.name)
+    return Object.keys(this.breakpoints)
+    // return this.breakpoints.map((breakpoint) => breakpoint.name)
   }
 
   /**
    * Returns breakpoint options by the breakpoint's name.
    */
-  getBreakpoint(breakpointName: string): ?TBreakpoint {
-    return this.breakpoints.find(
-      (breakpoint) => breakpoint.name == breakpointName,
-    )
+  getBreakpoint(breakpointName: ?string): ?TBreakpoint {
+    return this.breakpoints[breakpointName]
+    // return this.breakpoints.find(
+    //   (breakpoint) => breakpoint.name == breakpointName,
+    // )
   }
 }
 
