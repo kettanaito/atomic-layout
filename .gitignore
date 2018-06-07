@@ -1,3 +1,12 @@
-node_modules
-index.js
+# Internal
+__*
 internal
+
+# Modules
+node_modules
+
+# Build
+/index.js
+
+# Cypress
+cypress/videos

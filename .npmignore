@@ -1,10 +1,18 @@
-src
-webpack.*
+# Configurations
+.circleci
+.github
 .vscode
 .babelrc
 .gitignore
 .prettierrc
+webpack.*
+
+# Sources
+src
 docs
 internal
 stories
 .storybook
+
+# Tests
+cypress
