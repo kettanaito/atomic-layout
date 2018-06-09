@@ -9,4 +9,5 @@ node_modules
 /index.js
 
 # Cypress
+cypress/fixtures
 cypress/videos

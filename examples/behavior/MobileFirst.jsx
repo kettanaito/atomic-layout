@@ -1,22 +1,20 @@
 import React from 'react'
 import { Composition } from '../../'
-import Square from '../Square'
+import Square from '../../stories/Square'
 
-const template = `
-  'first second'
-`
+const template = `'first second'`
 
-export default class DefaultBehavior extends React.Component {
+export default class MobileFirst extends React.Component {
   render() {
     return (
-      <Composition id="default" template={template} gutter={10}>
+      <Composition template={template} gutter={10}>
         {({ First, Second }) => (
           <React.Fragment>
             <First>
-              <Square>First</Square>
+              <Square id="first">First</Square>
             </First>
             <Second>
-              <Square>Second</Square>
+              <Square id="second">Second</Square>
             </Second>
           </React.Fragment>
         )}
