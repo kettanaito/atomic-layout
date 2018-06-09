@@ -1,25 +1,24 @@
 {
   "name": "atomic-layout",
   "version": "0.3.0",
-  "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
+  "description":
+    "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack --watch",
     "start": "start-storybook -p 6006",
-    "cypress": "cypress open",
+    "dev": "NODE_ENV=development webpack --watch",
     "build": "webpack",
+    "cypress": "cypress open",
+    "examples": "webpack-dev-server --config examples/webpack.config.js",
     "flow": "node_modules/.bin/flow",
     "test:unit": "BABEL_ENV=test jest",
-    "test:e2e": "cypress run",
+    "test:e2e":
+      "npm run examples | cypress run --spec cypress/integration/index.js && exit 0",
     "test": "npm run test:unit && npm run test:e2e",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
-    "prepublishOnly": "npm test && npm run build",
-    "build-storybook": "build-storybook"
+    "prepublishOnly": "npm test && npm run build"
   },
-  "pre-push": [
-    "prettify",
-    "test"
-  ],
+  "pre-push": ["prettify", "test"],
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
@@ -48,7 +47,6 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
     "cypress": "^3.0.1",
-    "cypress-react-unit-test": "^1.2.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "flow-bin": "^0.54.1",
@@ -57,9 +55,11 @@
     "prettier": "^1.12.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-router-dom": "^4.3.1",
     "storybook": "^1.0.0",
     "styled-components": "^3.2.6",
-    "webpack": "^3.12.0"
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
     "react-responsive": "^4.1.0"

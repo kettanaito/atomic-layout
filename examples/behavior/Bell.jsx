@@ -1,32 +1,28 @@
 import React from 'react'
 import { Composition } from '../../'
-import Square from '../Square'
+import Square from '../../stories/Square'
 
 const template = `'first second'`
-const templateSm = `'first second third'`
+const templateMd = `'first'`
 const templateLg = `'first second'`
 
-export default class DefaultBehavior extends React.Component {
+export default class Bell extends React.Component {
   render() {
     return (
       <Composition
-        id="inclusive"
         template={template}
-        templateSm={templateSm}
+        templateMd={templateMd}
         templateLg={templateLg}
         gutter={10}
       >
-        {({ First, Second, Third }) => (
+        {({ First, Second }) => (
           <React.Fragment>
             <First>
-              <Square>First</Square>
+              <Square id="first">First sss</Square>
             </First>
             <Second>
-              <Square>Second</Square>
+              <Square id="second">Second</Square>
             </Second>
-            <Third>
-              <Square>Third</Square>
-            </Third>
           </React.Fragment>
         )}
       </Composition>

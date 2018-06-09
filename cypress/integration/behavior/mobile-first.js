@@ -1,12 +1,9 @@
-import React from 'react'
-import Default from '@stories/behavior/Default'
-
 it('Mobile first', () => {
-  cy.loadStory(<Default />)
+  cy.visitExample('behavior/mobile-first')
 
   const assertAllVisible = () => {
-    cy.get('#default > div:nth-child(1)').should('be.visible')
-    cy.get('#default > div:nth-child(2)').should('be.visible')
+    cy.get('#first').should('be.visible')
+    cy.get('#second').should('be.visible')
   }
 
   assertAllVisible()
