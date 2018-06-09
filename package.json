@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack --watch",
     "start": "start-storybook -p 6006",
-    "cypress": "cypress",
+    "cypress": "cypress open",
     "build": "webpack",
     "flow": "node_modules/.bin/flow",
     "test:unit": "BABEL_ENV=test jest",
