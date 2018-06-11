@@ -4,12 +4,6 @@ import type { TGridTemplate } from './parseTemplates'
 import Layout from '../Layout'
 import pop from './pop'
 
-// export type TAreaBreakpoint = {
-//   behavior: TBreakpointBehavior,
-//   from: ?number,
-//   to: ?number,
-// }
-
 export type TAreaBreakpoint = TBreakpoint & {
   behavior: TBreakpointBehavior,
 }
@@ -34,6 +28,8 @@ export default function templateToAreas(
       const breakpointName = originalBreakpointName || 'xs'
       const areaBreakpoint = Layout.getBreakpoint(breakpointName)
 
+      console.log(' ')
+
       if (!areaBreakpoint) {
         return areasCollection
       }
@@ -42,26 +38,33 @@ export default function templateToAreas(
         const prevAreaOptions = allAreasOptions[areaName] || []
         const lastAreaOptions = prevAreaOptions[prevAreaOptions.length - 1]
 
+        console.warn('reducing:', areaName)
+        console.log('areaBreakpoint:', areaBreakpoint)
+        console.log('allAreasOptions:', allAreasOptions)
+        console.log('prevAreaOptions:', prevAreaOptions)
+        console.log('lastAreaOptions:', lastAreaOptions)
+
         const hasPrecedingArea = !!lastAreaOptions
         const hasSiblingArea =
           hasPrecedingArea &&
           lastAreaOptions.maxWidth + 1 === areaBreakpoint.minWidth
         const hasSameBehavior =
-          hasSiblingArea && behavior === lastAreaOptions.behavior
+          hasPrecedingArea && behavior === lastAreaOptions.behavior
 
         const hasInclusiveBehavior =
-          hasSiblingArea &&
+          hasPrecedingArea &&
           lastAreaOptions.behavior === 'up' &&
           behavior === 'down'
 
         const shouldUpdateLast =
           !!lastAreaOptions && (hasSameBehavior || hasInclusiveBehavior)
 
-        const nextMaxWidth =
-          isLast && behavior === 'up' ? undefined : areaBreakpoint.maxWidth
         const nextMinWidth = shouldUpdateLast
           ? lastAreaOptions.minWidth
           : areaBreakpoint.minWidth
+
+        const nextMaxWidth =
+          isLast && behavior === 'up' ? undefined : areaBreakpoint.maxWidth
 
         const optionsPool = shouldUpdateLast
           ? pop(prevAreaOptions)
@@ -74,6 +77,16 @@ export default function templateToAreas(
         }
 
         const nextAreaOptions = optionsPool.concat(newAreaOption)
+
+        console.log('has sibling area?', hasSiblingArea)
+        console.log('has preceding area?', hasPrecedingArea)
+        console.log('has same behavior?', hasSameBehavior)
+        console.log('has inclusive behavior?', hasInclusiveBehavior)
+        console.log('should update last?', shouldUpdateLast)
+        console.log('next maxWidth:', nextMaxWidth)
+        console.log('next minWidth:', nextMinWidth)
+        console.log('options pool:', optionsPool)
+        console.log('new area option:', newAreaOption)
 
         return Object.assign({}, allAreasOptions, {
           [areaName]: nextAreaOptions,
