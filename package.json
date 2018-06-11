@@ -1,8 +1,7 @@
 {
   "name": "atomic-layout",
   "version": "0.3.0",
-  "description":
-    "A single component to distribute the spacial relation in your layouts using CSS Grid",
+  "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
@@ -12,13 +11,15 @@
     "examples": "webpack-dev-server --config examples/webpack.config.js",
     "flow": "node_modules/.bin/flow",
     "test:unit": "BABEL_ENV=test jest",
-    "test:e2e":
-      "npm run examples | cypress run --spec cypress/integration/index.js && exit 0",
+    "test:e2e": "npm run examples | cypress run --spec cypress/integration/index.js && exit 0",
     "test": "npm run test:unit && npm run test:e2e",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "prepublishOnly": "npm test && npm run build"
   },
-  "pre-push": ["prettify", "test"],
+  "pre-push": [
+    "prettify",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
@@ -34,15 +35,15 @@
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^1.1.3",
-    "@storybook/addon-actions": "^3.4.5",
-    "@storybook/addon-links": "^3.4.5",
-    "@storybook/react": "^3.4.5",
+    "@storybook/addon-actions": "^3.4.7",
+    "@storybook/addon-links": "^3.4.7",
+    "@storybook/react": "^3.4.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
@@ -50,9 +51,9 @@
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "flow-bin": "^0.54.1",
-    "jest": "^22.4.4",
+    "jest": "^23.1.0",
     "pre-push": "^0.1.1",
-    "prettier": "^1.12.1",
+    "prettier": "^1.13.5",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router-dom": "^4.3.1",
