@@ -24,14 +24,16 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import defaultOptions from '../../src/const/defaultOptions'
-import examplesWebpackConfig from '../../examples/webpack.config'
+// import examplesWebpackConfig from '../../examples/webpack.config'
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   const breakpoint = defaultOptions.breakpoints[breakpointName]
   return cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
 })
 
-Cypress.Commands.add('visitExample', (path) => {
-  const { port: devServerPort } = examplesWebpackConfig.devServer
-  return cy.visit(`http://localhost:${devServerPort}/${path}`)
+Cypress.Commands.add('assert', (elements, expectation) => {
+  cy.wait(10)
+  elements.forEach((elementSelector) => {
+    cy.get(elementSelector).should(expectation)
+  })
 })

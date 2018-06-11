@@ -1,9 +1,8 @@
 it('Mobile first', () => {
-  cy.visitExample('behavior/mobile-first')
+  cy.visit('/behavior/mobile-first')
 
   const assertAllVisible = () => {
-    cy.get('#first').should('be.visible')
-    cy.get('#second').should('be.visible')
+    cy.assert(['#first', '#second'], 'be.visible')
   }
 
   assertAllVisible()

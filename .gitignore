@@ -11,3 +11,4 @@ node_modules
 # Cypress
 cypress/fixtures
 cypress/videos
+cypress/screenshots

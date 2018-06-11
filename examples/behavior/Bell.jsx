@@ -18,7 +18,7 @@ export default class Bell extends React.Component {
         {({ First, Second }) => (
           <React.Fragment>
             <First>
-              <Square id="first">First sss</Square>
+              <Square id="first">First</Square>
             </First>
             <Second>
               <Square id="second">Second</Square>
