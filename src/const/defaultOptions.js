@@ -11,6 +11,7 @@ type TRelativeUnits =
   | 'vmax'
   | '%'
 
+export type Numeric = number | string
 export type TMeasurementUnit = TAbsoluteUnits | TRelativeUnits
 export type TLayoutOptions = {
   defaultUnit: TMeasurementUnit,
@@ -22,10 +23,10 @@ export type TBreakpoints = {
 }
 
 export type TBreakpoint = {
-  minHeight?: number,
-  maxHeight?: number,
-  minWidth?: number,
-  maxWidth?: number,
+  minHeight?: Numeric,
+  maxHeight?: Numeric,
+  minWidth?: Numeric,
+  maxWidth?: Numeric,
   minResolution?: string,
   maxResolution?: string,
   aspectRatio?: string,
