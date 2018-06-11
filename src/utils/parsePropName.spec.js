@@ -34,24 +34,56 @@ test('Ignores unknown strings', () => {
   expect(res).to.have.property('behavior', 'up')
 })
 
+test('Returns a prop name and behavior without breakpoint', () => {
+  const res = parsePropName('gutterDown')
+  expect(res).to.be.an('object')
+  expect(res).to.have.property('purePropName', 'gutter')
+  expect(res).to.have.property('breakpointName', undefined)
+  expect(res).to.have.property('behavior', 'down')
+})
+
 test('Parses a prop name with custom breakpoint name', () => {
   Layout.configure({
     breakpoints: {
       mobile: {},
       tablet: {},
-      desktop: {}
-    }
+      desktop: {},
+    },
   })
 
-  expect(parsePropName('gutterMobile')).to.have.property('purePropName', 'gutter')
-  expect(parsePropName('gutterMobile')).to.have.property('breakpointName', 'mobile')
+  expect(parsePropName('gutterMobile')).to.have.property(
+    'purePropName',
+    'gutter',
+  )
+  expect(parsePropName('gutterMobile')).to.have.property(
+    'breakpointName',
+    'mobile',
+  )
 
-  expect(parsePropName('gutterTablet')).to.have.property('purePropName', 'gutter')
-  expect(parsePropName('gutterTablet')).to.have.property('breakpointName', 'tablet')
+  expect(parsePropName('gutterTablet')).to.have.property(
+    'purePropName',
+    'gutter',
+  )
+  expect(parsePropName('gutterTablet')).to.have.property(
+    'breakpointName',
+    'tablet',
+  )
 
-  expect(parsePropName('gutterDesktop')).to.have.property('purePropName', 'gutter')
-  expect(parsePropName('gutterDesktop')).to.have.property('breakpointName', 'desktop')
+  expect(parsePropName('gutterDesktop')).to.have.property(
+    'purePropName',
+    'gutter',
+  )
+  expect(parsePropName('gutterDesktop')).to.have.property(
+    'breakpointName',
+    'desktop',
+  )
 
-  expect(parsePropName('gutterFoo')).to.have.property('purePropName', 'gutterFoo')
-  expect(parsePropName('gutterFoo')).to.have.property('breakpointName', undefined)
+  expect(parsePropName('gutterFoo')).to.have.property(
+    'purePropName',
+    'gutterFoo',
+  )
+  expect(parsePropName('gutterFoo')).to.have.property(
+    'breakpointName',
+    undefined,
+  )
 })
