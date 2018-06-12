@@ -15,19 +15,20 @@ export type TParsedProp = {
 export default function parsePropName(propName: string): TParsedProp {
   const joinedBreakpointNames = Layout.getBreakpointsNames().join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
-  const regex = new RegExp(
-    `(\\w+)(${joinedBreakpointNames})(${joinedBehaviors})*$`,
-    'i',
-  )
+  const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
+  const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
 
-  const parsed = regex.exec(propName) || []
-  const parsedPurePropName: string = parsed[1]
-  const breakpointName: string = parsed[2]
-  const behavior: TBreakpointBehavior = parsed[3] && parsed[3].toLowerCase()
+  const behaviorMatch = propName.match(behaviorExp)
+  const behavior = behaviorMatch && behaviorMatch[0]
+  const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
+  const breakpointName = breakpointMatch && breakpointMatch[0]
+  const purePropName = propName
+    .replace(breakpointName, '')
+    .replace(behavior, '')
 
   return {
-    purePropName: parsedPurePropName || propName,
+    purePropName,
     breakpointName: breakpointName ? breakpointName.toLowerCase() : 'xs',
-    behavior: behavior || 'up',
+    behavior: behavior ? behavior.toLowerCase() : 'up',
   }
 }
