@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import applyStyles from '../utils/applyStyles'
-import getPropByName from '../utils/getPropByName'
 import parseTemplates from '../utils/parseTemplates'
 
 const CompositionWrapper = styled.div`
@@ -13,10 +12,8 @@ export default class Composition extends React.Component {
   constructor(props) {
     super(props)
 
-    const templates = getPropByName('template', props)
-
     // This won't support value updates of "template" props
-    this.areaComponents = parseTemplates(templates)
+    this.areaComponents = parseTemplates(props)
   }
 
   render() {
