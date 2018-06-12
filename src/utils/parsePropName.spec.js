@@ -6,7 +6,7 @@ test('Parses a prop name without breakpoint or behavior', () => {
   const res = parsePropName('gutter')
   expect(res).to.be.an('object')
   expect(res).to.have.property('purePropName', 'gutter')
-  expect(res).to.have.property('breakpointName', undefined)
+  expect(res).to.have.property('breakpointName', 'xs')
   expect(res).to.have.property('behavior', 'up')
 })
 
@@ -30,7 +30,7 @@ test('Ignores unknown strings', () => {
   const res = parsePropName('gutterFoo')
   expect(res).to.be.an('object')
   expect(res).to.have.property('purePropName', 'gutterFoo')
-  expect(res).to.have.property('breakpointName', undefined)
+  expect(res).to.have.property('breakpointName', 'xs')
   expect(res).to.have.property('behavior', 'up')
 })
 
@@ -38,7 +38,7 @@ test('Returns a prop name and behavior without breakpoint', () => {
   const res = parsePropName('gutterDown')
   expect(res).to.be.an('object')
   expect(res).to.have.property('purePropName', 'gutter')
-  expect(res).to.have.property('breakpointName', undefined)
+  expect(res).to.have.property('breakpointName', 'xs')
   expect(res).to.have.property('behavior', 'down')
 })
 
@@ -82,8 +82,5 @@ test('Parses a prop name with custom breakpoint name', () => {
     'purePropName',
     'gutterFoo',
   )
-  expect(parsePropName('gutterFoo')).to.have.property(
-    'breakpointName',
-    undefined,
-  )
+  expect(parsePropName('gutterFoo')).to.have.property('breakpointName', 'xs')
 })

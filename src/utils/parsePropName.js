@@ -27,7 +27,7 @@ export default function parsePropName(propName: string): TParsedProp {
 
   return {
     purePropName: parsedPurePropName || propName,
-    breakpointName: breakpointName && breakpointName.toLowerCase(),
+    breakpointName: breakpointName ? breakpointName.toLowerCase() : 'xs',
     behavior: behavior || 'up',
   }
 }
