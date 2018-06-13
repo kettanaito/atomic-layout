@@ -24,6 +24,12 @@ Think of how you create layouts today. Most likely you have a set of reusable un
 
 Atomic layout solves this problem by introducing a dedicated layer responsible for spacial distribution in your layouts. That allows to reuse atom components in any layout possible **without mutating** those composites.
 
+## Install
+
+```bash
+npm install atomic-layout
+```
+
 ## Documentation
 
 See the [Official documentation](https://redd.gitbook.io/atomic-layout).
