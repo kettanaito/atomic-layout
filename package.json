@@ -15,7 +15,7 @@
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "npm run test:unit && npm run test:e2e",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
-    "prepublishOnly": "npm test && npm run build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "pre-push": [
     "prettify",
