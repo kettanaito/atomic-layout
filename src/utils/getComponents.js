@@ -48,9 +48,6 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
 export default function getComponents({ areas, templates }) {
   return areas.reduce((components, areaName) => {
     const areaBreakpoints = getAreaBreakpoints(areaName, templates)
-    console.log(`breakpoints for "${areaName}":`, areaBreakpoints)
-    console.log(' ')
-
     const capitalizedAreaName = capitalize(areaName)
     const shouldAlwaysRender =
       areaBreakpoints.length === 1 &&
