@@ -13,58 +13,63 @@ export default function getAreaOptions(
   templates,
 ): TAreaOptions {
   return templates.reduce((acc, template, index) => {
-    // console.groupCollapsed(`getting area options for "${areaName}"`)
-    // console.log('tempalte:', template)
+    const { areas, breakpoint, behavior } = template
+    let areaOptions = {
+      behavior,
+      minWidth: breakpoint.minWidth,
+      maxWidth: breakpoint.maxWidth,
+    }
 
     const isLast = index === templates.length - 1
-    const precedingOptions = acc[acc.length - 1]
-
-    // console.log('is last?', isLast)
-    // console.log('preceding options', precedingOptions)
-
-    const { areas, breakpoint, behavior } = template
+    const prevAreaOptions = acc[acc.length - 1]
     const includesArea = areas.includes(areaName)
 
-    // console.warn('includes area?', includesArea)
-
+    /* Behaviors */
     const hasSameBehavior =
-      precedingOptions && precedingOptions.behavior === behavior
+      prevAreaOptions && prevAreaOptions.behavior === areaOptions.behavior
     const hasInclusiveBehavior =
-      precedingOptions &&
-      precedingOptions.behavior === 'up' &&
-      behavior === 'down'
+      prevAreaOptions &&
+      prevAreaOptions.behavior === 'up' &&
+      areaOptions.behavior === 'down'
 
-    const shouldUpdateLast =
-      includesArea &&
-      !!precedingOptions &&
-      (hasSameBehavior || hasInclusiveBehavior)
+    let shouldUpdatePrev =
+      includesArea && (hasSameBehavior || hasInclusiveBehavior)
+    const shouldStretch = prevAreaOptions && prevAreaOptions.behavior === 'up'
 
+    if (includesArea) {
+      if (hasSameBehavior || hasInclusiveBehavior) {
+        areaOptions.minWidth = prevAreaOptions.minWidth
+      }
+
+      if (isLast && behavior === 'up') {
+        areaOptions.maxWidth = undefined
+      }
+    } else {
+      console.log('does not include area')
+      if (shouldStretch) {
+        console.log('should stretch prev!')
+        shouldUpdatePrev = true
+        areaOptions.behavior = 'down'
+        areaOptions.minWidth = prevAreaOptions.minWidth
+        areaOptions.maxWidth = breakpoint.minWidth - 1
+      } else {
+        areaOptions = null
+      }
+    }
+
+    const target = shouldUpdatePrev ? pop(acc) : acc
+    const nextAcc = target.concat(areaOptions)
+
+    // console.groupCollapsed(`getting area options for "${areaName}"`)
+    // console.log('tempalte:', template)
+    // console.log('is last?', isLast)
+    // console.log('prev breakpoint', prevAreaOptions)
+    // console.warn('includes area?', includesArea)
+    // console.log('should stretch?', shouldStretch)
     // console.log('has same behavior?', hasSameBehavior)
     // console.log('has inclusive behavior?', hasInclusiveBehavior)
-    // console.log('should update last?', shouldUpdateLast)
-
-    const nextMinWidth = shouldUpdateLast
-      ? precedingOptions.minWidth
-      : breakpoint.minWidth
-
-    const nextMaxWidth =
-      isLast && behavior === 'up' ? undefined : breakpoint.maxWidth
-
-    // console.log('next min width:', nextMinWidth)
-    // console.log('next max width:', nextMaxWidth)
-
-    const options = includesArea
-      ? {
-          behavior,
-          minWidth: nextMinWidth,
-          maxWidth: nextMaxWidth,
-        }
-      : null
-
-    const target = shouldUpdateLast ? pop(acc) : acc
-    const nextAcc = target.concat(options)
-
-    // console.warn('options:', options)
+    // console.log('should update prev?', shouldUpdatePrev)
+    // console.warn('next area options:', areaOptions)
     // console.log('target:', target)
     // console.log('next acc:', nextAcc)
     // console.groupEnd()
