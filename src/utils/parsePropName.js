@@ -1,6 +1,7 @@
 // @flow
 import type { TBreakpointBehavior } from '../const/defaultOptions'
 import Layout from '../Layout'
+import toLowerCaseFirst from './toLowerCaseFirst'
 
 export type TParsedProp = {
   purePropName: string,
@@ -32,7 +33,7 @@ export default function parsePropName(propName: string): TParsedProp {
 
   return {
     purePropName,
-    breakpointName: breakpointName ? breakpointName.toLowerCase() : 'xs',
-    behavior: behavior ? behavior.toLowerCase() : 'up',
+    breakpointName: breakpointName ? toLowerCaseFirst(breakpointName) : 'xs',
+    behavior: behavior ? toLowerCaseFirst(behavior) : 'up',
   }
 }
