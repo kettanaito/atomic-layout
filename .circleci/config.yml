@@ -8,7 +8,7 @@ jobs:
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/app
+    working_directory: ~/root
     parallelism: 1
     steps:
       - checkout
@@ -21,6 +21,7 @@ jobs:
           key: v1-npm-deps-{{ checksum "package.json" }}
           paths:
             - node_modules
+            - ~/.cache
       - run: npm run build
       - run: npm test
       - store_test_results:
