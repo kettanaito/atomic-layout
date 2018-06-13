@@ -11,6 +11,10 @@ export type TParsedProp = {
 /**
  * Returns a parsed prop summary, which includes pure prop name,
  * an optional breakpoint name and breakpoint behavior.
+ *
+ * \w+(?<=(sm)?(only)?)$
+ * This RegExp also works well. May consider implementing once
+ * lookbehind is supported everywhere.
  */
 export default function parsePropName(propName: string): TParsedProp {
   const joinedBreakpointNames = Layout.getBreakpointsNames().join('|')

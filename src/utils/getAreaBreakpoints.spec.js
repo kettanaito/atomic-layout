@@ -28,14 +28,14 @@ test('Inclusive', () => {
   const breakpoints = getAreaBreakpoints('b', templates)
 
   const breakpointMd = Layout.getBreakpoint('md')
+  const breakpointXl = Layout.getBreakpoint('xl')
   expect(breakpoints).to.deep.equal([
     null,
     {
-      behavior: 'up',
+      behavior: 'down',
       minWidth: breakpointMd.minWidth,
-      maxWidth: breakpointMd.maxWidth,
+      maxWidth: breakpointXl.minWidth - 1,
     },
-    null,
   ])
 })
 
@@ -48,14 +48,14 @@ test('Bell', () => {
   const breakpoints = getAreaBreakpoints('b', templates)
 
   const breakpointXs = Layout.getBreakpoint('xs')
+  const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
   expect(breakpoints).to.deep.equal([
     {
-      behavior: 'up',
+      behavior: 'down',
       minWidth: breakpointXs.minWidth,
-      maxWidth: breakpointXs.maxWidth,
+      maxWidth: breakpointMd.minWidth - 1,
     },
-    null,
     {
       behavior: 'up',
       minWidth: breakpointXl.minWidth,
