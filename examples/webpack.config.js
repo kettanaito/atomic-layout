@@ -9,7 +9,12 @@ const config = {
     publicPath: '/build/',
   },
   module: webpackConfig.module,
-  resolve: webpackConfig.resolve,
+  resolve: {
+    alias: {
+      '@lib': path.resolve(__dirname, '../index.js'),
+    },
+    extensions: ['.jsx', '.js'],
+  },
   devServer: {
     port: 9987,
     contentBase: path.resolve(__dirname),
