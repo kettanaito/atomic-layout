@@ -14,7 +14,7 @@ export default function getAreaOptions(
 ): TAreaOptions {
   return templates.reduce((acc, template, index) => {
     const { areas, breakpoint, behavior } = template
-    let areaOptions = {
+    let areaOptions: TAreaOptions = {
       behavior,
       minWidth: breakpoint.minWidth,
       maxWidth: breakpoint.maxWidth,
@@ -45,9 +45,7 @@ export default function getAreaOptions(
         areaOptions.maxWidth = undefined
       }
     } else {
-      console.log('does not include area')
       if (shouldStretch) {
-        console.log('should stretch prev!')
         shouldUpdatePrev = true
         areaOptions.behavior = 'down'
         areaOptions.minWidth = prevAreaOptions.minWidth
@@ -59,20 +57,6 @@ export default function getAreaOptions(
 
     const target = shouldUpdatePrev ? pop(acc) : acc
     const nextAcc = target.concat(areaOptions)
-
-    // console.groupCollapsed(`getting area options for "${areaName}"`)
-    // console.log('tempalte:', template)
-    // console.log('is last?', isLast)
-    // console.log('prev breakpoint', prevAreaOptions)
-    // console.warn('includes area?', includesArea)
-    // console.log('should stretch?', shouldStretch)
-    // console.log('has same behavior?', hasSameBehavior)
-    // console.log('has inclusive behavior?', hasInclusiveBehavior)
-    // console.log('should update prev?', shouldUpdatePrev)
-    // console.warn('next area options:', areaOptions)
-    // console.log('target:', target)
-    // console.log('next acc:', nextAcc)
-    // console.groupEnd()
 
     return nextAcc
   }, [])
