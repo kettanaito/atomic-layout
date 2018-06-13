@@ -1,3 +1,7 @@
+---
+description: A single component to distribute spacial relation in your layouts.
+---
+
 <p align="center">
   <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="npm version" />
   <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
@@ -8,69 +12,39 @@
   <img src="./logo.png" alt="Atomic layout" />
 </p>
 
-<h1 align="center">atomic-layout</h1>
+<h1 align="center">Atomic layout</h1>
 
-Atomic layout is an implementational paradigm that delegates distribution of spacial relation between composites to the dedicated layer.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates the distribution of spacial relation between any layout composites to the dedicated layer. Put shortly, it helps you to create reusable, efficient and fast responsive layouts with _close to no CSS_.
 
-This library is a representative of that paradigm. **It's a single React component to declare spacial relation between any composites**. Inspired by and encourages [Atomic design](http://bradfrost.com/blog/post/atomic-web-design).
+<p align="center">
+  <img src="example.png" style="max-width:650px" />
+</p>
 
-## Why?
+> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can [configure custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match your very requirements.
 
-Now, when you compose molecules out of atoms you add spacial properties to the atoms directly. Not only that makes you write more CSS, that contradicts the core principle of an atom being simple, reusable, predictable.
+## Motivation
 
-Atomic layout introduces a higher layer that distributes spacial relation between **any** composites (atoms, molecules, organisms) without mutating their behavior.
+Think of how you create layouts today. Most likely you have a set of reusable units \(atoms\) to combine them into functional compositions. However, layout is also about spacing and positioning. So you manage CSS properties to ensure your layout is just right. Guess what, not only that results into your writing more CSS, but that also makes your atoms _contextual_, thus _non-predictable_.
 
-## How does it work?
+Atomic layout solves this problem by introducing a dedicated layer responsible for spacial distribution in your layouts. That allows to reuse atom components in any layout possible **without mutating** those composites.
 
-It's a flexible abstraction above [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) written in [React](https://reactjs.org/), powered by [styled-components](https://github.com/styled-components/styled-components).
+## Documentation
 
-You're probably thinking it's some sort of experimental hack. Well, in fact Atomic layout is built on technologies which have been around _for years_. It's stable, it's standardized, it's production-ready.
+See the [Official documentation](https://redd.gitbook.io/atomic-layout).
 
-## Getting started
+Here are some shortcuts to get you started:
 
-```jsx
-import React from 'react'
-import { Layout } from 'atomic-layout'
+- [Philosophy](https://redd.gitbook.io/atomic-layout/general/philosophy)
+- [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
+- [Responsive props](https://redd.gitbook.io/atomic-layout/general/responsive-props)
+- [Best practices](https://redd.gitbook.io/atomic-layout/general/best-practices)
 
-// declare template areas
-const templateMobile = `
-  'thumbnail'
-  'heading'
-  'subheading'
-`
+Create a [Pull request](https://github.com/kettanaito/atomic-layout/pulls) to improve the documentation!
 
-// don't forget about responsive
-const templateDesktop = `
-  'thumbnail heading'
-  'thumbnail subheading'
-`
+## Browser support
 
-const Card = () => (
-  <Layout template={templateMobile} templateSm={templateDesktop}>
-    {/* Get React components based on your grid areas */}
-    {({ Thumbnail, Heading, Subheading }) => (
-      <React.Fragment>
-        <Thumbnail>
-          <img src="foo.png" />
-        </Thumbnail>
-        <Heading>
-          <h4>Juicy fruits</h4>
-        </Heading>
-        <Subheading>
-          <p>Healthy mind in a healthy body.</p>
-        </Subheading>
-      </React.Fragment>
-    )}
-  </Layout>
-)
+| Chrome | Firefox | IE   | Edge | Safari | iOS Safari |
+| ------ | ------- | ---- | ---- | ------ | ---------- |
+| 65+    | 59+     | 11\* | 16+  | 11.1+  | 10.3+      |
 
-export default Card
-```
-
-## API
-
-Please see the [Official documentation](https://redd.gitbook.io/atomic-layout).
-
-## Support
-
-See the [Support table](https://caniuse.com/#feat=css-grid).
+> \* Partial support of an [older version](https://www.w3.org/TR/2011/WD-css3-grid-layout-20110407/) of CSS Grid specification.
