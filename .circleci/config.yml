@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   build:
     docker:
@@ -9,18 +8,19 @@ jobs:
           ## this enables colors in the output
           TERM: xterm
     working_directory: ~/root
-    parallelism: 1
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-npm-deps-{{ checksum "package.json" }}
-            - v1-npm-deps
-      - run: npm install
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps
+      - run:
+          name: Install dependencies
+          command: npm ci
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package.json" }}
+          key: npm-deps-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - ~/.npm
             - ~/.cache
       - run: npm run build
       - run: npm test
