@@ -2,19 +2,19 @@
 import type { TBreakpointBehavior } from '../const/defaultOptions'
 import pop from './pop'
 
-export type TAreaOptions = {
+export type TAreaParams = {
   behavior: TBreakpointBehavior,
   minWidth?: number,
   maxWidth?: number,
 }
 
-export default function getAreaOptions(
+export default function getAreaParams(
   areaName: string,
   templates,
-): TAreaOptions {
+): TAreaParams[] {
   return templates.reduce((acc, template, index) => {
     const { areas, breakpoint, behavior } = template
-    let areaOptions: TAreaOptions = {
+    let areaOptions: TAreaParams = {
       behavior,
       minWidth: breakpoint.minWidth,
       maxWidth: breakpoint.maxWidth,
