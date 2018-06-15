@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import MobileFirst from './MobileFirst'
 import BreakpointSpecific from './BreakpointSpecific'
 import InclusiveBell from './InclusiveBell'
+import CustomConfiguration from './CustomConfiguration'
 
 const ResponsiveProps = ({ match }) => (
   <Switch>
@@ -12,6 +13,10 @@ const ResponsiveProps = ({ match }) => (
       component={BreakpointSpecific}
     />
     <Route path={`${match.path}/inclusive-bell`} component={InclusiveBell} />
+    <Route
+      path={`${match.path}/custom-configuration`}
+      component={CustomConfiguration}
+    />
   </Switch>
 )
 
