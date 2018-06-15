@@ -1,5 +1,6 @@
 // @flow
 import Layout from '../Layout'
+import toNumber from './toNumber'
 import parsePropName from './parsePropName'
 import sanitizeTemplateString from './sanitizeTemplateString'
 
@@ -12,10 +13,14 @@ export default function getAreasList(props): string[] {
         isTemplateProp && sanitizeTemplateString(props[propName])
 
       const nextAreas = isTemplateProp ? res.areas.concat(propValue) : res.areas
+      const breakpoint = Layout.getBreakpoint(breakpointName)
 
       const nextTemplates = isTemplateProp
         ? res.templates.concat({
-            breakpoint: Layout.getBreakpoint(breakpointName),
+            breakpoint: breakpoint && {
+              minWidth: toNumber(breakpoint.minWidth),
+              maxWidth: toNumber(breakpoint.maxWidth),
+            },
             behavior,
             areas: propValue,
           })

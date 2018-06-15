@@ -1,10 +1,11 @@
 // @flow
 import type { TBreakpoint } from '../const/defaultOptions'
+import type { TAreaParams } from './getAreaParams'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
 
-import getAreaBreakpoints from './getAreaBreakpoints'
+import getAreaParams from './getAreaParams'
 import capitalize from './capitalize'
 import applyStyles from './applyStyles'
 
@@ -15,10 +16,10 @@ export type TAreaComponentsMap = {
 
 const withPlaceholder = (
   AreaComponent: TAreaComponent,
-  breakpoints: TAreaBreakpoint[],
+  areaParams: TAreaParams[],
 ) => {
   const Placeholder = ({ children }: { children: React.Node }) =>
-    breakpoints.reduce((components, breakpointOptions, index) => {
+    areaParams.reduce((components, breakpointOptions, index) => {
       if (!breakpointOptions) {
         return components
       }
@@ -47,11 +48,11 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
 
 export default function getComponents({ areas, templates }) {
   return areas.reduce((components, areaName) => {
-    const areaBreakpoints = getAreaBreakpoints(areaName, templates)
+    const areaParams = getAreaParams(areaName, templates)
     const capitalizedAreaName = capitalize(areaName)
     const shouldAlwaysRender =
-      areaBreakpoints.length === 1 &&
-      areaBreakpoints.every((breakpoint) => {
+      areaParams.length === 1 &&
+      areaParams.every((breakpoint) => {
         return !breakpoint.minWidth && !breakpoint.maxWidth
       })
     const AreaComponent = createArea(areaName)
@@ -59,7 +60,7 @@ export default function getComponents({ areas, templates }) {
 
     const endComponent = shouldAlwaysRender
       ? AreaComponent
-      : withPlaceholder(AreaComponent, areaBreakpoints)
+      : withPlaceholder(AreaComponent, areaParams)
 
     return Object.assign({}, components, {
       [capitalizedAreaName]: endComponent,

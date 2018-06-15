@@ -1,16 +1,16 @@
 import { expect } from 'chai'
 import Layout from '../Layout'
 import getAreasList from './getAreasList'
-import getAreaBreakpoints from './getAreaBreakpoints'
+import getAreaParams from './getAreaParams'
 
 test('Mobile first', () => {
   const { templates } = getAreasList({
     template: `'a b'`,
     templateLg: `'a'`,
   })
-  const breakpoints = getAreaBreakpoints('a', templates)
+  const areaParam = getAreaParams('a', templates)
 
-  expect(breakpoints).to.deep.equal([
+  expect(areaParam).to.deep.equal([
     {
       behavior: 'up',
       minWidth: undefined,
@@ -25,11 +25,11 @@ test('Inclusive', () => {
     templateMd: `'a b'`,
     templateXl: `'a'`,
   })
-  const breakpoints = getAreaBreakpoints('b', templates)
+  const areaParams = getAreaParams('b', templates)
 
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
-  expect(breakpoints).to.deep.equal([
+  expect(areaParams).to.deep.equal([
     null,
     {
       behavior: 'down',
@@ -45,12 +45,12 @@ test('Bell', () => {
     templateMd: `'a'`,
     templateXl: `'a b'`,
   })
-  const breakpoints = getAreaBreakpoints('b', templates)
+  const areaParams = getAreaParams('b', templates)
 
   const breakpointXs = Layout.getBreakpoint('xs')
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
-  expect(breakpoints).to.deep.equal([
+  expect(areaParams).to.deep.equal([
     {
       behavior: 'down',
       minWidth: breakpointXs.minWidth,
