@@ -1,5 +1,5 @@
 // @flow
-import Layout from '../Layout'
+import Layout from '../../Layout'
 
 export default function transformNumeric(value?: number | string): ?string {
   if (!value) {

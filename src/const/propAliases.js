@@ -1,5 +1,5 @@
 // @flow
-import transformNumeric from '../utils/transformNumeric'
+import transformNumeric from '../utils/math/transformNumeric'
 
 type TValueTransformer<T> = (val: any) => T
 

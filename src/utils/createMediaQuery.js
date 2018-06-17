@@ -1,7 +1,7 @@
 // @flow
 import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
+import transformNumeric from './math/transformNumeric'
 import toDashedString from './toDashedString'
-import transformNumeric from './transformNumeric'
 
 const shoulAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
