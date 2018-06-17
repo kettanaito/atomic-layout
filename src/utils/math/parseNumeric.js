@@ -1,6 +1,6 @@
 // @flow
 import type { Numeric, TMeasurementUnit } from '../../const/defaultOptions'
-import toNumber from '../toNumber'
+import toNumber from './toNumber'
 import Layout from '../../Layout'
 
 type TParsedNumeric = {
