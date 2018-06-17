@@ -46,7 +46,15 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
   ${(props) => applyStyles(props)};
 `
 
-export default function getComponents({ areas, templates }) {
+type TGetComponentsArgs = {
+  areas: string[],
+  templates: [],
+}
+
+export default function getComponents({
+  areas,
+  templates,
+}: TGetComponentsArgs) {
   return areas.reduce((components, areaName) => {
     const areaParams = getAreaParams(areaName, templates)
     const capitalizedAreaName = capitalize(areaName)

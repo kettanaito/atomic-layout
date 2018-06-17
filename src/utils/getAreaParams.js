@@ -1,5 +1,6 @@
 // @flow
 import type { TBreakpointBehavior } from '../const/defaultOptions'
+import type { TTemplate } from './getAreasList'
 import pop from './pop'
 
 export type TAreaParams = {
@@ -10,7 +11,7 @@ export type TAreaParams = {
 
 export default function getAreaParams(
   areaName: string,
-  templates,
+  templates: TTemplate[],
 ): TAreaParams[] {
   return templates.reduce((acc, template, index) => {
     const { areas, breakpoint, behavior } = template
@@ -32,7 +33,7 @@ export default function getAreaParams(
       prevAreaOptions.behavior === 'up' &&
       areaOptions.behavior === 'down'
 
-    let shouldUpdatePrev =
+    let shouldUpdatePrevious =
       includesArea && (hasSameBehavior || hasInclusiveBehavior)
     const shouldStretch = prevAreaOptions && prevAreaOptions.behavior === 'up'
 
@@ -46,7 +47,7 @@ export default function getAreaParams(
       }
     } else {
       if (shouldStretch) {
-        shouldUpdatePrev = true
+        shouldUpdatePrevious = true
         areaOptions.behavior = 'down'
         areaOptions.minWidth = prevAreaOptions.minWidth
         areaOptions.maxWidth = breakpoint.minWidth - 1
@@ -55,7 +56,7 @@ export default function getAreaParams(
       }
     }
 
-    const target = shouldUpdatePrev ? pop(acc) : acc
+    const target = shouldUpdatePrevious ? pop(acc) : acc
     const nextAcc = target.concat(areaOptions)
 
     return nextAcc

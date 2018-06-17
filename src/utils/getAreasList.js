@@ -1,10 +1,23 @@
 // @flow
+import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
+import type { TProps } from './parsePropName'
 import Layout from '../Layout'
 import toNumber from './toNumber'
 import parsePropName from './parsePropName'
 import sanitizeTemplateString from './sanitizeTemplateString'
 
-export default function getAreasList(props): string[] {
+export type TTemplate = {
+  breakpoint: TBreakpoint,
+  behavior: TBreakpointBehavior,
+  areas: string[],
+}
+
+export type TAreasList = {
+  areas: string[],
+  templates: TTemplate[],
+}
+
+export default function getAreasList(props: TProps): TAreasList {
   const areas = Object.keys(props).reduce(
     (res, propName) => {
       const { purePropName, breakpointName, behavior } = parsePropName(propName)
@@ -12,15 +25,11 @@ export default function getAreasList(props): string[] {
       const propValue =
         isTemplateProp && sanitizeTemplateString(props[propName])
 
-      const nextAreas = isTemplateProp ? res.areas.concat(propValue) : res.areas
-      const breakpoint = Layout.getBreakpoint(breakpointName)
-
+      const nextAreas =
+        isTemplateProp && propValue ? res.areas.concat(propValue) : res.areas
       const nextTemplates = isTemplateProp
         ? res.templates.concat({
-            breakpoint: breakpoint && {
-              minWidth: toNumber(breakpoint.minWidth),
-              maxWidth: toNumber(breakpoint.maxWidth),
-            },
+            breakpoint: Layout.getBreakpoint(breakpointName),
             behavior,
             areas: propValue,
           })
