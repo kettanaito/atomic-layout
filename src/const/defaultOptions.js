@@ -16,6 +16,8 @@ export type TMeasurementUnit = TAbsoluteUnits | TRelativeUnits
 export type TLayoutOptions = {
   defaultUnit: TMeasurementUnit,
   breakpoints: TBreakpoints,
+  defaultBreakpointName: string,
+  defaultBehavior: TBreakpointBehavior,
 }
 
 export type TBreakpoints = {
@@ -41,6 +43,8 @@ export type TBreakpointBehavior = 'up' | 'down' | 'only'
 
 const defaultOptions: TLayoutOptions = {
   defaultUnit: 'px',
+  defaultBreakpointName: 'xs',
+  defaultBehavior: 'up',
   breakpoints: {
     xs: {
       maxWidth: 575,
