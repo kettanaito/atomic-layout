@@ -3,6 +3,10 @@ import type { TBreakpointBehavior } from '../const/defaultOptions'
 import Layout from '../Layout'
 import toLowerCaseFirst from './toLowerCaseFirst'
 
+export type TProps = {
+  [propName: string]: mixed,
+}
+
 export type TParsedProp = {
   purePropName: string,
   breakpointName?: string,
@@ -24,16 +28,18 @@ export default function parsePropName(propName: string): TParsedProp {
   const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
 
   const behaviorMatch = propName.match(behaviorExp)
-  const behavior = behaviorMatch && behaviorMatch[0]
+  const behavior = behaviorMatch ? behaviorMatch[0] : ''
   const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
-  const breakpointName = breakpointMatch && breakpointMatch[0]
+  const breakpointName = breakpointMatch ? breakpointMatch[0] : ''
   const purePropName = propName
     .replace(breakpointName, '')
     .replace(behavior, '')
 
   return {
     purePropName,
-    breakpointName: breakpointName ? toLowerCaseFirst(breakpointName) : 'xs',
-    behavior: behavior ? toLowerCaseFirst(behavior) : 'up',
+    breakpointName: breakpointName
+      ? toLowerCaseFirst(breakpointName)
+      : Layout.defaultBreakpointName,
+    behavior: behavior ? toLowerCaseFirst(behavior) : Layout.defaultBehavior,
   }
 }

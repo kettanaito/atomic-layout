@@ -1,14 +1,19 @@
 // @flow
 import type {
   TLayoutOptions,
+  TMeasurementUnit,
   TBreakpoint,
   TBreakpoints,
+  TBreakpointBehavior,
 } from './const/defaultOptions'
 import defaultOptions from './const/defaultOptions'
+import invariant from './utils/invariant'
 
 class Layout {
-  defaultUnit: string
+  defaultUnit: TMeasurementUnit
   breakpoints: TBreakpoints
+  defaultBreakpointName: TBreakpoint
+  defaultBehavior: TBreakpointBehavior
 
   // TODO
   // Improve options type to have params of Maybe type.
@@ -25,6 +30,17 @@ class Layout {
       {},
       defaultOptions,
       options,
+    )
+
+    const { defaultBreakpointName } = nextOptions
+    invariant(
+      defaultBreakpointName,
+      `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${defaultBreakpointName}`,
+    )
+
+    invariant(
+      nextOptions.breakpoints[defaultBreakpointName],
+      `Failed to configure Layout: cannot find a breakpoint with the name "${defaultBreakpointName}" (default breakpoint).`,
     )
 
     Object.keys(nextOptions).forEach((optionName) => {

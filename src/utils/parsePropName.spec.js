@@ -50,6 +50,7 @@ test('Returns a prop name and behavior without breakpoint', () => {
 
 test('Parses a prop name with custom breakpoint name', () => {
   Layout.configure({
+    defaultBreakpointName: 'mobile',
     breakpoints: {
       mobile: {},
       tablet: {},
@@ -92,5 +93,8 @@ test('Parses a prop name with custom breakpoint name', () => {
     'purePropName',
     'gutterFoo',
   )
-  expect(parsePropName('gutterFoo')).to.have.property('breakpointName', 'xs')
+  expect(parsePropName('gutterFoo')).to.have.property(
+    'breakpointName',
+    'mobile',
+  )
 })
