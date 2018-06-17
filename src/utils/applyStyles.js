@@ -1,6 +1,6 @@
 // @flow
 import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
-import type { TProps } from './getPropByName'
+import type { TProps } from './parsePropName'
 import propAliases from '../const/propAliases'
 import Layout from '../Layout'
 import toDashedString from './toDashedString'
