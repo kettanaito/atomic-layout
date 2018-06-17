@@ -4,6 +4,7 @@ import Square from '../../stories/Square'
 
 Layout.configure({
   defaultUnit: 'rem',
+  defaultBreakpointName: 'mobile',
   breakpoints: {
     mobile: {
       maxWidth: '575px',
