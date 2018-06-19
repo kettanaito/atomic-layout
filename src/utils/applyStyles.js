@@ -26,7 +26,15 @@ const applyCssProps = (
 
   console.log({ breakpoint })
 
-  if (breakpoint && !isDefaultBreakpoint) {
+  /**
+   * Wrap CSS rule in media query only if its prop
+   * includes a breakpoint and behavior different than
+   * the default ones.
+   */
+  if (
+    breakpoint &&
+    !(isDefaultBreakpoint && behavior === Layout.defaultBehavior)
+  ) {
     const queryString = createMediaQuery(breakpoint, behavior)
     propsCss = `@media ${queryString} {${propsCss}}`
   }
