@@ -18,7 +18,7 @@ const withPlaceholder = (
   AreaComponent: TAreaComponent,
   areaParams: TAreaParams[],
 ) => {
-  const Placeholder = ({ children }: { children: React.Node }) =>
+  const Placeholder = ({ children, ...restProps }: { children: React.Node }) =>
     areaParams.reduce((components, breakpointOptions, index) => {
       if (!breakpointOptions) {
         return components
@@ -30,6 +30,7 @@ const withPlaceholder = (
         <MediaQuery
           key={`${AreaComponent.displayName}_${index}`}
           {...breakpointProps}
+          {...restProps}
           component={AreaComponent}
         >
           {children}

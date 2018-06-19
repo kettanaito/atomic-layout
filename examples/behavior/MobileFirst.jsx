@@ -8,11 +8,11 @@ const MobileFirst = () => (
   <Composition template={template} gutter={10}>
     {({ First, Second }) => (
       <React.Fragment>
-        <First>
-          <Square id="first">First</Square>
+        <First id="first">
+          <Square>First</Square>
         </First>
-        <Second>
-          <Square id="second">Second</Square>
+        <Second id="second">
+          <Square>Second</Square>
         </Second>
       </React.Fragment>
     )}

@@ -15,14 +15,14 @@ const Inclusive = () => (
   >
     {({ First, Second, Third }) => (
       <React.Fragment>
-        <First>
-          <Square id="first">First</Square>
+        <First id="first">
+          <Square>First</Square>
         </First>
-        <Second>
-          <Square id="second">Second</Square>
+        <Second id="second">
+          <Square>Second</Square>
         </Second>
-        <Third>
-          <Square id="third">Third</Square>
+        <Third id="third">
+          <Square>Third</Square>
         </Third>
       </React.Fragment>
     )}
