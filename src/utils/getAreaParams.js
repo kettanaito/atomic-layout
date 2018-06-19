@@ -52,6 +52,8 @@ export default function getAreaParams(
         areaOptions.minWidth = prevAreaOptions.minWidth
         areaOptions.maxWidth = breakpoint.minWidth - 1
       } else {
+        // TODO
+        // I don't think it ever gets here.
         areaOptions = null
       }
     }

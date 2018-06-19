@@ -14,6 +14,7 @@ const applyCssProps = (
   props: string[],
   propValue: mixed,
   breakpointName: ?string,
+  isDefaultBreakpoint: boolean,
   behavior: TBreakpointBehavior,
 ) => {
   const propLinesArr = props.map((propName) => {
@@ -23,7 +24,9 @@ const applyCssProps = (
   let propsCss = propLinesArr.join('')
   const breakpoint = Layout.getBreakpoint(breakpointName)
 
-  if (breakpoint) {
+  console.log({ breakpoint })
+
+  if (breakpoint && !isDefaultBreakpoint) {
     const queryString = createMediaQuery(breakpoint, behavior)
     propsCss = `@media ${queryString} {${propsCss}}`
   }
@@ -34,12 +37,22 @@ const applyCssProps = (
 export default function applyStyles(pristineProps: TProps): string {
   const stylesArr = Object.keys(pristineProps).reduce(
     (allStyles, originalPropName) => {
-      const { purePropName, breakpointName, behavior } = parsePropName(
-        originalPropName,
-      )
+      const {
+        purePropName,
+        breakpointName,
+        isDefaultBreakpoint,
+        behavior,
+      } = parsePropName(originalPropName)
+
+      console.log({ originalPropName })
+      console.log({ purePropName })
+      console.log({ breakpointName })
+      console.log({ behavior })
+      console.log('---')
 
       const aliasOptions = propAliases[purePropName]
       if (!aliasOptions) {
+        console.warn(`${purePropName} not found in aliases, bypassing...`)
         return allStyles
       }
 
@@ -49,12 +62,20 @@ export default function applyStyles(pristineProps: TProps): string {
         ? transformValue(propValue)
         : propValue
 
+      console.log({ props })
+      console.log({ propValue })
+      console.log({ transformedPropValue })
+
       const css = applyCssProps(
         props,
         transformedPropValue,
         breakpointName,
+        isDefaultBreakpoint,
         behavior,
       )
+
+      console.warn({ css })
+      console.log(' ')
 
       return allStyles.concat(css)
     },

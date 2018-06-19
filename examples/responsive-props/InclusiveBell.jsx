@@ -1,6 +1,9 @@
 import React from 'react'
-import { Composition } from '@lib'
+import Layout, { Composition } from '@lib'
+import resetLayout from '../resetLayout'
 import Square from '../../stories/Square'
+
+resetLayout(Layout)
 
 const template = `'first second'`
 
