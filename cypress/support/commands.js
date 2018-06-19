@@ -41,3 +41,10 @@ Cypress.Commands.add('assert', (elements, expectation) => {
     cy.get(elementSelector).should(expectation)
   })
 })
+
+Cypress.Commands.add('assertArea', (selector, gridArea) => {
+  cy.get(selector).should('have.css', 'grid-row-start', gridArea)
+  cy.get(selector).should('have.css', 'grid-row-end', gridArea)
+  cy.get(selector).should('have.css', 'grid-column-start', gridArea)
+  cy.get(selector).should('have.css', 'grid-column-end', gridArea)
+})

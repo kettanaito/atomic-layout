@@ -3,6 +3,8 @@ it('Mobile first', () => {
 
   const assertAllVisible = () => {
     cy.assert(['#first', '#second'], 'be.visible')
+    cy.assertArea('#first', 'first')
+    cy.assertArea('#second', 'second')
   }
 
   assertAllVisible()
