@@ -23,8 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
 import defaultOptions from '../../src/const/defaultOptions'
-// import examplesWebpackConfig from '../../examples/webpack.config'
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   const breakpoint =
@@ -33,13 +33,6 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
       : breakpointName
 
   return cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
-})
-
-Cypress.Commands.add('assert', (elements, expectation) => {
-  cy.wait(10)
-  elements.forEach((elementSelector) => {
-    cy.get(elementSelector).should(expectation)
-  })
 })
 
 Cypress.Commands.add('assertArea', (selector, gridArea) => {

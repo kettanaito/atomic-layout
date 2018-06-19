@@ -2,16 +2,23 @@ it('Inclusive', () => {
   cy.visit('/behavior/inclusive')
 
   const assertAllVisible = () => {
-    cy.assert(['#first', '#second', '#third'], 'be.visible')
+    cy.get('#first').should('be.visible')
     cy.assertArea('#first', 'first')
+
+    cy.get('#second').should('be.visible')
     cy.assertArea('#second', 'second')
+
+    cy.get('#third').should('be.visible')
     cy.assertArea('#third', 'third')
   }
 
-  cy.assert(['#first', '#second'], 'be.visible')
+  cy.get('#first').should('be.visible')
   cy.assertArea('#first', 'first')
+
+  cy.get('#second').should('be.visible')
   cy.assertArea('#second', 'second')
-  cy.assert(['#third'], 'not.be.visible')
+
+  cy.get('#third').should('not.be.visible')
 
   /* Small */
   cy.setBreakpoint('sm').then(assertAllVisible)
@@ -21,19 +28,23 @@ it('Inclusive', () => {
 
   /* Large */
   cy.setBreakpoint('lg').then(() => {
-    cy.assert(['#first', '#second'], 'be.visible')
+    cy.get('#first').should('be.visible')
     cy.assertArea('#first', 'first')
+
+    cy.get('#second').should('be.visible')
     cy.assertArea('#second', 'second')
 
-    cy.assert(['#third'], 'not.be.visible')
+    cy.get('#third').should('not.be.visible')
   })
 
   /* Extra-large */
   cy.setBreakpoint('xl').then(() => {
-    cy.assert(['#first', '#second'], 'be.visible')
+    cy.get('#first').should('be.visible')
     cy.assertArea('#first', 'first')
+
+    cy.get('#second').should('be.visible')
     cy.assertArea('#second', 'second')
 
-    cy.assert(['#third'], 'not.be.visible')
+    cy.get('#third').should('not.be.visible')
   })
 })

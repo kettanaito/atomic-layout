@@ -2,8 +2,10 @@ it('Mobile first', () => {
   cy.visit('/behavior/mobile-first')
 
   const assertAllVisible = () => {
-    cy.assert(['#first', '#second'], 'be.visible')
+    cy.get('#first').should('be.visible')
     cy.assertArea('#first', 'first')
+
+    cy.get('#second').should('be.visible')
     cy.assertArea('#second', 'second')
   }
 
