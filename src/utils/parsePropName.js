@@ -10,6 +10,7 @@ export type TProps = {
 export type TParsedProp = {
   purePropName: string,
   breakpointName?: string,
+  isDefaultBreakpoint: boolean,
   behavior: TBreakpointBehavior,
 }
 
@@ -27,19 +28,41 @@ export default function parsePropName(propName: string): TParsedProp {
   const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
   const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
 
+  console.log(' ')
+  console.log('parsePropName', propName)
+  console.log({ joinedBreakpointNames })
+  console.log({ joinedBehaviors })
+
   const behaviorMatch = propName.match(behaviorExp)
+  console.log({ behaviorMatch })
+
   const behavior = behaviorMatch ? behaviorMatch[0] : ''
+  console.log({ behavior })
   const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
+  console.log({ breakpointMatch })
   const breakpointName = breakpointMatch ? breakpointMatch[0] : ''
+  console.log({ breakpointName })
   const purePropName = propName
     .replace(breakpointName, '')
     .replace(behavior, '')
 
+  console.log({ purePropName })
+
+  const resolvedBreakpointName = breakpointName
+    ? toLowerCaseFirst(breakpointName)
+    : Layout.defaultBreakpointName
+  const isDefaultBreakpoint =
+    resolvedBreakpointName === Layout.defaultBreakpointName
+
+  console.log({ resolvedBreakpointName })
+  console.log({ isDefaultBreakpoint })
+
+  console.log(' ')
+
   return {
     purePropName,
-    breakpointName: breakpointName
-      ? toLowerCaseFirst(breakpointName)
-      : Layout.defaultBreakpointName,
+    breakpointName: resolvedBreakpointName,
+    isDefaultBreakpoint,
     behavior: behavior ? toLowerCaseFirst(behavior) : Layout.defaultBehavior,
   }
 }

@@ -3,9 +3,18 @@ import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
 import transformNumeric from './math/transformNumeric'
 import toDashedString from './toDashedString'
 
-const shoulAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
+const shouldAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
   const isDimensionalProp = ['height', 'width'].includes(splitPropName)
+
+  console.groupCollapsed('shouldAppendProp', propName)
+  console.log({ propName })
+  console.log({ behavior })
+  console.log({ prefix })
+  console.log({ splitPropName })
+  console.log({ isDimensionalProp })
+  console.groupEnd()
+
   if (!isDimensionalProp) {
     return true
   }
@@ -25,7 +34,16 @@ export default function createMediaQuery(
       const pristinePropValue: $Values<TBreakpoint> = breakpoint[propName]
       const propValue = transformNumeric(pristinePropValue)
       const dashedPropName = toDashedString(propName)
-      const shouldConcat = shoulAppendProp(dashedPropName, behavior)
+      const shouldConcat = shouldAppendProp(dashedPropName, behavior)
+
+      console.groupCollapsed('createMediaQuery')
+      console.log({ behavior })
+      console.log({ breakpoint })
+      console.log({ pristinePropValue })
+      console.log({ propValue })
+      console.log({ dashedPropName })
+      console.log({ shouldConcat })
+      console.groupEnd()
 
       return shouldConcat
         ? acc.concat(`(${dashedPropName}:${String(propValue)})`)

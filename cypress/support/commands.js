@@ -27,7 +27,11 @@ import defaultOptions from '../../src/const/defaultOptions'
 // import examplesWebpackConfig from '../../examples/webpack.config'
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
-  const breakpoint = defaultOptions.breakpoints[breakpointName]
+  const breakpoint =
+    typeof breakpointName === 'string'
+      ? defaultOptions.breakpoints[breakpointName]
+      : breakpointName
+
   return cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
 })
 

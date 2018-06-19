@@ -12,10 +12,13 @@ describe('Custom configuration', () => {
     }
 
     assertPadding('16px')
-    cy.setBreakpoint('sm').then(() => assertPadding('32px'))
-    cy.setBreakpoint('md').then(() => assertPadding('3rem'))
-    cy.setBreakpoint('lg').then(() => assertPadding('4rem'))
-    cy.setBreakpoint('xl').then(() => assertPadding('5rem'))
+    cy.setBreakpoint({
+      minWidth: 576,
+      maxWidth: 768,
+    }).then(() => assertPadding('32px'))
+    cy.setBreakpoint({
+      minWidth: 769,
+    }).then(() => assertPadding('48px'))
   })
 
   // it('Supports custom breakpoints', () => {})
