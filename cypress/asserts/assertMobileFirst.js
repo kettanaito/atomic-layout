@@ -1,14 +1,15 @@
-it('Mobile first', () => {
-  cy.visit('/behavior/mobile-first')
-
+export default function mobileFirst(
+  firstSelector = '#first',
+  secondSelector = '#second',
+) {
   const assertAllVisible = () => {
-    cy.get('#first')
+    cy.get(firstSelector)
       .should('be.visible')
       .haveArea('first')
-      .haveSameAxis('#second', 'y')
-      .notIntersectWith('#second')
+      .haveSameAxis('y', secondSelector)
+      .notIntersectWith(secondSelector)
 
-    cy.get('#second')
+    cy.get(secondSelector)
       .should('be.visible')
       .haveArea('second')
   }
@@ -18,4 +19,4 @@ it('Mobile first', () => {
   cy.setBreakpoint('md').then(assertAllVisible)
   cy.setBreakpoint('lg').then(assertAllVisible)
   cy.setBreakpoint('xl').then(assertAllVisible)
-})
+}
