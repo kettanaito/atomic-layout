@@ -24,8 +24,6 @@ const applyCssProps = (
   let propsCss = propLinesArr.join('')
   const breakpoint = Layout.getBreakpoint(breakpointName)
 
-  console.log({ breakpoint })
-
   /**
    * Wrap CSS rule in media query only if its prop
    * includes a breakpoint and behavior different than
@@ -52,15 +50,8 @@ export default function applyStyles(pristineProps: TProps): string {
         behavior,
       } = parsePropName(originalPropName)
 
-      console.log({ originalPropName })
-      console.log({ purePropName })
-      console.log({ breakpointName })
-      console.log({ behavior })
-      console.log('---')
-
       const aliasOptions = propAliases[purePropName]
       if (!aliasOptions) {
-        console.warn(`${purePropName} not found in aliases, bypassing...`)
         return allStyles
       }
 
@@ -70,10 +61,6 @@ export default function applyStyles(pristineProps: TProps): string {
         ? transformValue(propValue)
         : propValue
 
-      console.log({ props })
-      console.log({ propValue })
-      console.log({ transformedPropValue })
-
       const css = applyCssProps(
         props,
         transformedPropValue,
@@ -81,9 +68,6 @@ export default function applyStyles(pristineProps: TProps): string {
         isDefaultBreakpoint,
         behavior,
       )
-
-      console.warn({ css })
-      console.log(' ')
 
       return allStyles.concat(css)
     },

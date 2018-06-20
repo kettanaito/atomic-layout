@@ -1,29 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
 import { assert } from 'chai'
 import defaultOptions from '../../src/const/defaultOptions'
 
@@ -34,6 +8,11 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
       : breakpointName
 
   cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
+
+  /**
+   * Wait after viewport change due to CSS Grid repaint happening with
+   * a slight human-unnoticable delay.
+   */
   cy.wait(20)
 })
 
@@ -41,6 +20,7 @@ Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
   cy.wrap(subject).should('have.css', 'grid-row-start', gridArea)
   cy.wrap(subject).should('have.css', 'grid-row-end', gridArea)
   cy.wrap(subject).should('have.css', 'grid-column-start', gridArea)
+
   return cy.wrap(subject).should('have.css', 'grid-column-end', gridArea)
 })
 
@@ -64,6 +44,7 @@ Cypress.Commands.add(
   { prevSubject: true },
   (subject, targetSelector) => {
     const a = subject[0].getBoundingClientRect()
+
     cy.get(targetSelector).then((elem) => {
       const b = elem[0] && elem[0].getBoundingClientRect()
 

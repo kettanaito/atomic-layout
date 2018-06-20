@@ -7,13 +7,13 @@ const shouldAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
   const isDimensionalProp = ['height', 'width'].includes(splitPropName)
 
-  console.groupCollapsed('shouldAppendProp', propName)
-  console.log({ propName })
-  console.log({ behavior })
-  console.log({ prefix })
-  console.log({ splitPropName })
-  console.log({ isDimensionalProp })
-  console.groupEnd()
+  // console.groupCollapsed('shouldAppendProp', propName)
+  // console.log({ propName })
+  // console.log({ behavior })
+  // console.log({ prefix })
+  // console.log({ splitPropName })
+  // console.log({ isDimensionalProp })
+  // console.groupEnd()
 
   if (!isDimensionalProp) {
     return true
@@ -36,14 +36,14 @@ export default function createMediaQuery(
       const dashedPropName = toDashedString(propName)
       const shouldConcat = shouldAppendProp(dashedPropName, behavior)
 
-      console.groupCollapsed('createMediaQuery')
-      console.log({ behavior })
-      console.log({ breakpoint })
-      console.log({ pristinePropValue })
-      console.log({ propValue })
-      console.log({ dashedPropName })
-      console.log({ shouldConcat })
-      console.groupEnd()
+      // console.groupCollapsed('createMediaQuery')
+      // console.log({ behavior })
+      // console.log({ breakpoint })
+      // console.log({ pristinePropValue })
+      // console.log({ propValue })
+      // console.log({ dashedPropName })
+      // console.log({ shouldConcat })
+      // console.groupEnd()
 
       return shouldConcat
         ? acc.concat(`(${dashedPropName}:${String(propValue)})`)
