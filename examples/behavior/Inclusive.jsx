@@ -6,7 +6,7 @@ const template = `'first second'`
 const templateSm = `'first second third'`
 const templateLg = `'first second'`
 
-const Inclusive = () => (
+const Inclusive = ({ children }) => (
   <Composition
     template={template}
     templateSm={templateSm}
@@ -15,13 +15,13 @@ const Inclusive = () => (
   >
     {({ First, Second, Third }) => (
       <React.Fragment>
-        <First id="first">
-          <Square>First</Square>
+        <First id="inclusive-first">
+          <Square>{children || 'First'}</Square>
         </First>
-        <Second id="second">
+        <Second id="inclusive-second">
           <Square>Second</Square>
         </Second>
-        <Third id="third">
+        <Third id="inclusive-third">
           <Square>Third</Square>
         </Third>
       </React.Fragment>
