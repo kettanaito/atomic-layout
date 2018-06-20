@@ -2,21 +2,32 @@ it('Inclusive', () => {
   cy.visit('/behavior/inclusive')
 
   const assertAllVisible = () => {
-    cy.get('#first').should('be.visible')
-    cy.assertArea('#first', 'first')
+    cy.get('#first')
+      .should('be.visible')
+      .haveArea('first')
+      .haveSameAxis('#second', 'y')
+      .haveSameAxis('#third', 'y')
+      .notIntersectWith('#second')
 
-    cy.get('#second').should('be.visible')
-    cy.assertArea('#second', 'second')
+    cy.get('#second')
+      .should('be.visible')
+      .haveArea('second')
+      .notIntersectWith('#third')
 
-    cy.get('#third').should('be.visible')
-    cy.assertArea('#third', 'third')
+    cy.get('#third')
+      .should('be.visible')
+      .haveArea('third')
   }
 
-  cy.get('#first').should('be.visible')
-  cy.assertArea('#first', 'first')
+  cy.get('#first')
+    .should('be.visible')
+    .haveArea('first')
+    .haveSameAxis('#second', 'y')
+    .notIntersectWith('#second')
 
-  cy.get('#second').should('be.visible')
-  cy.assertArea('#second', 'second')
+  cy.get('#second')
+    .should('be.visible')
+    .haveArea('second')
 
   cy.get('#third').should('not.be.visible')
 
@@ -28,22 +39,30 @@ it('Inclusive', () => {
 
   /* Large */
   cy.setBreakpoint('lg').then(() => {
-    cy.get('#first').should('be.visible')
-    cy.assertArea('#first', 'first')
+    cy.get('#first')
+      .should('be.visible')
+      .haveArea('first')
+      .haveSameAxis('#second', 'y')
+      .notIntersectWith('#second')
 
-    cy.get('#second').should('be.visible')
-    cy.assertArea('#second', 'second')
+    cy.get('#second')
+      .should('be.visible')
+      .haveArea('second')
 
     cy.get('#third').should('not.be.visible')
   })
 
   /* Extra-large */
   cy.setBreakpoint('xl').then(() => {
-    cy.get('#first').should('be.visible')
-    cy.assertArea('#first', 'first')
+    cy.get('#first')
+      .should('be.visible')
+      .haveArea('first')
+      .haveSameAxis('#second', 'y')
+      .notIntersectWith('#second')
 
-    cy.get('#second').should('be.visible')
-    cy.assertArea('#second', 'second')
+    cy.get('#second')
+      .should('be.visible')
+      .haveArea('second')
 
     cy.get('#third').should('not.be.visible')
   })
