@@ -3,7 +3,7 @@ describe('Behavior', () => {
     cy.setBreakpoint('xs')
   })
 
-  require('./mobile-first')
-  require('./inclusive')
-  require('./bell')
+  require('./mobile-first.test')
+  require('./inclusive.test')
+  require('./bell.test')
 })

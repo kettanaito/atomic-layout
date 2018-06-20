@@ -1,6 +1,6 @@
 describe('Responsive props', () => {
-  require('./mobile-first')
-  require('./breakpoint-specific')
-  require('./inclusive-bell')
-  require('./custom-configuration')
+  require('./mobile-first.test')
+  require('./breakpoint-specific.test')
+  require('./inclusive-bell.test')
+  require('./custom-configuration.test')
 })

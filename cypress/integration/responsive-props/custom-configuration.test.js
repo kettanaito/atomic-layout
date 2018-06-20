@@ -6,7 +6,7 @@ describe('Custom configuration', () => {
     cy.setBreakpoint('xs')
   })
 
-  it('Supports custom measurement unit', () => {
+  it('Supports custom breakpoints and measurement unit', () => {
     const assertPadding = (values) => {
       return cy.get('#composition').should('have.css', 'padding', values)
     }
@@ -20,6 +20,4 @@ describe('Custom configuration', () => {
       minWidth: 769,
     }).then(() => assertPadding('48px'))
   })
-
-  // it('Supports custom breakpoints', () => {})
 })

@@ -47,7 +47,7 @@ Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
 Cypress.Commands.add(
   'haveSameAxis',
   { prevSubject: true },
-  (subject, target, axis) => {
+  (subject, axis, target) => {
     const rectA = subject[0].getBoundingClientRect()
     cy.get(target).then((elem) => {
       const rectB = elem[0].getBoundingClientRect()
