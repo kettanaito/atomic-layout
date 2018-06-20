@@ -15,10 +15,10 @@ const Bell = () => (
   >
     {({ First, Second }) => (
       <React.Fragment>
-        <First id="first">
+        <First id="bell-first">
           <Square>First</Square>
         </First>
-        <Second id="second">
+        <Second id="bell-second">
           <Square>Second</Square>
         </Second>
       </React.Fragment>

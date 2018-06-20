@@ -1,15 +1,12 @@
-export default function mobileFirst(
-  firstSelector = '#first',
-  secondSelector = '#second',
-) {
+export default function mobileFirst() {
   const assertAllVisible = () => {
-    cy.get(firstSelector)
+    cy.get('#mobile-first-first')
       .should('be.visible')
       .haveArea('first')
-      .haveSameAxis('y', secondSelector)
-      .notIntersectWith(secondSelector)
+      .haveSameAxis('y', '#mobile-first-second')
+      .notIntersectWith('#mobile-first-second')
 
-    cy.get(secondSelector)
+    cy.get('#mobile-first-second')
       .should('be.visible')
       .haveArea('second')
   }

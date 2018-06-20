@@ -1,15 +1,12 @@
-export default function assertBell(
-  firstSelector = '#first',
-  secondSelector = '#second',
-) {
+export default function assertBell() {
   const assertAllVisible = () => {
-    cy.get(firstSelector)
+    cy.get('#bell-first')
       .should('be.visible')
       .haveArea('first')
-      .haveSameAxis('y', secondSelector)
-      .notIntersectWith(secondSelector)
+      .haveSameAxis('y', '#bell-second')
+      .notIntersectWith('#bell-second')
 
-    cy.get(secondSelector)
+    cy.get('#bell-second')
       .should('be.visible')
       .haveArea('second')
   }
@@ -17,11 +14,11 @@ export default function assertBell(
   assertAllVisible()
   cy.setBreakpoint('sm').then(assertAllVisible)
   cy.setBreakpoint('md').then(() => {
-    cy.get(firstSelector)
+    cy.get('#bell-first')
       .should('be.visible')
       .haveArea('first')
 
-    cy.get(secondSelector).should('not.be.visible')
+    cy.get('#bell-second').should('not.be.visible')
   })
   cy.setBreakpoint('lg').then(assertAllVisible)
   cy.setBreakpoint('xl').then(assertAllVisible)

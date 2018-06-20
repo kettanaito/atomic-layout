@@ -34,7 +34,7 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
       : breakpointName
 
   cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
-  cy.wait(100)
+  cy.wait(20)
 })
 
 Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
