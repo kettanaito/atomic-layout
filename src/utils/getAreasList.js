@@ -23,7 +23,8 @@ export default function getAreasList(props: TProps): TAreasList {
       const { purePropName, breakpointName, behavior } = parsePropName(propName)
       const isTemplateProp = purePropName === 'template'
       const propValue =
-        isTemplateProp && sanitizeTemplateString(props[propName])
+        isTemplateProp &&
+        sanitizeTemplateString(((props[propName]: any): string))
 
       const nextAreas =
         isTemplateProp && propValue ? res.areas.concat(propValue) : res.areas

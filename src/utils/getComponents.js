@@ -1,6 +1,7 @@
 // @flow
 import type { TBreakpoint } from '../const/defaultOptions'
 import type { TAreaParams } from './getAreaParams'
+import type { TAreasList } from './getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
@@ -47,24 +48,17 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
   ${(props) => applyStyles(props)};
 `
 
-type TGetComponentsArgs = {
-  areas: string[],
-  templates: [],
-}
-
-export default function getComponents({
-  areas,
-  templates,
-}: TGetComponentsArgs) {
+export default function getComponents({ areas, templates }: TAreasList) {
   return areas.reduce((components, areaName) => {
     const areaParams = getAreaParams(areaName, templates)
-    const capitalizedAreaName = capitalize(areaName)
     const shouldAlwaysRender =
       areaParams.length === 1 &&
       areaParams.every((breakpoint) => {
         return !breakpoint.minWidth && !breakpoint.maxWidth
       })
+
     const AreaComponent = createArea(areaName)
+    const capitalizedAreaName = capitalize(areaName)
     AreaComponent.displayName = capitalizedAreaName
 
     const endComponent = shouldAlwaysRender
