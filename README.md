@@ -26,6 +26,15 @@ Atomic layout solves this problem by introducing a dedicated layer responsible f
 
 ## Install
 
+> Although Atomic layout is a principle not bound to any specific technology, the current version is powered by [React](https://github.com/facebook/react) and [styled-components](https://github.com/styled-components/styled-components). [Submit a pull request](https://github.com/kettanaito/atomic-layout/pulls) to support more great technologies.
+
+### Peer dependencies
+
+- React (15.0+)
+- styled-components (3.0+)
+
+### Atomic layout
+
 ```bash
 npm install atomic-layout
 ```
@@ -38,12 +47,14 @@ Here are some shortcuts to get you started:
 
 - [Philosophy](https://redd.gitbook.io/atomic-layout/general/philosophy)
 - [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
-- [Responsive props](https://redd.gitbook.io/atomic-layout/general/responsive-props)
+- [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Best practices](https://redd.gitbook.io/atomic-layout/general/best-practices)
 
 Create a [Pull request](https://github.com/kettanaito/atomic-layout/pulls) to improve the documentation!
 
 ## Browser support
+
+Atomic layout currently has a coverage of 84% of browser usage throughout the glob.
 
 | Chrome | Firefox | IE   | Edge | Safari | iOS Safari |
 | ------ | ------- | ---- | ---- | ------ | ---------- |
