@@ -1,7 +1,7 @@
 // @flow
-import type { TBreakpointBehavior } from '../const/defaultOptions'
-import Layout from '../Layout'
-import toLowerCaseFirst from './toLowerCaseFirst'
+import type { TBreakpointBehavior } from '../../const/defaultOptions'
+import Layout                       from '../../Layout'
+import toLowerCaseFirst             from '../toLowerCaseFirst/index'
 
 export type TProps = {
   [propName: string]: mixed,

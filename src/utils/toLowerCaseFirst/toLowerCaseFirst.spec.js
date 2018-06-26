@@ -1,5 +1,5 @@
-import { expect } from 'chai'
-import toLowerCaseFirst from './toLowerCaseFirst'
+import { expect }       from 'chai'
+import toLowerCaseFirst from './index'
 
 test('Transforms first letter to lowercase', () => {
   expect(toLowerCaseFirst('Foo')).to.equal('foo')

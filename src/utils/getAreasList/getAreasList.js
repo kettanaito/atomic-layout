@@ -1,10 +1,10 @@
 // @flow
-import type { TBreakpoint, TBreakpointBehavior } from '../const/defaultOptions'
-import type { TProps } from './parsePropName'
-import Layout from '../Layout'
-import toNumber from './math/toNumber'
-import parsePropName from './parsePropName'
-import sanitizeTemplateString from './sanitizeTemplateString'
+import type { TBreakpoint, TBreakpointBehavior } from '../../const/defaultOptions'
+import type { TProps }                           from '../parsePropName'
+import Layout                                    from '../../Layout'
+import toNumber                                  from '../math/toNumber'
+import parsePropName                             from '../parsePropName'
+import sanitizeTemplateString                    from '../sanitizeTemplateString'
 
 export type TTemplate = {
   breakpoint: TBreakpoint,
