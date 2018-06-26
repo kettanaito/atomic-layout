@@ -4,7 +4,7 @@
   "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
   "main": "./index.js",
   "scripts": {
-    "start": "start-storybook -p 6006",
+    "start": "start-storybook -p 6020",
     "dev": "NODE_ENV=development webpack --watch",
     "build": "webpack",
     "cypress": "node_modules/.bin/cypress open",
