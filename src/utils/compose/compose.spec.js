@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import compose from './compose'
+import compose    from './compose'
 
 test('Composes given functions from right to left', () => {
   const func = compose(

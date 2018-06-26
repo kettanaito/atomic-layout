@@ -1,4 +1,4 @@
-import { expect } from 'chai'
+import { expect }       from 'chai'
 import createMediaQuery from './createMediaQuery'
 
 test('Returns proper media query with "up" behavior', () => {
