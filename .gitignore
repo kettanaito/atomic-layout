@@ -13,3 +13,6 @@ node_modules
 cypress/fixtures
 cypress/videos
 cypress/screenshots
+
+# Webstorm
+.idea/

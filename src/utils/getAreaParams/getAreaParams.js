@@ -1,7 +1,7 @@
 // @flow
-import type { TBreakpointBehavior } from '../const/defaultOptions'
-import type { TTemplate } from './getAreasList'
-import pop from './pop'
+import type { TBreakpointBehavior } from '../../const/defaultOptions'
+import type { TTemplate }           from '../getAreasList'
+import pop                          from '../pop'
 
 export type TAreaParams = {
   behavior: TBreakpointBehavior,
