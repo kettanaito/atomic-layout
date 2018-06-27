@@ -1,6 +1,10 @@
 import { expect } from 'chai'
-import toDashedStrng from './index'
+import toDashedString from './index'
 
 test('Converts cammelCase to dashed-string', () => {
-  expect(toDashedStrng('loremIpsumDolor')).to.equal('lorem-ipsum-dolor')
+  expect(toDashedString('loremIpsumDolor')).to.equal('lorem-ipsum-dolor')
+})
+
+test('Bypasses strings without capital letter', () => {
+  expect(toDashedString('lorem')).to.equal('lorem')
 })
