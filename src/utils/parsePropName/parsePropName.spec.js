@@ -1,5 +1,5 @@
-import { expect }    from 'chai'
-import Layout        from '../../Layout'
+import { expect } from 'chai'
+import Layout from '../../Layout'
 import parsePropName from './index'
 
 test('Parses a prop name with a breakpoint and behavior', () => {

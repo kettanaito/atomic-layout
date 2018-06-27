@@ -1,11 +1,14 @@
 // @flow
-import type { TBreakpoint, TBreakpointBehavior } from '../../const/defaultOptions'
-import type { TProps }                           from '../parsePropName'
-import propAliases                               from '../../const/propAliases'
-import Layout                                    from '../../Layout'
-import toDashedString                            from '../toDashedString'
-import createMediaQuery                          from '../createMediaQuery'
-import parsePropName                             from '../parsePropName'
+import type {
+  TBreakpoint,
+  TBreakpointBehavior,
+} from '../../const/defaultOptions'
+import type { TProps } from '../parsePropName'
+import propAliases from '../../const/propAliases'
+import Layout from '../../Layout'
+import toDashedString from '../toDashedString'
+import createMediaQuery from '../createMediaQuery'
+import parsePropName from '../parsePropName'
 
 const breakpointsNames = Layout.getBreakpointsNames()
 const allBehaviors: TBreakpointBehavior[] = ['down', 'up', 'only']

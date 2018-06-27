@@ -1,6 +1,6 @@
-import { expect }    from 'chai'
-import Layout        from '../../Layout'
-import getAreasList  from '../getAreasList'
+import { expect } from 'chai'
+import Layout from '../../Layout'
+import getAreasList from '../getAreasList'
 import getAreaParams from './getAreaParams'
 
 test('Mobile first', () => {

@@ -1,4 +1,4 @@
-import { expect }       from 'chai'
+import { expect } from 'chai'
 import toLowerCaseFirst from './index'
 
 test('Transforms first letter to lowercase', () => {
