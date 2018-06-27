@@ -5,7 +5,6 @@ import type {
 } from '../../const/defaultOptions'
 import type { TProps } from '../parsePropName'
 import Layout from '../../Layout'
-import toNumber from '../math/toNumber'
 import parsePropName from '../parsePropName'
 import sanitizeTemplateString from '../sanitizeTemplateString'
 
@@ -21,26 +20,33 @@ export type TAreasList = {
 }
 
 export default function getAreasList(props: TProps): TAreasList {
-  const areas = Object.keys(props).reduce(
-    (res, propName) => {
-      const { purePropName, breakpointName, behavior } = parsePropName(propName)
-      const isTemplateProp = purePropName === 'template'
-      const propValue =
-        isTemplateProp &&
-        sanitizeTemplateString(((props[propName]: any): string))
+  const propKeys = Object.keys(props)
 
-      const nextAreas =
-        isTemplateProp && propValue ? res.areas.concat(propValue) : res.areas
-      const nextTemplates = isTemplateProp
-        ? res.templates.concat({
-            breakpoint: Layout.getBreakpoint(breakpointName),
-            behavior,
-            areas: propValue,
-          })
-        : res.templates
+  /*
+    if the propValue is not a string it is disqualified from being a template
+    from the very get go, mini-optimization there + it removes the need to
+    type-cast the value passed to sanitizeTemplateString since flow can now
+    infer that the value can only be a string otherwise it would have been
+    filtered out already
+  */
+  const templatePropKeys = propKeys.filter(
+    (propKey) =>
+      typeof props[propKey] === 'string' && /template/i.test(propKey),
+  )
+
+  const areasList = templatePropKeys.reduce(
+    (res, propName) => {
+      const { breakpointName, behavior } = parsePropName(propName)
+      const propValue = sanitizeTemplateString(props[propName])
+      const nextAreas = propValue ? res.areas.concat(propValue) : res.areas
+      const nextTemplates = res.templates.concat({
+        breakpoint: Layout.getBreakpoint(breakpointName),
+        behavior,
+        areas: propValue,
+      })
 
       return {
-        areas: Array.from(new Set(nextAreas)),
+        areas: nextAreas,
         templates: nextTemplates,
       }
     },
@@ -50,5 +56,17 @@ export default function getAreasList(props: TProps): TAreasList {
     },
   )
 
-  return areas
+  const { areas, templates } = areasList
+
+  /*
+    there were most likely duplicate areas so areas should be passed to a Set
+    constructor before returning the areasList object
+
+    Array.from() because otherwise the deepEqual test fails
+    maybe this cast should be in the spec file instead of here?
+  */
+  return {
+    areas: Array.from(new Set(areas)),
+    templates,
+  }
 }
