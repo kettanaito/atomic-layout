@@ -1,5 +1,5 @@
-import { expect }   from 'chai'
-import Layout       from '../../Layout'
+import { expect } from 'chai'
+import Layout from '../../Layout'
 import getAreasList from './getAreasList'
 
 test('Parses template props properly', () => {

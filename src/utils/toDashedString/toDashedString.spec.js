@@ -1,4 +1,4 @@
-import { expect }    from 'chai'
+import { expect } from 'chai'
 import toDashedStrng from './index'
 
 test('Converts cammelCase to dashed-string', () => {

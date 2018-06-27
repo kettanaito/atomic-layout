@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import pop        from './index'
+import pop from './index'
 
 test('Returns the copy of the array with the last entry removed', () => {
   expect(pop([1, 2, 3])).to.deep.equal([1, 2])

@@ -1,4 +1,4 @@
-import { expect }             from 'chai'
+import { expect } from 'chai'
 import sanitizeTemplateString from './index'
 
 test('Sanitizes a template string properly', () => {
