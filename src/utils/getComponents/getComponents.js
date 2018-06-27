@@ -65,8 +65,9 @@ export default function getComponents({ areas, templates }: TAreasList) {
       ? AreaComponent
       : withPlaceholder(AreaComponent, areaParams)
 
-    return Object.assign({}, components, {
+    return {
+      ...components,
       [capitalizedAreaName]: endComponent,
-    })
+    }
   }, {})
 }
