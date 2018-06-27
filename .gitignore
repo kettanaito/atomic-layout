@@ -14,5 +14,6 @@ cypress/fixtures
 cypress/videos
 cypress/screenshots
 
-# Webstorm
+# Editors
 .idea/
+.vscode
