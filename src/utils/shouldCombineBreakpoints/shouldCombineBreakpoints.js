@@ -10,44 +10,15 @@ export default function shouldCombineBreakpoints(
   breakpointA: TAreaParams,
   breakpointB: TAreaParams,
 ): boolean {
-  /* First, shallow merge the breakpoints to reduce the amount of iterations */
-  const mergedBreakpoint = {
-    ...breakpointA,
-    ...breakpointB,
-  }
+  const allParams = [...Object.keys(breakpointA), ...Object.keys(breakpointB)]
 
-  /* Then reduce the properties of the merged breakpoint */
-  const res = Object.keys(mergedBreakpoint).reduce(
-    (acc, paramName) => {
-      const { prevParam, shouldCombine } = acc
+  return allParams.every((paramName, index) => {
+    const transformedParamName = paramName.replace(/^min|max/, '_')
+    const prevParamName = allParams[index - 1]
+    const compareTo = prevParamName
+      ? prevParamName.replace(/^min|max/, '_')
+      : transformedParamName
 
-      if (!shouldCombine) {
-        return acc
-      }
-
-      /**
-       * Replaces "min/max" prefix with a single character
-       * to allow strict comparison between params having
-       * different prefixes.
-       */
-      const parsedParamName = paramName.replace(/^min|max/, '_')
-      const nextShouldCombine = prevParam ? prevParam === parsedParamName : true
-
-      return {
-        prevParam: parsedParamName,
-        shouldCombine: nextShouldCombine,
-      }
-    },
-    {
-      prevParam: null,
-      shouldCombine: true,
-    },
-  )
-
-  //
-  const hasSameBehavior = breakpointA.behavior === breakpointB.behavior
-  const hasInclusiveBehavior =
-    breakpointA.behavior === 'up' && breakpointB.behavior === 'down'
-
-  return res.shouldCombine
+    return transformedParamName === compareTo
+  })
 }
