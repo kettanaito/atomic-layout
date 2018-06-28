@@ -35,16 +35,28 @@ test('Returns "true" for combinable breakpoints', () => {
       },
     ),
   ).to.be.true
+
+  expect(
+    shouldCombineBreakpoints(
+      {
+        minAspectRatio: '3/4',
+      },
+      {
+        minAspectRatio: '3/4',
+        maxAspectRatio: '16/9',
+      },
+    ),
+  )
 })
 
 test('Returns "false" for non-combinable breakpoints', () => {
   expect(
     shouldCombineBreakpoints(
       {
-        maxWidth: 500
+        maxWidth: 500,
       },
       {
-        width: 600
+        width: 600,
       },
     ),
   ).to.be.false
@@ -52,10 +64,23 @@ test('Returns "false" for non-combinable breakpoints', () => {
   expect(
     shouldCombineBreakpoints(
       {
-        resolution: '300dpi'
+        resolution: '300dpi',
       },
       {
-        maxResolution: '300dpi'
+        maxResolution: '300dpi',
+      },
+    ),
+  ).to.be.false
+
+  /* Ensure equal-length params are not considered falsely positive */
+  expect(
+    shouldCombineBreakpoints(
+      {
+        minFooBar: 1,
+      },
+      {
+        minFooBar: 2,
+        maxDoeBar: 3,
       },
     ),
   ).to.be.false

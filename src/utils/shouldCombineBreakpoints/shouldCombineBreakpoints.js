@@ -17,9 +17,32 @@ export default function shouldCombineBreakpoints(
   }
 
   /* Then reduce the properties of the merged breakpoint */
-  return Object.keys(mergedBreakpoint).reduce((canCombine, propName) => {
-    // should analyze keys in the object, and return false
-    // as soon as found not compatible keys.
-    return canCombine
-  }, false)
+  const res = Object.keys(mergedBreakpoint).reduce(
+    (acc, paramName) => {
+      const { prevParam, shouldCombine } = acc
+
+      if (!shouldCombine) {
+        return acc
+      }
+
+      /**
+       * Replaces "min/max" prefix with a single character
+       * to allow strict comparison between params having
+       * different prefixes.
+       */
+      const parsedParamName = paramName.replace(/^min|max/, '_')
+      const nextShouldCombine = prevParam ? prevParam === parsedParamName : true
+
+      return {
+        prevParam: parsedParamName,
+        shouldCombine: nextShouldCombine,
+      }
+    },
+    {
+      prevParam: null,
+      shouldCombine: true,
+    },
+  )
+
+  return res.shouldCombine
 }
