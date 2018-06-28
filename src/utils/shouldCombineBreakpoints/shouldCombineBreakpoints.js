@@ -1,5 +1,5 @@
 // @flow
-import type { TBreakpoint } from '../../const/defaultOptions'
+import type { TAreaParams } from '../getAreaParams'
 
 /**
  * Determines whether two given breakpoints can be combined.
@@ -7,8 +7,8 @@ import type { TBreakpoint } from '../../const/defaultOptions'
  * be combined during the area params composition.
  */
 export default function shouldCombineBreakpoints(
-  breakpointA: TBreakpoint,
-  breakpointB: TBreakpoint,
+  breakpointA: TAreaParams,
+  breakpointB: TAreaParams,
 ): boolean {
   /* First, shallow merge the breakpoints to reduce the amount of iterations */
   const mergedBreakpoint = {
@@ -43,6 +43,11 @@ export default function shouldCombineBreakpoints(
       shouldCombine: true,
     },
   )
+
+  //
+  const hasSameBehavior = breakpointA.behavior === breakpointB.behavior
+  const hasInclusiveBehavior =
+    breakpointA.behavior === 'up' && breakpointB.behavior === 'down'
 
   return res.shouldCombine
 }
