@@ -3,7 +3,6 @@ import type {
   TBreakpoint,
   TBreakpointBehavior,
 } from '../../const/defaultOptions'
-import type { TProps } from '../parsePropName'
 import Layout from '../../Layout'
 import parsePropName from '../parsePropName'
 import sanitizeTemplateString from '../sanitizeTemplateString'
@@ -19,24 +18,31 @@ export type TAreasList = {
   templates: TTemplate[],
 }
 
-export default function getAreasList(props: TProps): TAreasList {
-  const propKeys = Object.keys(props)
+export type TTemplateProps = {
+  [propName: string]: string
+}
 
-  /*
-    if the propValue is not a string it is disqualified from being a template
-    from the very get go, mini-optimization there + it removes the need to
-    type-cast the value passed to sanitizeTemplateString since flow can now
-    infer that the value can only be a string otherwise it would have been
-    filtered out already
-  */
-  const templatePropKeys = propKeys.filter(
-    (propKey) =>
-      typeof props[propKey] === 'string' && /template/i.test(propKey),
-  )
 
-  const areasList = templatePropKeys.reduce(
+/*
+  TODO: rename to genAreasList() ? (for generate)
+  'get' implies they already exist somewhere and we're just accessing and
+  returning them, but that's not the case -> same with getAreaParams
+*/
+export default function getAreasList(props: TTemplateProps): TAreasList {
+  const areasList = Object.keys(props).reduce(
     (res, propName) => {
       const { breakpointName, behavior } = parsePropName(propName)
+
+      /*
+        TODO:
+        maybe the next line is something to extract into the composition chain
+        aswell right after the filterTemplateProps function?
+
+        we could lose the ternary if we do that
+
+        + I think this function should assume that it gets perfectly valid input
+        and leave the verification of that to someone else
+      */
       const propValue = sanitizeTemplateString(props[propName])
       const nextAreas = propValue ? res.areas.concat(propValue) : res.areas
       const nextTemplates = res.templates.concat({
