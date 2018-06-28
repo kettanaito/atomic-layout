@@ -3,8 +3,9 @@ import type {
   TBreakpoint,
   TBreakpointBehavior,
 } from '../../const/defaultOptions'
-import pop from '../pop'
 import type { TTemplate } from '../getAreasList'
+import pop from '../pop'
+import mergeBreakpoints from '../mergeBreakpoints'
 
 export type TAreaParams = TBreakpoint & {
   behavior: TBreakpointBehavior,
@@ -16,16 +17,16 @@ export default function getAreaParams(
 ): TAreaParams[] {
   return templates.reduce((acc, template, index) => {
     const { areas, breakpoint, behavior } = template
-    let areaOptions: TAreaParams = {
+
+    let areaParams: TAreaParams = {
+      ...breakpoint,
       behavior,
-      minWidth: breakpoint.minWidth,
-      maxWidth: breakpoint.maxWidth,
     }
 
     const isLast = index === templates.length - 1
-    const prevAreaOptions = acc[acc.length - 1]
     const includesArea = areas.includes(areaName)
 
+<<<<<<< 0392149e9b4e13a618af875112fe58bbc2c3d161
     const prevBehavior = prevAreaOptions && prevAreaOptions.behavior
     const wentUp = prevBehavior === 'up'
     const { behavior: nextBehavior } = areaOptions
@@ -65,5 +66,8 @@ export default function getAreaParams(
 
     const target = shouldUpdatePrevious ? pop(acc) : acc
     return target.concat(areaOptions)
+=======
+    return mergeBreakpoints(acc, areaParams, includesArea, isLast)
+>>>>>>> Isolates breakpoints merging into "mergeBreakpoints" util
   }, [])
 }
