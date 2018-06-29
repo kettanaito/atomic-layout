@@ -20,7 +20,7 @@ test('Parses template props properly', () => {
   })
 })
 
-test('Returns proper areas list for "behavior:up"', () => {
+test('Returns proper areas list for "up" behavior', () => {
   const areasList = getAreasList({
     template: `a b`,
     templateMd: `a b c`,
@@ -43,7 +43,7 @@ test('Returns proper areas list for "behavior:up"', () => {
   })
 })
 
-test('Returns proper areas list for "behavior:down"', () => {
+test('Returns proper areas list for "down" behavior', () => {
   const areasList = getAreasList({
     template: `a b`,
     templateMdDown: `c`,
@@ -66,7 +66,7 @@ test('Returns proper areas list for "behavior:down"', () => {
   })
 })
 
-test('Returns proper areas list for "behavior:only"', () => {
+test('Returns proper areas list for "only" behavior', () => {
   const areasList = getAreasList({
     template: `a`,
     templateMdOnly: `b c`,
