@@ -1,7 +1,7 @@
 {
   "name": "atomic-layout",
   "version": "0.3.1",
-  "description": "A single component to distribute the spacial relation in your layouts using CSS Grid",
+  "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
   "main": "./index.js",
   "scripts": {
     "start": "start-storybook -p 6020",

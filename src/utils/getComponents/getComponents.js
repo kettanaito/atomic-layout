@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
 
 import getAreaParams from '../getAreaParams'
-import capitalize from '../capitalize/index'
-import applyStyles from '../applyStyles/index'
+import capitalize from '../capitalize'
+import applyStyles from '../applyStyles'
 
 export type TAreaComponent = Class<React.Component<any, void, void>>
 export type TAreaComponentsMap = {

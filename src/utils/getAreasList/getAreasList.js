@@ -19,9 +19,8 @@ export type TAreasList = {
 }
 
 export type TTemplateProps = {
-  [propName: string]: string
+  [propName: string]: string,
 }
-
 
 /*
   TODO: rename to genAreasList() ? (for generate)
@@ -36,7 +35,7 @@ export default function getAreasList(props: TTemplateProps): TAreasList {
       /*
         TODO:
         maybe the next line is something to extract into the composition chain
-        aswell right after the filterTemplateProps function?
+        as well right after the filterTemplateProps function?
 
         we could lose the ternary if we do that
 
