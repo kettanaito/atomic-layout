@@ -1,13 +1,15 @@
 // @flow
 import compose from '../compose'
+import pick from '../pick'
 import getAreasList from '../getAreasList'
 import getComponents from '../getComponents'
-import findTemplateProps from '../filterTemplateProps'
+
+const filterTemplateProps = pick([/^template/])
 
 const parseTemplates = compose(
   getComponents,
   getAreasList,
-  findTemplateProps,
+  filterTemplateProps,
 )
 
 export default parseTemplates

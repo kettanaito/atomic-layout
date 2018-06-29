@@ -1,13 +1,19 @@
 // @flow
+export default function pick(predicate: Array<RegExp | string>) {
+  const testPredicate = (propName) => {
+    return predicate.some(
+      (condition) =>
+        typeof condition === 'string'
+          ? condition === propName
+          : condition.test(propName),
+    )
+  }
 
-export default function pick (obj: Object, picks: string []): Object {
-  const picked = {}
-
-  picks.forEach(pick => {
-    if (obj[pick] !== undefined) {
-      picked[pick] = (obj)[pick]
-    }
-  })
-
-  return picked
+  return (obj: Object): Object => {
+    return Object.keys(obj).reduce((picked: Object, propName) => {
+      return testPredicate(propName)
+        ? { ...picked, [propName]: obj[propName] }
+        : picked
+    }, {})
+  }
 }
