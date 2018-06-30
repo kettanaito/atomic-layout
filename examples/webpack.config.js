@@ -11,7 +11,7 @@ const config = {
   module: webpackConfig.module,
   resolve: {
     alias: {
-      '@lib': path.resolve(__dirname, '../index.js'),
+      'atomic-layout': path.resolve(__dirname, '../index.js'),
     },
     extensions: ['.jsx', '.js'],
   },
