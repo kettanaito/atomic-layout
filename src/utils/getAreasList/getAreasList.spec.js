@@ -4,7 +4,6 @@ import getAreasList from './getAreasList'
 
 test('Parses template props properly', () => {
   const areasList = getAreasList({
-    foo: 'bar',
     template: `a b`,
   })
 

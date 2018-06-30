@@ -1,12 +1,13 @@
 // @flow
-import type { TBreakpointBehavior } from '../../const/defaultOptions'
-import type { TTemplate } from '../getAreasList'
+import type {
+  TBreakpoint,
+  TBreakpointBehavior,
+} from '../../const/defaultOptions'
 import pop from '../pop'
+import type { TTemplate } from '../getAreasList'
 
-export type TAreaParams = {
+export type TAreaParams = TBreakpoint & {
   behavior: TBreakpointBehavior,
-  minWidth?: number,
-  maxWidth?: number,
 }
 
 export default function getAreaParams(
@@ -25,17 +26,18 @@ export default function getAreaParams(
     const prevAreaOptions = acc[acc.length - 1]
     const includesArea = areas.includes(areaName)
 
+    const prevBehavior = prevAreaOptions && prevAreaOptions.behavior
+    const wentUp = prevBehavior === 'up'
+    const { behavior: nextBehavior } = areaOptions
+    const goesDown = nextBehavior === 'down'
+
     /* Behaviors */
-    const hasSameBehavior =
-      prevAreaOptions && prevAreaOptions.behavior === areaOptions.behavior
-    const hasInclusiveBehavior =
-      prevAreaOptions &&
-      prevAreaOptions.behavior === 'up' &&
-      areaOptions.behavior === 'down'
+    const hasSameBehavior = prevBehavior === nextBehavior
+    const hasInclusiveBehavior = wentUp && goesDown
 
     let shouldUpdatePrevious =
       includesArea && (hasSameBehavior || hasInclusiveBehavior)
-    const shouldStretch = prevAreaOptions && prevAreaOptions.behavior === 'up'
+    const shouldStretch = prevAreaOptions && wentUp
 
     if (includesArea) {
       if (hasSameBehavior || hasInclusiveBehavior) {
@@ -51,16 +53,17 @@ export default function getAreaParams(
         areaOptions.behavior = 'down'
         areaOptions.minWidth = prevAreaOptions.minWidth
         areaOptions.maxWidth = breakpoint.minWidth - 1
-      } else {
+
         // TODO
-        // I don't think it ever gets here.
+        // Assigning object to array is sure thing hacky,
+        // but result-wise, this is how it should behave.
+        areaOptions = [areaOptions, null]
+      } else {
         areaOptions = null
       }
     }
 
     const target = shouldUpdatePrevious ? pop(acc) : acc
-    const nextAcc = target.concat(areaOptions)
-
-    return nextAcc
+    return target.concat(areaOptions)
   }, [])
 }
