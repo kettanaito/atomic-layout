@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout, { Composition } from '@lib'
+import Layout, { Composition } from 'atomic-layout'
 import Square from '../../stories/Square'
 
 const template = `
