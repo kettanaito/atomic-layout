@@ -1,4 +1,8 @@
 // @flow
+/**
+ * Returns the copy of the given object with only those keys which
+ * satisfy one of the given predicate strings/RegExps.
+ */
 export default function pick(predicate: Array<RegExp | string>) {
   const testPredicate = (propName) =>
     predicate.some(
