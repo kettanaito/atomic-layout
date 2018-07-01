@@ -8,9 +8,9 @@ test('Mobile first', () => {
     template: `'a b'`,
     templateLg: `'a'`,
   })
-  const areaParam = getAreaParams('a', templates)
 
-  expect(areaParam).to.deep.equal([
+  const areaParams = getAreaParams('a', templates)
+  expect(areaParams).to.deep.equal([
     {
       behavior: 'up',
       minWidth: undefined,
@@ -30,7 +30,6 @@ test('Inclusive', () => {
   })
 
   const areaParams = getAreaParams('b', templates)
-
   expect(areaParams).to.deep.equal([
     null,
     {
@@ -54,7 +53,6 @@ test('Bell', () => {
   })
 
   const areaParams = getAreaParams('b', templates)
-
   expect(areaParams).to.deep.equal([
     {
       behavior: 'down',
@@ -84,7 +82,6 @@ describe('Shuffled behavior', () => {
 
     /* Area "a" */
     const areaParamsA = getAreaParams('a', templates)
-
     expect(areaParamsA).to.deep.equal([
       {
         behavior: 'down',
