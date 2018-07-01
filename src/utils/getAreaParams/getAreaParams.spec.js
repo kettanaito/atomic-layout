@@ -110,4 +110,37 @@ describe('Shuffled behavior', () => {
       },
     ])
   })
+
+  test('Bell behavior using explicit "down" area behavior', () => {
+    const { templates } = getAreasList({
+      templateDown: `'a'`,
+      templateMd: 'a c',
+    })
+
+    /* Area "a" */
+    const areaParamsA = getAreaParams('a', templates)
+    expect(areaParamsA).to.deep.equal([
+      {
+        behavior: 'down',
+        minWidth: undefined,
+        maxWidth: Layout.getBreakpoint('xs').maxWidth,
+      },
+      {
+        behavior: 'up',
+        minWidth: Layout.getBreakpoint('md').minWidth,
+        maxWidth: undefined,
+      },
+    ])
+
+    /* Area "c" */
+    const areaParamsC = getAreaParams('c', templates)
+    expect(areaParamsC).to.deep.equal([
+      null,
+      {
+        behavior: 'up',
+        minWidth: Layout.getBreakpoint('md').minWidth,
+        maxWidth: undefined,
+      },
+    ])
+  })
 })
