@@ -5,9 +5,8 @@ import type { TAreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
-
-import getAreaParams from '../getAreaParams'
 import capitalize from '../capitalize'
+import getAreaParams from '../getAreaParams'
 import applyStyles from '../applyStyles'
 
 export type TAreaComponent = Class<React.Component<any, void, void>>
@@ -48,6 +47,10 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
   ${(props) => applyStyles(props)};
 `
 
+/**
+ * Returns a map of React components based on the given grid areas
+ * in the given template definitions.
+ */
 export default function generateComponents({ areas, templates }: TAreasList) {
   return areas.reduce((components, areaName) => {
     const areaParams = getAreaParams(areaName, templates)
