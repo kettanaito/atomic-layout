@@ -2,12 +2,12 @@
 import compose from '../compose'
 import pick from '../pick'
 import getAreasList from '../getAreasList'
-import getComponents from '../getComponents'
+import generateComponents from '../generateComponents'
 
 const filterTemplateProps = pick([/^template/])
 
 const parseTemplates = compose(
-  getComponents,
+  generateComponents,
   getAreasList,
   filterTemplateProps,
 )

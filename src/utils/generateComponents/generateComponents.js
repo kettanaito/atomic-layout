@@ -48,7 +48,7 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
   ${(props) => applyStyles(props)};
 `
 
-export default function getComponents({ areas, templates }: TAreasList) {
+export default function generateComponents({ areas, templates }: TAreasList) {
   return areas.reduce((components, areaName) => {
     const areaParams = getAreaParams(areaName, templates)
     const shouldAlwaysRender =
