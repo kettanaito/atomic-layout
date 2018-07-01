@@ -4,8 +4,8 @@ import applyStyles from '../utils/applyStyles'
 import parseTemplates from '../utils/parseTemplates'
 
 const CompositionWrapper = styled.div`
-  display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
   ${(props) => applyStyles(props)};
+  display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
 `
 
 export default class Composition extends React.Component {
