@@ -23,10 +23,11 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: npm run build
-      - run: npm test
+      - run: npm test -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+      - run: npm run coverage

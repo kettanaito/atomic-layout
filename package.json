@@ -51,6 +51,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "cypress": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
