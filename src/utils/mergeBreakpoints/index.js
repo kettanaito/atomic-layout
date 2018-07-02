@@ -1,7 +1,7 @@
 // @flow
 import type { TAreaParams } from '../getAreaParams'
 import pop from '../pop'
-import shouldCombineBreakpoints from '../shouldCombineBreakpoints'
+// import shouldCombineBreakpoints from '../shouldCombineBreakpoints'
 
 export default function mergeBreakpoints(
   areaParamsList: TAreaParams[],
