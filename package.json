@@ -34,7 +34,7 @@
   "bundlesize": [
     {
       "path": "./index.js",
-      "maxSize": "6 kB"
+      "maxSize": "8 kB"
     }
   ],
   "peerDependencies": {

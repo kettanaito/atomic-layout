@@ -37,3 +37,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+      - run:
+          name: Bundle size check
+          command: node_modules/.bin/bundlesize
+
