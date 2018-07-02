@@ -1,5 +1,4 @@
 // @flow
-import type { TBreakpoint } from '../../const/defaultOptions'
 import type { TAreaParams } from '../getAreaParams'
 import type { TAreasList } from '../getAreasList'
 import * as React from 'react'
