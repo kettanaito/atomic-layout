@@ -5,6 +5,7 @@ deprecated
 
 # Modules
 node_modules
+/coverage
 
 # Build
 /index.js
