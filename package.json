@@ -6,7 +6,6 @@
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
   },
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
