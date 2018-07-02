@@ -15,19 +15,25 @@ jobs:
             - npm-deps-{{ checksum "package.json" }}
             - npm-deps
       - run:
-          name: Install dependencies
+          name: Installing dependencies
           command: npm ci
       - save_cache:
           key: npm-deps-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
-      - run: npm run build
-      - run: npm test -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+      - run:
+          name: Building Atomic layout
+          command: npm run build
+      - run:
+          name: Unit tests
+          command: npm run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+      - run:
+          name: 'Integration tests'
+          command: npm run test:e2e
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-      - run: npm run coverage
