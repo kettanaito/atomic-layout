@@ -17,10 +17,15 @@
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
     "prepublishOnly": "npm run build && npm test"
   },
-  "pre-push": [
-    "prettify",
-    "test"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint ./src/",
+      "pre-push": [
+        "npm run test:unit",
+        "npm run prettify"
+      ]
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
@@ -57,6 +62,7 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.54.1",
+    "husky": "^1.0.0-rc.9",
     "jest": "^23.1.0",
     "pre-push": "^0.1.1",
     "prettier": "^1.13.5",
