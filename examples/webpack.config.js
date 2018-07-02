@@ -8,7 +8,15 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/build/',
   },
-  module: webpackConfig.module,
+  module: {
+    rules: [
+      {
+        test: /\.jsx?/i,
+        exclude: /node_modules/,
+        loaders: ['babel-loader'],
+      },
+    ],
+  },
   resolve: {
     alias: {
       'atomic-layout': path.resolve(__dirname, '../index.js'),
