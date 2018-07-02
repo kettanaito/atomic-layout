@@ -1,6 +1,9 @@
 <p align="center">
   <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="npm version" />
   <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
+  <a href="https://coveralls.io/github/kettanaito/atomic-layout?branch=master">
+    <img src="https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg?branch=master" alt="Tests coverage" />
+  </a>
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Library size (minzip)" />
 </p>
 
