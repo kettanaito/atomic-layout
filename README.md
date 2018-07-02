@@ -29,12 +29,12 @@ Atomic layout solves this problem by introducing a dedicated layer responsible f
 
 ## Install
 
-> Although Atomic layout is a principle not bound to any specific technology, the current version is powered by [React](https://github.com/facebook/react) and [styled-components](https://github.com/styled-components/styled-components). [Submit a pull request](https://github.com/kettanaito/atomic-layout/pulls) to support more great technologies.
+> Although Atomic layout is a principle not bound to any specific technology, the current version is powered by `React` and `styled-components`. [Submit a pull request](https://github.com/kettanaito/atomic-layout/pulls) to support more great technologies.
 
 ### Peer dependencies
 
-- React (15.0+)
-- styled-components (3.0+)
+- [React](https://github.com/facebook/react) (15.0+)
+- [styled-components](https://github.com/styled-components/styled-components) (3.0+)
 
 ### Atomic layout
 
@@ -64,3 +64,7 @@ Atomic layout currently has a coverage of 84% of browser usage throughout the gl
 | 65+    | 59+     | 11\* | 16+  | 11.1+  | 10.3+      |
 
 > \* Partial support of an [older version](https://www.w3.org/TR/2011/WD-css3-grid-layout-20110407/) of CSS Grid specification.
+
+## Contributing
+
+Please see the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to start shaping the way developers create layouts today! Take a look at the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) to get started. Thank you!
