@@ -7,17 +7,20 @@
 .flowconfig
 .gitignore
 .prettierrc
+.flowconfig
+jest.*
 webpack.*
 
 # Sources
 src
-docs
 internal
 examples
 example.png
 logo.png
 stories
+examples
 .storybook
+/*.png
 
 # Tests
 cypress*
