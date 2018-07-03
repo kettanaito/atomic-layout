@@ -17,14 +17,14 @@ export default function getAreaParams(
 ): TAreaParams[] {
   return templates.reduce((acc, template, index) => {
     const { areas, breakpoint, behavior } = template
-
-    const prevAreaOptions = acc[acc.length - 1]
     let areaOptions: TAreaParams = {
-      ...breakpoint,
       behavior,
+      minWidth: breakpoint.minWidth,
+      maxWidth: breakpoint.maxWidth,
     }
 
     const isLast = index === templates.length - 1
+    const prevAreaOptions = acc[acc.length - 1]
     const includesArea = areas.includes(areaName)
 
     const prevBehavior = prevAreaOptions && prevAreaOptions.behavior
@@ -66,6 +66,7 @@ export default function getAreaParams(
 
     const target = shouldUpdatePrevious ? pop(acc) : acc
     return target.concat(areaOptions)
-    // return mergeBreakpoints(acc, areaParams, includesArea, isLast)
+
+    // return mergeBreakpoints(acc, areaOptions, includesArea, isLast)
   }, [])
 }
