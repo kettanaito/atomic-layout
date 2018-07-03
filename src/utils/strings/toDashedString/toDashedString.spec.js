@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import toDashedString from './index'
+import toDashedString from './'
 
 test('Converts cammelCase to dashed-string', () => {
   expect(toDashedString('loremIpsumDolor')).to.equal('lorem-ipsum-dolor')

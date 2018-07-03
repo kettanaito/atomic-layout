@@ -1,10 +1,10 @@
 // @flow
 import type { TBreakpointBehavior } from '../../const/defaultOptions'
-import type { TProps } from '../parsePropName'
+import type { TProps } from '../strings/parsePropName'
 import propAliases from '../../const/propAliases'
 import Layout from '../../Layout'
+import parsePropName from '../strings/parsePropName'
 import createMediaQuery from '../createMediaQuery'
-import parsePropName from '../parsePropName'
 
 const applyCssProps = (
   props: string[],

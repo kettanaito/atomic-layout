@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import Layout from '../../Layout'
-import parsePropName from './index'
+import Layout from '../../../Layout'
+import parsePropName from './'
 
 test('Parses a prop name with a breakpoint and behavior', () => {
   const resOne = parsePropName('gutterLgOnly')
