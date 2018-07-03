@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import sanitizeTemplateString from './index'
+import sanitizeTemplateString from './'
 
 test('Sanitizes a template string properly', () => {
   const template = `

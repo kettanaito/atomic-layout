@@ -4,8 +4,8 @@ import type {
   TBreakpointBehavior,
 } from '../../const/defaultOptions'
 import Layout from '../../Layout'
-import parsePropName from '../parsePropName'
-import sanitizeTemplateString from '../sanitizeTemplateString'
+import parsePropName from '../strings/parsePropName'
+import sanitizeTemplateString from '../strings/sanitizeTemplateString'
 
 export type TTemplate = {
   breakpoint: TBreakpoint,

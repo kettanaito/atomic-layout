@@ -4,7 +4,7 @@ import type { TAreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
-import capitalize from '../capitalize'
+import capitalize from '../strings/capitalize'
 import getAreaParams from '../getAreaParams'
 import applyStyles from '../applyStyles'
 

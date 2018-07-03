@@ -4,7 +4,7 @@ import type {
   TBreakpointBehavior,
 } from '../../const/defaultOptions'
 import transformNumeric from '../math/transformNumeric'
-import toDashedString from '../toDashedString'
+import toDashedString from '../strings/toDashedString'
 
 const shouldAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
