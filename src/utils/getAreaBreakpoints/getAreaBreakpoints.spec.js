@@ -1,7 +1,6 @@
-import { expect } from 'chai'
 import Layout from '../../Layout'
 import getAreasList from '../getAreasList'
-import getAreaParams from './getAreaParams'
+import getAreaBreakpoints from './'
 
 test('Mobile first', () => {
   const { templates } = getAreasList({
@@ -9,8 +8,8 @@ test('Mobile first', () => {
     templateLg: `'a'`,
   })
 
-  const areaParams = getAreaParams('a', templates)
-  expect(areaParams).to.deep.equal([
+  const areaBreakpoints = getAreaBreakpoints('a', templates)
+  expect(areaBreakpoints).toEqual([
     {
       behavior: 'up',
       minWidth: undefined,
@@ -20,22 +19,20 @@ test('Mobile first', () => {
 })
 
 test('Inclusive', () => {
-  const breakpointMd = Layout.getBreakpoint('md')
-  const breakpointXl = Layout.getBreakpoint('xl')
-
   const { templates } = getAreasList({
     template: `'a'`,
     templateMd: `'a b'`,
     templateXl: `'a'`,
   })
 
-  const areaParams = getAreaParams('b', templates)
-  expect(areaParams).to.deep.equal([
+  const areaBreakpoints = getAreaBreakpoints('b', templates)
+
+  expect(areaBreakpoints).toEqual([
     null,
     {
       behavior: 'down',
-      minWidth: breakpointMd.minWidth,
-      maxWidth: breakpointXl.minWidth - 1,
+      minWidth: Layout.getBreakpoint('md').minWidth,
+      maxWidth: Layout.getBreakpoint('xl').minWidth,
     },
     null,
   ])
@@ -52,41 +49,40 @@ test('Bell', () => {
     templateXl: `'a b'`,
   })
 
-  const areaParams = getAreaParams('b', templates)
-  expect(areaParams).to.deep.equal([
+  const areaBreakpoints = getAreaBreakpoints('b', templates)
+  expect(areaBreakpoints).toEqual([
     {
       behavior: 'down',
       minWidth: breakpointXs.minWidth,
-      maxWidth: breakpointMd.minWidth - 1,
+      maxWidth: breakpointMd.minWidth,
     },
     null,
     {
       behavior: 'up',
       minWidth: breakpointXl.minWidth,
-      maxWidth: breakpointXl.maxWidth,
     },
   ])
 })
 
 describe('Shuffled behavior', () => {
   test('Concatenates sibling areas with "down" behavior', () => {
-    const breakpointXs = Layout.getBreakpoint('xs')
+    // const breakpointXs = Layout.getBreakpoint('xs')
     const breakpointSm = Layout.getBreakpoint('sm')
     const breakpointMd = Layout.getBreakpoint('md')
 
     const { templates } = getAreasList({
       template: `'a'`,
       templateSmDown: `'c'`,
-      templateMdDown: 'a c',
+      templateMdDown: `'a c'`,
     })
 
     /* Area "a" */
-    const areaParamsA = getAreaParams('a', templates)
-    expect(areaParamsA).to.deep.equal([
+    const areaBreakpointsA = getAreaBreakpoints('a', templates)
+    expect(areaBreakpointsA).toEqual([
       {
         behavior: 'down',
         minWidth: undefined,
-        maxWidth: breakpointXs.maxWidth,
+        maxWidth: breakpointSm.minWidth, // was "breakpointXs.maxWidth"
       },
       null,
       {
@@ -97,8 +93,8 @@ describe('Shuffled behavior', () => {
     ])
 
     /* Area "c" */
-    const areaParamsC = getAreaParams('c', templates)
-    expect(areaParamsC).to.deep.equal([
+    const areaBreakpointsC = getAreaBreakpoints('c', templates)
+    expect(areaBreakpointsC).toEqual([
       null,
       {
         behavior: 'down',
@@ -111,15 +107,14 @@ describe('Shuffled behavior', () => {
   test('Bell behavior using explicit "down" area behavior', () => {
     const { templates } = getAreasList({
       templateDown: `'a'`,
-      templateMd: 'a c',
+      templateMd: `'a c'`,
     })
 
     /* Area "a" */
-    const areaParamsA = getAreaParams('a', templates)
-    expect(areaParamsA).to.deep.equal([
+    const areaBreakpointsA = getAreaBreakpoints('a', templates)
+    expect(areaBreakpointsA).toEqual([
       {
         behavior: 'down',
-        minWidth: undefined,
         maxWidth: Layout.getBreakpoint('xs').maxWidth,
       },
       {
@@ -130,8 +125,8 @@ describe('Shuffled behavior', () => {
     ])
 
     /* Area "c" */
-    const areaParamsC = getAreaParams('c', templates)
-    expect(areaParamsC).to.deep.equal([
+    const areaBreakpointsC = getAreaBreakpoints('c', templates)
+    expect(areaBreakpointsC).toEqual([
       null,
       {
         behavior: 'up',

@@ -2,9 +2,9 @@
 import type { TAreaParams } from '../getAreaParams'
 
 /**
- * Determines whether two given breakpoints can be combined.
+ * Determines whether two given breakpoints can be merged.
  * Assures non-compatible breakpoints are not prompted to
- * be combined during the area params composition.
+ * be merged during the area params composition.
  */
 export default function shouldCombineBreakpoints(
   breakpointA: TAreaParams,

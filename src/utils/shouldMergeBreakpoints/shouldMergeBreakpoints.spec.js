@@ -1,9 +1,8 @@
-import { expect } from 'chai'
-import shouldCombineBreakpoints from './shouldCombineBreakpoints'
+import shouldMergeBreakpoints from './'
 
 test('Returns "true" for combinable breakpoints', () => {
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         maxWidth: 576,
       },
@@ -12,10 +11,10 @@ test('Returns "true" for combinable breakpoints', () => {
         maxWidth: 750,
       },
     ),
-  ).to.be.true
+  ).toBe(true)
 
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         minResolution: '70dpi',
       },
@@ -23,10 +22,10 @@ test('Returns "true" for combinable breakpoints', () => {
         minResolution: '320dpi',
       },
     ),
-  ).to.be.true
+  ).toBe(true)
 
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         height: 200,
       },
@@ -34,10 +33,10 @@ test('Returns "true" for combinable breakpoints', () => {
         height: 500,
       },
     ),
-  ).to.be.true
+  ).toBe(true)
 
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         minAspectRatio: '3/4',
       },
@@ -51,7 +50,7 @@ test('Returns "true" for combinable breakpoints', () => {
 
 test('Returns "false" for non-combinable breakpoints', () => {
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         maxWidth: 500,
       },
@@ -59,10 +58,10 @@ test('Returns "false" for non-combinable breakpoints', () => {
         width: 600,
       },
     ),
-  ).to.be.false
+  ).toBe(false)
 
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         resolution: '300dpi',
       },
@@ -70,11 +69,11 @@ test('Returns "false" for non-combinable breakpoints', () => {
         maxResolution: '300dpi',
       },
     ),
-  ).to.be.false
+  ).toBe(false)
 
   /* Ensure equal-length params are not considered falsely positive */
   expect(
-    shouldCombineBreakpoints(
+    shouldMergeBreakpoints(
       {
         minFooBar: 1,
       },
@@ -83,5 +82,5 @@ test('Returns "false" for non-combinable breakpoints', () => {
         maxDoeBar: 3,
       },
     ),
-  ).to.be.false
+  ).toBe(false)
 })
