@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import createMediaQuery from './createMediaQuery'
 
 test('Returns proper media query with "up" behavior', () => {
@@ -11,7 +10,7 @@ test('Returns proper media query with "up" behavior', () => {
     'up',
   )
 
-  expect(mediaQuery).to.equal('(min-width:100px) and (min-aspect-ratio:72dpi)')
+  expect(mediaQuery).toEqual('(min-width:100px) and (min-aspect-ratio:72dpi)')
 })
 
 test('Returns proper media query with "down" behavior', () => {
@@ -24,7 +23,7 @@ test('Returns proper media query with "down" behavior', () => {
     'down',
   )
 
-  expect(mediaQuery).to.equal('(max-width:200px) and (min-resolution:300dpi)')
+  expect(mediaQuery).toEqual('(max-width:200px) and (min-resolution:300dpi)')
 })
 
 test('Returns proper media query with "only" behavior', () => {
@@ -37,7 +36,7 @@ test('Returns proper media query with "only" behavior', () => {
     'only',
   )
 
-  expect(mediaQuery).to.equal(
+  expect(mediaQuery).toEqual(
     '(min-width:100px) and (max-width:200px) and (orientation:landscape)',
   )
 })

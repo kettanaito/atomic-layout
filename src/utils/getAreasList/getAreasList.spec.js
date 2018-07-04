@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import Layout from '../../Layout'
 import getAreasList from './getAreasList'
 
@@ -7,7 +6,7 @@ test('Parses template props properly', () => {
     template: `a b`,
   })
 
-  expect(areasList).to.deep.equal({
+  expect(areasList).toEqual({
     areas: ['a', 'b'],
     templates: [
       {
@@ -25,7 +24,7 @@ test('Returns proper areas list for "up" behavior', () => {
     templateMd: `a b c`,
   })
 
-  expect(areasList).to.deep.equal({
+  expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],
     templates: [
       {
@@ -48,7 +47,7 @@ test('Returns proper areas list for "down" behavior', () => {
     templateMdDown: `c`,
   })
 
-  expect(areasList).to.deep.equal({
+  expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],
     templates: [
       {
@@ -71,7 +70,7 @@ test('Returns proper areas list for "only" behavior', () => {
     templateMdOnly: `b c`,
   })
 
-  expect(areasList).to.deep.equal({
+  expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],
     templates: [
       {

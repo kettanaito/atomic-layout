@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import compose from './compose'
 
 test('Composes given functions from right to left', () => {
@@ -9,7 +8,5 @@ test('Composes given functions from right to left', () => {
   )
 
   const funcRes = func('Lorem ipsum')
-  expect(funcRes)
-    .to.be.an('array')
-    .that.deep.equals(['IPSUM', 'LOREM'])
+  expect(funcRes).toEqual(['IPSUM', 'LOREM'])
 })
