@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import sanitizeTemplateString from './'
 
 test('Sanitizes a template string properly', () => {
@@ -9,8 +8,5 @@ test('Sanitizes a template string properly', () => {
   `
 
   const sanitized = sanitizeTemplateString(template)
-  expect(sanitized)
-    .to.be.an('array')
-    .with.lengthOf(4)
-    .that.deep.equals(['header', 'content', 'aside', 'footer'])
+  expect(sanitized).toEqual(['header', 'content', 'aside', 'footer'])
 })

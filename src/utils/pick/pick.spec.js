@@ -1,5 +1,4 @@
 import pick from './pick'
-import { expect } from 'chai'
 
 test('Returns an object with the picked properties based on strings', () => {
   const pickExact = pick(['a', 'c'])
@@ -10,7 +9,7 @@ test('Returns an object with the picked properties based on strings', () => {
       b: 'bar',
       c: 'baz',
     }),
-  ).to.deep.equal({
+  ).toEqual({
     a: 'foo',
     c: 'baz',
   })
@@ -27,7 +26,7 @@ test('Returns an object with the picked properties based on RegExp', () => {
       gutterMd: 20,
       gutters: false,
     }),
-  ).to.deep.equal({
+  ).toEqual({
     gutter: 10,
     gutterMd: 20,
   })
@@ -35,8 +34,8 @@ test('Returns an object with the picked properties based on RegExp', () => {
 
 test('Returns an empty object when picking predicate not satisfied', () => {
   const pickFoo = pick(['foo'])
-  expect(pickFoo({ bar: true })).to.deep.equal({})
+  expect(pickFoo({ bar: true })).toEqual({})
 
   const pickTemplate = pick([/^template/])
-  expect(pickTemplate({ foo: 'bar' })).to.deep.equal({})
+  expect(pickTemplate({ foo: 'bar' })).toEqual({})
 })
