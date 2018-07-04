@@ -1,100 +1,98 @@
 // @flow
-import type { TAreaParams } from '../getAreaParams'
-import pop from '../pop'
-// import shouldCombineBreakpoints from '../shouldCombineBreakpoints'
+import type { TAreaBreakpoint } from '../getAreaBreakpoints'
+import getPrefix from '../getAreaBreakpoints/getPrefix'
 
 export default function mergeBreakpoints(
-  areaParamsList: TAreaParams[],
-  nextAreaParams: TAreaParams,
+  prevBreakpoint: TAreaBreakpoint,
+  nextBreakpoint: TAreaBreakpoint,
   includesArea: boolean,
-  isLast: boolean,
-): TAreaParams[] {
-  const lastAreaParams = areaParamsList[areaParamsList.length - 1]
+): TAreaBreakpoint {
+  const { behavior: prevBehavior } = prevBreakpoint
+  const { behavior: nextBehavior } = nextBreakpoint
 
-  // if (!lastAreaParams) {
-  //   return areaParamsList.concat(nextAreaParams)
-  // }
+  const wentUp = prevBehavior === 'up'
+  const goesDown = nextBehavior === 'down'
+  const goesUp = nextBehavior === 'up'
+  const behavesSame = prevBehavior === nextBehavior
+  const behavesInclusive = wentUp && goesDown
+  const shouldStretch = wentUp
 
-  // const { behavior: lastBehavior, ...lastAreaBreakpoint } = lastAreaParams
-  // const { behavior: nextBehavior, ...nextAreaBreakpoint } = nextAreaParams
+  console.log('trying to merge:')
+  console.log('prev:', prevBreakpoint)
+  console.log('next:', nextBreakpoint)
+  console.log({ includesArea })
+  console.log({ wentUp })
+  console.log({ goesDown })
+  console.log({ goesUp })
+  console.log({ behavesSame })
+  console.log({ behavesInclusive })
+  console.log({ shouldStretch })
 
-  /* First, check if two breakpoints even can be combined */
-  // const shouldCombine = shouldCombineBreakpoints(
-  //   lastAreaBreakpoint,
-  //   nextAreaBreakpoint,
-  // )
+  const cargo = { ...prevBreakpoint, ...nextBreakpoint }
+  console.log({ cargo })
 
-  // console.log(' ')
-  // console.log('mergeBreakpoints')
-  // console.log({ areaParamsList })
-  // console.log({ lastAreaParams })
-  // console.log({ nextAreaParams })
-  // console.log({ includesArea })
-  // console.log({ isLast })
-  // console.log({ shouldCombine })
+  return Object.keys(cargo).reduce((acc, propName) => {
+    let nextValue = cargo[propName]
+    const prefix = getPrefix(propName)
 
-  /* Append non-compatible breakpoint to the end of the list */
-  // if (!shouldCombine) {
-  //   return areaParamsList.concat(nextAreaParams)
-  // }
+    console.log(`analyzing "${propName}" with original value "${nextValue}"`)
+    console.log('prefix?', prefix)
 
-  /* Determine breakpoint behaviors */
-  const hasSameBehavior =
-    lastAreaParams && lastAreaParams.behavior === nextAreaParams.behavior
-  const hasInclusiveBehavior =
-    lastAreaParams &&
-    lastAreaParams.behavior === 'up' &&
-    nextAreaParams.behavior === 'down'
-
-  /* Determine areas relation */
-  let shouldUpdatePrevious =
-    includesArea && (hasSameBehavior || hasInclusiveBehavior)
-  const shouldStretch = lastAreaParams && lastAreaParams.behavior === 'up'
-
-  // const foo = {
-  //   behavior: !includesArea && shouldStretch ? 'down' : nextAreaParams.behavior,
-  //   minWidth:
-  //     shouldUpdatePrevious || shouldStretch
-  //       ? lastAreaParams.minWidth
-  //       : nextAreaParams.minWidth,
-  //   maxWidth:
-  //     includesArea && isLast && nextAreaParams.behavior === 'up'
-  //       ? undefined
-  //       : shouldStretch
-  //         ? nextAreaParams.minWidth - 1
-  //         : nextAreaParams.maxWidth,
-  // }
-
-  //
-
-  if (includesArea) {
-    if (hasSameBehavior || hasInclusiveBehavior) {
-      nextAreaParams.minWidth = lastAreaParams.minWidth
+    if (propName === 'behavior') {
+      if (!includesArea && shouldStretch) {
+        nextValue = 'down'
+      }
     }
 
-    if (isLast && nextAreaParams.behavior === 'up') {
-      nextAreaParams.maxWidth = undefined
+    if (prefix === 'max') {
+      console.log('has "max" prefix!')
+
+      if (!includesArea && shouldStretch) {
+        console.log('does NOT include array, but SHOULD STRETCH!')
+        console.log(
+          `--- setting "${propName}" value to "${
+            prevBreakpoint[propName.replace(/^max/, 'min')]
+          }" (prev breakpoint mirrored value)`,
+        )
+
+        nextValue = nextBreakpoint[propName.replace(/^max/, 'min')]
+      }
     }
-  } else {
-    if (shouldStretch) {
-      shouldUpdatePrevious = true
-      nextAreaParams.behavior = 'down'
-      nextAreaParams.maxWidth = nextAreaParams.minWidth - 1
-      nextAreaParams.minWidth = lastAreaParams.minWidth
 
-      nextAreaParams = [nextAreaParams, null]
-    } else {
-      nextAreaParams = null
+    if (prefix === 'min') {
+      console.log('prefix is "min"')
+
+      if (includesArea) {
+        console.log('template includes the area!')
+        if (behavesSame || behavesInclusive) {
+          console.log('has same or inclusive behavior!')
+          console.log(
+            `--- setting "${propName}" value to "${
+              prevBreakpoint[propName]
+            }" (prev breakpoint value)`,
+          )
+
+          nextValue = prevBreakpoint[propName]
+        }
+      } else {
+        console.log('does NOT include the area!')
+
+        if (shouldStretch) {
+          console.log('should stretch!')
+          console.log(
+            `--- setting "${propName}" value to "${
+              prevBreakpoint[propName]
+            }" (prev breakpoint value)`,
+          )
+
+          nextValue = prevBreakpoint[propName]
+        }
+      }
     }
-  }
 
-  // console.log({ shouldUpdatePrevious })
-  // console.log({ shouldStretch })
-  // console.log({ nextAreaParams })
-
-  // Update
-  const target = shouldUpdatePrevious ? pop(areaParamsList) : areaParamsList
-  return target.concat(nextAreaParams)
-
-  // return target.concat(!includesArea && !shouldStretch ? null : foo)
+    return {
+      ...acc,
+      [propName]: nextValue,
+    }
+  }, {})
 }
