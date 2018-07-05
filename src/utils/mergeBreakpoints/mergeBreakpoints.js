@@ -3,8 +3,8 @@ import type { TAreaBreakpoint } from '../getAreaBreakpoints'
 import getPrefix from '../getAreaBreakpoints/getPrefix'
 
 export default function mergeBreakpoints(
-  prevBreakpoint: TAreaBreakpoint,
   nextBreakpoint: TAreaBreakpoint,
+  prevBreakpoint: TAreaBreakpoint,
   includesArea: boolean,
 ): TAreaBreakpoint {
   const { behavior: prevBehavior } = prevBreakpoint

@@ -5,85 +5,177 @@ import type {
 } from '../../const/defaultOptions'
 import type { TTemplate } from '../getAreasList'
 import pop from '../pop'
-import shouldMergeBreakpoints from '../shouldMergeBreakpoints'
+import compose from '../compose'
 import mergeBreakpoints from '../mergeBreakpoints'
-import closeBreakpoint from './closeBreakpoint'
+import shouldMergeBreakpoints from '../shouldMergeBreakpoints'
+import openBreakpoint from './openBreakpoint'
 
 export type TAreaBreakpoint = TBreakpoint & {
   behavior: TBreakpointBehavior,
 }
 
-/**
- * Returns area params for the given area name in the templates definitions provided.
- * Performs smart breakpoint concatenation and merging when necessary.
- * Returned area params are used as media query params passed to <MediaQuery/>.
- */
-export default function getAreaBreakpoints(
+type TContext = {
+  areaBreakpointsList: TAreaBreakpoint[],
+  prevAreaBreakpoint: ?TAreaBreakpoint,
+  nextAreaBreakpoint: TAreaBreakpoint,
+  includesArea: boolean,
+  isLastTemplate: boolean,
+}
+type TAreaBreakpointPair = TContext
+
+const when = (predicate, whenTrueFunc) => {
+  return (args) => (predicate(args) ? whenTrueFunc(args) : args)
+}
+
+const updateWith = (key, updateFunc) => {
+  return (args) => {
+    const [first, ...rest] = args // eslint-disable-line
+    const res = [updateFunc(args), ...rest]
+
+    console.log('updatewith', key, args)
+    console.log('updateWith res:', res)
+
+    return res
+  }
+}
+
+const spread = (func) => (args) => {
+  console.log('spreading', args)
+  console.log(...args)
+  return func.apply(null, args)
+}
+
+// ---
+
+const createContext = (areaName: string) => {
+  return (areaBreakpointsList, template, index, templates) => {
+    const isLastTemplate = index === templates.length - 1
+    const { areas, behavior, breakpoint } = template
+    const includesArea = areas.includes(areaName)
+    const prevAreaBreakpoint =
+      areaBreakpointsList[areaBreakpointsList.length - 1]
+    const nextAreaBreakpoint = {
+      ...breakpoint,
+      behavior,
+    }
+
+    console.log('-------------------')
+    console.log('creating context...')
+    console.log({ areaBreakpointsList })
+    console.log({ template })
+
+    const context = [
+      nextAreaBreakpoint,
+      prevAreaBreakpoint,
+      includesArea,
+      isLastTemplate,
+      areaBreakpointsList,
+    ]
+
+    console.log({ context })
+
+    return context
+  }
+}
+
+const shouldMerge = ([nextAreaBreakpoint, prevAreaBreakpoint]): boolean => {
+  const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
+  const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
+
+  console.log('deciding should merge...')
+  console.log({ prevAreaBreakpoint })
+  console.log({ nextAreaBreakpoint })
+
+  const _shouldMerge =
+    !!prevAreaBreakpoint &&
+    shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
+  console.log({ _shouldMerge })
+
+  return _shouldMerge
+}
+
+const shouldOpenBreakpoint = ([
+  nextAreaBreakpoint,
+  _prevAreaBreakpoint,
+  _includesArea,
+  isLastTemplate,
+]: TAreaBreakpointPair) => {
+  console.log('deciding on should open...')
+  console.log({ isLastTemplate })
+
+  const shouldOpen = isLastTemplate && nextAreaBreakpoint.behavior === 'up'
+  console.log({ shouldOpen })
+
+  return shouldOpen
+}
+
+const updateBreakpointsList = ([
+  nextAreaBreakpoint,
+  prevAreaBreakpoint,
+  includesArea,
+  _isLastTemplate,
+  areaBreakpointsList,
+]: TAreaBreakpointPair) => {
+  console.log('appending new breakpoint to the list...')
+  console.log({ prevAreaBreakpoint })
+  console.log({ nextAreaBreakpoint })
+
+  const { behavior: prevBehavior } = prevAreaBreakpoint || {}
+  const { behavior: nextBehavior } = nextAreaBreakpoint
+  const wentUp = prevBehavior === 'up'
+  const goesDown = nextBehavior === 'down'
+  const shouldStretch = wentUp
+
+  const behavesSame = prevBehavior === nextBehavior
+  const behavesInclusive = wentUp && goesDown
+  let shouldReplaceLast = includesArea && (behavesSame || behavesInclusive)
+
+  let newBreakpoint = nextAreaBreakpoint
+
+  if (!includesArea) {
+    newBreakpoint = shouldStretch ? [nextAreaBreakpoint, null] : null
+
+    if (shouldStretch) {
+      shouldReplaceLast = true
+    }
+  }
+
+  console.log({ areaBreakpointsList })
+  console.log({ shouldReplaceLast })
+
+  const targetList = shouldReplaceLast
+    ? pop(areaBreakpointsList)
+    : areaBreakpointsList
+
+  const nextAreaBreakpointsList = targetList.concat(newBreakpoint)
+  console.log({ nextAreaBreakpointsList })
+
+  return nextAreaBreakpointsList
+}
+
+const getAreaBreakpoints = (
   areaName: string,
   templates: TTemplate[],
-): ?(TAreaBreakpoint[]) {
-  return templates.reduce((areasParamsList, template, index) => {
-    const {
-      areas,
-      breakpoint: nextBreakpoint,
-      behavior: nextBehavior,
-    } = template
-    const isLastTemplate = index === templates.length - 1
-    const includesArea = areas.includes(areaName)
-    const lastAreaBreakpoint = areasParamsList[areasParamsList.length - 1]
+): Array<?TAreaBreakpoint> =>
+  templates.reduce(
+    compose(
+      updateBreakpointsList,
 
-    const nextAreaBreakpoint = {
-      behavior: nextBehavior,
-      ...nextBreakpoint,
-    }
+      // PROBLEM IS THAT THESE METHODS RETURN JUST THE NEXT AREA.
+      // WHILE THE FUNCTION CHAIN EXPECTS THE WHOLE "PAIR" OBJECT
+      // TO BE PASSED TO EACH COMPOSITION CHAIN. AHH.
+      // I'm trying to fix this with "updateWith".
+      when(
+        shouldOpenBreakpoint,
+        updateWith('nextAreaBreakpoint', spread(openBreakpoint)),
+      ),
+      when(
+        shouldMerge,
+        updateWith('nextAreaBreakpoint', spread(mergeBreakpoints)),
+      ),
+      createContext(areaName),
+    ),
+    [],
+  )
 
-    const { behavior: lastBehavior, ...lastBreakpoint } =
-      lastAreaBreakpoint || {}
-
-    const wentUp = lastBehavior === 'up'
-    const goesDown = nextBehavior === 'down'
-    const goesUp = nextBehavior === 'up'
-
-    /* Behaviors */
-    const behavesSame = lastBehavior === nextBehavior
-    const behavesInclusive = wentUp && goesDown
-
-    let shouldReplaceLast = includesArea && (behavesSame || behavesInclusive)
-    const shouldStretch = wentUp
-
-    let mergedBreakpoint =
-      lastAreaBreakpoint &&
-      shouldMergeBreakpoints(lastBreakpoint, nextBreakpoint)
-        ? mergeBreakpoints(
-            lastAreaBreakpoint,
-            nextAreaBreakpoint,
-            includesArea,
-            isLastTemplate,
-          )
-        : nextAreaBreakpoint
-
-    if (isLastTemplate && mergedBreakpoint.behavior === 'up') {
-      console.log('is last tempalte', isLastTemplate)
-      console.log('goes up', goesUp)
-      mergedBreakpoint = closeBreakpoint(mergedBreakpoint)
-    }
-
-    if (!includesArea) {
-      mergedBreakpoint = shouldStretch ? [mergedBreakpoint, null] : null
-
-      if (shouldStretch) {
-        shouldReplaceLast = true
-      }
-    }
-
-    console.log({ lastAreaBreakpoint })
-    console.log({ shouldReplaceLast })
-    console.log({ mergedBreakpoint })
-    console.log('------------------------------')
-
-    const targetList = shouldReplaceLast
-      ? pop(areasParamsList)
-      : areasParamsList
-    return targetList.concat(mergedBreakpoint)
-  }, [])
-}
+export default getAreaBreakpoints
