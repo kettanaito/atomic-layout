@@ -1,11 +1,11 @@
 // @flow
-import type { TAreaParams } from '../getAreaParams'
+import type { TAreaParams } from '../getAreaBreakpoints'
 import type { TAreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
 import capitalize from '../strings/capitalize'
-import getAreaParams from '../getAreaParams'
+import getAreaBreakpoints from '../getAreaBreakpoints'
 import applyStyles from '../applyStyles'
 
 export type TAreaComponent = Class<React.Component<any, void, void>>
@@ -52,7 +52,7 @@ const createArea = (areaName: string): TAreaComponent => styled.div`
  */
 export default function generateComponents({ areas, templates }: TAreasList) {
   return areas.reduce((components, areaName) => {
-    const areaParams = getAreaParams(areaName, templates)
+    const areaParams = getAreaBreakpoints(areaName, templates)
     const shouldAlwaysRender =
       areaParams.length === 1 &&
       areaParams.every((breakpoint) => {

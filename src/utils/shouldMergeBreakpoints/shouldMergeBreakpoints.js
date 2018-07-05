@@ -1,5 +1,5 @@
 // @flow
-import type { TAreaParams } from '../getAreaParams'
+import type { TAreaParams } from '../getAreaBreakpoints'
 
 /**
  * Determines whether two given breakpoints can be merged.
@@ -10,6 +10,10 @@ export default function shouldCombineBreakpoints(
   breakpointA: TAreaParams,
   breakpointB: TAreaParams,
 ): boolean {
+  console.log('shouldCombineBreakpoints')
+  console.log({ breakpointA })
+  console.log({ breakpointB })
+
   const allParams = [...Object.keys(breakpointA), ...Object.keys(breakpointB)]
 
   return allParams.every((paramName, index) => {
