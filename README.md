@@ -1,7 +1,11 @@
 <p align="center">
-  <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="npm version" />
-  <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
-  <a href="https://coveralls.io/github/kettanaito/atomic-layout">
+  <a href="https://www.npmjs.com/package/atomic-layout" target="_blank">
+    <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="npm version" />
+  </a>
+  <a href="https://circleci.com/gh/kettanaito/atomic-layout" target="_blank">
+    <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
+  </a>
+  <a href="https://coveralls.io/github/kettanaito/atomic-layout" target="_blank">
     <img src="https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg" alt="Test coverage" />
   </a>
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Library size (minzip)" />
