@@ -5,6 +5,8 @@ import type {
 } from '../../const/defaultOptions'
 import type { TTemplate } from '../getAreasList'
 import pop from '../pop'
+import when from '../when'
+import spread from '../spread'
 import compose from '../compose'
 import mergeBreakpoints from '../mergeBreakpoints'
 import shouldMergeBreakpoints from '../shouldMergeBreakpoints'
@@ -14,30 +16,30 @@ export type TAreaBreakpoint = TBreakpoint & {
   behavior: TBreakpointBehavior,
 }
 
-type TContext = {
-  areaBreakpointsList: TAreaBreakpoint[],
-  prevAreaBreakpoint: ?TAreaBreakpoint,
-  nextAreaBreakpoint: TAreaBreakpoint,
-  includesArea: boolean,
-  isLastTemplate: boolean,
-}
-type TAreaBreakpointPair = TContext
+type TAreaBreakpointsList = Array<?TAreaBreakpoint>
 
-const when = (predicate, whenTrueFunc) => {
-  return (args) => (predicate(args) ? whenTrueFunc(args) : args)
-}
+type TAreaBreakpointTuple = [
+  TAreaBreakpoint,
+  ?TAreaBreakpoint,
+  boolean,
+  boolean,
+  TAreaBreakpointsList,
+]
 
-const updateWith = (key, updateFunc) => {
+const updateWith = (key: string, updateFunc) => {
   return (args) => {
     const [first, ...rest] = args // eslint-disable-line
     return [updateFunc(args), ...rest]
   }
 }
 
-const spread = (func) => (args) => func.apply(null, args)
-
 const createContext = (areaName: string) => {
-  return (areaBreakpointsList, template, index, templates) => {
+  return (
+    areaBreakpointsList,
+    template,
+    index,
+    templates,
+  ): TAreaBreakpointTuple => {
     const isLastTemplate = index === templates.length - 1
     const { areas, behavior, breakpoint } = template
     const includesArea = areas.includes(areaName)
@@ -48,11 +50,6 @@ const createContext = (areaName: string) => {
       behavior,
     }
 
-    console.log('-------------------')
-    console.log('creating context...')
-    console.log({ areaBreakpointsList })
-    console.log({ template })
-
     const context = [
       nextAreaBreakpoint,
       prevAreaBreakpoint,
@@ -61,13 +58,14 @@ const createContext = (areaName: string) => {
       areaBreakpointsList,
     ]
 
-    console.log({ context })
-
     return context
   }
 }
 
-const shouldMerge = ([nextAreaBreakpoint, prevAreaBreakpoint]): boolean => {
+const shouldMerge = ([
+  nextAreaBreakpoint,
+  prevAreaBreakpoint,
+]: TAreaBreakpointTuple): boolean => {
   const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
   const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
 
@@ -82,7 +80,7 @@ const shouldOpenBreakpoint = ([
   _prevAreaBreakpoint,
   _includesArea,
   isLastTemplate,
-]: TAreaBreakpointPair) => {
+]: TAreaBreakpointTuple): boolean => {
   return isLastTemplate && nextAreaBreakpoint.behavior === 'up'
 }
 
@@ -92,11 +90,7 @@ const updateBreakpointsList = ([
   includesArea,
   _isLastTemplate,
   areaBreakpointsList,
-]: TAreaBreakpointPair) => {
-  console.log('appending new breakpoint to the list...')
-  console.log({ prevAreaBreakpoint })
-  console.log({ nextAreaBreakpoint })
-
+]: TAreaBreakpointTuple): TAreaBreakpointsList => {
   const { behavior: prevBehavior } = prevAreaBreakpoint || {}
   const { behavior: nextBehavior } = nextAreaBreakpoint
   const wentUp = prevBehavior === 'up'
@@ -117,23 +111,17 @@ const updateBreakpointsList = ([
     }
   }
 
-  console.log({ areaBreakpointsList })
-  console.log({ shouldReplaceLast })
-
   const targetList = shouldReplaceLast
     ? pop(areaBreakpointsList)
     : areaBreakpointsList
 
-  const nextAreaBreakpointsList = targetList.concat(newBreakpoint)
-  console.log({ nextAreaBreakpointsList })
-
-  return nextAreaBreakpointsList
+  return targetList.concat(newBreakpoint)
 }
 
 const getAreaBreakpoints = (
   areaName: string,
   templates: TTemplate[],
-): Array<?TAreaBreakpoint> =>
+): TAreaBreakpointsList =>
   templates.reduce(
     compose(
       updateBreakpointsList,
