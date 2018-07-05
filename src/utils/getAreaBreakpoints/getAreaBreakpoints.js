@@ -30,22 +30,11 @@ const when = (predicate, whenTrueFunc) => {
 const updateWith = (key, updateFunc) => {
   return (args) => {
     const [first, ...rest] = args // eslint-disable-line
-    const res = [updateFunc(args), ...rest]
-
-    console.log('updatewith', key, args)
-    console.log('updateWith res:', res)
-
-    return res
+    return [updateFunc(args), ...rest]
   }
 }
 
-const spread = (func) => (args) => {
-  console.log('spreading', args)
-  console.log(...args)
-  return func.apply(null, args)
-}
-
-// ---
+const spread = (func) => (args) => func.apply(null, args)
 
 const createContext = (areaName: string) => {
   return (areaBreakpointsList, template, index, templates) => {
@@ -82,16 +71,10 @@ const shouldMerge = ([nextAreaBreakpoint, prevAreaBreakpoint]): boolean => {
   const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
   const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
 
-  console.log('deciding should merge...')
-  console.log({ prevAreaBreakpoint })
-  console.log({ nextAreaBreakpoint })
-
-  const _shouldMerge =
+  return (
     !!prevAreaBreakpoint &&
     shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
-  console.log({ _shouldMerge })
-
-  return _shouldMerge
+  )
 }
 
 const shouldOpenBreakpoint = ([
@@ -100,13 +83,7 @@ const shouldOpenBreakpoint = ([
   _includesArea,
   isLastTemplate,
 ]: TAreaBreakpointPair) => {
-  console.log('deciding on should open...')
-  console.log({ isLastTemplate })
-
-  const shouldOpen = isLastTemplate && nextAreaBreakpoint.behavior === 'up'
-  console.log({ shouldOpen })
-
-  return shouldOpen
+  return isLastTemplate && nextAreaBreakpoint.behavior === 'up'
 }
 
 const updateBreakpointsList = ([
@@ -160,11 +137,6 @@ const getAreaBreakpoints = (
   templates.reduce(
     compose(
       updateBreakpointsList,
-
-      // PROBLEM IS THAT THESE METHODS RETURN JUST THE NEXT AREA.
-      // WHILE THE FUNCTION CHAIN EXPECTS THE WHOLE "PAIR" OBJECT
-      // TO BE PASSED TO EACH COMPOSITION CHAIN. AHH.
-      // I'm trying to fix this with "updateWith".
       when(
         shouldOpenBreakpoint,
         updateWith('nextAreaBreakpoint', spread(openBreakpoint)),
