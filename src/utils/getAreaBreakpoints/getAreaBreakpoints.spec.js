@@ -66,7 +66,7 @@ test('Bell', () => {
 
 describe('Shuffled behavior', () => {
   test('Concatenates sibling areas with "down" behavior', () => {
-    // const breakpointXs = Layout.getBreakpoint('xs')
+    const breakpointXs = Layout.getBreakpoint('xs')
     const breakpointSm = Layout.getBreakpoint('sm')
     const breakpointMd = Layout.getBreakpoint('md')
 
@@ -82,7 +82,8 @@ describe('Shuffled behavior', () => {
       {
         behavior: 'down',
         minWidth: undefined,
-        maxWidth: breakpointSm.minWidth, // was "breakpointXs.maxWidth"
+        // maxWidth: breakpointSm.minWidth, // was "breakpointXs.maxWidth"
+        maxWidth: breakpointXs.maxWidth,
       },
       null,
       {

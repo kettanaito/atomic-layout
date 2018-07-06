@@ -10,10 +10,6 @@ export default function shouldCombineBreakpoints(
   breakpointA: TAreaParams,
   breakpointB: TAreaParams,
 ): boolean {
-  console.log('shouldCombineBreakpoints')
-  console.log({ breakpointA })
-  console.log({ breakpointB })
-
   const allParams = [...Object.keys(breakpointA), ...Object.keys(breakpointB)]
 
   return allParams.every((paramName, index) => {

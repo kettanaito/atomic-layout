@@ -115,6 +115,8 @@ const updateBreakpointsList = ([
     ? pop(areaBreakpointsList)
     : areaBreakpointsList
 
+  debugger
+
   return targetList.concat(newBreakpoint)
 }
 
