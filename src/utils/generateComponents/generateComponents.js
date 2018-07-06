@@ -27,9 +27,9 @@ const withPlaceholder = (
 
       return components.concat(
         <MediaQuery
-          key={`${AreaComponent.displayName}_${index}`}
-          {...breakpointProps}
           {...restProps}
+          {...breakpointProps}
+          key={`${AreaComponent.displayName}_${index}`}
           component={AreaComponent}
         >
           {children}
