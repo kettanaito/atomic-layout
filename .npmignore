@@ -3,6 +3,8 @@
 .github
 .vscode
 .babelrc
+.eslintrc
+.flowconfig
 .gitignore
 .prettierrc
 webpack.*
@@ -11,8 +13,13 @@ webpack.*
 src
 docs
 internal
+examples
+example.png
+logo.png
 stories
 .storybook
 
 # Tests
-cypress
+cypress*
+coverage
+jest.*
