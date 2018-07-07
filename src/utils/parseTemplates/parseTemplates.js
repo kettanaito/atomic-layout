@@ -1,10 +1,8 @@
 // @flow
 import compose from '../compose'
-import pick from '../pick'
 import getAreasList from '../getAreasList'
 import generateComponents from '../generateComponents'
-
-const filterTemplateProps = pick([/^template(?=[A-Z]|$)/])
+import filterTemplateProps from './filterTemplateProps'
 
 const parseTemplates = compose(
   generateComponents,
