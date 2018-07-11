@@ -1,4 +1,5 @@
 import Layout from '../../Layout'
+import transformNumeric from '../math/transformNumeric'
 import getAreasList from '../getAreasList'
 import getAreaBreakpoints from './'
 
@@ -19,6 +20,8 @@ test('Mobile first', () => {
 })
 
 test('Inclusive', () => {
+  const breakpointMd = Layout.getBreakpoint('md')
+  const breakpointXl = Layout.getBreakpoint('xl')
   const { templates } = getAreasList({
     template: `'a'`,
     templateMd: `'a b'`,
@@ -31,8 +34,8 @@ test('Inclusive', () => {
     null,
     {
       behavior: 'down',
-      minWidth: Layout.getBreakpoint('md').minWidth,
-      maxWidth: Layout.getBreakpoint('xl').minWidth,
+      minWidth: breakpointMd.minWidth,
+      maxWidth: `calc(${transformNumeric(breakpointXl.minWidth)} - 1px)`,
     },
     null,
   ])
@@ -54,7 +57,7 @@ test('Bell', () => {
     {
       behavior: 'down',
       minWidth: breakpointXs.minWidth,
-      maxWidth: breakpointMd.minWidth,
+      maxWidth: `calc(${transformNumeric(breakpointMd.minWidth)} - 1px)`,
     },
     null,
     {
@@ -66,7 +69,6 @@ test('Bell', () => {
 
 describe('Shuffled behavior', () => {
   test('Concatenates sibling areas with "down" behavior', () => {
-    const breakpointXs = Layout.getBreakpoint('xs')
     const breakpointSm = Layout.getBreakpoint('sm')
     const breakpointMd = Layout.getBreakpoint('md')
 
@@ -82,8 +84,7 @@ describe('Shuffled behavior', () => {
       {
         behavior: 'down',
         minWidth: undefined,
-        // maxWidth: breakpointSm.minWidth, // was "breakpointXs.maxWidth"
-        maxWidth: breakpointXs.maxWidth,
+        maxWidth: `calc(${transformNumeric(breakpointSm.minWidth)} - 1px)`,
       },
       null,
       {

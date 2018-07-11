@@ -1,5 +1,6 @@
 // @flow
 import type { TAreaBreakpoint } from '../getAreaBreakpoints'
+import transformNumeric from '../math/transformNumeric'
 import getPrefix from '../getAreaBreakpoints/getPrefix'
 
 export default function mergeBreakpoints(
@@ -16,10 +17,10 @@ export default function mergeBreakpoints(
   const behavesInclusive = wentUp && goesDown
   const shouldStretch = wentUp
 
-  const cargo = { ...prevBreakpoint, ...nextBreakpoint }
+  const mergedBreakpoint = { ...prevBreakpoint, ...nextBreakpoint }
 
-  return Object.keys(cargo).reduce((acc, propName) => {
-    let nextValue = cargo[propName]
+  return Object.keys(mergedBreakpoint).reduce((acc, propName) => {
+    let nextValue = mergedBreakpoint[propName]
     const prefix = getPrefix(propName)
 
     if (propName === 'behavior') {
@@ -30,10 +31,8 @@ export default function mergeBreakpoints(
 
     if (prefix === 'max') {
       if (!includesArea && shouldStretch) {
-        // TODO
-        // Needs to have lookbehind to assure stretched area doesn't render
-        // together with the upcoming areas.
-        nextValue = nextBreakpoint[propName.replace(/^max/, 'min')] - 1
+        const mirrorValue = nextBreakpoint[propName.replace(/^max/, 'min')]
+        nextValue = `calc(${transformNumeric(mirrorValue)} - 1px)`
       }
     }
 
@@ -48,8 +47,6 @@ export default function mergeBreakpoints(
         }
       }
     }
-
-    debugger
 
     return {
       ...acc,

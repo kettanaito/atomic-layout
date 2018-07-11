@@ -14,7 +14,7 @@ type TParsedNumeric = {
  * parseNumeric('15rem') // { value: 15, unit: 'rem' }
  */
 export default function parseNumeric(numeric: Numeric): TParsedNumeric {
-  const parsed = /(\d+)(?=(.+)?)/g.exec(numeric)
+  const parsed = /(\d+)(?=(.+)?)/g.exec(String(numeric))
   return {
     value: parsed && parseInt(parsed[1], 10),
     unit: (parsed && parsed[2]) || Layout.defaultUnit,
