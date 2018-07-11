@@ -1,7 +1,7 @@
 import transformNumeric from './transformNumeric'
 
 test('Suffixes numeric values with "rem" string', () => {
-  expect(transformNumeric(5)).toEqual('5rem')
+  expect(transformNumeric(5)).toEqual('5px')
 })
 
 test('Returns string values as is', () => {
