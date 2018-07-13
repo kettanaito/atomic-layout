@@ -71,7 +71,7 @@ const shouldMerge = ([
 
   return (
     !!prevAreaBreakpoint &&
-    shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
+    shouldMergeBreakpoints(nextBreakpoint, prevBreakpoint)
   )
 }
 
@@ -93,17 +93,33 @@ const updateBreakpointsList = ([
 ]: TAreaBreakpointTuple): TAreaBreakpointsList => {
   const { behavior: prevBehavior } = prevAreaBreakpoint || {}
   const { behavior: nextBehavior } = nextAreaBreakpoint
+
   const wentUp = prevBehavior === 'up'
   const goesDown = nextBehavior === 'down'
-  const shouldStretch = wentUp
-
   const behavesSame = prevBehavior === nextBehavior
   const behavesInclusive = wentUp && goesDown
+
+  /* Alias for better readability */
+  const shouldStretch = wentUp
+
   let shouldReplaceLast = includesArea && (behavesSame || behavesInclusive)
+
+  // This computation is already done before in "shouldMerge" call
+  if (
+    prevAreaBreakpoint &&
+    shouldMergeBreakpoints(nextAreaBreakpoint, prevAreaBreakpoint)
+  ) {
+    shouldReplaceLast = true
+  }
 
   let newBreakpoint = nextAreaBreakpoint
 
   if (!includesArea) {
+    /**
+     * When the area is stretched, append explicit "null" afterward
+     * to prevent the stretched area from being treated as a sibling area
+     * in any further calculations.
+     */
     newBreakpoint = shouldStretch ? [nextAreaBreakpoint, null] : null
 
     if (shouldStretch) {

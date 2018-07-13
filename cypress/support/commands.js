@@ -13,7 +13,7 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
    * Wait after viewport change due to CSS Grid repaint happening with
    * a slight human-unnoticable delay.
    */
-  cy.wait(20)
+  cy.wait(50)
 })
 
 Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
