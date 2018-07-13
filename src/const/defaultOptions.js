@@ -43,8 +43,8 @@ export type TBreakpointBehavior = 'up' | 'down' | 'only'
 
 const defaultOptions: TLayoutOptions = {
   defaultUnit: 'px',
-  defaultBreakpointName: 'xs',
   defaultBehavior: 'up',
+  defaultBreakpointName: 'xs',
   breakpoints: {
     xs: {
       maxWidth: 575,

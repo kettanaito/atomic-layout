@@ -19,7 +19,7 @@
     "examples": "webpack-dev-server --config examples/webpack.config.js",
     "flow": "node_modules/.bin/flow",
     "test:unit": "BABEL_ENV=test jest",
-    "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js",
+    "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "npm run test:unit && npm run test:e2e",
     "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",

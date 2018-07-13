@@ -2,18 +2,27 @@ version: 2
 jobs:
   build:
     docker:
-      # the Docker image with Cypress dependencies
-      - image: cypress/base:8
+      # Docker image with Cypress dependencies
+      - image: cypress/browsers:chrome67
         environment:
-          ## this enables colors in the output
+          # Enable colors in terminal output
           TERM: xterm
+
     working_directory: ~/root
+
     steps:
       - checkout
       - restore_cache:
           keys:
             - npm-deps-{{ checksum "package.json" }}
             - npm-deps
+
+      - run:
+          name: 'Checking node version'
+          command: |
+            node --version
+            npm --version
+
       - run:
           name: Installing dependencies
           command: npm ci
@@ -22,14 +31,17 @@ jobs:
           paths:
             - ~/.npm
             - ~/.cache
+
       - run:
           name: Building Atomic layout
           command: npm run build
+
       - run:
           name: Unit tests
           command: npm run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+
       - run:
-          name: 'Integration tests'
+          name: Integration tests
           command: npm run test:e2e
       - store_test_results:
           path: test-results
@@ -37,7 +49,7 @@ jobs:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+
       - run:
           name: Bundle size check
           command: node_modules/.bin/bundlesize
-
