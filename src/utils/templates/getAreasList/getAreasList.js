@@ -2,10 +2,10 @@
 import type {
   TBreakpoint,
   TBreakpointBehavior,
-} from '../../const/defaultOptions'
-import Layout from '../../Layout'
-import parsePropName from '../strings/parsePropName'
-import sanitizeTemplateString from '../strings/sanitizeTemplateString'
+} from '../../../const/defaultOptions'
+import Layout from '../../../Layout'
+import parsePropName from '../../strings/parsePropName'
+import sanitizeTemplateString from '../../strings/sanitizeTemplateString'
 
 export type TTemplate = {
   breakpoint: TBreakpoint,

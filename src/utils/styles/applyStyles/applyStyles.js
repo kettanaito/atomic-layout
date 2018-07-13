@@ -1,9 +1,9 @@
 // @flow
-import type { TBreakpointBehavior } from '../../const/defaultOptions'
-import type { TProps } from '../strings/parsePropName'
-import propAliases from '../../const/propAliases'
-import Layout from '../../Layout'
-import parsePropName from '../strings/parsePropName'
+import type { TBreakpointBehavior } from '../../../const/defaultOptions'
+import type { TProps } from '../../strings/parsePropName'
+import propAliases from '../../../const/propAliases'
+import Layout from '../../../Layout'
+import parsePropName from '../../strings/parsePropName'
 import createMediaQuery from '../createMediaQuery'
 
 const applyCssProps = (

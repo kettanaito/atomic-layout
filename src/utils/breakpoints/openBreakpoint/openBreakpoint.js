@@ -1,6 +1,6 @@
 // @flow
-import type { TAreaBreakpoint } from './getAreaBreakpoints'
-import getPrefix from './getPrefix'
+import type { TAreaBreakpoint } from '../getAreaBreakpoints'
+import getPrefix from '../../strings/getPrefix'
 
 /**
  * Opens the given breakpoint.

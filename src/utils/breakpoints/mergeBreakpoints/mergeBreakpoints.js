@@ -1,7 +1,7 @@
 // @flow
 import type { TAreaBreakpoint } from '../getAreaBreakpoints'
-import transformNumeric from '../math/transformNumeric'
-import getPrefix from '../getAreaBreakpoints/getPrefix'
+import transformNumeric from '../../math/transformNumeric'
+import getPrefix from '../../strings/getPrefix'
 
 export default function mergeBreakpoints(
   nextBreakpoint: TAreaBreakpoint,

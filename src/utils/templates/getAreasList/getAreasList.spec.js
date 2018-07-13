@@ -1,4 +1,4 @@
-import Layout from '../../Layout'
+import Layout from '../../../Layout'
 import getAreasList from './getAreasList'
 
 test('Parses template props properly', () => {

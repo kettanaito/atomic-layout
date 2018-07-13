@@ -1,5 +1,5 @@
 // @flow
-import compose from '../../compose'
+import compose from '../../functions/compose'
 
 type TSanitizeTemplateString = (str: string) => string[]
 

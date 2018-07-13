@@ -1,7 +1,7 @@
-import Layout from '../../Layout'
-import transformNumeric from '../math/transformNumeric'
-import getAreasList from '../getAreasList'
-import getAreaBreakpoints from './'
+import Layout from '../../../Layout'
+import transformNumeric from '../../math/transformNumeric'
+import getAreasList from '../../templates/getAreasList'
+import getAreaBreakpoints from './getAreaBreakpoints'
 
 test('Mobile first', () => {
   const { templates } = getAreasList({
