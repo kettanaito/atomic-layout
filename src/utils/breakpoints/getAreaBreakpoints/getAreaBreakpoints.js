@@ -2,15 +2,15 @@
 import type {
   TBreakpoint,
   TBreakpointBehavior,
-} from '../../const/defaultOptions'
-import type { TTemplate } from '../getAreasList'
-import pop from '../pop'
-import when from '../when'
-import spread from '../spread'
-import compose from '../compose'
+} from '../../../const/defaultOptions'
+import type { TTemplate } from '../../getAreasList'
+import pop from '../../functions/pop'
+import when from '../../functions/when'
+import spread from '../../functions/spread'
+import compose from '../../functions/compose'
 import mergeBreakpoints from '../mergeBreakpoints'
+import openBreakpoint from '../openBreakpoint'
 import shouldMergeBreakpoints from '../shouldMergeBreakpoints'
-import openBreakpoint from './openBreakpoint'
 
 export type TAreaBreakpoint = TBreakpoint & {
   behavior: TBreakpointBehavior,
@@ -130,8 +130,6 @@ const updateBreakpointsList = ([
   const targetList = shouldReplaceLast
     ? pop(areaBreakpointsList)
     : areaBreakpointsList
-
-  debugger
 
   return targetList.concat(newBreakpoint)
 }

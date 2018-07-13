@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import applyStyles from '../utils/applyStyles'
-import parseTemplates from '../utils/parseTemplates'
+import applyStyles from '../utils/styles/applyStyles'
+import parseTemplates from '../utils/templates/parseTemplates'
 
 const CompositionWrapper = styled.div`
   ${(props) => applyStyles(props)};

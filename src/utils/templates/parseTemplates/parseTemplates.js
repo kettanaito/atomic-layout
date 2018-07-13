@@ -1,5 +1,5 @@
 // @flow
-import compose from '../compose'
+import compose from '../../functions/compose'
 import getAreasList from '../getAreasList'
 import generateComponents from '../generateComponents'
 import filterTemplateProps from './filterTemplateProps'

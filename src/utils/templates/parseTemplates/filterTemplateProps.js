@@ -1,7 +1,7 @@
 // @flow
-import Layout from '../../Layout'
-import capitalize from '../strings/capitalize'
-import pick from '../pick'
+import Layout from '../../../Layout'
+import capitalize from '../../strings/capitalize'
+import pick from '../../functions/pick'
 
 /**
  * Filters properties of the given object to contain only those

@@ -1,12 +1,12 @@
 // @flow
-import type { TAreaParams } from '../getAreaBreakpoints'
+import type { TAreaParams } from '../breakpoints/getAreaBreakpoints'
 import type { TAreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
-import capitalize from '../strings/capitalize'
-import getAreaBreakpoints from '../getAreaBreakpoints'
-import applyStyles from '../applyStyles'
+import capitalize from '../../strings/capitalize'
+import getAreaBreakpoints from '../../breakpoints/getAreaBreakpoints'
+import applyStyles from '../../styles/applyStyles'
 
 export type TAreaComponent = Class<React.Component<any, void, void>>
 export type TAreaComponentsMap = {
