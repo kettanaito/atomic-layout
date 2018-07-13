@@ -62,7 +62,7 @@ class Layout {
    */
   getBreakpoint(breakpointName: ?string): ?TBreakpoint {
     if (breakpointName) {
-      return this.breakpoints[breakpointName]
+      return breakpointName && this.breakpoints[breakpointName]
     }
   }
 }
