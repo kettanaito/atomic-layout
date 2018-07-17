@@ -23,6 +23,7 @@ type TAreaBreakpointTuple = [
   ?TAreaBreakpoint,
   boolean,
   boolean,
+  boolean,
   TAreaBreakpointsList,
 ]
 
@@ -50,11 +51,16 @@ const createContext = (areaName: string) => {
       behavior,
     }
 
+    const { behavior: x, ...prevBreakpoint } = prevAreaBreakpoint || {}
+    const shouldMerge =
+      prevAreaBreakpoint && shouldMergeBreakpoints(prevBreakpoint, breakpoint)
+
     const context = [
       nextAreaBreakpoint,
       prevAreaBreakpoint,
       includesArea,
       isLastTemplate,
+      shouldMerge,
       areaBreakpointsList,
     ]
 
@@ -62,17 +68,14 @@ const createContext = (areaName: string) => {
   }
 }
 
-const shouldMerge = ([
-  nextAreaBreakpoint,
-  prevAreaBreakpoint,
+const _shouldMerge = ([
+  _nextAreaBreakpoint,
+  _prevAreaBreakpoint,
+  _includesArea,
+  _isLastTemplate,
+  shouldMerge,
 ]: TAreaBreakpointTuple): boolean => {
-  const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
-  const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
-
-  return (
-    !!prevAreaBreakpoint &&
-    shouldMergeBreakpoints(nextBreakpoint, prevBreakpoint)
-  )
+  return shouldMerge
 }
 
 const shouldOpenBreakpoint = ([
@@ -89,10 +92,12 @@ const updateBreakpointsList = ([
   prevAreaBreakpoint,
   includesArea,
   _isLastTemplate,
+  shouldMerge,
   areaBreakpointsList,
 ]: TAreaBreakpointTuple): TAreaBreakpointsList => {
-  const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
-  const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
+  /* Fallback to an empty object when there is no previous breakpoint in the list */
+  const { behavior: prevBehavior } = prevAreaBreakpoint || {}
+  const { behavior: nextBehavior } = nextAreaBreakpoint
 
   const wentUp = prevBehavior === 'up'
   const goesDown = nextBehavior === 'down'
@@ -103,22 +108,11 @@ const updateBreakpointsList = ([
   const shouldStretch = wentUp
   let shouldReplaceLast = includesArea && (behavesSame || behavesInclusive)
 
-  const shouldMergeTwo =
-    prevAreaBreakpoint && shouldMergeBreakpoints(nextBreakpoint, prevBreakpoint)
-
-  if (!shouldMergeTwo) {
+  if (!shouldMerge) {
     shouldReplaceLast = false
   }
 
-  // This computation is already done before in "shouldMerge" call
-  /*  if (
-    prevAreaBreakpoint &&
-    shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
-  ) {
-    shouldReplaceLast = true
-  } */
-
-  let newBreakpoint = nextAreaBreakpoint
+  let newBreakpoint = [nextAreaBreakpoint]
 
   if (!includesArea) {
     /**
@@ -126,7 +120,7 @@ const updateBreakpointsList = ([
      * to prevent the stretched area from being treated as a sibling area
      * in any further calculations.
      */
-    newBreakpoint = shouldStretch ? [nextAreaBreakpoint, null] : null
+    newBreakpoint = shouldStretch ? [nextAreaBreakpoint, null] : [null]
 
     if (shouldStretch) {
       shouldReplaceLast = true
@@ -152,7 +146,7 @@ const getAreaBreakpoints = (
         updateWith('nextAreaBreakpoint', spread(openBreakpoint)),
       ),
       when(
-        shouldMerge,
+        _shouldMerge,
         updateWith('nextAreaBreakpoint', spread(mergeBreakpoints)),
       ),
       createContext(areaName),
