@@ -91,8 +91,8 @@ const updateBreakpointsList = ([
   _isLastTemplate,
   areaBreakpointsList,
 ]: TAreaBreakpointTuple): TAreaBreakpointsList => {
-  const { behavior: prevBehavior } = prevAreaBreakpoint || {}
-  const { behavior: nextBehavior } = nextAreaBreakpoint
+  const { behavior: prevBehavior, ...prevBreakpoint } = prevAreaBreakpoint || {}
+  const { behavior: nextBehavior, ...nextBreakpoint } = nextAreaBreakpoint
 
   const wentUp = prevBehavior === 'up'
   const goesDown = nextBehavior === 'down'
@@ -101,16 +101,23 @@ const updateBreakpointsList = ([
 
   /* Alias for better readability */
   const shouldStretch = wentUp
-
   let shouldReplaceLast = includesArea && (behavesSame || behavesInclusive)
 
+  const shouldMergeTwo =
+    prevAreaBreakpoint && shouldMergeBreakpoints(nextBreakpoint, prevBreakpoint)
+
+  if (!shouldMergeTwo) {
+    shouldReplaceLast = false
+  }
+
   // This computation is already done before in "shouldMerge" call
-  if (
+  /*  if (
     prevAreaBreakpoint &&
-    shouldMergeBreakpoints(nextAreaBreakpoint, prevAreaBreakpoint)
+    hasOkBehavior &&
+    shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
   ) {
     shouldReplaceLast = true
-  }
+  } */
 
   let newBreakpoint = nextAreaBreakpoint
 
