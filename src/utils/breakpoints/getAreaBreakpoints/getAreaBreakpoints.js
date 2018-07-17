@@ -3,7 +3,7 @@ import type {
   TBreakpoint,
   TBreakpointBehavior,
 } from '../../../const/defaultOptions'
-import type { TTemplate } from '../../getAreasList'
+import type { TTemplate } from '../../templates/getAreasList'
 import pop from '../../functions/pop'
 import when from '../../functions/when'
 import spread from '../../functions/spread'
@@ -113,7 +113,6 @@ const updateBreakpointsList = ([
   // This computation is already done before in "shouldMerge" call
   /*  if (
     prevAreaBreakpoint &&
-    hasOkBehavior &&
     shouldMergeBreakpoints(prevBreakpoint, nextBreakpoint)
   ) {
     shouldReplaceLast = true
