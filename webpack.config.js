@@ -31,6 +31,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
+    PRODUCTION && new webpack.optimize.ModuleConcatenationPlugin(),
     PRODUCTION &&
       new BabelMinifyPlugin({
         removeConsole: true,
