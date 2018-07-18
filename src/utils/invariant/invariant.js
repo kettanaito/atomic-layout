@@ -1,8 +1,6 @@
 // @flow
-type TPreciate = () => boolean
-
-export default function invariant(predicate: TPreciate, message: string) {
+export default function invariant(predicate: mixed, errorMessage: string) {
   if (!predicate) {
-    console.error(message)
+    console.error(errorMessage)
   }
 }
