@@ -68,7 +68,7 @@ const createContext = (areaName: string) => {
   }
 }
 
-const _shouldMerge = ([
+const canMergeBreakpoints = ([
   _nextAreaBreakpoint,
   _prevAreaBreakpoint,
   _includesArea,
@@ -146,7 +146,7 @@ const getAreaBreakpoints = (
         updateWith('nextAreaBreakpoint', spread(openBreakpoint)),
       ),
       when(
-        _shouldMerge,
+        canMergeBreakpoints,
         updateWith('nextAreaBreakpoint', spread(mergeBreakpoints)),
       ),
       createContext(areaName),

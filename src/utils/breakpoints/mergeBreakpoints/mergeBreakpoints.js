@@ -4,12 +4,12 @@ import transformNumeric from '../../math/transformNumeric'
 import getPrefix from '../../strings/getPrefix'
 
 export default function mergeBreakpoints(
-  nextBreakpoint: TAreaBreakpoint,
-  prevBreakpoint: TAreaBreakpoint,
+  breakpointA: TAreaBreakpoint,
+  breakpointB: TAreaBreakpoint,
   includesArea: boolean,
 ): TAreaBreakpoint {
-  const { behavior: prevBehavior } = prevBreakpoint
-  const { behavior: nextBehavior } = nextBreakpoint
+  const { behavior: prevBehavior } = breakpointB
+  const { behavior: nextBehavior } = breakpointA
 
   const wentUp = prevBehavior === 'up'
   const goesDown = nextBehavior === 'down'
@@ -17,7 +17,7 @@ export default function mergeBreakpoints(
   const behavesInclusive = wentUp && goesDown
   const shouldStretch = wentUp
 
-  const mergedBreakpoint = { ...prevBreakpoint, ...nextBreakpoint }
+  const mergedBreakpoint = { ...breakpointB, ...breakpointA }
 
   return Object.keys(mergedBreakpoint).reduce((acc, propName) => {
     let nextValue = mergedBreakpoint[propName]
@@ -31,7 +31,7 @@ export default function mergeBreakpoints(
 
     if (prefix === 'max') {
       if (!includesArea && shouldStretch) {
-        const mirrorValue = nextBreakpoint[propName.replace(/^max/, 'min')]
+        const mirrorValue = breakpointA[propName.replace(/^max/, 'min')]
         nextValue = `calc(${transformNumeric(mirrorValue)} - 1px)`
       }
     }
@@ -39,11 +39,11 @@ export default function mergeBreakpoints(
     if (prefix === 'min') {
       if (includesArea) {
         if (behavesSame || behavesInclusive) {
-          nextValue = prevBreakpoint[propName]
+          nextValue = breakpointB[propName]
         }
       } else {
         if (shouldStretch) {
-          nextValue = prevBreakpoint[propName]
+          nextValue = breakpointB[propName]
         }
       }
     }
