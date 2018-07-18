@@ -1,18 +1,23 @@
 // @flow
-import Layout from '../../../Layout'
-import capitalize from '../../strings/capitalize'
-import pick from '../../functions/pick'
+import parsePropName from '../../strings/parsePropName'
 
 /**
- * Filters properties of the given object to contain only those
- * that are template declarations (match regular expression below).
+ * Filters the given object to contain only templates
+ * declarations (props matching the RegExp).
  */
-const filterTemplateProps = pick([
-  new RegExp(
-    `^template(${Layout.getBreakpointsNames()
-      .map(capitalize)
-      .join('|')})*$`,
-  ),
-])
+const filterTemplateProps = (obj: Object) => {
+  return Object.keys(obj)
+    .filter((propName) => {
+      const { purePropName } = parsePropName(propName)
+      return purePropName === 'template'
+    })
+    .reduce(
+      (acc, propName) => ({
+        ...acc,
+        [propName]: obj[propName],
+      }),
+      {},
+    )
+}
 
 export default filterTemplateProps
