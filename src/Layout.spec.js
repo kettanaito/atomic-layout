@@ -38,3 +38,7 @@ test('Returns existing breakpoint info', () => {
 test('Returns "undefined" for non-existing breakpoint', () => {
   expect(Layout.getBreakpoint('foo')).to.equal(undefined)
 })
+
+test('Returns "undefined" when no breakpoint specified', () => {
+  expect(Layout.getBreakpoint()).to.equal(undefined)
+})
