@@ -43,7 +43,7 @@ export default function getAreasList(props: TTemplateProps): TAreasList {
         and leave the verification of that to someone else
       */
       const propValue = sanitizeTemplateString(props[propName])
-      const nextAreas = propValue ? res.areas.concat(propValue) : res.areas
+      const nextAreas = res.areas.concat(propValue)
       const nextTemplates = res.templates.concat({
         breakpoint: Layout.getBreakpoint(breakpointName),
         behavior,
