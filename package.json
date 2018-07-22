@@ -22,14 +22,16 @@
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "npm run test:unit && npm run test:e2e",
-    "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
-    "prepush": "npm run test:unit && npm run prettify",
+    "precommit": "lint-staged",
+    "prepush": "npm run test:unit",
     "prepublishOnly": "npm run build && npm test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint ./src/"
-    }
+  "lint-staged": {
+    ".{js,jsx}": [
+      "eslint ./src/",
+      "prettier --write",
+      "git add"
+    ]
   },
   "bundlesize": [
     {
@@ -68,6 +70,7 @@
     "flow-bin": "^0.54.1",
     "husky": "^1.0.0-rc.9",
     "jest": "^23.1.0",
+    "lint-staged": "^7.2.0",
     "prettier": "^1.13.5",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
