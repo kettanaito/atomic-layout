@@ -7,7 +7,7 @@ const template = `
   'second'
 `
 
-export default class CustomConfiguration extends React.Component {
+export default class CustomBreakpoints extends React.Component {
   componentWillMount() {
     Layout.configure({
       defaultUnit: 'rem',
