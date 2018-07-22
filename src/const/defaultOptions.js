@@ -47,22 +47,22 @@ const defaultOptions: TLayoutOptions = {
   defaultBreakpointName: 'xs',
   breakpoints: {
     xs: {
-      maxWidth: 575,
+      maxWidth: '575px',
     },
     sm: {
-      minWidth: 576,
-      maxWidth: 768,
+      minWidth: '576px',
+      maxWidth: '768px',
     },
     md: {
-      minWidth: 769,
-      maxWidth: 992,
+      minWidth: '769px',
+      maxWidth: '992px',
     },
     lg: {
-      minWidth: 993,
-      maxWidth: 1199,
+      minWidth: '993px',
+      maxWidth: '1199px',
     },
     xl: {
-      minWidth: 1200,
+      minWidth: '1200px',
     },
   },
 }

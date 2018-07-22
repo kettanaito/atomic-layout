@@ -2,12 +2,21 @@ import { assert } from 'chai'
 import defaultOptions from '../../src/const/defaultOptions'
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
-  const breakpoint =
-    typeof breakpointName === 'string'
-      ? defaultOptions.breakpoints[breakpointName]
-      : breakpointName
+  const parsedBreakpoint = parseFloat(breakpointName)
+  let breakpoint = parseFloat(breakpointName)
 
-  cy.viewport(breakpoint.minWidth || 550, breakpoint.minHeight || 550)
+  if (isNaN(parsedBreakpoint)) {
+    breakpoint = defaultOptions.breakpoints[breakpointName]
+  }
+
+  if (typeof breakpointName === 'object') {
+    breakpoint = breakpointName
+  }
+
+  cy.viewport(
+    parseFloat(breakpoint.minWidth) || 550,
+    parseFloat(breakpoint.minHeight) || 550,
+  )
 
   /**
    * Wait after viewport change due to CSS Grid repaint happening with
