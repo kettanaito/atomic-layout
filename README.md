@@ -55,13 +55,13 @@ Here are some shortcuts to get you started:
 - [Philosophy](https://redd.gitbook.io/atomic-layout/general/philosophy)
 - [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
-- [Best practices](https://redd.gitbook.io/atomic-layout/general/best-practices)
+- [Recipes](https://redd.gitbook.io/atomic-layout/general/recipes)
 
 Create a [Pull request](https://github.com/kettanaito/atomic-layout/pulls) to improve the documentation!
 
 ## Browser support
 
-Atomic layout currently has a coverage of 84% of browser usage throughout the glob.
+Atomic layout is based on CSS Grid, which has a browser coverage over 84% throughout the glob. Use it here and now, no polyfills.
 
 | Chrome | Firefox | IE   | Edge | Safari | iOS Safari |
 | ------ | ------- | ---- | ---- | ------ | ---------- |
@@ -71,4 +71,4 @@ Atomic layout currently has a coverage of 84% of browser usage throughout the gl
 
 ## Contributing
 
-Please see the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to start shaping the way developers create layouts today! Take a look at the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) to get started. Thank you!
+Shape the way developers create layouts! There are [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get you started, please give it a read. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, generally, good ones to start contributing. Thank you.
