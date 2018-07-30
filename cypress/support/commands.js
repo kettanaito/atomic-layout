@@ -1,5 +1,6 @@
 import { assert } from 'chai'
 import defaultOptions from '../../src/const/defaultOptions'
+import propAliases from '../../src/const/propAliases'
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   const parsedBreakpoint = parseFloat(breakpointName)
@@ -32,6 +33,22 @@ Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
 
   return cy.wrap(subject).should('have.css', 'grid-column-end', gridArea)
 })
+
+Cypress.Commands.add(
+  'assertPropAlias',
+  {
+    prevSubject: true,
+  },
+  (subject, propAliasName, value) => {
+    const wrapper = cy.wrap(subject)
+    const { props: originProps, transformValue } = propAliases[propAliasName]
+    const expectedValue = transformValue ? transformValue(value) : value
+
+    originProps.forEach((originPropName) => {
+      wrapper.should('have.css', originPropName, expectedValue)
+    })
+  },
+)
 
 Cypress.Commands.add(
   'haveSameAxis',
