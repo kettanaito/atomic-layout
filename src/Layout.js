@@ -26,6 +26,11 @@ class Layout {
    * Applies global layout options.
    */
   configure(options: TLayoutOptions) {
+    invariant(
+      options,
+      `Failed to configure Layout: expected an options Object, but got: ${options}`,
+    )
+
     const nextOptions: TLayoutOptions = Object.assign(
       {},
       defaultOptions,
@@ -39,8 +44,13 @@ class Layout {
     )
 
     invariant(
-      nextOptions.breakpoints[defaultBreakpointName],
-      `Failed to configure Layout: cannot find a breakpoint with the name "${defaultBreakpointName}" (default breakpoint).`,
+      nextOptions.breakpoints,
+      'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
+    )
+
+    invariant(
+      nextOptions.breakpoints.hasOwnProperty(defaultBreakpointName),
+      `Failed to configure Layout: cannot set default breakpoint to "${defaultBreakpointName}" (breakpoint not found).`,
     )
 
     Object.keys(nextOptions).forEach((optionName) => {
@@ -53,7 +63,7 @@ class Layout {
   /**
    * Returns the collection of breakpoint names.
    */
-  getBreakpointsNames(): string[] {
+  getBreakpointNames(): string[] {
     return Object.keys(this.breakpoints)
   }
 
