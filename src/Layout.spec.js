@@ -1,44 +1,84 @@
-import { expect } from 'chai'
 import defaultOptions from './const/defaultOptions'
 import Layout from './Layout'
 
-test('Sets default options properly', () => {
-  expect(Layout).to.have.property('defaultUnit', defaultOptions.defaultUnit)
-  expect(Layout).to.have.property('breakpoints', defaultOptions.breakpoints)
+const resetLayoutOptions = () => {
+  Layout.configure(defaultOptions)
+}
+
+afterEach(() => {
+  /* Prevent "Layout.configure()" to affect unrelated test cases */
+  resetLayoutOptions()
 })
 
-test('Sets custom options properly', () => {
-  expect(Layout)
-    .to.have.property('configure')
-    .to.be.a('function')
+/* Error handling */
+test('configure: Forbids calling Layout.configure() without options', () => {
+  expect(Layout.configure).toThrow()
+})
+
+test('configure: Forbids setting default breakpoint name for non-existing breakpoint', () => {
+  expect(
+    Layout.configure.bind(this, {
+      defaultBreakpointName: 'foo',
+    }),
+  ).toThrow()
+})
+
+/* API */
+test('Propagates default options properly', () => {
+  expect(Layout).toHaveProperty('defaultUnit', defaultOptions.defaultUnit)
+  expect(Layout).toHaveProperty('breakpoints', defaultOptions.breakpoints)
+})
+
+test('configure: Sets custom options properly', () => {
+  expect(Layout).toHaveProperty('configure')
 
   Layout.configure({
     defaultUnit: 'rem',
   })
 
-  expect(Layout).to.have.property('defaultUnit', 'rem')
+  expect(Layout).toHaveProperty('defaultUnit', 'rem')
 })
 
-test('Returns breakpoints names', () => {
-  expect(Layout.getBreakpointsNames()).to.deep.equal([
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-  ])
+test('getBreakpointNames: Returns "undefined" when Layout has no breakpoints', () => {
+  expect(
+    Layout.configure.bind(this, {
+      breakpoints: null,
+    }),
+  ).toThrow()
 })
 
-test('Returns existing breakpoint info', () => {
-  expect(Layout.getBreakpoint('md')).to.deep.equal(
-    defaultOptions.breakpoints.md,
-  )
+test('getBreakpointNames:Returns breakpoint names for default breakpoints', () => {
+  expect(Layout.getBreakpointNames()).toEqual(['xs', 'sm', 'md', 'lg', 'xl'])
 })
 
-test('Returns "undefined" for non-existing breakpoint', () => {
-  expect(Layout.getBreakpoint('foo')).to.equal(undefined)
+test('getBreakpointNames:Returns breakpoint names for custom breakpoints', () => {
+  Layout.configure({
+    defaultBreakpointName: 'mobile',
+    breakpoints: {
+      mobile: {
+        maxWidth: 768,
+      },
+      tablet: {
+        minWidth: 769,
+        maxWidth: 1099,
+      },
+      desktop: {
+        minWidth: 1100,
+      },
+    },
+  })
+
+  expect(Layout.getBreakpointNames()).toEqual(['mobile', 'tablet', 'desktop'])
 })
 
-test('Returns "undefined" when no breakpoint specified', () => {
-  expect(Layout.getBreakpoint()).to.equal(undefined)
+test('getBreakpoint: Returns existing breakpoint info', () => {
+  expect(Layout.getBreakpoint('md')).toEqual(defaultOptions.breakpoints.md)
+})
+
+test('getBreakpoint: Returns "undefined" for non-existing breakpoint', () => {
+  expect(Layout.getBreakpoint('foo')).toBeUndefined()
+})
+
+test('Returns "undefined" when no breakpoint name specified', () => {
+  expect(Layout.getBreakpoint()).toBeUndefined()
 })

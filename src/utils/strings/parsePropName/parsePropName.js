@@ -23,7 +23,7 @@ export type TParsedProp = {
  * lookbehind is supported everywhere.
  */
 export default function parsePropName(propName: string): TParsedProp {
-  const joinedBreakpointNames = Layout.getBreakpointsNames().join('|')
+  const joinedBreakpointNames = Layout.getBreakpointNames().join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
   const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
   const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
