@@ -31,6 +31,7 @@ test('Propagates default options properly', () => {
 
 test('configure: Sets custom options properly', () => {
   expect(Layout).toHaveProperty('configure')
+  expect(Layout.configure).toBeInstanceOf(Function)
 
   Layout.configure({
     defaultUnit: 'rem',

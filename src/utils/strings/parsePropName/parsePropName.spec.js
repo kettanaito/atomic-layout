@@ -1,51 +1,50 @@
-import { expect } from 'chai'
 import Layout from '../../../Layout'
 import parsePropName from './'
 
 test('Parses a prop name with a breakpoint and behavior', () => {
   const resOne = parsePropName('gutterLgOnly')
-  expect(resOne).to.be.an('object')
-  expect(resOne).to.have.property('purePropName', 'gutter')
-  expect(resOne).to.have.property('breakpointName', 'lg')
-  expect(resOne).to.have.property('behavior', 'only')
+  expect(resOne).toBeInstanceOf(Object)
+  expect(resOne).toHaveProperty('purePropName', 'gutter')
+  expect(resOne).toHaveProperty('breakpointName', 'lg')
+  expect(resOne).toHaveProperty('behavior', 'only')
 
   const resTwo = parsePropName('paddingVerticalLgOnly')
-  expect(resTwo).to.be.an('object')
-  expect(resTwo).to.have.property('purePropName', 'paddingVertical')
-  expect(resTwo).to.have.property('breakpointName', 'lg')
-  expect(resTwo).to.have.property('behavior', 'only')
+  expect(resTwo).toBeInstanceOf(Object)
+  expect(resTwo).toHaveProperty('purePropName', 'paddingVertical')
+  expect(resTwo).toHaveProperty('breakpointName', 'lg')
+  expect(resTwo).toHaveProperty('behavior', 'only')
 })
 
 test('Parses a prop name without breakpoint or behavior', () => {
   const res = parsePropName('gutter')
-  expect(res).to.be.an('object')
-  expect(res).to.have.property('purePropName', 'gutter')
-  expect(res).to.have.property('breakpointName', 'xs')
-  expect(res).to.have.property('behavior', 'up')
+  expect(res).toBeInstanceOf(Object)
+  expect(res).toHaveProperty('purePropName', 'gutter')
+  expect(res).toHaveProperty('breakpointName', 'xs')
+  expect(res).toHaveProperty('behavior', 'up')
 })
 
 test('Parses a prop name with breakpoint', () => {
   const res = parsePropName('gutterMd')
-  expect(res).to.be.an('object')
-  expect(res).to.have.property('purePropName', 'gutter')
-  expect(res).to.have.property('breakpointName', 'md')
-  expect(res).to.have.property('behavior', 'up')
+  expect(res).toBeInstanceOf(Object)
+  expect(res).toHaveProperty('purePropName', 'gutter')
+  expect(res).toHaveProperty('breakpointName', 'md')
+  expect(res).toHaveProperty('behavior', 'up')
 })
 
 test('Ignores unknown strings', () => {
   const res = parsePropName('gutterFoo')
-  expect(res).to.be.an('object')
-  expect(res).to.have.property('purePropName', 'gutterFoo')
-  expect(res).to.have.property('breakpointName', 'xs')
-  expect(res).to.have.property('behavior', 'up')
+  expect(res).toBeInstanceOf(Object)
+  expect(res).toHaveProperty('purePropName', 'gutterFoo')
+  expect(res).toHaveProperty('breakpointName', 'xs')
+  expect(res).toHaveProperty('behavior', 'up')
 })
 
 test('Returns a prop name and behavior without breakpoint', () => {
   const res = parsePropName('gutterDown')
-  expect(res).to.be.an('object')
-  expect(res).to.have.property('purePropName', 'gutter')
-  expect(res).to.have.property('breakpointName', 'xs')
-  expect(res).to.have.property('behavior', 'down')
+  expect(res).toBeInstanceOf(Object)
+  expect(res).toHaveProperty('purePropName', 'gutter')
+  expect(res).toHaveProperty('breakpointName', 'xs')
+  expect(res).toHaveProperty('behavior', 'down')
 })
 
 test('Parses a prop name with custom breakpoint name', () => {
@@ -58,43 +57,31 @@ test('Parses a prop name with custom breakpoint name', () => {
     },
   })
 
-  expect(parsePropName('gutterMobile')).to.have.property(
-    'purePropName',
-    'gutter',
-  )
-  expect(parsePropName('gutterMobile')).to.have.property(
+  expect(parsePropName('gutterMobile')).toHaveProperty('purePropName', 'gutter')
+  expect(parsePropName('gutterMobile')).toHaveProperty(
     'breakpointName',
     'mobile',
   )
 
-  expect(parsePropName('gutterTablet')).to.have.property(
-    'purePropName',
-    'gutter',
-  )
-  expect(parsePropName('gutterTablet')).to.have.property(
+  expect(parsePropName('gutterTablet')).toHaveProperty('purePropName', 'gutter')
+  expect(parsePropName('gutterTablet')).toHaveProperty(
     'breakpointName',
     'tablet',
   )
 
-  expect(parsePropName('gutterDesktopRetina')).to.have.property(
+  expect(parsePropName('gutterDesktopRetina')).toHaveProperty(
     'purePropName',
     'gutter',
   )
-  expect(parsePropName('gutterDesktopRetina')).to.have.property(
+  expect(parsePropName('gutterDesktopRetina')).toHaveProperty(
     'breakpointName',
     'desktopRetina',
   )
-  expect(parsePropName('gutterDesktopRetinaDown')).to.have.property(
+  expect(parsePropName('gutterDesktopRetinaDown')).toHaveProperty(
     'behavior',
     'down',
   )
 
-  expect(parsePropName('gutterFoo')).to.have.property(
-    'purePropName',
-    'gutterFoo',
-  )
-  expect(parsePropName('gutterFoo')).to.have.property(
-    'breakpointName',
-    'mobile',
-  )
+  expect(parsePropName('gutterFoo')).toHaveProperty('purePropName', 'gutterFoo')
+  expect(parsePropName('gutterFoo')).toHaveProperty('breakpointName', 'mobile')
 })
