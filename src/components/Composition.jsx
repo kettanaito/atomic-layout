@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import applyStyles from '../utils/styles/applyStyles'
+import Box from './Box'
 import parseTemplates from '../utils/templates/parseTemplates'
 
-const CompositionWrapper = styled.div`
-  ${(props) => applyStyles(props)};
+const CompositionWrapper = styled(Box)`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
 `
 
