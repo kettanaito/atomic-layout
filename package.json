@@ -2,6 +2,14 @@
   "name": "atomic-layout",
   "version": "0.3.5",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
+  "keywords": [
+    "atomic",
+    "layout",
+    "responsive",
+    "composition",
+    "css grid",
+    "react"
+  ],
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
