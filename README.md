@@ -11,8 +11,10 @@
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Library size (minzip)" />
 </p>
 
+<br>
+
 <p align="center">
-  <img src="./logo.png" alt="Atomic layout" />
+  <img src="./logo.png" alt="Atomic layout" width="200" />
 </p>
 
 <h1 align="center">Atomic layout</h1>
