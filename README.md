@@ -19,13 +19,13 @@
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates the distribution of spacial relation between any layout composites to the dedicated layer. Put shortly, it helps you to create reusable, efficient and fast responsive layouts with _close to no CSS_.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. Put shortly, it helps you to create powerful, immutable, and efficient responsive layouts with _close to no CSS_.
 
 <p align="center">
   <img src="example.png" style="max-width:650px" />
 </p>
 
-> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can [configure custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match your very requirements.
+> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. Don't worry, you can [configure custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match the requirements of your project.
 
 ## Motivation
 
@@ -73,4 +73,4 @@ Atomic layout is based on CSS Grid, which has a browser coverage over 84% throug
 
 ## Contributing
 
-Shape the way developers create layouts! There are [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get you started, please give it a read. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, generally, good ones to start contributing. Thank you.
+Shape the way developers create layouts! There are [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get you started, please give it a read. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a great place to start contributing. Thank you.
