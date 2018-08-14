@@ -1,14 +1,18 @@
 // @flow
 import compose from '../../functions/compose'
 
-type TSanitizeTemplateString = (str: string) => string[]
+const dedupeList = (list: string[]): string[] => {
+  return Array.from(new Set(list))
+}
+
+type SanitizeTemplateString = (str: string) => string[]
 
 /**
  * Returns an array of unique normalized grid areas
  * from the given template string.
  */
-const sanitizeTemplateString: TSanitizeTemplateString = compose(
-  (arr: any[]) => Array.from(new Set(arr)),
+const sanitizeTemplateString: SanitizeTemplateString = compose(
+  dedupeList,
   (arr: any[]) => arr.filter(Boolean),
   (str: string) => str.split(' '),
   (str: string) => str.trim(),
