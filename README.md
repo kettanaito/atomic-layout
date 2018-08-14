@@ -21,8 +21,10 @@
 
 [Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. Create powerful, immutable, and efficient responsive layouts _without writing CSS_.
 
+<br>
+
 <p align="center">
-  <img src="example.png" style="max-width:650px" />
+  <img src="example.png" width="650" />
 </p>
 
 > Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. Don't worry, you can [configure custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match the requirements of your project.
