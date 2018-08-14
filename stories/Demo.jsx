@@ -3,27 +3,27 @@ import Square from './Square'
 import { Box, Composition } from '../'
 
 const templateMobile = `
-  'actions'
-  'image'
-  'content'
-  'footer'
+  actions
+  image
+  content
+  footer
 `
 
 const templateTablet = `
-  'image content'
-  'image footer'
+  image content
+  image footer
 `
 
 const templateDesktop = `
-  'image content'
-  'footer footer'
+  image content
+  footer footer
 `
 
 const templateTv = `
-  'image'
-  'actions'
-  'content'
-  'footer'
+  image
+  actions
+  content
+  footer
 `
 
 const Demo = () => (
@@ -55,12 +55,7 @@ const Demo = () => (
 
     <Box marginVertical={2} />
 
-    <Composition
-      template={`
-      'thumbnail content actions'
-    `}
-      templateCols="auto 1fr"
-    >
+    <Composition template="thumbnail content actions" templateCols="auto 1fr">
       {({ Thumbnail, Content, Actions }) => (
         <React.Fragment>
           <Thumbnail>Image</Thumbnail>
