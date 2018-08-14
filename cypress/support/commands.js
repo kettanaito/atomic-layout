@@ -39,13 +39,22 @@ Cypress.Commands.add(
   {
     prevSubject: true,
   },
-  (subject, propAliasName, value) => {
+  (subject, propAliasName, value, exactAssertion) => {
     const wrapper = cy.wrap(subject)
     const { props: originProps, transformValue } = propAliases[propAliasName]
     const expectedValue = transformValue ? transformValue(value) : value
 
     originProps.forEach((originPropName) => {
-      wrapper.should('have.css', originPropName, expectedValue)
+      wrapper.should('have.css', originPropName).then((cssPropValue) => {
+        assert(
+          exactAssertion
+            ? exactAssertion(cssPropValue, expectedValue, value)
+            : cssPropValue === expectedValue,
+          `Expected (${cssPropValue}) to equal (${expectedValue}).`,
+        )
+
+        return subject
+      })
     })
   },
 )

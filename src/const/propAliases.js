@@ -1,5 +1,7 @@
 // @flow
+import compose from '../utils/functions/compose'
 import transformNumeric from '../utils/math/transformNumeric'
+import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
 
 type TValueTransformer<T> = (val: any) => T
 
@@ -12,6 +14,14 @@ type TPropAliases = {
   [propAlias: string]: TPropAliasOptions,
 }
 
+type TransformTemplateString = (template: string) => string
+const transformTemplateString: TransformTemplateString = compose(
+  (areas: string[]) => areas.join('\n'),
+  (areas: string[]) => areas.map(sanitizeTemplateArea),
+  (template: string) => template.split('\n'),
+  (template: string) => template.trim(),
+)
+
 /**
  * Collection of prop aliases.
  * Prop alias is a prop name accepted by a component which is later
@@ -22,7 +32,7 @@ const propAliases: TPropAliases = {
   /* CSS Grid */
   template: {
     props: ['grid-template-areas'],
-    transformValue: (val: string) => val.trim(),
+    transformValue: transformTemplateString,
   },
   templateCols: {
     props: ['grid-template-columns'],

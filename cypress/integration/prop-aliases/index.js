@@ -1,7 +1,8 @@
 import propAliases from '../../../src/const/propAliases'
 
-const exactValues = {
-  template: '"first"',
+const assertValues = {
+  // prettier-ignore
+  template: "first",
   templateCols: '500px',
   templateRows: '500px',
   col: '1 / auto',
@@ -22,16 +23,28 @@ const exactValues = {
   placeContent: 'flex-start flex-start',
 }
 
+const normalizeQuotes = (str) => str.replace(/"+/g, "'")
+
+const exactAssertion = {
+  template: (cssValue, expectedValue) => {
+    return normalizeQuotes(cssValue) === normalizeQuotes(expectedValue)
+  },
+}
+
 describe('Prop aliases', () => {
   Object.keys(propAliases).forEach((aliasPropName) => {
     it(aliasPropName, () => {
-      const propValue = exactValues[aliasPropName] || 10
+      const propValue = assertValues[aliasPropName] || 10
 
       cy.visit(
         `/misc/prop-aliases?propAlias=${aliasPropName}&propValue=${propValue}`,
       )
 
-      cy.get('#composition').assertPropAlias(aliasPropName, propValue)
+      cy.get('#composition').assertPropAlias(
+        aliasPropName,
+        propValue,
+        exactAssertion[aliasPropName],
+      )
     })
   })
 })
