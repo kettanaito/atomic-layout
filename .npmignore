@@ -12,6 +12,7 @@ jest.*
 webpack.*
 
 # Sources
+__*
 src
 internal
 examples
