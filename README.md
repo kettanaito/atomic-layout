@@ -19,7 +19,7 @@
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. Put shortly, it helps you to create powerful, immutable, and efficient responsive layouts with _close to no CSS_.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. Create powerful, immutable, and efficient responsive layouts _without writing CSS_.
 
 <p align="center">
   <img src="example.png" style="max-width:650px" />
