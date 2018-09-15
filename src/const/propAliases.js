@@ -100,8 +100,16 @@ const propAliases: TPropAliases = {
     props: ['height'],
     transformValue: transformNumeric,
   },
+  maxHeight: {
+    props: ['max-height'],
+    transformValue: transformNumeric,
+  },
   width: {
     props: ['width'],
+    transformValue: transformNumeric,
+  },
+  maxWidth: {
+    props: ['max-width'],
     transformValue: transformNumeric,
   },
 
