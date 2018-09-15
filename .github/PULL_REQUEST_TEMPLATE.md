@@ -1,11 +1,6 @@
-> First of all, thank you for your contribution! Please fill in this pull request template to let others know more about the awesome changes you have made. You rock!
-
 ## Issues
 
-> (Optional) Please list the issues related or covered by this pull request. Otherwise remove this section.
-
-* Fixes ABC
-* Relates to DEF
+* Closes ABC
 
 ## Release
 ### Release version
@@ -22,9 +17,3 @@
 
 - [ ] Introduces this
 - [ ] Changes sthis
-- [ ] Deprecates this
-- [ ] Removes this
-
-## Notes
-
-> Include any notes, discoveries or motivation that is relevant to the introduced changes. Be friendly and descriptive.
