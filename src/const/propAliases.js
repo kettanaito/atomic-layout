@@ -100,12 +100,20 @@ const propAliases: TPropAliases = {
     props: ['height'],
     transformValue: transformNumeric,
   },
+  minHeight: {
+    props: ['min-height'],
+    transformValue: transformNumeric,
+  },
   maxHeight: {
     props: ['max-height'],
     transformValue: transformNumeric,
   },
   width: {
     props: ['width'],
+    transformValue: transformNumeric,
+  },
+  minWidth: {
+    props: ['min-width'],
     transformValue: transformNumeric,
   },
   maxWidth: {
