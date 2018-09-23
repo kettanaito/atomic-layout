@@ -1,13 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
-// const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
-// const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   mode: nodeEnv,
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index'),
   externals: {
     react: 'umd react',
     'styled-components': 'umd styled-components',
@@ -15,14 +13,13 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname),
-    library: 'atomicLayout',
+    library: 'AtomicLayout',
     libraryTarget: 'umd',
-    umdNamedDefine: true,
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/i,
+        test: /\.jsx?$/i,
         exclude: /node_modules/,
         loaders: ['babel-loader', 'eslint-loader'],
       },

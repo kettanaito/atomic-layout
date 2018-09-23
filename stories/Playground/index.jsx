@@ -1,6 +1,9 @@
 import React from 'react'
 import Square from '../Square'
-import { Composition } from '../../'
+import { Composition } from '../../index'
+import * as al from '../../index'
+
+console.log({ Composition, al })
 
 const template = `
   'header'

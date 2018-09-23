@@ -37,15 +37,15 @@ jobs:
           command: npm run build
 
       - run:
-          name: Bundle size check
+          name: Checking bundle size
           command: node_modules/.bin/bundlesize
 
       - run:
-          name: Unit tests
+          name: Running unit tests
           command: npm run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
 
       - run:
-          name: Integration tests
+          name: Running integration tests
           command: npm run test:e2e
       - store_test_results:
           path: test-results
