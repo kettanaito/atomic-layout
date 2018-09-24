@@ -1,11 +1,12 @@
 const path = require('path')
-const webpack = require('webpack')
-const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
+// const webpack = require('webpack')
+// const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
-const PRODUCTION = nodeEnv === 'production'
+// const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
+  mode: nodeEnv,
   entry: path.resolve(__dirname, 'src/index.js'),
   externals: {
     react: 'umd react',
@@ -27,20 +28,20 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
-    }),
-    PRODUCTION && new webpack.optimize.ModuleConcatenationPlugin(),
-    PRODUCTION &&
-      new BabelMinifyPlugin({
-        removeConsole: true,
-        removeDebugger: true,
-        mangle: {
-          topLevel: true,
-        },
-      }),
-  ].filter(Boolean),
+  // plugins: [
+  //   new webpack.DefinePlugin({
+  //     'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+  //   }),
+  //   PRODUCTION && new webpack.optimize.ModuleConcatenationPlugin(),
+  //   PRODUCTION &&
+  //     new BabelMinifyPlugin({
+  //       removeConsole: true,
+  //       removeDebugger: true,
+  //       mangle: {
+  //         topLevel: true,
+  //       },
+  //     }),
+  // ].filter(Boolean),
   resolve: {
     extensions: ['.jsx', '.js'],
   },
