@@ -5,7 +5,7 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 
 module.exports = {
   mode: nodeEnv,
-  entry: path.resolve(__dirname, 'src/index'),
+  entry: path.resolve(__dirname, 'src/index.js'),
   externals: {
     react: 'umd react',
     'styled-components': 'umd styled-components',
