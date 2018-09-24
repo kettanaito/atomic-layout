@@ -37,8 +37,8 @@ const Demo = () => (
     >
       {({ Image, Content, Actions, Footer }) => (
         <React.Fragment>
-          <Actions>
-            <Square>Actions</Square>
+          <Actions alignItems="center" justifyItems="center">
+            <span>Actions</span>
           </Actions>
           <Image>
             <Square>Image</Square>

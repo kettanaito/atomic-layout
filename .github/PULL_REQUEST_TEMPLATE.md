@@ -1,19 +1,8 @@
 ## Issues
 
-* Closes ABC
+* Implements #ABC
 
-## Release
-### Release version
+## Changelog
 
-> Please choose which release version should include your changes.
-
-- [ ] major (backward-*in*compatible changes)
-- [ ] minor (backward-compatible changes)
-- [ ] patch (non-breaking feature or bugfix)
-
-### Changelog
-
-> Please list the current or upcoming changes introduced by this pull request. In case of intermediate pull request, mark the finished changes so the roadmap is evident. 
-
-- [ ] Introduces this
-- [ ] Changes sthis
+- Introduces this
+- Changes this

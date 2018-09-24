@@ -1,4 +1,10 @@
 {
-  "presets": ["env", "react"],
-  "plugins": ["transform-object-rest-spread", "transform-export-extensions"]
+  "presets": [
+    "babel-preset-env",
+    "babel-preset-react"
+  ],
+  "plugins": [
+    "babel-plugin-transform-object-rest-spread",
+    "babel-plugin-transform-export-extensions"
+  ]
 }
