@@ -1,7 +1,10 @@
 const path = require('path')
 const webpackConfig = require('../webpack.config')
 
-const config = {
+const nodeEnv = process.env.NODE_ENV || 'production'
+
+module.exports = {
+  mode: nodeEnv,
   entry: path.resolve(__dirname, 'index'),
   output: {
     filename: 'index.js',
@@ -29,5 +32,3 @@ const config = {
     historyApiFallback: true,
   },
 }
-
-module.exports = config
