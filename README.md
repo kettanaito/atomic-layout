@@ -9,6 +9,8 @@
     <img src="https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg" alt="Test coverage" />
   </a>
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Library size (minzip)" />
+  <img src="https://img.shields.io/david/kettanaito/atomic-layout.svg" alt="Dependencies status" />
+  <img src="https://img.shields.io/david/dev/kettanaito/atomic-layout.svg" alt="Development dependencies status" />
 </p>
 
 <br>
