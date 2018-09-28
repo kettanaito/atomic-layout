@@ -1,4 +1,9 @@
 // @flow
-export default function toLowerCaseFirst(str: string): string {
-  return str.slice(0, 1).toLowerCase() + str.slice(1, str.length)
-}
+import * as R from 'ramda'
+
+const toLowerCaseFirst = R.compose(
+  R.join(''),
+  R.adjust(R.toLower, 0),
+)
+
+export default toLowerCaseFirst
