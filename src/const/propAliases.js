@@ -1,5 +1,5 @@
 // @flow
-import compose from '../utils/functions/compose'
+import * as R from 'ramda'
 import transformNumeric from '../utils/math/transformNumeric'
 import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
 
@@ -15,11 +15,11 @@ type TPropAliases = {
 }
 
 type TransformTemplateString = (template: string) => string
-const transformTemplateString: TransformTemplateString = compose(
-  (areas: string[]) => areas.join('\n'),
-  (areas: string[]) => areas.map(sanitizeTemplateArea),
-  (template: string) => template.split('\n'),
-  (template: string) => template.trim(),
+const transformTemplateString: TransformTemplateString = R.compose(
+  R.join('\n'),
+  R.map(sanitizeTemplateArea),
+  R.split('\n'),
+  R.trim,
 )
 
 /**

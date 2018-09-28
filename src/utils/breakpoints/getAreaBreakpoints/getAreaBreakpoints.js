@@ -4,10 +4,10 @@ import type {
   TBreakpointBehavior,
 } from '../../../const/defaultOptions'
 import type { TTemplate } from '../../templates/getAreasList'
+import * as R from 'ramda'
 import pop from '../../functions/pop'
 import when from '../../functions/when'
 import spread from '../../functions/spread'
-import compose from '../../functions/compose'
 import mergeBreakpoints from '../mergeBreakpoints'
 import openBreakpoint from '../openBreakpoint'
 import shouldMergeBreakpoints from '../shouldMergeBreakpoints'
@@ -139,7 +139,7 @@ const getAreaBreakpoints = (
   templates: TTemplate[],
 ): TAreaBreakpointsList =>
   templates.reduce(
-    compose(
+    R.compose(
       updateBreakpointsList,
       when(
         shouldOpenBreakpoint,

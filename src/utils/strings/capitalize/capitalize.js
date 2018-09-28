@@ -1,4 +1,6 @@
 // @flow
-export default function capitalize(str: string): string {
-  return str.replace(/^./, (firstLetter) => firstLetter.toUpperCase())
-}
+import * as R from 'ramda'
+
+const capitalize = R.replace(/^./, R.toUpper)
+
+export default capitalize
