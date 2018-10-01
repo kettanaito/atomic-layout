@@ -30,7 +30,7 @@ export type TTemplateProps = {
 export default function getAreasList(props: TTemplateProps): TAreasList {
   const areasList = Object.keys(props).reduce(
     (res, propName) => {
-      const { breakpointName, behavior } = parsePropName(propName)
+      const { breakpointName, behavior } = parsePropName(Layout, propName)
 
       /*
         TODO:

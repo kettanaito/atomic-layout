@@ -1,9 +1,7 @@
 const path = require('path')
-// const webpack = require('webpack')
 // const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
-// const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   mode: nodeEnv,

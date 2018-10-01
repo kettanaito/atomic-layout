@@ -1,23 +1,18 @@
 // @flow
+import * as R from 'ramda'
+import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
 
 /**
- * Filters the given object to contain only templates
- * declarations (props matching the RegExp).
+ * Returns the derived props that contain only template
+ * declarations.
  */
-const filterTemplateProps = (obj: Object) => {
-  return Object.keys(obj)
-    .filter((propName) => {
-      const { purePropName } = parsePropName(propName)
-      return purePropName === 'template'
-    })
-    .reduce(
-      (acc, propName) => ({
-        ...acc,
-        [propName]: obj[propName],
-      }),
-      {},
-    )
-}
+const filterTemplateProps = R.pickBy(
+  R.compose(
+    R.propEq('purePropName', 'template'),
+    parsePropName(Layout),
+    R.nthArg(1),
+  ),
+)
 
 export default filterTemplateProps

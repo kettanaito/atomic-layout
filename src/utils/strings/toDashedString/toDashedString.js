@@ -1,6 +1,10 @@
 // @flow
-export default function toDashedString(str: string): string {
-  return str.replace(/[A-Z]/g, (capitalLetter) => {
-    return `-${capitalLetter}`.toLowerCase()
-  })
-}
+import * as R from 'ramda'
+
+const toDashedString = R.compose(
+  R.join('-'),
+  R.map(R.toLower),
+  R.split(/(?=[A-Z])/g),
+)
+
+export default toDashedString

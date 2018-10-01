@@ -1,6 +1,6 @@
 // @flow
 import type { TBreakpointBehavior } from '../../../const/defaultOptions'
-import Layout from '../../../Layout'
+import * as R from 'ramda'
 import toLowerCaseFirst from '../toLowerCaseFirst'
 
 export type TProps = {
@@ -22,30 +22,34 @@ export type TParsedProp = {
  * This RegExp also works well. May consider implementing once
  * lookbehind is supported everywhere.
  */
-export default function parsePropName(propName: string): TParsedProp {
-  const joinedBreakpointNames = Layout.getBreakpointNames().join('|')
-  const joinedBehaviors = ['down', 'only'].join('|')
-  const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
-  const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
+const parsePropName = R.curry(
+  (layout, propName: string): TParsedProp => {
+    const joinedBreakpointNames = layout.getBreakpointNames().join('|')
+    const joinedBehaviors = ['down', 'only'].join('|')
+    const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
+    const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
 
-  const behaviorMatch = propName.match(behaviorExp)
-  const behavior = behaviorMatch ? behaviorMatch[0] : ''
-  const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
-  const breakpointName = breakpointMatch ? breakpointMatch[0] : ''
-  const purePropName = propName
-    .replace(breakpointName, '')
-    .replace(behavior, '')
+    const behaviorMatch = propName.match(behaviorExp)
+    const behavior = behaviorMatch ? behaviorMatch[0] : ''
+    const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
+    const breakpointName = breakpointMatch ? breakpointMatch[0] : ''
+    const purePropName = propName
+      .replace(breakpointName, '')
+      .replace(behavior, '')
 
-  const resolvedBreakpointName = breakpointName
-    ? toLowerCaseFirst(breakpointName)
-    : Layout.defaultBreakpointName
-  const isDefaultBreakpoint =
-    resolvedBreakpointName === Layout.defaultBreakpointName
+    const resolvedBreakpointName = breakpointName
+      ? toLowerCaseFirst(breakpointName)
+      : layout.defaultBreakpointName
+    const isDefaultBreakpoint =
+      resolvedBreakpointName === layout.defaultBreakpointName
 
-  return {
-    purePropName,
-    breakpointName: resolvedBreakpointName,
-    isDefaultBreakpoint,
-    behavior: behavior ? toLowerCaseFirst(behavior) : Layout.defaultBehavior,
-  }
-}
+    return {
+      purePropName,
+      breakpointName: resolvedBreakpointName,
+      isDefaultBreakpoint,
+      behavior: behavior ? toLowerCaseFirst(behavior) : layout.defaultBehavior,
+    }
+  },
+)
+
+export default parsePropName

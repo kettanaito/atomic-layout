@@ -1,10 +1,10 @@
 // @flow
-import compose from '../../functions/compose'
+import * as R from 'ramda'
 import getAreasList from '../getAreasList'
 import generateComponents from '../generateComponents'
 import filterTemplateProps from './filterTemplateProps'
 
-const parseTemplates = compose(
+const parseTemplates = R.compose(
   generateComponents,
   getAreasList,
   filterTemplateProps,
