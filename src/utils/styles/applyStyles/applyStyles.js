@@ -44,7 +44,14 @@ export default function applyStyles(pristineProps: TProps): string {
         breakpointName,
         isDefaultBreakpoint,
         behavior,
-      } = parsePropName(originalPropName)
+      } = parsePropName(Layout, originalPropName)
+
+      console.log({
+        purePropName,
+        breakpointName,
+        isDefaultBreakpoint,
+        behavior,
+      })
 
       const aliasOptions = propAliases[purePropName]
       if (!aliasOptions) {

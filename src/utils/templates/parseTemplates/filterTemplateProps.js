@@ -1,5 +1,6 @@
 // @flow
 import * as R from 'ramda'
+import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
 
 /**
@@ -9,7 +10,7 @@ import parsePropName from '../../strings/parsePropName'
 const filterTemplateProps = R.pickBy(
   R.compose(
     R.propEq('purePropName', 'template'),
-    parsePropName,
+    parsePropName(Layout),
     R.nthArg(1),
   ),
 )

@@ -9,7 +9,7 @@ import type {
 import defaultOptions from './const/defaultOptions'
 import invariant from './utils/invariant'
 
-class Layout {
+export class Layout {
   defaultUnit: TMeasurementUnit
   breakpoints: TBreakpoints
   defaultBreakpointName: TBreakpoint
