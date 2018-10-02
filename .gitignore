@@ -16,7 +16,7 @@ cypress/videos
 cypress/screenshots
 
 # Editors
-.idea/
+.idea
 .vscode
 
 # OS

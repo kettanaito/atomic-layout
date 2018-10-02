@@ -1,5 +1,6 @@
 require('./behavior')
-require('./prop-aliases')
-require('./responsive-props')
 require('./composition')
+require('./responsive-props')
 require('./custom-configuration')
+require('./prop-aliases')
+require('./bugfixes')
