@@ -1,10 +1,6 @@
 // @flow
 import compose from '../../functions/compose'
 
-const dedupeList = (list: string[]): string[] => {
-  return Array.from(new Set(list))
-}
-
 type SanitizeTemplateString = (str: string) => string[]
 
 /**
@@ -12,11 +8,20 @@ type SanitizeTemplateString = (str: string) => string[]
  * from the given template string.
  */
 const sanitizeTemplateString: SanitizeTemplateString = compose(
-  dedupeList,
+  /* Deduplicates area strings */
+  (list: string[]): string[] => Array.from(new Set(list)),
+
+  /* Filters out empty area strings */
   (arr: any[]) => arr.filter(Boolean),
+
+  /* Splits into a list of areas */
   (str: string) => str.split(' '),
-  (str: string) => str.trim(),
-  (str: string) => str.replace(/\r?\n|\r|\'/g, ''),
+
+  /* Deduplicates multiple spaces */
+  (str: string) => str.replace(/\s+/g, ' '),
+
+  /* Replaces newlines and single quotes with spaces */
+  (str: string) => str.replace(/\r?\n|\'+/g, ' '),
 )
 
 export default sanitizeTemplateString
