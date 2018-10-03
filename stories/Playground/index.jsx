@@ -16,12 +16,14 @@ export default class Playground extends React.Component {
   render() {
     return (
       <div>
-        <Composition
-          template={`
-          'col'
-        `}
-        >
-          {({ Col }) => ['lorem', 'ipsum'].map((entry) => <Col>{entry}</Col>)}
+        <Composition template="col" paddingVertical={20}>
+          {({ Col }) =>
+            ['lorem', 'ipsum'].map((entry, index) => (
+              <Col col="auto" key={index}>
+                {entry}
+              </Col>
+            ))
+          }
         </Composition>
 
         <Composition
