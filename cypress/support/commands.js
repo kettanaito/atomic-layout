@@ -27,11 +27,17 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
 })
 
 Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
-  cy.wrap(subject).should('have.css', 'grid-row-start', gridArea)
-  cy.wrap(subject).should('have.css', 'grid-row-end', gridArea)
-  cy.wrap(subject).should('have.css', 'grid-column-start', gridArea)
+  const wrapper = cy.wrap(subject)
+  wrapper.should('have.css', 'grid-row-start', gridArea)
+  wrapper.should('have.css', 'grid-row-end', gridArea)
+  wrapper.should('have.css', 'grid-column-start', gridArea)
+  wrapper.should('have.css', 'grid-column-end', gridArea)
 
-  return cy.wrap(subject).should('have.css', 'grid-column-end', gridArea)
+  /**
+   * Assert area component displays as a flexbox.
+   * Safe, since all areas behaves as flexbox by default.
+   */
+  return wrapper.should('have.css', 'display', 'flex')
 })
 
 Cypress.Commands.add(
