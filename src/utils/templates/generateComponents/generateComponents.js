@@ -43,6 +43,7 @@ const withPlaceholder = (
 
 const createArea = (areaName: string): TAreaComponent => styled.div`
   grid-area: ${areaName};
+  display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
   ${(props) => applyStyles(props)};
 `
 
