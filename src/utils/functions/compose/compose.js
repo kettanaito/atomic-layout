@@ -1,6 +1,6 @@
 // @flow
-export type TFunc = (...args: any[]) => any
+export type Func = (...args: any[]) => any
 
-export default function compose(...funcs: TFunc[]) {
+export default function compose(...funcs: Func[]) {
   return funcs.reduce((f, g) => (...args) => f(g(...args)))
 }

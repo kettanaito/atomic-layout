@@ -1,13 +1,13 @@
 // @flow
-import type { TAreaBreakpoint } from '../getAreaBreakpoints'
+import type { AreaBreakpoint } from '../getAreaBreakpoints'
 import transformNumeric from '../../math/transformNumeric'
 import getPrefix from '../../strings/getPrefix'
 
 export default function mergeBreakpoints(
-  breakpointA: TAreaBreakpoint,
-  breakpointB: TAreaBreakpoint,
+  breakpointA: AreaBreakpoint,
+  breakpointB: AreaBreakpoint,
   includesArea: boolean,
-): TAreaBreakpoint {
+): AreaBreakpoint {
   const { behavior: prevBehavior } = breakpointB
   const { behavior: nextBehavior } = breakpointA
 

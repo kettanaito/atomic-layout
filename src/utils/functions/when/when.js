@@ -1,7 +1,7 @@
 // @flow
-import type { TFunc } from '../compose'
-type TPredicate = (...args: mixed[]) => boolean
+import type { Func } from '../compose'
+type PredicateFunc = (...args: mixed[]) => boolean
 
-export default function when(predicate: TPredicate, whenTrueFunc: TFunc) {
+export default function when(predicate: PredicateFunc, whenTrueFunc: Func) {
   return (args: mixed) => (predicate(args) ? whenTrueFunc(args) : args)
 }

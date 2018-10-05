@@ -1,6 +1,6 @@
 // @flow
-import type { TBreakpointBehavior } from '../../../const/defaultOptions'
-import type { TProps } from '../../strings/parsePropName'
+import type { BreakpointBehavior } from '../../../const/defaultOptions'
+import type { Props } from '../../strings/parsePropName'
 import propAliases from '../../../const/propAliases'
 import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
@@ -11,17 +11,17 @@ const applyCssProps = (
   propValue: mixed,
   breakpointName: ?string,
   isDefaultBreakpoint: boolean,
-  behavior: TBreakpointBehavior,
+  behavior: BreakpointBehavior,
 ) => {
-  const propLinesArr = props.map((propName) => {
+  const cssPropsList = props.map((propName) => {
     return `${propName}:${String(propValue)};`
   })
 
-  let propsCss = propLinesArr.join('')
+  let cssProps = cssPropsList.join('')
   const breakpoint = Layout.getBreakpoint(breakpointName)
 
   /**
-   * Wrap CSS rule in media query only if its prop
+   * Wrap CSS rule in a media query only if its prop
    * includes a breakpoint and behavior different than
    * the default ones.
    */
@@ -29,15 +29,15 @@ const applyCssProps = (
     breakpoint &&
     !(isDefaultBreakpoint && behavior === Layout.defaultBehavior)
   ) {
-    const queryString = createMediaQuery(breakpoint, behavior)
-    propsCss = `@media ${queryString} {${propsCss}}`
+    const queryDefinition = createMediaQuery(breakpoint, behavior)
+    cssProps = `@media ${queryDefinition} {${cssProps}}`
   }
 
-  return propsCss
+  return cssProps
 }
 
-export default function applyStyles(pristineProps: TProps): string {
-  const stylesArr = Object.keys(pristineProps).reduce(
+export default function applyStyles(pristineProps: Props): string {
+  const stylesList = Object.keys(pristineProps).reduce(
     (allStyles, originalPropName) => {
       const {
         purePropName,
@@ -47,6 +47,7 @@ export default function applyStyles(pristineProps: TProps): string {
       } = parsePropName(originalPropName)
 
       const aliasOptions = propAliases[purePropName]
+
       if (!aliasOptions) {
         return allStyles
       }
@@ -70,5 +71,5 @@ export default function applyStyles(pristineProps: TProps): string {
     [],
   )
 
-  return stylesArr.join(' ')
+  return stylesList.join(' ')
 }

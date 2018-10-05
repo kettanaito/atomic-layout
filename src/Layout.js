@@ -1,37 +1,37 @@
 // @flow
 import type {
-  TLayoutOptions,
-  TMeasurementUnit,
-  TBreakpoint,
-  TBreakpoints,
-  TBreakpointBehavior,
+  LayoutOptions,
+  MeasurementUnit,
+  Breakpoint,
+  Breakpoints,
+  BreakpointBehavior,
 } from './const/defaultOptions'
 import defaultOptions from './const/defaultOptions'
 import invariant from './utils/invariant'
 
 class Layout {
-  defaultUnit: TMeasurementUnit
-  breakpoints: TBreakpoints
-  defaultBreakpointName: TBreakpoint
-  defaultBehavior: TBreakpointBehavior
+  defaultUnit: MeasurementUnit
+  breakpoints: Breakpoints
+  defaultBreakpointName: Breakpoint
+  defaultBehavior: BreakpointBehavior
 
   // TODO
   // Improve options type to have params of Maybe type.
   // This way you don't need to provide the entire config.
-  constructor(options: TLayoutOptions) {
+  constructor(options: LayoutOptions) {
     return this.configure(options)
   }
 
   /**
    * Applies global layout options.
    */
-  configure(options: TLayoutOptions) {
+  configure(options: LayoutOptions) {
     invariant(
       options,
       `Failed to configure Layout: expected an options Object, but got: ${options}`,
     )
 
-    const nextOptions: TLayoutOptions = Object.assign(
+    const nextOptions: LayoutOptions = Object.assign(
       {},
       defaultOptions,
       options,
@@ -70,7 +70,7 @@ class Layout {
   /**
    * Returns breakpoint options by the breakpoint's name.
    */
-  getBreakpoint(breakpointName: ?string): ?TBreakpoint {
+  getBreakpoint(breakpointName: ?string): ?Breakpoint {
     if (breakpointName) {
       return breakpointName && this.breakpoints[breakpointName]
     }
