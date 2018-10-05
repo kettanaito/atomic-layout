@@ -1,12 +1,12 @@
 // @flow
 import compose from '../../functions/compose'
-import getAreasList from '../getAreasList'
+import generateAreasList from '../generateAreasList'
 import generateComponents from '../generateComponents'
 import filterTemplateProps from './filterTemplateProps'
 
 const parseTemplates = compose(
   generateComponents,
-  getAreasList,
+  generateAreasList,
   filterTemplateProps,
 )
 

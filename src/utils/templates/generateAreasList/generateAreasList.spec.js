@@ -1,8 +1,8 @@
 import Layout from '../../../Layout'
-import getAreasList from './getAreasList'
+import generateAreasList from './generateAreasList'
 
 test('Parses template props properly', () => {
-  const areasList = getAreasList({
+  const areasList = generateAreasList({
     template: `a b`,
   })
 
@@ -19,7 +19,7 @@ test('Parses template props properly', () => {
 })
 
 test('Returns proper areas list for "up" behavior', () => {
-  const areasList = getAreasList({
+  const areasList = generateAreasList({
     template: `a b`,
     templateMd: `a b c`,
   })
@@ -42,7 +42,7 @@ test('Returns proper areas list for "up" behavior', () => {
 })
 
 test('Returns proper areas list for "down" behavior', () => {
-  const areasList = getAreasList({
+  const areasList = generateAreasList({
     template: `a b`,
     templateMdDown: `c`,
   })
@@ -65,7 +65,7 @@ test('Returns proper areas list for "down" behavior', () => {
 })
 
 test('Returns proper areas list for "only" behavior', () => {
-  const areasList = getAreasList({
+  const areasList = generateAreasList({
     template: `a`,
     templateMdOnly: `b c`,
   })

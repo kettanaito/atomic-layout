@@ -3,15 +3,15 @@ import compose from '../utils/functions/compose'
 import transformNumeric from '../utils/math/transformNumeric'
 import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
 
-type TValueTransformer<T> = (val: any) => T
+type ValueTransformer<R> = (val: any) => R
 
-type TPropAliasOptions = {
+type PropAlias = {
   props: string[],
-  transformValue?: TValueTransformer<?string>,
+  transformValue?: ValueTransformer<?string>,
 }
 
-type TPropAliases = {
-  [propAlias: string]: TPropAliasOptions,
+type PropAliases = {
+  [propAlias: string]: PropAlias,
 }
 
 type TransformTemplateString = (template: string) => string
@@ -28,7 +28,7 @@ const transformTemplateString: TransformTemplateString = compose(
  * substituted by one or multiple CSS properties with a single value.
  * Each prop value can have a value transformer.
  */
-const propAliases: TPropAliases = {
+const propAliases: PropAliases = {
   /* CSS Grid */
   template: {
     props: ['grid-template-areas'],

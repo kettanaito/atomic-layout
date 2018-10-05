@@ -1,6 +1,6 @@
 // @flow
-type TAbsoluteUnits = 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc'
-type TRelativeUnits =
+type AbsoluteUnits = 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc'
+type RelativeUnits =
   | 'em'
   | 'ex'
   | 'ch'
@@ -12,19 +12,19 @@ type TRelativeUnits =
   | '%'
 
 export type Numeric = number | string
-export type TMeasurementUnit = TAbsoluteUnits | TRelativeUnits
-export type TLayoutOptions = {
-  defaultUnit: TMeasurementUnit,
-  breakpoints: TBreakpoints,
+export type MeasurementUnit = AbsoluteUnits | RelativeUnits
+export type LayoutOptions = {
+  defaultUnit: MeasurementUnit,
+  breakpoints: Breakpoints,
   defaultBreakpointName: string,
   defaultBehavior: TBreakpointBehavior,
 }
 
-export type TBreakpoints = {
-  [breakpointName: string]: TBreakpoint,
+export type Breakpoints = {
+  [breakpointName: string]: Breakpoint,
 }
 
-export type TBreakpoint = {
+export type Breakpoint = {
   minHeight?: Numeric,
   maxHeight?: Numeric,
   minWidth?: Numeric,
@@ -39,9 +39,9 @@ export type TBreakpoint = {
   displayMode?: 'fullscreen' | 'standalone' | 'minimal-ui' | 'browser',
 }
 
-export type TBreakpointBehavior = 'up' | 'down' | 'only'
+export type BreakpointBehavior = 'up' | 'down' | 'only'
 
-const defaultOptions: TLayoutOptions = {
+const defaultOptions: LayoutOptions = {
   defaultUnit: 'px',
   defaultBehavior: 'up',
   defaultBreakpointName: 'xs',

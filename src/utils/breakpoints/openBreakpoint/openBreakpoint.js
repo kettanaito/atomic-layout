@@ -1,5 +1,5 @@
 // @flow
-import type { TAreaBreakpoint } from '../getAreaBreakpoints'
+import type { AreaBreakpoint } from '../getAreaBreakpoints'
 import getPrefix from '../../strings/getPrefix'
 
 /**
@@ -8,8 +8,8 @@ import getPrefix from '../../strings/getPrefix'
  * a breakpoint that has "maxWidth: undefined" is the open breakpoint.
  */
 export default function openBreakpoint(
-  breakpoint: TAreaBreakpoint,
-): TAreaBreakpoint {
+  breakpoint: AreaBreakpoint,
+): AreaBreakpoint {
   return Object.keys(breakpoint).reduce((acc, key) => {
     return {
       ...acc,

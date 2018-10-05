@@ -1,35 +1,30 @@
 // @flow
 import type {
-  TBreakpoint,
-  TBreakpointBehavior,
+  Breakpoint,
+  BreakpointBehavior,
 } from '../../../const/defaultOptions'
 import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
 import sanitizeTemplateString from '../../strings/sanitizeTemplateString'
 
-export type TTemplate = {
-  breakpoint: TBreakpoint,
-  behavior: TBreakpointBehavior,
+export type Template = {
+  breakpoint: Breakpoint,
+  behavior: BreakpointBehavior,
   areas: string[],
 }
 
-export type TAreasList = {
+export type AreasList = {
   areas: string[],
-  templates: TTemplate[],
+  templates: Template[],
 }
 
-export type TTemplateProps = {
+export type TemplateProps = {
   [propName: string]: string,
 }
 
-/*
-  TODO: rename to genAreasList() ? (for generate)
-  'get' implies they already exist somewhere and we're just accessing and
-  returning them, but that's not the case -> same with getAreaParams
-*/
-export default function getAreasList(props: TTemplateProps): TAreasList {
+export default function generateAreasList(props: TemplateProps): AreasList {
   const areasList = Object.keys(props).reduce(
-    (res, propName) => {
+    (acc, propName) => {
       const { breakpointName, behavior } = parsePropName(propName)
 
       /*
@@ -43,8 +38,8 @@ export default function getAreasList(props: TTemplateProps): TAreasList {
         and leave the verification of that to someone else
       */
       const propValue = sanitizeTemplateString(props[propName])
-      const nextAreas = res.areas.concat(propValue)
-      const nextTemplates = res.templates.concat({
+      const nextAreas = acc.areas.concat(propValue)
+      const nextTemplates = acc.templates.concat({
         breakpoint: Layout.getBreakpoint(breakpointName),
         behavior,
         areas: propValue,
@@ -63,13 +58,6 @@ export default function getAreasList(props: TTemplateProps): TAreasList {
 
   const { areas, templates } = areasList
 
-  /*
-    there were most likely duplicate areas so areas should be passed to a Set
-    constructor before returning the areasList object
-
-    Array.from() because otherwise the deepEqual test fails
-    maybe this cast should be in the spec file instead of here?
-  */
   return {
     areas: Array.from(new Set(areas)),
     templates,

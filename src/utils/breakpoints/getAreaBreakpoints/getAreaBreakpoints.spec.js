@@ -1,10 +1,10 @@
 import Layout from '../../../Layout'
 import transformNumeric from '../../math/transformNumeric'
-import getAreasList from '../../templates/getAreasList'
+import generateAreasList from '../../templates/generateAreasList'
 import getAreaBreakpoints from './getAreaBreakpoints'
 
 test('Mobile first', () => {
-  const { templates } = getAreasList({
+  const { templates } = generateAreasList({
     template: `'a b'`,
     templateLg: `'a'`,
   })
@@ -22,7 +22,7 @@ test('Mobile first', () => {
 test('Inclusive', () => {
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
-  const { templates } = getAreasList({
+  const { templates } = generateAreasList({
     template: `'a'`,
     templateMd: `'a b'`,
     templateXl: `'a'`,
@@ -46,7 +46,7 @@ test('Bell', () => {
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
 
-  const { templates } = getAreasList({
+  const { templates } = generateAreasList({
     template: `'a b'`,
     templateMd: `'a'`,
     templateXl: `'a b'`,
@@ -72,7 +72,7 @@ describe('Shuffled behavior', () => {
     const breakpointSm = Layout.getBreakpoint('sm')
     const breakpointMd = Layout.getBreakpoint('md')
 
-    const { templates } = getAreasList({
+    const { templates } = generateAreasList({
       template: `'a'`,
       templateSmDown: `'c'`,
       templateMdDown: `'a c'`,
@@ -107,7 +107,7 @@ describe('Shuffled behavior', () => {
   })
 
   test('Bell behavior using explicit "down" area behavior', () => {
-    const { templates } = getAreasList({
+    const { templates } = generateAreasList({
       templateDown: `'a'`,
       templateMd: `'a c'`,
     })

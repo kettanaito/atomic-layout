@@ -1,17 +1,17 @@
 // @flow
-import type { TBreakpointBehavior } from '../../../const/defaultOptions'
+import type { BreakpointBehavior } from '../../../const/defaultOptions'
 import Layout from '../../../Layout'
 import toLowerCaseFirst from '../toLowerCaseFirst'
 
-export type TProps = {
+export type Props = {
   [propName: string]: mixed,
 }
 
-export type TParsedProp = {
+export type ParsedProp = {
   purePropName: string,
   breakpointName?: string,
   isDefaultBreakpoint: boolean,
-  behavior: TBreakpointBehavior,
+  behavior: BreakpointBehavior,
 }
 
 /**
@@ -22,7 +22,7 @@ export type TParsedProp = {
  * This RegExp also works well. May consider implementing once
  * lookbehind is supported everywhere.
  */
-export default function parsePropName(propName: string): TParsedProp {
+export default function parsePropName(propName: string): ParsedProp {
   const joinedBreakpointNames = Layout.getBreakpointNames().join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
   const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')

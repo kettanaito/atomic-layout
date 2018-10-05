@@ -1,12 +1,12 @@
 // @flow
 import type {
-  TBreakpoint,
-  TBreakpointBehavior,
+  Breakpoint,
+  BreakpointBehavior,
 } from '../../../const/defaultOptions'
 import transformNumeric from '../../math/transformNumeric'
 import toDashedString from '../../strings/toDashedString'
 
-const shouldAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
+const shouldAppendProp = (propName: string, behavior: BreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')
   const isDimensionalProp = ['height', 'width'].includes(splitPropName)
 
@@ -21,12 +21,12 @@ const shouldAppendProp = (propName: string, behavior: TBreakpointBehavior) => {
 }
 
 export default function createMediaQuery(
-  breakpoint: TBreakpoint,
-  behavior: TBreakpointBehavior,
+  breakpoint: Breakpoint,
+  behavior: BreakpointBehavior,
 ): string {
   const mediaQueryParts = Object.keys(breakpoint).reduce(
     (acc: string[], propName) => {
-      const pristinePropValue: $Values<TBreakpoint> = breakpoint[propName]
+      const pristinePropValue: $Values<Breakpoint> = breakpoint[propName]
       const propValue = transformNumeric(pristinePropValue)
       const dashedPropName = toDashedString(propName)
 
