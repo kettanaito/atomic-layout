@@ -24,18 +24,11 @@ export default function createMediaQuery(
   breakpoint: Breakpoint,
   behavior: BreakpointBehavior,
 ): string {
-  const mediaQueryParts = Object.keys(breakpoint).reduce(
-    (acc: string[], propName) => {
-      const pristinePropValue: $Values<Breakpoint> = breakpoint[propName]
-      const propValue = transformNumeric(pristinePropValue)
-      const dashedPropName = toDashedString(propName)
-
-      return shouldAppendProp(dashedPropName, behavior)
-        ? acc.concat(`(${dashedPropName}:${String(propValue)})`)
-        : acc
-    },
-    [],
-  )
-
-  return mediaQueryParts.join(' and ')
+  return Object.entries(breakpoint)
+    .map(([propName, propValue]) => [toDashedString(propName), propValue])
+    .filter(([dashedPropName]) => shouldAppendProp(dashedPropName, behavior))
+    .map(([dashedPropName, propValue]) => {
+      return `(${dashedPropName}:${String(transformNumeric(propValue))})`
+    })
+    .join(' and ')
 }
