@@ -6,70 +6,48 @@ import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
 import createMediaQuery from '../createMediaQuery'
 
-const applyCssProps = (
-  props: string[],
+const createStyleString = (
+  propsList: string[],
   propValue: mixed,
-  breakpointName: ?string,
-  isDefaultBreakpoint: boolean,
+  breakpoint: any,
   behavior: BreakpointBehavior,
 ) => {
-  const cssPropsList = props.map((propName) => {
-    return `${propName}:${String(propValue)};`
-  })
+  let styleProps = propsList
+    .map((propName) => `${propName}:${String(propValue)};`)
+    .join('')
 
-  let cssProps = cssPropsList.join('')
-  const breakpoint = Layout.getBreakpoint(breakpointName)
+  const breakpointOptions = Layout.getBreakpoint(breakpoint.name)
 
   /**
-   * Wrap CSS rule in a media query only if its prop
-   * includes a breakpoint and behavior different than
-   * the default ones.
+   * Wrap CSS rule in a media query only if its prop includes
+   * a breakpoint and behavior different than the default ones.
    */
-  if (
-    breakpoint &&
-    !(isDefaultBreakpoint && behavior === Layout.defaultBehavior)
-  ) {
-    const queryDefinition = createMediaQuery(breakpoint, behavior)
-    cssProps = `@media ${queryDefinition} {${cssProps}}`
-  }
+  const shouldWrapInMediaQuery =
+    breakpointOptions &&
+    !(breakpoint.isDefault && behavior === Layout.defaultBehavior)
 
-  return cssProps
+  return shouldWrapInMediaQuery
+    ? `@media ${createMediaQuery(breakpointOptions, behavior)} {${styleProps}}`
+    : styleProps
 }
 
 export default function applyStyles(pristineProps: Props): string {
-  const stylesList = Object.keys(pristineProps).reduce(
-    (allStyles, originalPropName) => {
-      const {
-        purePropName,
-        breakpointName,
-        isDefaultBreakpoint,
-        behavior,
-      } = parsePropName(originalPropName)
-
-      const aliasOptions = propAliases[purePropName]
-
-      if (!aliasOptions) {
-        return allStyles
-      }
-
-      const { props, transformValue } = aliasOptions
-      const propValue = pristineProps[originalPropName]
+  return Object.keys(pristineProps)
+    .map(parsePropName)
+    .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
+    .map(({ purePropName, originPropName, breakpoint, behavior }) => {
+      const { props, transformValue } = propAliases[purePropName]
+      const propValue = pristineProps[originPropName]
       const transformedPropValue = transformValue
         ? transformValue(propValue)
         : propValue
 
-      const css = applyCssProps(
+      return createStyleString(
         props,
         transformedPropValue,
-        breakpointName,
-        isDefaultBreakpoint,
+        breakpoint,
         behavior,
       )
-
-      return allStyles.concat(css)
-    },
-    [],
-  )
-
-  return stylesList.join(' ')
+    })
+    .join(' ')
 }

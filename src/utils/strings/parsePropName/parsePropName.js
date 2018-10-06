@@ -8,9 +8,12 @@ export type Props = {
 }
 
 export type ParsedProp = {
+  originPropName: string,
   purePropName: string,
-  breakpointName?: string,
-  isDefaultBreakpoint: boolean,
+  breakpoint: {
+    name: string,
+    isDefault: boolean,
+  },
   behavior: BreakpointBehavior,
 }
 
@@ -22,30 +25,42 @@ export type ParsedProp = {
  * This RegExp also works well. May consider implementing once
  * lookbehind is supported everywhere.
  */
-export default function parsePropName(propName: string): ParsedProp {
+export default function parsePropName(originPropName: string): ParsedProp {
   const joinedBreakpointNames = Layout.getBreakpointNames().join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
   const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
   const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
 
-  const behaviorMatch = propName.match(behaviorExp)
+  const behaviorMatch = originPropName.match(behaviorExp)
   const behavior = behaviorMatch ? behaviorMatch[0] : ''
-  const breakpointMatch = propName.replace(behavior, '').match(breakpointExp)
+  const breakpointMatch = originPropName
+    .replace(behavior, '')
+    .match(breakpointExp)
   const breakpointName = breakpointMatch ? breakpointMatch[0] : ''
-  const purePropName = propName
+  const purePropName = originPropName
     .replace(breakpointName, '')
     .replace(behavior, '')
 
-  const resolvedBreakpointName = breakpointName
+  /**
+   * Get normalized breakpoint name.
+   * When a breakpoint name is a part of the prop name, covert it first letter
+   * to lowercase to match the layout options. Otherwise, take the default
+   * breakpoint name.
+   */
+  const normalizedBreakpointName = breakpointName
     ? toLowerCaseFirst(breakpointName)
     : Layout.defaultBreakpointName
+
   const isDefaultBreakpoint =
-    resolvedBreakpointName === Layout.defaultBreakpointName
+    normalizedBreakpointName === Layout.defaultBreakpointName
 
   return {
+    originPropName,
     purePropName,
-    breakpointName: resolvedBreakpointName,
-    isDefaultBreakpoint,
     behavior: behavior ? toLowerCaseFirst(behavior) : Layout.defaultBehavior,
+    breakpoint: {
+      name: normalizedBreakpointName,
+      isDefault: isDefaultBreakpoint,
+    },
   }
 }

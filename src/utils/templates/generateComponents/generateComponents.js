@@ -41,12 +41,13 @@ const withPlaceholder = (
         </MediaQuery>,
       )
     }, [])
+
   Placeholder.displayName = `Placeholder(${AreaComponent.displayName})`
 
   return Placeholder
 }
 
-const createArea = (areaName: string): TAreaComponent => styled.div`
+const createAreaComponent = (areaName: string): TAreaComponent => styled.div`
   grid-area: ${areaName};
   display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
   ${(props) => applyStyles(props)};
@@ -61,21 +62,21 @@ export default function generateComponents({ areas, templates }: AreasList) {
     const areaParams = getAreaBreakpoints(areaName, templates)
     const shouldAlwaysRender =
       areaParams.length === 1 &&
-      areaParams.every((breakpoint) => {
-        return !breakpoint.minWidth && !breakpoint.maxWidth
-      })
+      areaParams.every(
+        (breakpoint) => !breakpoint.minWidth && !breakpoint.maxWidth,
+      )
 
-    const AreaComponent = createArea(areaName)
+    const AreaComponent = createAreaComponent(areaName)
     const capitalizedAreaName = capitalize(areaName)
     AreaComponent.displayName = capitalizedAreaName
 
-    const endComponent = shouldAlwaysRender
+    const WrappedComponent = shouldAlwaysRender
       ? AreaComponent
       : withPlaceholder(AreaComponent, areaParams)
 
     return {
       ...components,
-      [capitalizedAreaName]: endComponent,
+      [capitalizedAreaName]: WrappedComponent,
     }
   }, {})
 }

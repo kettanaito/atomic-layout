@@ -25,7 +25,7 @@ export type TemplateProps = {
 export default function generateAreasList(props: TemplateProps): AreasList {
   const areasList = Object.keys(props).reduce(
     (acc, propName) => {
-      const { breakpointName, behavior } = parsePropName(propName)
+      const { breakpoint, behavior } = parsePropName(propName)
       const templateAreas = sanitizeTemplateString(props[propName])
 
       /*
@@ -40,7 +40,7 @@ export default function generateAreasList(props: TemplateProps): AreasList {
       */
       const nextAreas = acc.areas.concat(templateAreas)
       const nextTemplates = acc.templates.concat({
-        breakpoint: Layout.getBreakpoint(breakpointName),
+        breakpoint: Layout.getBreakpoint(breakpoint.name),
         behavior,
         areas: templateAreas,
       })
