@@ -26,6 +26,7 @@ export default function generateAreasList(props: TemplateProps): AreasList {
   const areasList = Object.keys(props).reduce(
     (acc, propName) => {
       const { breakpointName, behavior } = parsePropName(propName)
+      const templateAreas = sanitizeTemplateString(props[propName])
 
       /*
         TODO:
@@ -37,12 +38,11 @@ export default function generateAreasList(props: TemplateProps): AreasList {
         + I think this function should assume that it gets perfectly valid input
         and leave the verification of that to someone else
       */
-      const propValue = sanitizeTemplateString(props[propName])
-      const nextAreas = acc.areas.concat(propValue)
+      const nextAreas = acc.areas.concat(templateAreas)
       const nextTemplates = acc.templates.concat({
         breakpoint: Layout.getBreakpoint(breakpointName),
         behavior,
-        areas: propValue,
+        areas: templateAreas,
       })
 
       return {
