@@ -4,9 +4,9 @@ import type { AreasList } from '../generateAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive/dist/react-responsive.min'
+import Box from '../../../components/Box'
 import capitalize from '../../strings/capitalize'
 import getAreaBreakpoints from '../../breakpoints/getAreaBreakpoints'
-import applyStyles from '../../styles/applyStyles'
 
 export type TAreaComponent = Class<React.Component<any, void, void>>
 export type TAreaComponentsMap = {
@@ -47,10 +47,8 @@ const withPlaceholder = (
   return Placeholder
 }
 
-const createAreaComponent = (areaName: string): TAreaComponent => styled.div`
+const createAreaComponent = (areaName: string): TAreaComponent => styled(Box)`
   grid-area: ${areaName};
-  display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
-  ${(props) => applyStyles(props)};
 `
 
 /**
