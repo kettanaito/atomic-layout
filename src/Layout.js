@@ -61,19 +61,18 @@ class Layout {
   }
 
   /**
-   * Returns the collection of breakpoint names.
+   * Returns the collection of breakpoint names present
+   * in the current layout configuration.
    */
   getBreakpointNames(): string[] {
     return Object.keys(this.breakpoints)
   }
 
   /**
-   * Returns breakpoint options by the breakpoint's name.
+   * Returns breakpoint options by the given breakpoint name.
    */
   getBreakpoint(breakpointName: ?string): ?Breakpoint {
-    if (breakpointName) {
-      return breakpointName && this.breakpoints[breakpointName]
-    }
+    return breakpointName && this.breakpoints[breakpointName]
   }
 }
 
