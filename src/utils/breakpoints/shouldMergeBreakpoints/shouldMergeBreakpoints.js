@@ -2,6 +2,17 @@
 import type { AreaParams } from '../getAreaBreakpoints'
 
 /**
+ * Replaces the prefixes in a parameter name.
+ * Allows strict comparison of same parameters with different prefixes.
+ * @example
+ * neutralizeParamName('maxWidth') // "_width"
+ * neutralizeParamName('minWidth') // "_width"
+ */
+const neutralizeParamName = (paramName: string): string => {
+  return paramName.replace(/^min|max/, '_')
+}
+
+/**
  * Determines whether two given breakpoints can be merged.
  * Assures non-compatible breakpoints are not prompted to
  * be merged during the area params composition.
@@ -10,15 +21,12 @@ export default function shouldCombineBreakpoints(
   breakpointA: AreaParams,
   breakpointB: AreaParams,
 ): boolean {
-  const allParams = [...Object.keys(breakpointA), ...Object.keys(breakpointB)]
+  const allParams = Object.keys(breakpointA).concat(Object.keys(breakpointB))
 
-  return allParams.every((paramName, index) => {
-    const transformedParamName = paramName.replace(/^min|max/, '_')
-    const prevParamName = allParams[index - 1]
-    const compareTo = prevParamName
-      ? prevParamName.replace(/^min|max/, '_')
-      : transformedParamName
+  return allParams.every((pristineParamName, index) => {
+    const paramName = neutralizeParamName(pristineParamName)
+    const prevParamName = neutralizeParamName(allParams[index - 1] || paramName)
 
-    return transformedParamName === compareTo
+    return paramName === prevParamName
   })
 }

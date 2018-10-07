@@ -11,8 +11,6 @@ const Square = styled.div`
   height: 100%;
   width: 100%;
   background-color: rgba(130, 170, 240, 0.25);
-  border: 1px solid rgba(130, 170, 240, 0.5);
-  border-radius: 3px;
 `
 
 export default Square
