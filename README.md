@@ -21,7 +21,7 @@
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. Create powerful, immutable, and efficient responsive layouts _without writing CSS_.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. It helps to create powerful, immutable, and maintainable responsive layouts _without writing CSS_.
 
 <br>
 
@@ -29,7 +29,7 @@
   <img src="example.png" width="650" />
 </p>
 
-> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. Don't worry, you can [configure custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match the requirements of your project.
+> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure) to match your very requirements.
 
 ## Motivation
 
@@ -58,7 +58,7 @@ See the [Official documentation](https://redd.gitbook.io/atomic-layout).
 
 Here are some shortcuts to get you started:
 
-- [Philosophy](https://redd.gitbook.io/atomic-layout/general/philosophy)
+- [Motivation](https://redd.gitbook.io/atomic-layout/general/motivation)
 - [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Recipes](https://redd.gitbook.io/atomic-layout/general/recipes)
@@ -67,11 +67,11 @@ Create a [Pull request](https://github.com/kettanaito/atomic-layout/pulls) to im
 
 ## Browser support
 
-Atomic layout is based on CSS Grid, which has a browser coverage over 84% throughout the glob. Use it here and now, no polyfills.
+Atomic layout is based on CSS Grid, which is supported in more than 84% of browsers. Use it here and now, without polyfills.
 
-| Chrome | Firefox | IE   | Edge | Safari | iOS Safari |
-| ------ | ------- | ---- | ---- | ------ | ---------- |
-| 65+    | 59+     | 11\* | 16+  | 11.1+  | 10.3+      |
+| Chrome | Firefox | Edge | Safari | iOS Safari | IE   |
+| ------ | ------- | ---- | ------ | ---------- | ---- |
+| 65+    | 59+     | 16+  | 11.1+  | 10.3+      | 11\* |
 
 > \* Partial support of an [older version](https://www.w3.org/TR/2011/WD-css3-grid-layout-20110407/) of CSS Grid specification.
 
