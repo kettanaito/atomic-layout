@@ -30,6 +30,7 @@
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "npm run test:unit && npm run test:e2e",
+    "postinstall": "npm run build",
     "precommit": "lint-staged",
     "prepush": "npm run test:unit",
     "prepublishOnly": "npm run build && npm test"
