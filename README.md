@@ -21,7 +21,7 @@
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. It helps to create powerful, immutable, and maintainable responsive layouts _without writing CSS_.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. It helps to create declarative, immutable, and maintainable layouts based on CSS Grid.
 
 <br>
 
@@ -39,18 +39,11 @@ Atomic layout solves this problem by introducing a dedicated layer responsible f
 
 ## Install
 
-> Although Atomic layout is a principle not bound to any specific technology, the current version is powered by `React` and `styled-components`. [Submit a pull request](https://github.com/kettanaito/atomic-layout/pulls) to support more great technologies.
-
-### Peer dependencies
-
-- [React](https://github.com/facebook/react) (15.0+)
-- [styled-components](https://github.com/styled-components/styled-components) (3.0+)
-
-### Atomic layout
-
 ```bash
-npm install atomic-layout
+npm install atomic-layout --save
 ```
+
+> Requires to have [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as the peer dependencies.
 
 ## Documentation
 
@@ -63,18 +56,10 @@ Here are some shortcuts to get you started:
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Recipes](https://redd.gitbook.io/atomic-layout/general/recipes)
 
-Create a [Pull request](https://github.com/kettanaito/atomic-layout/pulls) to improve the documentation!
-
 ## Browser support
 
-Atomic layout is based on CSS Grid, which is supported in more than 84% of browsers. Use it here and now, without polyfills.
-
-| Chrome | Firefox | Edge | Safari | iOS Safari | IE   |
-| ------ | ------- | ---- | ------ | ---------- | ---- |
-| 65+    | 59+     | 16+  | 11.1+  | 10.3+      | 11\* |
-
-> \* Partial support of an [older version](https://www.w3.org/TR/2011/WD-css3-grid-layout-20110407/) of CSS Grid specification.
+See the [Support table for CSS Grid](https://caniuse.com/css-grid).
 
 ## Contributing
 
-Shape the way developers create layouts! There are [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get you started, please give it a read. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a great place to start contributing. Thank you.
+Please see the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) beforehand. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, usually, a great place to get your first contribution to the project. Thank you.
