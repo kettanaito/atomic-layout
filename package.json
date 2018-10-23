@@ -20,8 +20,8 @@
   },
   "main": "./index.js",
   "scripts": {
-    "start": "start-storybook -p 6020",
-    "dev": "cross-env NODE_ENV=development webpack --watch",
+    "start": "cross-env NODE_ENV=development webpack --watch",
+    "storybook": "start-storybook -p 6020",
     "build": "webpack",
     "cypress": "node_modules/.bin/cypress open",
     "examples": "webpack-dev-server --config examples/webpack.config.js",
