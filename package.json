@@ -32,7 +32,7 @@
     "test": "npm run test:unit && npm run test:e2e",
     "precommit": "lint-staged",
     "prepush": "npm run test:unit",
-    "prepublishOnly": "npm run build && npm test"
+    "preversion": "npm run build && npm test"
   },
   "lint-staged": {
     ".{js,jsx}": [
