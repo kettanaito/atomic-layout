@@ -41,7 +41,7 @@ test('Inclusive', () => {
   ])
 })
 
-test('Bell', () => {
+test('Notch', () => {
   const breakpointXs = Layout.getBreakpoint('xs')
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
@@ -106,7 +106,7 @@ describe('Shuffled behavior', () => {
     ])
   })
 
-  test('Bell behavior using explicit "down" area behavior', () => {
+  test('Notch behavior using explicit "down" area behavior', () => {
     const { templates } = generateAreasList({
       templateDown: `'a'`,
       templateMd: `'a c'`,

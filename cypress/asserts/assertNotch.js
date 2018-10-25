@@ -1,12 +1,12 @@
-export default function assertBell() {
+export default function assertNotch() {
   const assertAllVisible = () => {
-    cy.get('#bell-first')
+    cy.get('#notch-first')
       .should('be.visible')
       .haveArea('first')
-      .haveSameAxis('y', '#bell-second')
-      .notIntersectWith('#bell-second')
+      .haveSameAxis('y', '#notch-second')
+      .notIntersectWith('#notch-second')
 
-    cy.get('#bell-second')
+    cy.get('#notch-second')
       .should('be.visible')
       .haveArea('second')
   }
@@ -14,11 +14,11 @@ export default function assertBell() {
   assertAllVisible()
   cy.setBreakpoint('sm').then(assertAllVisible)
   cy.setBreakpoint('md').then(() => {
-    cy.get('#bell-first')
+    cy.get('#notch-first')
       .should('be.visible')
       .haveArea('first')
 
-    cy.get('#bell-second').should('not.be.visible')
+    cy.get('#notch-second').should('not.be.visible')
   })
   cy.setBreakpoint('lg').then(assertAllVisible)
   cy.setBreakpoint('xl').then(assertAllVisible)

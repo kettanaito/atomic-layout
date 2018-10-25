@@ -1,4 +1,4 @@
-import assertBell from '../../asserts/assertBell'
+import assertNotch from '../../asserts/assertNotch'
 import assertInclusive from '../../asserts/assertInclusive'
 
 describe('Nested composition', () => {
@@ -6,6 +6,6 @@ describe('Nested composition', () => {
     cy.visit('/composition/nested-composition')
   })
 
-  it('Composition component behaves as Inclusive', assertBell)
-  it('Composite component behaves as Bell', assertInclusive)
+  it('Composition component behaves as Inclusive', assertNotch)
+  it('Composite component behaves as Notch', assertInclusive)
 })
