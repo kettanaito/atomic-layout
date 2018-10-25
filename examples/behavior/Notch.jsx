@@ -6,7 +6,7 @@ const template = `'first second'`
 const templateMd = `'first'`
 const templateLg = `'first second'`
 
-const Bell = () => (
+const Notch = () => (
   <Composition
     template={template}
     templateMd={templateMd}
@@ -15,10 +15,10 @@ const Bell = () => (
   >
     {({ First, Second }) => (
       <React.Fragment>
-        <First id="bell-first">
+        <First id="notch-first">
           <Square>First</Square>
         </First>
-        <Second id="bell-second">
+        <Second id="notch-second">
           <Square>Second</Square>
         </Second>
       </React.Fragment>
@@ -26,4 +26,4 @@ const Bell = () => (
   </Composition>
 )
 
-export default Bell
+export default Notch

@@ -7,7 +7,7 @@ resetLayout(Layout)
 
 const template = `'first second'`
 
-const Inclusive = () => (
+const InclusiveNotch = () => (
   <React.Fragment>
     <Composition
       id="composition-one"
@@ -47,4 +47,4 @@ const Inclusive = () => (
   </React.Fragment>
 )
 
-export default Inclusive
+export default InclusiveNotch

@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from 'atomic-layout'
-import Bell from '../behavior/Bell'
+import Notch from '../behavior/Notch'
 
 export default class CustomUnit extends React.Component {
   componentWillMount() {
@@ -10,6 +10,6 @@ export default class CustomUnit extends React.Component {
   }
 
   render() {
-    return <Bell />
+    return <Notch />
   }
 }

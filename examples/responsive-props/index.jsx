@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import MobileFirst from './MobileFirst'
 import BreakpointSpecific from './BreakpointSpecific'
-import InclusiveBell from './InclusiveBell'
+import InclusiveNotch from './InclusiveNotch'
 
 const ResponsiveProps = ({ match }) => (
   <Switch>
@@ -11,7 +11,7 @@ const ResponsiveProps = ({ match }) => (
       path={`${match.path}/breakpoint-specific`}
       component={BreakpointSpecific}
     />
-    <Route path={`${match.path}/inclusive-bell`} component={InclusiveBell} />
+    <Route path={`${match.path}/inclusive-notch`} component={InclusiveNotch} />
   </Switch>
 )
 
