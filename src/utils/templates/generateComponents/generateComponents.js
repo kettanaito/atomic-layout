@@ -23,24 +23,22 @@ const withPlaceholder = (
   areaParams: TAreaParams[],
 ) => {
   const Placeholder = ({ children, ...restProps }: { children: React.Node }) =>
-    areaParams.reduce((components, breakpointOptions, index) => {
-      if (!breakpointOptions) {
-        return components
-      }
+    areaParams
+      .filter(Boolean)
+      .reduce((components, breakpointOptions, index) => {
+        const { behavior, ...breakpointProps } = breakpointOptions
 
-      const { behavior, ...breakpointProps } = breakpointOptions
-
-      return components.concat(
-        <MediaQuery
-          {...restProps}
-          {...breakpointProps}
-          key={`${AreaComponent.displayName}_${index}`}
-          component={AreaComponent}
-        >
-          {children}
-        </MediaQuery>,
-      )
-    }, [])
+        return components.concat(
+          <MediaQuery
+            {...restProps}
+            {...breakpointProps}
+            key={`${AreaComponent.displayName}_${index}`}
+            component={AreaComponent}
+          >
+            {children}
+          </MediaQuery>,
+        )
+      }, [])
 
   Placeholder.displayName = `Placeholder(${AreaComponent.displayName})`
 

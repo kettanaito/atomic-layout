@@ -4,6 +4,8 @@ import type { AreaParams } from '../getAreaBreakpoints'
 /**
  * Replaces the prefixes in a parameter name.
  * Allows strict comparison of same parameters with different prefixes.
+ * Does not test for inclusion/notch.
+ *
  * @example
  * neutralizeParamName('maxWidth') // "_width"
  * neutralizeParamName('minWidth') // "_width"

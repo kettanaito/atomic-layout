@@ -20,7 +20,7 @@
   "rules": {
     "no-undef": "error",
     "no-unused-vars": [
-      "error",
+      "warn",
       {
         "ignoreRestSiblings": true,
         "argsIgnorePattern": "^_"

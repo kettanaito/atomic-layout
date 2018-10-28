@@ -1,6 +1,8 @@
 const path = require('path')
 // const webpack = require('webpack')
 // const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
 const nodeEnv = process.env.NODE_ENV || 'production'
 // const PRODUCTION = nodeEnv === 'production'
@@ -28,20 +30,7 @@ module.exports = {
       },
     ],
   },
-  // plugins: [
-  //   new webpack.DefinePlugin({
-  //     'process.env.NODE_ENV': JSON.stringify(nodeEnv),
-  //   }),
-  //   PRODUCTION && new webpack.optimize.ModuleConcatenationPlugin(),
-  //   PRODUCTION &&
-  //     new BabelMinifyPlugin({
-  //       removeConsole: true,
-  //       removeDebugger: true,
-  //       mangle: {
-  //         topLevel: true,
-  //       },
-  //     }),
-  // ].filter(Boolean),
+  // plugins: [new BundleAnalyzerPlugin()],
   resolve: {
     extensions: ['.jsx', '.js'],
   },
