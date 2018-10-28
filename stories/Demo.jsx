@@ -1,6 +1,6 @@
 import React from 'react'
 import Square from './Square'
-import { Box, Composition } from '../'
+import { Box, Composition, Only } from '../'
 
 const templateMobile = `
   actions
@@ -45,17 +45,20 @@ const Demo = () => (
           </Image>
           <Content>
             <Square>Content</Square>
+            <Only for="md">I am on "md"!</Only>
           </Content>
           <Footer>
             <Square>Footer</Square>
+            <Only to="sm">LESS THEN SM</Only>
+            <Only from="lg">MORE THAN LG</Only>
           </Footer>
         </React.Fragment>
       )}
     </Composition>
 
-    <Box marginVertical={2} />
+    {/* <Box marginVertical={2} /> */}
 
-    <Composition template="thumbnail content actions" templateCols="auto 1fr">
+    {/* <Composition template="thumbnail content actions" templateCols="auto 1fr">
       {({ Thumbnail, Content, Actions }) => (
         <React.Fragment>
           <Thumbnail>Image</Thumbnail>
@@ -63,7 +66,7 @@ const Demo = () => (
           <Actions>Add</Actions>
         </React.Fragment>
       )}
-    </Composition>
+    </Composition> */}
   </div>
 )
 
