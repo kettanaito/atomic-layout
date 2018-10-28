@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Behavior from './behavior'
 import ResponsiveProps from './responsive-props'
 import Composition from './composition'
+import Only from './only'
 import CustomConfiguration from './custom-configuration'
 import Misc from './misc'
 import Bugfixes from './bugfixes'
@@ -12,6 +13,7 @@ const Root = () => (
     <Route path="/behavior" component={Behavior} />
     <Route path="/responsive-props" component={ResponsiveProps} />
     <Route path="/composition" component={Composition} />
+    <Route path="/only" component={Only} />
     <Route path="/custom-configuration" component={CustomConfiguration} />
     <Route path="/misc" component={Misc} />
     <Route path="/bugfixes" component={Bugfixes} />
