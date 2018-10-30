@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MediaQuery from 'react-responsive/dist/react-responsive.min'
+import MediaQuery from 'react-responsive'
 import Layout from '../Layout'
 import Box from './Box'
 import openBreakpoint from '../utils/breakpoints/openBreakpoint'

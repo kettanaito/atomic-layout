@@ -32,6 +32,9 @@ module.exports = {
   },
   // plugins: [new BundleAnalyzerPlugin()],
   resolve: {
+    alias: {
+      'react-responsive': 'react-responsive/dist/react-responsive.min',
+    },
     extensions: ['.jsx', '.js'],
   },
 }
