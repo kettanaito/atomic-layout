@@ -33,9 +33,9 @@
 
 ## Motivation
 
-Think of how you create layouts today. Most likely you have a set of reusable units \(atoms\) to combine them into functional compositions. However, layout is also about spacing and positioning. So you manage CSS properties to ensure your layout is just right. Guess what, not only that results into your writing more CSS, but that also makes your atoms _contextual_, thus _non-predictable_.
+Think of how we create layouts today. Most likely we define a set of reusable units \(atoms\) to combine them into functional compositions. But how do we handle spacing that should describe the position of our units? Usually, we manage CSS properties of those units to make sure the spacing is just right. Not only that results into writing redundant CSS, but it also makes our atoms **contextual** and, thus, **non-maintainable**.
 
-Atomic layout solves this problem by introducing a dedicated layer responsible for spacial distribution in your layouts. That allows to reuse atom components in any layout possible **without mutating** those composites.
+Atomic layout solves this problem by exposing a dedicated layer responsible for spacial distribution in a layout, or any of its parts. That allows to reuse atom components in any layout possible **without mutating** them.
 
 ## Install
 
@@ -43,7 +43,7 @@ Atomic layout solves this problem by introducing a dedicated layer responsible f
 npm install atomic-layout --save
 ```
 
-> Requires to have [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as the peer dependencies.
+> Requires [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as the peer dependencies.
 
 ## Documentation
 
