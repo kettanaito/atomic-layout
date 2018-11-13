@@ -8,7 +8,7 @@ node_modules
 /coverage
 
 # Build
-/index.js
+/index.*
 
 # Cypress
 cypress/fixtures
