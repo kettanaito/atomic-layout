@@ -32,22 +32,29 @@ const createStyleString = (
 }
 
 export default function applyStyles(pristineProps: Props): string {
-  return Object.keys(pristineProps)
-    .map(parsePropName)
-    .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
-    .map(({ purePropName, originPropName, breakpoint, behavior }) => {
-      const { props, transformValue } = propAliases[purePropName]
-      const propValue = pristineProps[originPropName]
-      const transformedPropValue = transformValue
-        ? transformValue(propValue)
-        : propValue
+  return (
+    Object.keys(pristineProps)
+      /* Parse each prop to include "breakpoint" and "behavior" */
+      .map(parsePropName)
+      /* Filter out props that are not included in prop aliases */
+      .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
+      /* Filter out props with "undefined" or "null" as value */
+      .filter(({ originPropName }) => !!pristineProps[originPropName])
+      /* Map each prop to a CSS string */
+      .map(({ purePropName, originPropName, breakpoint, behavior }) => {
+        const { props, transformValue } = propAliases[purePropName]
+        const propValue = pristineProps[originPropName]
+        const transformedPropValue = transformValue
+          ? transformValue(propValue)
+          : propValue
 
-      return createStyleString(
-        props,
-        transformedPropValue,
-        breakpoint,
-        behavior,
-      )
-    })
-    .join(' ')
+        return createStyleString(
+          props,
+          transformedPropValue,
+          breakpoint,
+          behavior,
+        )
+      })
+      .join(' ')
+  )
 }
