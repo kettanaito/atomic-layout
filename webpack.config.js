@@ -21,6 +21,7 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -29,6 +30,9 @@ module.exports = {
         loaders: ['babel-loader', 'eslint-loader'],
       },
     ],
+  },
+  optimization: {
+    minimize: false,
   },
   // plugins: [new BundleAnalyzerPlugin()],
   resolve: {
