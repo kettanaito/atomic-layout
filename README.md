@@ -56,6 +56,14 @@ Here are some shortcuts to get you started:
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Recipes](https://redd.gitbook.io/atomic-layout/general/recipes)
 
+## Materials
+
+### The Future of Layouts (React Vienna)
+
+Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.
+
+[![The Future of Layouts — Artem Zakharchenko](./materials/react-vienna-thumbnail.jpg)](https://www.youtube.com/watch?v=x_93DjN_bUA)
+
 ## Browser support
 
 See the [Support table for CSS Grid](https://caniuse.com/css-grid).
