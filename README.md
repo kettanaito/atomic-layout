@@ -62,7 +62,11 @@ Here are some shortcuts to get you started:
 
 Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.
 
-[![The Future of Layouts — Artem Zakharchenko](./materials/react-vienna-thumbnail.jpg)](https://www.youtube.com/watch?v=x_93DjN_bUA)
+<a href="https://www.youtube.com/watch?v=x_93DjN_bUA">
+  <img width="500" src="./materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
+</a>
+
+* [**Live demo** (Codesandbox)](https://codesandbox.io/s/8z6xnmnnnj)
 
 ## Browser support
 
