@@ -8,21 +8,15 @@ const CompositionWrapper = styled.div`
   display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
 `
 
-export default class Composition extends React.Component {
-  constructor(props) {
-    super(props)
-    this.areaComponents = parseTemplates(props)
-  }
+const Composition = ({ children, ...restProps }) => {
+  const areaComponents = parseTemplates(restProps)
+  const hasAreaComponents = Object.keys(areaComponents).length > 0
 
-  render() {
-    const { areaComponents } = this
-    const { children } = this.props
-    const hasAreaComponents = Object.keys(areaComponents).length > 0
-
-    return (
-      <CompositionWrapper {...this.props}>
-        {hasAreaComponents ? children(areaComponents) : children}
-      </CompositionWrapper>
-    )
-  }
+  return (
+    <CompositionWrapper {...restProps}>
+      {hasAreaComponents ? children(areaComponents) : children}
+    </CompositionWrapper>
+  )
 }
+
+export default Composition
