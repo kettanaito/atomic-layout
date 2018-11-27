@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Square = styled.div`
+const Square = styled.span`
   box-sizing: border-box;
 
   display: flex;
