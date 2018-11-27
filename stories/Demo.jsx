@@ -43,7 +43,7 @@ const Demo = () => (
           <Image>
             <Square>Image</Square>
           </Image>
-          <Content>
+          <Content as="main">
             <Square>Content</Square>
             <Only for="md">I am on "md"!</Only>
           </Content>
