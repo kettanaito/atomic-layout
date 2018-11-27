@@ -1,11 +1,16 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PropAliases from './PropAliases'
+import PolymorphicProp from './PolymorphicProp'
 
-const ResponsiveProps = ({ match }) => (
+const Other = ({ match }) => (
   <Switch>
     <Route path={`${match.path}/prop-aliases`} component={PropAliases} />
+    <Route
+      path={`${match.path}/polymorphic-prop`}
+      component={PolymorphicProp}
+    />
   </Switch>
 )
 
-export default ResponsiveProps
+export default Other

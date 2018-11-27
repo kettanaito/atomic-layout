@@ -5,7 +5,7 @@ import ResponsiveProps from './responsive-props'
 import Composition from './composition'
 import Only from './only'
 import CustomConfiguration from './custom-configuration'
-import Misc from './misc'
+import Other from './other'
 import Bugfixes from './bugfixes'
 
 const Root = () => (
@@ -15,7 +15,7 @@ const Root = () => (
     <Route path="/composition" component={Composition} />
     <Route path="/only" component={Only} />
     <Route path="/custom-configuration" component={CustomConfiguration} />
-    <Route path="/misc" component={Misc} />
+    <Route path="/other" component={Other} />
     <Route path="/bugfixes" component={Bugfixes} />
   </Switch>
 )

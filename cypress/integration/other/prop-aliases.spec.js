@@ -37,7 +37,7 @@ describe('Prop aliases', () => {
       const propValue = assertValues[aliasPropName] || 10
 
       cy.visit(
-        `/misc/prop-aliases?propAlias=${aliasPropName}&propValue=${propValue}`,
+        `/other/prop-aliases?propAlias=${aliasPropName}&propValue=${propValue}`,
       )
 
       cy.get('#composition').assertPropAlias(
