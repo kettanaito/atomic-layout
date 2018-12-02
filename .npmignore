@@ -22,6 +22,7 @@ stories
 examples
 .storybook
 /*.png
+materials
 
 # Tests
 cypress*
