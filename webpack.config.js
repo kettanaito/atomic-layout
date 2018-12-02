@@ -20,6 +20,11 @@ module.exports = {
     library: 'atomicLayout',
     libraryTarget: 'umd',
     umdNamedDefine: true,
+    /**
+     * UMD modules refer to "window", which breaks SSR.
+     * @see https://github.com/webpack/webpack/issues/6522
+     */
+    globalObject: `typeof self !== 'undefined' ? self : this`,
   },
   devtool: 'source-map',
   module: {
