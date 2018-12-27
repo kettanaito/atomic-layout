@@ -1,5 +1,10 @@
 const path = require('path')
+const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
+
 const nodeEnv = process.env.NODE_ENV || 'production'
+const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   mode: nodeEnv,
@@ -15,7 +20,7 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
     /**
-     * UMD modules refer to "window", which breaks SSR.
+     * @quickfix UMD modules refer to "window", which breaks SSR.
      * @see https://github.com/webpack/webpack/issues/6522
      */
     globalObject: `typeof self !== 'undefined' ? self : this`,
@@ -30,6 +35,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __PROD__: JSON.stringify(PRODUCTION ? 'true' : ''),
+    }),
+  ],
   optimization: {
     minimize: false,
   },
