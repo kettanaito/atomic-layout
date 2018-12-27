@@ -31,7 +31,7 @@ export default class Playground extends React.Component {
           templateSmUp={templateTablet}
           gutter={1}
         >
-          {({ Header, Content, Footer }) => (
+          {({ Header, Content, Footer, Abc }) => (
             <React.Fragment>
               <Header>
                 <Square />
@@ -42,6 +42,7 @@ export default class Playground extends React.Component {
               <Footer>
                 <Square />
               </Footer>
+              <Abc>Hey!</Abc>
             </React.Fragment>
           )}
         </Composition>

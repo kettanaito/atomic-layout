@@ -17,6 +17,9 @@
     "es6": true,
     "jest": true
   },
+  "globals": {
+    "__PROD__": true
+  },
   "rules": {
     "no-undef": "error",
     "no-unused-vars": [

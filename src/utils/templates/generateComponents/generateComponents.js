@@ -54,7 +54,7 @@ const createAreaComponent = (areaName: string): TAreaComponent => styled(Box)`
  * in the given template definitions.
  */
 export default function generateComponents({ areas, templates }: AreasList) {
-  return areas.reduce((components, areaName) => {
+  const componentsMap = areas.reduce((components, areaName) => {
     const areaParams = getAreaBreakpoints(areaName, templates)
     const shouldAlwaysRender =
       areaParams.length === 1 &&
@@ -75,4 +75,34 @@ export default function generateComponents({ areas, templates }: AreasList) {
       [capitalizedAreaName]: WrappedComponent,
     }
   }, {})
+
+  return new Proxy(componentsMap, {
+    get(components, areaName) {
+      if (areaName in components || typeof areaName === 'symbol') {
+        return components[areaName]
+      }
+
+      if (!__PROD__) {
+        console.warn(
+          'Prevented the render of area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
+          areaName,
+          areas
+            /* Filter out "." placeholder from the list of areas */
+            .filter((singleAreaName) => /\w+/.test(singleAreaName))
+            /* Sort areas alphabetically for easier eye navigation */
+            .sort()
+            /* Capitalize areas to correspond to area components */
+            .map(capitalize)
+            .join('", "'),
+          areaName.toLowerCase(),
+        )
+      }
+
+      /**
+       * Replace non-existing area component reference with
+       * the dummy functional component that renders nothing.
+       */
+      return () => null
+    },
+  })
 }
