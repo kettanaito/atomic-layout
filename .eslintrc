@@ -27,7 +27,6 @@
       }
     ],
     "no-shadow": "warn",
-
     "react/jsx-uses-vars": "error"
   }
 }

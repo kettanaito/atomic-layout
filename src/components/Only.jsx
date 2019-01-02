@@ -47,7 +47,9 @@ const Only = ({
    * @todo
    * Add inclusive and notch behavior.
    */
-  return <p>Oops</p>
+  return (
+    <p>Sorry, inclusive and notch behaviors are not currently supported.</p>
+  )
 }
 
 Only.propTypes = {
