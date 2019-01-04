@@ -2,22 +2,7 @@
   "name": "atomic-layout",
   "version": "0.4.5",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
-  "keywords": [
-    "atomic",
-    "layout",
-    "responsive",
-    "composition",
-    "css grid",
-    "react"
-  ],
-  "author": {
-    "name": "Artem Zakharchenko",
-    "email": "kettanaito@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kettanaito/atomic-layout"
-  },
+  "license": "MIT",
   "main": "./index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --watch",
@@ -29,10 +14,10 @@
     "test:unit": "cross-env BABEL_ENV=test jest",
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
-    "test": "npm run test:unit && npm run test:e2e",
+    "test": "yarn run test:unit && yarn run test:e2e",
     "precommit": "lint-staged",
-    "prepush": "npm run test:unit",
-    "preversion": "npm run build && npm test"
+    "prepush": "yarn run test:unit",
+    "preversion": "yarn run build && yarn test"
   },
   "lint-staged": {
     ".{js,jsx}": [
@@ -46,6 +31,22 @@
       "path": "./index.js",
       "maxSize": "25 kB"
     }
+  ],
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kettanaito/atomic-layout"
+  },
+  "keywords": [
+    "atomic",
+    "layout",
+    "responsive",
+    "composition",
+    "css grid",
+    "react"
   ],
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
