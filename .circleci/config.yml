@@ -39,7 +39,7 @@ jobs:
 
       - run:
           name: Unit tests
-          command: yarn run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+          command: yarn run test:unit --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
 
       - run:
           name: Integration tests
