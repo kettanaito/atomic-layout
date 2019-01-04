@@ -1,11 +1,5 @@
 const path = require('path')
-// const webpack = require('webpack')
-// const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
-
 const nodeEnv = process.env.NODE_ENV || 'production'
-// const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   mode: nodeEnv,
@@ -39,7 +33,6 @@ module.exports = {
   optimization: {
     minimize: false,
   },
-  // plugins: [new BundleAnalyzerPlugin()],
   resolve: {
     alias: {
       'react-responsive': 'react-responsive/dist/react-responsive.min',
