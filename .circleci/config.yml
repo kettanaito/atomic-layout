@@ -2,10 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      # Docker image with Cypress dependencies
       - image: cypress/browsers:chrome67
         environment:
-          # Enable colors in terminal output
           TERM: xterm
 
     working_directory: ~/root
@@ -14,39 +12,38 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - npm-deps-{{ checksum "package.json" }}
-            - npm-deps
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages
 
       - run:
-          name: 'Checking node version'
+          name: Checking versions
           command: |
             node --version
-            npm --version
+            yarn --version
 
       - run:
           name: Installing dependencies
-          command: npm ci
+          command: yarn install --frozen-lock
       - save_cache:
-          key: npm-deps-{{ checksum "package.json" }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.npm
-            - ~/.cache
+            - ~/.cache/yarn
 
       - run:
-          name: Building Atomic layout
-          command: npm run build
+          name: Building package
+          command: yarn run build
 
       - run:
-          name: Bundle size check
+          name: Checking bundle size
           command: node_modules/.bin/bundlesize
 
       - run:
           name: Unit tests
-          command: npm run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+          command: yarn run test:unit -- --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
 
       - run:
           name: Integration tests
-          command: npm run test:e2e
+          command: yarn run test:e2e
       - store_test_results:
           path: test-results
       - store_artifacts:
