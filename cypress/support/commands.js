@@ -26,6 +26,12 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   cy.wait(100)
 })
 
+Cypress.Commands.add('haveTag', { prevSubject: true }, (subject, tagName) => {
+  cy.wrap(subject).then(($elem) => {
+    assert($elem.is(tagName), `Renders as "<${tagName}>"`)
+  })
+})
+
 Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
   const wrapper = cy.wrap(subject)
   wrapper.should('have.css', 'grid-row-start', gridArea)
