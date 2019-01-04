@@ -3,13 +3,13 @@ import Square from '../Square'
 import { Composition } from '../../'
 
 const template = `
-  'header'
-  'content'
-  'footer'
+  header
+  content
+  footer
 `
 
 const templateTablet = `
-  'header content footer'
+  header content footer
 `
 
 export default class Playground extends React.Component {
