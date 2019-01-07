@@ -5,7 +5,6 @@ import type {
 } from '../../../const/defaultOptions'
 import Layout from '../../../Layout'
 import parsePropName from '../../strings/parsePropName'
-import sanitizeTemplateString from '../../strings/sanitizeTemplateString'
 
 export type Template = {
   breakpoint: Breakpoint,
@@ -22,11 +21,10 @@ export type TemplateProps = {
   [propName: string]: string,
 }
 
-export default function generateAreasList(props: TemplateProps): AreasList {
-  const areasList = Object.keys(props).reduce(
-    (acc, propName) => {
-      const { breakpoint, behavior } = parsePropName(propName)
-      const templateAreas = sanitizeTemplateString(props[propName])
+export default function getAreasList(templateProps: TemplateProps): AreasList {
+  const areasList = Object.entries(templateProps).reduce(
+    (acc, [templateName, templateAreas]) => {
+      const { breakpoint, behavior } = parsePropName(templateName)
 
       /*
         TODO:

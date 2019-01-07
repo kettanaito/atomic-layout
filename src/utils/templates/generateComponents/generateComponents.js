@@ -1,6 +1,6 @@
 // @flow
 import type { TAreaParams } from '../breakpoints/getAreaBreakpoints'
-import type { AreasList } from '../generateAreasList'
+import type { AreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'

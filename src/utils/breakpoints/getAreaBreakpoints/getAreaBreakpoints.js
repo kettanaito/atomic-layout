@@ -3,7 +3,7 @@ import type {
   Breakpoint,
   BreakpointBehavior,
 } from '../../../const/defaultOptions'
-import type { Template } from '../../templates/generateAreasList'
+import type { Template } from '../../templates/getAreasList'
 import pop from '../../functions/pop'
 import when from '../../functions/when'
 import spread from '../../functions/spread'

@@ -1,10 +1,10 @@
 import Layout from '../../../Layout'
 import transformNumeric from '../../math/transformNumeric'
-import generateAreasList from '../../templates/generateAreasList'
+import getAreasList from '../../templates/getAreasList'
 import getAreaBreakpoints from './getAreaBreakpoints'
 
 test('Mobile first', () => {
-  const { templates } = generateAreasList({
+  const { templates } = getAreasList({
     template: `'a b'`,
     templateLg: `'a'`,
   })
@@ -22,7 +22,7 @@ test('Mobile first', () => {
 test('Inclusive', () => {
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
-  const { templates } = generateAreasList({
+  const { templates } = getAreasList({
     template: `'a'`,
     templateMd: `'a b'`,
     templateXl: `'a'`,
@@ -46,7 +46,7 @@ test('Notch', () => {
   const breakpointMd = Layout.getBreakpoint('md')
   const breakpointXl = Layout.getBreakpoint('xl')
 
-  const { templates } = generateAreasList({
+  const { templates } = getAreasList({
     template: `'a b'`,
     templateMd: `'a'`,
     templateXl: `'a b'`,
@@ -72,7 +72,7 @@ describe('Shuffled behavior', () => {
     const breakpointSm = Layout.getBreakpoint('sm')
     const breakpointMd = Layout.getBreakpoint('md')
 
-    const { templates } = generateAreasList({
+    const { templates } = getAreasList({
       template: `'a'`,
       templateSmDown: `'c'`,
       templateMdDown: `'a c'`,
@@ -107,7 +107,7 @@ describe('Shuffled behavior', () => {
   })
 
   test('Notch behavior using explicit "down" area behavior', () => {
-    const { templates } = generateAreasList({
+    const { templates } = getAreasList({
       templateDown: `'a'`,
       templateMd: `'a c'`,
     })

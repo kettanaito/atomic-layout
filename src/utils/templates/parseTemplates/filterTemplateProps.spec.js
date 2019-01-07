@@ -10,8 +10,8 @@ test('Returns template props from the given object', () => {
       templateBars: true,
     }),
   ).toEqual({
-    template: 'first',
-    templateOnly: 'three',
-    templateMd: 'second',
+    template: ['first'],
+    templateOnly: ['three'],
+    templateMd: ['second'],
   })
 })

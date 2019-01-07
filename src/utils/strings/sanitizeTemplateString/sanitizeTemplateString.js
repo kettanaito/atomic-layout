@@ -8,6 +8,8 @@ type SanitizeTemplateString = (str: string) => string[]
  * from the given template string.
  */
 const sanitizeTemplateString: SanitizeTemplateString = compose(
+  (list: string[]): string[] => list.sort(),
+
   /* Deduplicates area strings */
   (list: string[]): string[] => Array.from(new Set(list)),
 
