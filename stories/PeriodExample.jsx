@@ -1,5 +1,8 @@
 import React from 'react'
-import { Composition } from '../'
+import Layout, { Composition } from '../'
+
+Layout.configure({})
+// Layout.configure({})
 
 const templateBox = `
 thumbnail

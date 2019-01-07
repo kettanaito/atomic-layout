@@ -8,7 +8,7 @@ const PRODUCTION = nodeEnv === 'production'
 
 module.exports = {
   mode: nodeEnv,
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index'),
   externals: {
     react: 'umd react',
     'styled-components': 'umd styled-components',
@@ -29,9 +29,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/i,
+        test: /\.(j|t)sx?/i,
         exclude: /node_modules/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        loaders: ['babel-loader'],
       },
     ],
   },
@@ -47,6 +47,6 @@ module.exports = {
     alias: {
       'react-responsive': 'react-responsive/dist/react-responsive.min',
     },
-    extensions: ['.jsx', '.js'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
 }
