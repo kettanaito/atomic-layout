@@ -1,10 +1,15 @@
 import Layout from '../../../Layout'
-import generateAreasList from './generateAreasList'
+import filterTemplateProps from '../parseTemplates/filterTemplateProps'
+import getAreasList from './getAreasList'
+
+const withProps = filterTemplateProps
 
 test('Parses template props properly', () => {
-  const areasList = generateAreasList({
-    template: `a b`,
-  })
+  const areasList = getAreasList(
+    withProps({
+      template: `a b`,
+    }),
+  )
 
   expect(areasList).toEqual({
     areas: ['a', 'b'],
@@ -19,10 +24,12 @@ test('Parses template props properly', () => {
 })
 
 test('Returns proper areas list for "up" behavior', () => {
-  const areasList = generateAreasList({
-    template: `a b`,
-    templateMd: `a b c`,
-  })
+  const areasList = getAreasList(
+    withProps({
+      template: `a b`,
+      templateMd: `a b c`,
+    }),
+  )
 
   expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],
@@ -42,10 +49,12 @@ test('Returns proper areas list for "up" behavior', () => {
 })
 
 test('Returns proper areas list for "down" behavior', () => {
-  const areasList = generateAreasList({
-    template: `a b`,
-    templateMdDown: `c`,
-  })
+  const areasList = getAreasList(
+    withProps({
+      template: `a b`,
+      templateMdDown: `c`,
+    }),
+  )
 
   expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],
@@ -65,10 +74,12 @@ test('Returns proper areas list for "down" behavior', () => {
 })
 
 test('Returns proper areas list for "only" behavior', () => {
-  const areasList = generateAreasList({
-    template: `a`,
-    templateMdOnly: `b c`,
-  })
+  const areasList = getAreasList(
+    withProps({
+      template: `a`,
+      templateMdOnly: `b c`,
+    }),
+  )
 
   expect(areasList).toEqual({
     areas: ['a', 'b', 'c'],

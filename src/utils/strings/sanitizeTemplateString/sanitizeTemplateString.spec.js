@@ -8,7 +8,7 @@ test('Sanitizes a template string with quotes', () => {
   `
 
   const sanitized = sanitizeTemplateString(template)
-  expect(sanitized).toEqual(['header', 'content', 'aside', 'footer'])
+  expect(sanitized).toEqual(['aside', 'content', 'footer', 'header'])
 })
 
 test('Sanitizes template string without quotes', () => {
@@ -19,7 +19,7 @@ test('Sanitizes template string without quotes', () => {
   `
 
   const sanitized = sanitizeTemplateString(template)
-  expect(sanitized).toEqual(['first', 'second', 'third', 'fourth'])
+  expect(sanitized).toEqual(['first', 'fourth', 'second', 'third'])
 })
 
 test('Sanitizes a template string without indentation', () => {

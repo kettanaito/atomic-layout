@@ -1,5 +1,6 @@
 // @flow
 import parsePropName from '../../strings/parsePropName'
+import sanitizeTemplateString from '../../strings/sanitizeTemplateString'
 
 /**
  * Accepts a props object and filters it to include
@@ -14,7 +15,7 @@ const filterTemplateProps = (props: Object) => {
     .reduce((acc, propName) => {
       return {
         ...acc,
-        [propName]: props[propName],
+        [propName]: sanitizeTemplateString(props[propName]),
       }
     }, {})
 }
