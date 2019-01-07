@@ -29,7 +29,7 @@
   <img src="example.png" width="650" />
 </p>
 
-> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://atomic-layout.js.org/api/layout/configure) to match your very requirements.
+> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
 
 ## Motivation
 
@@ -47,14 +47,14 @@ npm install atomic-layout --save
 
 ## Documentation
 
-See the [Official documentation](https://atomic-layout.js.org).
+See the [Official documentation](https://redd.gitbook.io/atomic-layout).
 
 Here are some shortcuts to get you started:
 
-- [Motivation](https://atomic-layout.js.org/general/motivation)
-- [**Getting started**](https://atomic-layout.js.org/general/getting-started)
-- [Responsive props](https://atomic-layout.js.org/fundamentals/responsive-props)
-- [Recipes](https://atomic-layout.js.org/general/recipes)
+- [Motivation](https://redd.gitbook.io/atomic-layout/general/motivation)
+- [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
+- [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
+- [Recipes](https://redd.gitbook.io/atomic-layout/general/recipes)
 
 ## Materials
 
@@ -70,8 +70,8 @@ Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and
 
 ## Browser support
 
-> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**.
+> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please read through [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
 
 ## Contributing
 
-Please see the [Contribution guidelines](https://atomic-layout.js.org/developers/contributing) beforehand. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, usually, a great place to get your first contribution to the project. Thank you.
+Please see the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) beforehand. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, usually, a great place to get your first contribution to the project. Thank you.
