@@ -31,12 +31,12 @@ const wrapInPlaceholder = (
 
           return components.concat(
             <MediaQuery
-              {...restProps}
               {...breakpointProps}
               key={`${Component.displayName}_${index}`}
-              component={Component}
             >
-              {children}
+              {(matches) =>
+                matches && <Component {...restProps}>{children}</Component>
+              }
             </MediaQuery>,
           )
         },

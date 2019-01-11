@@ -107,6 +107,6 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "react-responsive": "^5.0.0"
+    "react-responsive": "6.x"
   }
 }
