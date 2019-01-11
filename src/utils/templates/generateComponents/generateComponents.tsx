@@ -1,13 +1,15 @@
 import { AreasList } from '../getAreasList'
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
 import Box from '../../../components/Box'
 import capitalize from '../../strings/capitalize'
-import getAreaBreakpoints from '../../breakpoints/getAreaBreakpoints'
+import getAreaBreakpoints, {
+  AreaBreakpoint,
+} from '../../breakpoints/getAreaBreakpoints'
 
-export type AreaComponent = React.Component<any, void, void>
-export type AreaComponentsMap = {
+export type AreaComponent = React.FunctionComponent<{}>
+export interface AreasMap {
   [componentName: string]: AreaComponent
 }
 
@@ -16,34 +18,32 @@ export type AreaComponentsMap = {
  * This is used for conditional components, where placeholder component is rendered
  * until the condition for the area component is met (i.e. breakpoint).
  */
-const withPlaceholder = (
-  AreaComponent: AreaComponent,
-  areaParams: any[] /** @fixme Proper type */,
+const wrapInPlaceholder = (
+  Component: AreaComponent,
+  areaParams: AreaBreakpoint[],
 ) => {
-  const Placeholder = ({
-    children,
-    ...restProps
-  }: {
-    children: React.ReactChildren
-  }) =>
+  const Placeholder: React.FunctionComponent = ({ children, ...restProps }) =>
     areaParams
       .filter(Boolean)
-      .reduce((components, breakpointOptions, index) => {
-        const { behavior, ...breakpointProps } = breakpointOptions
+      .reduce<Array<React.ReactElement<MediaQuery>>>(
+        (components, breakpointOptions, index) => {
+          const { behavior, ...breakpointProps } = breakpointOptions
 
-        return components.concat(
-          <MediaQuery
-            {...restProps}
-            {...breakpointProps}
-            key={`${AreaComponent.displayName}_${index}`}
-            component={AreaComponent}
-          >
-            ){children}(
-          </MediaQuery>,
-        )
-      }, [])
+          return components.concat(
+            <MediaQuery
+              {...restProps}
+              {...breakpointProps}
+              key={`${Component.displayName}_${index}`}
+              component={Component}
+            >
+              ){children}(
+            </MediaQuery>,
+          )
+        },
+        [],
+      )
 
-  Placeholder.displayName = `Placeholder(${AreaComponent.displayName})`
+  Placeholder.displayName = `Placeholder(${Component.displayName})`
 
   return Placeholder
 }
@@ -56,35 +56,42 @@ const createAreaComponent = (areaName: string): AreaComponent => styled(Box)`
  * Returns a map of React components based on the given grid areas
  * in the given template definitions.
  */
-export default function generateComponents({ areas, templates }: AreasList) {
-  const componentsMap = areas.reduce((components, areaName) => {
-    const areaParams = getAreaBreakpoints(areaName, templates)
+export default function generateComponents({
+  areas,
+  templates,
+}: AreasList): AreasMap {
+  const componentsMap = areas.reduce<AreasMap>((components, areaName) => {
+    const areaParams = getAreaBreakpoints(
+      areaName,
+      templates,
+    ) as AreaBreakpoint[]
     const shouldAlwaysRender =
       areaParams.length === 1 &&
       areaParams.every(
         (breakpoint) => !breakpoint.minWidth && !breakpoint.maxWidth,
       )
 
-    const AreaComponent = createAreaComponent(areaName)
+    const Component = createAreaComponent(areaName)
     const capitalizedAreaName = capitalize(areaName)
-    AreaComponent.displayName = capitalizedAreaName
+    Component.displayName = capitalizedAreaName
 
-    const WrappedComponent = shouldAlwaysRender
-      ? AreaComponent
-      : withPlaceholder(AreaComponent, areaParams)
+    const ResolvedComponent = shouldAlwaysRender
+      ? Component
+      : wrapInPlaceholder(Component, areaParams)
 
     return {
       ...components,
-      [capitalizedAreaName]: WrappedComponent,
+      [capitalizedAreaName]: ResolvedComponent,
     }
   }, {})
 
-  return new Proxy(componentsMap, {
-    get(components, areaName) {
+  return new Proxy<AreasMap>(componentsMap, {
+    get(components, areaName: string) {
       if (areaName in components || typeof areaName === 'symbol') {
         return components[areaName]
       }
 
+      // @ts-ignore-line
       if (!__PROD__) {
         console.warn(
           'Prevented the render of area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
@@ -104,6 +111,8 @@ export default function generateComponents({ areas, templates }: AreasList) {
       /**
        * Replace non-existing area component reference with
        * the dummy functional component that renders nothing.
+       * This prevents from the exception when rendering "undefined"
+       * and allows conditional template areas.
        */
       return () => null
     },

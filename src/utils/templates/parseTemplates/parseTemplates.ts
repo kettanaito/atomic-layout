@@ -1,8 +1,11 @@
 import compose from '../../functions/compose'
 import memoizeWith from '../../functions/memoizeWith'
 import getAreasList from '../getAreasList'
-import generateComponents from '../generateComponents'
+import { Props } from '../../strings/parsePropName'
+import generateComponents, { AreasMap } from '../generateComponents'
 import filterTemplateProps, { TemplateProps } from './filterTemplateProps'
+
+type ParseTemplates = (props: Props) => AreasMap
 
 /**
  * Memoize components generation based on the sanitized "templateProp:areas" pairs.
@@ -19,7 +22,7 @@ const memoized = memoizeWith((templateProps: TemplateProps) => {
   return btoa(pairs.join())
 })
 
-const parseTemplates = compose(
+const parseTemplates: ParseTemplates = compose(
   memoized(
     compose(
       generateComponents,

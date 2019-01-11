@@ -12,7 +12,7 @@ export type AreaBreakpoint = Breakpoint & {
   behavior: BreakpointBehavior
 }
 
-type AreaBreakpointsList = (AreaBreakpoint | undefined)[]
+type AreaBreakpointsList = Array<AreaBreakpoint | undefined>
 
 type AreaBreakpointTuple = [
   AreaBreakpoint,
@@ -47,7 +47,7 @@ const createContext = (areaName: string) => {
       behavior,
     }
 
-    const { behavior: _prevBehavior, ...prevBreakpoint } =
+    const { behavior: prevBehavior, ...prevBreakpoint } =
       prevAreaBreakpoint || {}
     const shouldMerge =
       prevAreaBreakpoint && shouldMergeBreakpoints(prevBreakpoint, breakpoint)
@@ -66,10 +66,10 @@ const createContext = (areaName: string) => {
 }
 
 const canMergeBreakpoints = ([
-  _nextAreaBreakpoint,
-  _prevAreaBreakpoint,
-  _includesArea,
-  _isLastTemplate,
+  nextAreaBreakpoint,
+  prevAreaBreakpoint,
+  includesArea,
+  isLastTemplate,
   shouldMerge,
 ]: AreaBreakpointTuple): boolean => {
   return shouldMerge
@@ -77,8 +77,8 @@ const canMergeBreakpoints = ([
 
 const shouldOpenBreakpoint = ([
   nextAreaBreakpoint,
-  _prevAreaBreakpoint,
-  _includesArea,
+  prevAreaBreakpoint,
+  includesArea,
   isLastTemplate,
 ]: AreaBreakpointTuple): boolean => {
   return isLastTemplate && nextAreaBreakpoint.behavior === 'up'
@@ -88,7 +88,7 @@ const updateBreakpointsList = ([
   nextAreaBreakpoint,
   prevAreaBreakpoint,
   includesArea,
-  _isLastTemplate,
+  isLastTemplate,
   shouldMerge,
   areaBreakpointsList,
 ]: AreaBreakpointTuple): AreaBreakpointsList => {

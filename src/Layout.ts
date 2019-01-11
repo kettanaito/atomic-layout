@@ -1,12 +1,14 @@
-import { LayoutOptions, Breakpoint } from './const/defaultOptions'
-import defaultOptions from './const/defaultOptions'
+import defaultOptions, {
+  LayoutOptions,
+  Breakpoint,
+} from './const/defaultOptions'
 import invariant from './utils/invariant'
 
 class Layout {
-  options: LayoutOptions = defaultOptions
+  public options: LayoutOptions = defaultOptions
 
   /* Internal */
-  isConfigureCalled: boolean = false
+  private isConfigureCalled: boolean = false
 
   // TODO
   // Improve options type to have params of Maybe type.
@@ -18,7 +20,7 @@ class Layout {
   /**
    * Applies global layout options.
    */
-  configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
+  public configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
     if (warnOnMultiple) {
       invariant(
         !this.isConfigureCalled,
@@ -31,7 +33,10 @@ class Layout {
       `Failed to configure Layout: expected an options Object, but got: ${options}`,
     )
 
-    const allOptions: LayoutOptions = Object.assign({}, defaultOptions, options)
+    const allOptions: LayoutOptions = {
+      ...defaultOptions,
+      ...options,
+    }
 
     const { defaultBreakpointName } = allOptions
     invariant(
@@ -61,14 +66,14 @@ class Layout {
    * Returns the collection of breakpoint names present
    * in the current layout configuration.
    */
-  getBreakpointNames(): string[] {
+  public getBreakpointNames(): string[] {
     return Object.keys(this.options.breakpoints)
   }
 
   /**
    * Returns breakpoint options by the given breakpoint name.
    */
-  getBreakpoint(breakpointName: string): Breakpoint | null {
+  public getBreakpoint(breakpointName: string): Breakpoint | null {
     if (breakpointName) {
       return this.options.breakpoints[breakpointName]
     }

@@ -1,8 +1,7 @@
 import { BreakpointBehavior } from '../../../const/defaultOptions'
-import { Props } from '../../strings/parsePropName'
 import propAliases from '../../../const/propAliases'
 import Layout from '../../../Layout'
-import parsePropName from '../../strings/parsePropName'
+import parsePropName, { Props } from '../../strings/parsePropName'
 import createMediaQuery from '../createMediaQuery'
 
 const createStyleString = (
@@ -11,7 +10,7 @@ const createStyleString = (
   breakpoint: any,
   behavior: BreakpointBehavior,
 ) => {
-  let styleProps = propsList
+  const styleProps = propsList
     .map((propName) => `${propName}:${String(propValue)};`)
     .join('')
 

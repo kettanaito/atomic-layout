@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.(j|t)sx?/i,
         exclude: /node_modules/,
-        loaders: ['babel-loader'],
+        loaders: ['babel-loader', 'tslint-loader'],
       },
     ],
   },

@@ -6,6 +6,6 @@ test('Returns the min/max prefix of the given string', () => {
 })
 
 test('Bypasses unknown prefixes', () => {
-  expect(getPrefix('fooBar')).toEqual(null)
-  expect(getPrefix('abcDef')).toEqual(null)
+  expect(getPrefix('fooBar')).toEqual('')
+  expect(getPrefix('abcDef')).toEqual('')
 })

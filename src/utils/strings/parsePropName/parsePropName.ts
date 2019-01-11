@@ -6,7 +6,7 @@ export interface Props {
   [propName: string]: any
 }
 
-export type ParsedProp = {
+export interface ParsedProp {
   originPropName: string
   purePropName: string
   breakpoint: {
