@@ -7,10 +7,11 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --watch",
     "storybook": "start-storybook -p 6020",
-    "build": "rimraf lib && cross-env NODE_ENV=production webpack",
+    "clean": "rimraf lib && exit 0",
+    "build": "yarn run clean && cross-env NODE_ENV=production webpack",
     "cypress": "node_modules/.bin/cypress open",
     "examples": "webpack-dev-server --config examples/webpack.config.js",
-    "test:unit": "cross-env BABEL_ENV=test jest",
+    "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "yarn run test:unit && yarn run test:e2e",

@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "allowJs": true,
     "noEmit": true,
-    // "strict": true,
     "noImplicitThis": false,
     "isolatedModules": true,
     "esModuleInterop": true,

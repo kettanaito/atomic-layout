@@ -2,13 +2,13 @@ import { AreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
-import Box from '../../../components/Box'
+import Box, { BoxProps } from '../../../components/Box'
 import capitalize from '../../strings/capitalize'
 import getAreaBreakpoints, {
   AreaBreakpoint,
 } from '../../breakpoints/getAreaBreakpoints'
 
-export type AreaComponent = React.FunctionComponent<{}>
+export type AreaComponent = React.FunctionComponent<BoxProps>
 export interface AreasMap {
   [componentName: string]: AreaComponent
 }
