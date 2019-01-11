@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { GenericProps } from '../const/props'
 import applyStyles from '../utils/styles/applyStyles'
 
-interface BoxProps {
+export interface BoxProps extends GenericProps {
   flex?: boolean
   inline?: boolean
 }

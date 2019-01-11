@@ -2,9 +2,9 @@ import React from 'react'
 import { Composition } from 'atomic-layout'
 import Square from '../../stories/Square'
 
-const template = `'first second'`
-const templateSm = `'first second third'`
-const templateLg = `'first second'`
+const template = 'first second'
+const templateSm = 'first second third'
+const templateLg = 'first second'
 
 const Inclusive = ({ children }) => (
   <Composition

@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ComponentsMap } from '../utils/templates/generateComponents'
+import { GenericProps, GridProps } from '../const/props'
+import { AreasMap } from '../utils/templates/generateComponents'
 import parseTemplates from '../utils/templates/parseTemplates'
 import applyStyles from '../utils/styles/applyStyles'
 
-interface CompositionProps {
-  children: (areas: ComponentsMap) => React.ReactChildren | React.ReactChildren
+type ChildrenFunction = (areas: AreasMap) => React.ReactNode
+
+interface CompositionProps extends GenericProps, GridProps {
+  children: ChildrenFunction | React.ReactNode
   inline?: boolean
 }
 
@@ -23,7 +26,9 @@ const Composition: React.FunctionComponent<CompositionProps> = ({
 
   return (
     <CompositionWrapper {...restProps}>
-      {hasAreaComponents ? children(areaComponents) : children}
+      {hasAreaComponents
+        ? (children as ChildrenFunction)(areaComponents)
+        : children}
     </CompositionWrapper>
   )
 }
