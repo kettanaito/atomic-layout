@@ -4,7 +4,7 @@ import Layout from './Layout'
 const createConsoleSpy = () => jest.spyOn(console, 'error')
 
 const resetLayoutOptions = () => {
-  Layout.isConfigureCalled = false
+  // Layout.isConfigureCalled = false
   Layout.configure(defaultOptions, false)
 }
 

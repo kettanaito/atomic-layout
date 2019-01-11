@@ -1,4 +1,4 @@
-import { AreaBreakpoint } from '../getAreaBreakpoints'
+import { Breakpoint } from '../../../const/defaultOptions'
 import getPrefix from '../../strings/getPrefix'
 
 /**
@@ -6,16 +6,12 @@ import getPrefix from '../../strings/getPrefix'
  * A breakpoint is considered open when it has no upper boundary. For example,
  * a breakpoint that has "maxWidth: undefined" is the open breakpoint.
  */
-export default function openBreakpoint(
-  breakpoint: AreaBreakpoint,
-): AreaBreakpoint {
-  return Object.keys(breakpoint).reduce<AreaBreakpoint>(
+export default function openBreakpoint(breakpoint: Breakpoint): Breakpoint {
+  return Object.keys(breakpoint).reduce<Breakpoint>(
     (acc, key) => ({
       ...acc,
       [key]: getPrefix(key) === 'max' ? undefined : breakpoint[key],
     }),
-    {
-      behavior: breakpoint.behavior,
-    },
+    {},
   )
 }
