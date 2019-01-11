@@ -1,16 +1,17 @@
+import { Numeric } from '../const/defaultOptions'
 import compose from '../utils/functions/compose'
 import transformNumeric from '../utils/math/transformNumeric'
 import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
 
-type ValueTransformer<R> = (val: any) => R
+type ValueTransformer<I, R> = (val: I) => R
 
-interface PropAlias {
+interface PropAliasDeclaration {
   props: string[]
-  transformValue?: ValueTransformer<string | void>
+  transformValue?: ValueTransformer<Numeric, string>
 }
 
-interface PropAliases {
-  [propAlias: string]: PropAlias
+export interface PropAliases {
+  [aliasName: string]: PropAliasDeclaration
 }
 
 type TransformTemplateString = (template: string) => string

@@ -1,4 +1,4 @@
-export default function getPrefix(string: string): string {
-  const prompt = string.match(/^min|max/)
+export default function getPrefix(str: string): string {
+  const prompt = str.match(/^min|max/)
   return prompt ? prompt[0] : ''
 }

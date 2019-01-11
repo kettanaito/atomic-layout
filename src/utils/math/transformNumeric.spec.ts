@@ -9,5 +9,5 @@ test('Returns string values as is', () => {
 })
 
 test('Returns "undefined" when no value is given', () => {
-  expect(transformNumeric()).toEqual(undefined)
+  expect(transformNumeric()).toEqual('')
 })

@@ -1,6 +1,5 @@
 import { Breakpoint } from '../../../const/defaultOptions'
 import getPrefix from '../../strings/getPrefix'
-import { string } from 'prop-types'
 
 /**
  * Accepts a breakpoint and returns a new breakpoint where

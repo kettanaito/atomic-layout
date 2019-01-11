@@ -12,26 +12,34 @@ type RelativeUnits =
 
 export type Numeric = number | string
 export type MeasurementUnit = AbsoluteUnits | RelativeUnits
+export type BreakpointBehavior = 'up' | 'down' | 'only'
+export interface Breakpoints {
+  [breakpointName: string]: Breakpoint
+}
 export interface LayoutOptions {
   /**
    * Measurement unit that suffixes numeric prop values.
+   * @default "px"
    * @example
    * <Box padding={10} />
    * // "padding: 10px"
    */
   defaultUnit: MeasurementUnit
+  /**
+   * Map of layout breakpoints.
+   */
   breakpoints: Breakpoints
+  /**
+   * Breakpoint name to use when no explicit breakpoint
+   * name is specified in a prop name.
+   * @default "xs"
+   */
   defaultBreakpointName: string
   defaultBehavior: BreakpointBehavior
 }
 
-export type BreakpointBehavior = 'up' | 'down' | 'only'
-
-export interface Breakpoints {
-  [breakpointName: string]: Breakpoint
-}
-
 export interface Breakpoint {
+  /* Index signature for dynamic breakpoint composition */
   [propName: string]: any
   minHeight?: Numeric
   maxHeight?: Numeric
