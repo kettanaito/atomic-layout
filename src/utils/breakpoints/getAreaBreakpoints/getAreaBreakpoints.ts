@@ -12,11 +12,11 @@ export type AreaBreakpoint = Breakpoint & {
   behavior: BreakpointBehavior
 }
 
-type AreaBreakpointsList = Array<AreaBreakpoint | undefined>
+type AreaBreakpointsList = Array<AreaBreakpoint | null>
 
 type AreaBreakpointTuple = [
   AreaBreakpoint,
-  AreaBreakpoint,
+  AreaBreakpoint | null,
   boolean,
   boolean,
   boolean,
@@ -25,7 +25,7 @@ type AreaBreakpointTuple = [
 
 const updateWith = (key: string, updateFunc: (...args: any[]) => any) => {
   return (args: any) => {
-    const [first, ...rest] = args // eslint-disable-line
+    const [first, ...rest] = args
     return [updateFunc(args), ...rest]
   }
 }
@@ -42,17 +42,20 @@ const createContext = (areaName: string) => {
     const includesArea = areas.includes(areaName)
     const prevAreaBreakpoint =
       areaBreakpointsList[areaBreakpointsList.length - 1]
-    const nextAreaBreakpoint = {
+    const nextAreaBreakpoint: AreaBreakpoint = {
       ...breakpoint,
       behavior,
     }
 
-    const { behavior: prevBehavior, ...prevBreakpoint } =
-      prevAreaBreakpoint || {}
+    const {
+      behavior: prevBehavior,
+      ...prevBreakpoint
+    } = prevAreaBreakpoint || { behavior: '' }
     const shouldMerge =
-      prevAreaBreakpoint && shouldMergeBreakpoints(prevBreakpoint, breakpoint)
+      Boolean(prevAreaBreakpoint) &&
+      shouldMergeBreakpoints(prevBreakpoint, breakpoint)
 
-    const context = [
+    return [
       nextAreaBreakpoint,
       prevAreaBreakpoint,
       includesArea,
@@ -60,8 +63,6 @@ const createContext = (areaName: string) => {
       shouldMerge,
       areaBreakpointsList,
     ]
-
-    return context
   }
 }
 
@@ -93,7 +94,9 @@ const updateBreakpointsList = ([
   areaBreakpointsList,
 ]: AreaBreakpointTuple): AreaBreakpointsList => {
   /* Fallback to an empty object when there is no previous breakpoint in the list */
-  const { behavior: prevBehavior } = prevAreaBreakpoint || {}
+  const { behavior: prevBehavior } = prevAreaBreakpoint || {
+    behavior: '',
+  }
   const { behavior: nextBehavior } = nextAreaBreakpoint
 
   const wentUp = prevBehavior === 'up'
@@ -109,17 +112,15 @@ const updateBreakpointsList = ([
     shouldReplaceLastArea = false
   }
 
-  let newBreakpoint = [nextAreaBreakpoint]
+  let newBreakpoint: AreaBreakpointsList = [nextAreaBreakpoint]
 
   if (!includesArea) {
     /**
-     * When the area is stretched, append explicit "undefined" afterward
+     * When the area is stretched, append explicit "null" afterward
      * to prevent the stretched area from being treated as a sibling area
      * in any further calculations.
      */
-    newBreakpoint = shouldStretch
-      ? [nextAreaBreakpoint, undefined]
-      : [undefined]
+    newBreakpoint = shouldStretch ? [nextAreaBreakpoint, null] : [null]
 
     if (shouldStretch) {
       shouldReplaceLastArea = true

@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/i,
+        test: /\.(t|j)sx?/,
         exclude: /node_modules/,
         loaders: ['babel-loader'],
       },
@@ -22,9 +22,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'atomic-layout': path.resolve(__dirname, '../index.js'),
+      'atomic-layout': path.resolve(__dirname, '../lib/index.js'),
     },
-    extensions: ['.jsx', '.js'],
+    extensions: ['.ts', '.tsx', '.jsx', '.js'],
   },
   devServer: {
     port: 9987,

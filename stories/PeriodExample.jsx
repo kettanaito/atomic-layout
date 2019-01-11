@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout, { Composition } from '../'
+import Layout, { Composition } from '../lib'
 
 Layout.configure({})
 // Layout.configure({})

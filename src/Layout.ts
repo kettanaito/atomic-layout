@@ -6,14 +6,9 @@ import invariant from './utils/invariant'
 
 class Layout {
   public options: LayoutOptions = defaultOptions
+  protected isConfigureCalled: boolean = false
 
-  /* Internal */
-  private isConfigureCalled: boolean = false
-
-  // TODO
-  // Improve options type to have params of Maybe type.
-  // This way you don't need to provide the entire config.
-  constructor(options: LayoutOptions) {
+  constructor(options: Partial<LayoutOptions>) {
     return this.configure(options, false)
   }
 
@@ -30,33 +25,34 @@ class Layout {
 
     invariant(
       options && typeof options === 'object',
-      `Failed to configure Layout: expected an options Object, but got: ${options}`,
+      'Failed to configure Layout: expected an options Object, but got: %o.',
+      options,
     )
 
-    const allOptions: LayoutOptions = {
+    this.options = {
       ...defaultOptions,
       ...options,
     }
 
-    const { defaultBreakpointName } = allOptions
+    const { defaultBreakpointName } = this.options
     invariant(
       defaultBreakpointName && typeof defaultBreakpointName === 'string',
-      `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${defaultBreakpointName}`,
+      'Failed to configure Layout: expected "defaultBreakpointName" property set, but got: %s.',
+      defaultBreakpointName,
     )
 
     invariant(
-      allOptions.breakpoints,
+      this.options.breakpoints,
       'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
     )
 
     invariant(
-      allOptions.breakpoints.hasOwnProperty(defaultBreakpointName),
-      `Failed to configure Layout: cannot use "${defaultBreakpointName}" as the default breakpoint (breakpoint not found).`,
+      this.options.breakpoints.hasOwnProperty(defaultBreakpointName),
+      'Failed to configure Layout: cannot use "%s" as the default breakpoint (breakpoint not found).',
+      defaultBreakpointName,
     )
 
-    this.options = allOptions
-
-    /* Mark configure method as called to prevent multiple calls */
+    /* Mark configure method as called to prevent its multiple calls */
     this.isConfigureCalled = warnOnMultiple
 
     return this
@@ -73,12 +69,12 @@ class Layout {
   /**
    * Returns breakpoint options by the given breakpoint name.
    */
-  public getBreakpoint(breakpointName: string): Breakpoint | null {
+  public getBreakpoint(breakpointName: string): Breakpoint | undefined {
     if (breakpointName) {
       return this.options.breakpoints[breakpointName]
     }
 
-    return null
+    return
   }
 }
 

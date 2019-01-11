@@ -3,11 +3,11 @@
   "version": "0.4.5",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
   "license": "MIT",
-  "main": "./index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --watch",
     "storybook": "start-storybook -p 6020",
-    "build": "webpack",
+    "build": "rimraf lib && cross-env NODE_ENV=production webpack",
     "cypress": "node_modules/.bin/cypress open",
     "examples": "webpack-dev-server --config examples/webpack.config.js",
     "test:unit": "cross-env BABEL_ENV=test jest",
@@ -27,7 +27,7 @@
   },
   "bundlesize": [
     {
-      "path": "./index.js",
+      "path": "./lib/index.js",
       "maxSize": "25 kB"
     }
   ],
@@ -60,7 +60,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@cypress/webpack-preprocessor": "^1.1.3",
+    "@cypress/webpack-preprocessor": "^4.0.2",
     "@storybook/addon-actions": "^4.0.9",
     "@storybook/addon-links": "^4.0.9",
     "@storybook/react": "^4.0.9",
@@ -89,6 +89,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
+    "rimraf": "^2.6.3",
     "start-server-and-test": "^1.7.11",
     "storybook": "^1.0.0",
     "styled-components": "^4.1.3",

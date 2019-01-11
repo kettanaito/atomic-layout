@@ -1,6 +1,6 @@
 import React from 'react'
 import Square from './Square'
-import { Box, Composition, Only } from '../'
+import { Box, Composition, Only } from '../lib'
 
 const templateMobile = `
   actions

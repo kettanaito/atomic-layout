@@ -36,7 +36,7 @@ const wrapInPlaceholder = (
               key={`${Component.displayName}_${index}`}
               component={Component}
             >
-              ){children}(
+              {children}
             </MediaQuery>,
           )
         },

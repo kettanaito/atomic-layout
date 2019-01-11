@@ -1,6 +1,6 @@
 import React from 'react'
 import Square from '../Square'
-import { Composition } from '../../'
+import { Composition } from '../../lib'
 
 const template = `
   header
