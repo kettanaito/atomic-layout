@@ -22,7 +22,7 @@ const wrapInPlaceholder = (
   Component: AreaComponent,
   areaParams: AreaBreakpoint[],
 ) => {
-  const Placeholder: React.FunctionComponent = ({ children, ...restProps }) =>
+  const Placeholder: any = ({ children, ...restProps }) =>
     areaParams
       .filter(Boolean)
       .reduce<Array<React.ReactElement<MediaQuery>>>(

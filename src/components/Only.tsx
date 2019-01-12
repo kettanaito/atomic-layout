@@ -1,20 +1,31 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import MediaQuery from 'react-responsive'
+import { Breakpoint } from '../const/defaultOptions'
+import { GenericProps } from '../const/props'
 import Layout from '../Layout'
 import Box from './Box'
 import openBreakpoint from '../utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '../utils/breakpoints/closeBreakpoint'
 
-const breakpointNames = Layout.getBreakpointNames()
+// const breakpointNames = Layout.getBreakpointNames()
 
-const wrapInQuery = (children, breakpointOptions, containerProps) => (
+export interface OnlyProps extends GenericProps {
+  for?: string
+  from?: string
+  to?: string
+}
+
+const wrapInQuery = (
+  children: React.ReactNode,
+  breakpointOptions: Breakpoint,
+  containerProps: GenericProps,
+) => (
   <MediaQuery {...breakpointOptions}>
     <Box {...containerProps}>{children}</Box>
   </MediaQuery>
 )
 
-const Only = ({
+const Only: React.FunctionComponent<OnlyProps> = ({
   children,
   for: explicitBreakpointName,
   from: fromBreakpointName,
@@ -50,17 +61,6 @@ const Only = ({
   return (
     <p>Sorry, inclusive and notch behaviors are not currently supported.</p>
   )
-}
-
-Only.propTypes = {
-  /**
-   * @todo
-   * Support an Object as the value to provide a
-   * custom breakpoint (not listed in `Layout.breakpoints`).
-   */
-  for: PropTypes.oneOf(breakpointNames),
-  from: PropTypes.oneOf(breakpointNames),
-  to: PropTypes.oneOf(breakpointNames),
 }
 
 export default Only

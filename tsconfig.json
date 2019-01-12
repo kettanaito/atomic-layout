@@ -4,13 +4,13 @@
     "types": ["jest"],
     "target": "esnext",
     "moduleResolution": "node",
-    "allowJs": true,
-    "noEmit": true,
+    "outDir": "lib/types",
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "noImplicitThis": false,
-    "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react"
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

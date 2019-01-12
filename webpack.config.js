@@ -29,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?/i,
+        test: /\.tsx?$/i,
         exclude: /node_modules/,
         loaders: ['babel-loader', 'tslint-loader'],
       },
