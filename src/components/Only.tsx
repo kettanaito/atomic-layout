@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import MediaQuery from 'react-responsive'
 import { Breakpoint } from '../const/defaultOptions'
 import { GenericProps } from '../const/props'
