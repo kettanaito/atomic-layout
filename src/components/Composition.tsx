@@ -8,6 +8,7 @@ import applyStyles from '../utils/styles/applyStyles'
 type ChildrenFunction = (areas: AreasMap) => React.ReactNode
 
 interface CompositionProps extends GenericProps, GridProps {
+  [propName: string]: any
   children: ChildrenFunction | React.ReactNode
   inline?: boolean
 }
