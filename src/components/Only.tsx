@@ -54,13 +54,13 @@ const Only = ({
   const minBreakpoint = Layout.getBreakpoint(minBreakpointName)
   const maxBreakpoint = Layout.getBreakpoint(maxBreakpointName)
 
-  /* Inclusive, __/--\__ */
+  /* Bell, __/--\__ */
   if (minBreakpoint && maxBreakpoint && !except) {
     return wrapWith(
       mergeBreakpoints(
-        { behavior: 'up', ...minBreakpoint },
         { behavior: 'down', ...maxBreakpoint },
-        true,
+        { behavior: 'up', ...minBreakpoint },
+        false,
       ),
     )
   }
