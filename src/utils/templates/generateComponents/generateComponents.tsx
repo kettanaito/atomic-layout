@@ -7,6 +7,8 @@ import capitalize from '../../strings/capitalize'
 import getAreaBreakpoints, {
   AreaBreakpoint,
 } from '../../breakpoints/getAreaBreakpoints'
+import { Breakpoint } from '../../../const/defaultOptions'
+import { GenericProps } from '../../../const/props'
 
 export type AreaComponent = React.FunctionComponent<BoxProps>
 export interface AreasMap {
@@ -18,30 +20,26 @@ export interface AreasMap {
  * This is used for conditional components, where placeholder component is rendered
  * until the condition for the area component is met (i.e. breakpoint).
  */
-const wrapInPlaceholder = (
+export const wrapInPlaceholder = (
   Component: AreaComponent,
-  areaParams: AreaBreakpoint[],
+  areaParams: Breakpoint[],
 ) => {
-  const Placeholder: any = ({ children, ...restProps }) =>
-    areaParams
-      .filter(Boolean)
-      .reduce<Array<React.ReactElement<MediaQuery>>>(
-        (components, breakpointOptions, index) => {
-          const { behavior, ...breakpointProps } = breakpointOptions
-
-          return components.concat(
-            <MediaQuery
-              {...breakpointProps}
-              key={`${Component.displayName}_${index}`}
-            >
-              {(matches) =>
-                matches && <Component {...restProps}>{children}</Component>
-              }
-            </MediaQuery>,
-          )
-        },
-        [],
+  const Placeholder = ({
+    children,
+    ...restProps
+  }: { children: React.ReactNode } & GenericProps) =>
+    areaParams.filter(Boolean).reduce((components, breakpointProps, index) => {
+      return components.concat(
+        <MediaQuery
+          {...breakpointProps}
+          key={`${Component.displayName}_${index}`}
+        >
+          {(matches) =>
+            matches && <Component {...restProps}>{children}</Component>
+          }
+        </MediaQuery>,
       )
+    }, [])
 
   Placeholder.displayName = `Placeholder(${Component.displayName})`
 
