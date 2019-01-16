@@ -1,66 +1,91 @@
 import * as React from 'react'
-import MediaQuery from 'react-responsive'
 import { Breakpoint } from '../const/defaultOptions'
 import { GenericProps } from '../const/props'
 import Layout from '../Layout'
 import Box from './Box'
+import { wrapInPlaceholder } from '../utils/templates/generateComponents'
 import openBreakpoint from '../utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '../utils/breakpoints/closeBreakpoint'
-
-// const breakpointNames = Layout.getBreakpointNames()
+import mergeBreakpoints from '../utils/breakpoints/mergeBreakpoints'
 
 export interface OnlyProps extends GenericProps {
+  /**
+   * Renders children only at the specified breakpoint.
+   */
   for?: string
+  /**
+   * Renders children from the specified breakpoint and up,
+   * unless enclosing `to` prop is set to form a range.
+   */
   from?: string
+  /**
+   * Renders children from the specified breakpoint and down,
+   * unless the openning `from` prop is set to form a range.
+   */
   to?: string
+  /**
+   * Renders children everywhere except the given breakpoint range.
+   */
+  except?: boolean
 }
 
-const wrapInQuery = (
-  children: React.ReactNode,
-  breakpointOptions: Breakpoint,
-  containerProps: GenericProps,
-) => (
-  <MediaQuery {...breakpointOptions}>
-    <Box {...containerProps}>{children}</Box>
-  </MediaQuery>
-)
+const createWrapper = (children: React.ReactNode, props: GenericProps) => (
+  ...areaParams: Breakpoint[]
+) => {
+  const Placeholder = wrapInPlaceholder(Box, areaParams)
+  return <Placeholder {...props}>{children}</Placeholder>
+}
 
-const Only: React.FunctionComponent<OnlyProps> = ({
+const Only = ({
   children,
-  for: explicitBreakpointName,
-  from: fromBreakpointName,
-  to: toBreakpointName,
+  except,
+  for: exactBreakpointName,
+  from: minBreakpointName,
+  to: maxBreakpointName,
   ...restProps
-}) => {
+}: { children: React.ReactNode } & OnlyProps): React.ReactNode => {
+  const wrapWith = createWrapper(children, restProps)
+
   /* Render on explicit breakpoint */
-  if (explicitBreakpointName) {
-    return wrapInQuery(
-      children,
-      Layout.getBreakpoint(explicitBreakpointName),
-      restProps,
+  if (exactBreakpointName) {
+    return wrapWith(Layout.getBreakpoint(exactBreakpointName))
+  }
+
+  const minBreakpoint = Layout.getBreakpoint(minBreakpointName)
+  const maxBreakpoint = Layout.getBreakpoint(maxBreakpointName)
+
+  /* Inclusive, __/--\__ */
+  if (minBreakpoint && maxBreakpoint && !except) {
+    return wrapWith(
+      mergeBreakpoints(
+        { behavior: 'up', ...minBreakpoint },
+        { behavior: 'down', ...maxBreakpoint },
+        true,
+      ),
     )
   }
 
-  const fromBreakpoint = Layout.getBreakpoint(fromBreakpointName)
-  const toBreakpoint = Layout.getBreakpoint(toBreakpointName)
+  /* Notch, --\__/-- */
+  if (minBreakpoint && maxBreakpoint && except) {
+    return wrapWith(
+      closeBreakpoint(minBreakpoint),
+      null,
+      openBreakpoint(maxBreakpoint),
+    )
+  }
 
   /* High-pass, __/-- */
-  if (fromBreakpoint && !toBreakpoint) {
-    return wrapInQuery(children, openBreakpoint(fromBreakpoint), restProps)
+  if (minBreakpoint && !maxBreakpoint) {
+    return wrapWith(openBreakpoint(minBreakpoint))
   }
 
   /* Low-pass, --\__ */
-  if (toBreakpoint && !fromBreakpoint) {
-    return wrapInQuery(children, closeBreakpoint(toBreakpoint), restProps)
+  if (maxBreakpoint && !minBreakpoint) {
+    return wrapWith(closeBreakpoint(maxBreakpoint))
   }
 
-  /**
-   * @todo
-   * Add inclusive and notch behavior.
-   */
-  return (
-    <p>Sorry, inclusive and notch behaviors are not currently supported.</p>
-  )
+  /* Render always when no constrains are provided */
+  return children
 }
 
 export default Only
