@@ -9,6 +9,7 @@ import invariant from '../utils/invariant'
 type ChildrenFunction = (areas: AreasMap) => React.ReactNode
 
 interface CompositionProps extends GenericProps, GridProps {
+  [propName: string]: any
   children: ChildrenFunction | React.ReactNode
   inline?: boolean
 }
@@ -45,5 +46,11 @@ const Composition: React.FunctionComponent<CompositionProps> = ({
     </CompositionWrapper>
   )
 }
+
+const Post = () => (
+  <Composition template="header" tempalteMd="footer">
+    {({ Header }) => <Header>Foo</Header>}
+  </Composition>
+)
 
 export default Composition

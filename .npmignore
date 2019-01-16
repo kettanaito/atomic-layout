@@ -11,6 +11,7 @@ tsconfig.*
 tslint.*
 jest.*
 webpack.*
+yarn-*
 
 # Sources
 __*

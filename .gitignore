@@ -2,6 +2,7 @@
 __*
 internal
 deprecated
+yarn-*
 
 # Modules
 node_modules
