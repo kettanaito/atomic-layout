@@ -47,10 +47,4 @@ const Composition: React.FunctionComponent<CompositionProps> = ({
   )
 }
 
-const Post = () => (
-  <Composition template="header" tempalteMd="footer">
-    {({ Header }) => <Header>Foo</Header>}
-  </Composition>
-)
-
 export default Composition
