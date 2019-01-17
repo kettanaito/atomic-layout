@@ -69,7 +69,6 @@ const Only = ({
   if (minBreakpoint && maxBreakpoint && except) {
     return wrapWith(
       closeBreakpoint(minBreakpoint),
-      null,
       openBreakpoint(maxBreakpoint),
     )
   }
