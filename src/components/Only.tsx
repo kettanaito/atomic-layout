@@ -79,7 +79,7 @@ const Only = ({
   }
 
   /* Low-pass, --\__ */
-  if (maxBreakpoint && !minBreakpoint) {
+  if (!minBreakpoint && maxBreakpoint) {
     return wrapWith(closeBreakpoint(maxBreakpoint))
   }
 
