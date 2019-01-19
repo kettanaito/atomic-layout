@@ -22,13 +22,13 @@ export interface AreasMap {
  */
 export const wrapInPlaceholder = (
   Component: AreaComponent,
-  areaParams: Breakpoint[],
+  breakpoints: Breakpoint[],
 ) => {
   const Placeholder = ({
     children,
     ...restProps
   }: { children: React.ReactNode } & GenericProps) =>
-    areaParams.filter(Boolean).reduce((components, breakpointProps, index) => {
+    breakpoints.filter(Boolean).reduce((components, breakpointProps, index) => {
       return components.concat(
         <MediaQuery
           {...breakpointProps}

@@ -1,38 +1,46 @@
 import * as React from 'react'
-import { Breakpoint } from '../const/defaultOptions'
-import { GenericProps } from '../const/props'
 import Layout from '../Layout'
 import Box from './Box'
+import { Breakpoint } from '../const/defaultOptions'
+import { GenericProps } from '../const/props'
 import { wrapInPlaceholder } from '../utils/templates/generateComponents'
 import openBreakpoint from '../utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '../utils/breakpoints/closeBreakpoint'
 import mergeBreakpoints from '../utils/breakpoints/mergeBreakpoints'
 
+export type BreakpointRef = string | Breakpoint
+
 export interface OnlyProps extends GenericProps {
   /**
    * Renders children only at the specified breakpoint.
    */
-  for?: string
+  for?: BreakpointRef
   /**
    * Renders children from the specified breakpoint and up,
    * unless enclosing `to` prop is set to form a range.
    */
-  from?: string
+  from?: BreakpointRef
   /**
    * Renders children from the specified breakpoint and down,
    * unless the openning `from` prop is set to form a range.
    */
-  to?: string
+  to?: BreakpointRef
   /**
    * Renders children everywhere except the given breakpoint range.
    */
   except?: boolean
 }
 
+const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
+  return typeof breakpointRef === 'string'
+    ? Layout.getBreakpoint(breakpointRef)
+    : breakpointRef
+}
+
 const createWrapper = (children: React.ReactNode, props: GenericProps) => (
-  ...areaParams: Breakpoint[]
+  ...breakpoints: Breakpoint[]
 ) => {
-  const Placeholder = wrapInPlaceholder(Box, areaParams)
+  const Placeholder = wrapInPlaceholder(Box, breakpoints)
   return <Placeholder {...props}>{children}</Placeholder>
 }
 
@@ -48,11 +56,11 @@ const Only = ({
 
   /* Render on explicit breakpoint */
   if (exactBreakpointName) {
-    return wrapWith(Layout.getBreakpoint(exactBreakpointName))
+    return wrapWith(resolveBreakpoint(exactBreakpointName))
   }
 
-  const minBreakpoint = Layout.getBreakpoint(minBreakpointName)
-  const maxBreakpoint = Layout.getBreakpoint(maxBreakpointName)
+  const minBreakpoint = resolveBreakpoint(minBreakpointName)
+  const maxBreakpoint = resolveBreakpoint(maxBreakpointName)
 
   /* Bell, __/--\__ */
   if (minBreakpoint && maxBreakpoint && !except) {
