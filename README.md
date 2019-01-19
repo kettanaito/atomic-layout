@@ -21,7 +21,7 @@
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. It helps to create declarative, immutable, and maintainable layouts based on CSS Grid.
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. It helps to create declarative, immutable, and maintainable layouts using CSS Grid.
 
 <br>
 
@@ -39,11 +39,13 @@ Atomic layout solves this problem by exposing a dedicated layer responsible for 
 
 ## Install
 
+Install the package using any package manager (npm, yarn, etc.):
+
 ```bash
-npm install atomic-layout --save
+yarn add atomic-layout
 ```
 
-> Requires [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as peer dependencies.
+> Requires [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as peer dependencies. Make sure those are installed.
 
 ## Documentation
 
@@ -74,4 +76,6 @@ Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and
 
 ## Contributing
 
-Please see the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) beforehand. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are, usually, a great place to get your first contribution to the project. Thank you.
+Thank you for those deciding to contribute! Your involvement makes a significant impact on the future of the library.
+
+After reading the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), take a look at the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue), those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome.
