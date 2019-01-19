@@ -76,6 +76,6 @@ Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and
 
 ## Contributing
 
-Thank you to those deciding to contribute! Your involvement makes a significant impact on he library and its future.
+Thank you to those deciding to contribute! Your involvement makes a significant impact on the library and its future.
 
 After reading the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), take a look at the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue), those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome.
