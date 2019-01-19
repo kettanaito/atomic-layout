@@ -1,11 +1,7 @@
-const shouldRender = (selector) => () => cy.get(selector).should('be.visible')
-const shouldNotRender = (selector) => () =>
-  cy.get(selector).should('not.be.visible')
-
-describe('Only', () => {
-  before(() => {
-    cy.visit('/only')
-  })
+export const testCases = () => {
+  const shouldRender = (selector) => () => cy.get(selector).should('be.visible')
+  const shouldNotRender = (selector) => () =>
+    cy.get(selector).should('not.be.visible')
 
   it('Renders children at the explicit breakpoint (for)', () => {
     cy.setBreakpoint('xs').then(shouldNotRender('#first'))
@@ -46,4 +42,9 @@ describe('Only', () => {
     cy.setBreakpoint('lg').then(shouldRender('#fifth'))
     cy.setBreakpoint('xl').then(shouldRender('#fifth'))
   })
+}
+
+describe('Only', () => {
+  require('./default.spec')
+  require('./custom.spec')
 })
