@@ -30,10 +30,11 @@ const Composition: React.FunctionComponent<CompositionProps> = ({
 
   /**
    * Warn on attempt to use template props without children-as-function.
+   * Render in that case still occurs, but it doesn't produce the expected result.
    */
   invariant(
     !(hasAreaComponents && !hasChildrenFunction),
-    'Failed to render `Composition` with template areas ["%s"]: expected children to be a function, but got: %s. Please remove template props, or add a children rendering function.',
+    'Failed to render `Composition` with template areas ["%s"]: expected children to be a function, but got: %s. Please provide render function as children, or remove assigned template props.',
     Object.keys(areaComponents).join('", "'),
     childrenType,
   )
