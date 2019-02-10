@@ -11,7 +11,7 @@ type ParseTemplates = (props: Props) => AreasMap
 /**
  * Memoize areas generation based on the sanitized "templateProp:areas" pairs.
  * Alphabetical sorting of incoming template areas allows reproducible cache keys.
- * @todo `paris` is an empty array sometimes. Should we handle it somehow?
+ * @todo `pairs` is an empty array sometimes. Should we handle it somehow?
  */
 const memoized = memoizeWith((templateProps: TemplateProps) => {
   const pairs = Object.entries(templateProps).reduce<string[]>(
@@ -21,7 +21,7 @@ const memoized = memoizeWith((templateProps: TemplateProps) => {
     [],
   )
 
-  return hashString(pairs.join())
+  return hashString(pairs.join()).toString()
 })
 
 const parseTemplates: ParseTemplates = compose(
