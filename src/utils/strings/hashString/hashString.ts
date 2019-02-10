@@ -1,4 +1,4 @@
-export default function hashString(str: string): string {
+export default function hashString(str: string): number {
   const { length } = str
   let hash = 0
   let i = 0
@@ -9,5 +9,5 @@ export default function hashString(str: string): string {
     }
   }
 
-  return hash.toString()
+  return hash
 }
