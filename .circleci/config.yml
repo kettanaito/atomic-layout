@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Checking bundle size
-          command: node_modules/.bin/bundlesize
+          command: yarn run bundlesize
 
       - run:
           name: Unit tests
