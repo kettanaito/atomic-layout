@@ -87,7 +87,7 @@ export default function generateComponents({
    * Return plain components map for browsers that don't support Proxy.
    * Demands safety check before rendering conditional areas.
    */
-  return !('Proxy' in window)
+  return typeof Proxy === 'undefined'
     ? componentsMap
     : new Proxy<AreasMap>(componentsMap, {
         get(components, areaName: string) {
