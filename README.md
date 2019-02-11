@@ -11,6 +11,9 @@
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Package size (minzip)" />
   <img src="https://img.shields.io/david/kettanaito/atomic-layout.svg" alt="Dependencies status" />
   <img src="https://img.shields.io/david/dev/kettanaito/atomic-layout.svg" alt="Development dependencies status" />
+  <a href="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat">
+    <img src="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat" alt="Discord channel">
+  </a>
 </p>
 
 <br>

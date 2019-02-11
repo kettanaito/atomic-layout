@@ -83,36 +83,42 @@ export default function generateComponents({
     }
   }, {})
 
-  return new Proxy<AreasMap>(componentsMap, {
-    get(components, areaName: string) {
-      if (areaName in components || typeof areaName === 'symbol') {
-        return components[areaName]
-      }
+  /**
+   * Return plain components map for browsers that don't support Proxy.
+   * Demands safety check before rendering conditional areas.
+   */
+  return typeof Proxy === 'undefined'
+    ? componentsMap
+    : new Proxy<AreasMap>(componentsMap, {
+        get(components, areaName: string) {
+          if (areaName in components || typeof areaName === 'symbol') {
+            return components[areaName]
+          }
 
-      // @ts-ignore-line
-      if (!__PROD__) {
-        console.warn(
-          'Prevented the render of area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
-          areaName,
-          areas
-            /* Filter out "." placeholder from the list of areas */
-            .filter((singleAreaName) => /\w+/.test(singleAreaName))
-            /* Sort areas alphabetically for easier eye navigation */
-            .sort()
-            /* Capitalize areas to correspond to area components */
-            .map(capitalize)
-            .join('", "'),
-          areaName.toLowerCase(),
-        )
-      }
+          // @ts-ignore-line
+          if (!__PROD__) {
+            console.warn(
+              'Prevented the render of area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
+              areaName,
+              areas
+                /* Filter out "." placeholder from the list of areas */
+                .filter((singleAreaName) => /\w+/.test(singleAreaName))
+                /* Sort areas alphabetically for easier eye navigation */
+                .sort()
+                /* Capitalize areas to correspond to area components */
+                .map(capitalize)
+                .join('", "'),
+              areaName.toLowerCase(),
+            )
+          }
 
-      /**
-       * Replace non-existing area component reference with
-       * the dummy functional component that renders nothing.
-       * This prevents from the exception when rendering "undefined"
-       * and allows conditional template areas.
-       */
-      return () => null
-    },
-  })
+          /**
+           * Replace non-existing area component with
+           * the placeholder component that renders nothing.
+           * This prevents from the exception when rendering "undefined"
+           * and allows conditional template areas.
+           */
+          return () => null
+        },
+      })
 }

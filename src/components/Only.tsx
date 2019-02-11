@@ -51,7 +51,7 @@ const Only = ({
   from: minBreakpointName,
   to: maxBreakpointName,
   ...restProps
-}: { children: React.ReactNode } & OnlyProps): React.ReactNode => {
+}: { children: any } & OnlyProps): JSX.Element => {
   const wrapWith = createWrapper(children, restProps)
 
   /* Render on explicit breakpoint */

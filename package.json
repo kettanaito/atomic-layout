@@ -1,6 +1,6 @@
 {
   "name": "atomic-layout",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
   "license": "MIT",
   "main": "lib/index.js",
@@ -17,9 +17,10 @@
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
     "test": "yarn run test:unit && yarn run test:e2e",
+    "bundlesize": "node_modules/.bin/bundlesize",
     "precommit": "lint-staged",
-    "prepush": "yarn run test:unit",
-    "preversion": "yarn run build && yarn test"
+    "prepush": "yarn run bundlesize && yarn run test:unit",
+    "preversion": "yarn run build && yarn run bundlesize && yarn test"
   },
   "lint-staged": {
     ".{js,jsx}": [
