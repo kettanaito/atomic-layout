@@ -1,9 +1,9 @@
 /**
  * @jest-environment node
  */
-import { Box, Only, Composition } from '../lib'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import { Box, Only, Composition } from '../src'
 
 test('Renders server-side without crashing', () => {
   const renderOnServer = () =>
