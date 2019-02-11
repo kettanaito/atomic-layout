@@ -51,8 +51,8 @@
     "react"
   ],
   "peerDependencies": {
-    "react": "^15.x.x || ^16.x.x",
-    "styled-components": "^3.x.x || ^4.x.x"
+    "react": "^>= 15",
+    "styled-components": ">= 3"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
