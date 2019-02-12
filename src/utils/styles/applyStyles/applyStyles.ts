@@ -2,6 +2,7 @@ import { BreakpointBehavior } from '../../../const/defaultOptions'
 import propAliases from '../../../const/propAliases'
 import Layout from '../../../Layout'
 import parsePropName, { Props } from '../../strings/parsePropName'
+import isset from '../../functions/isset'
 import createMediaQuery from '../createMediaQuery'
 
 const createStyleString = (
@@ -37,7 +38,7 @@ export default function applyStyles(pristineProps: Props): string {
       /* Filter out props that are not included in prop aliases */
       .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
       /* Filter out props with "undefined" or "null" as value */
-      .filter(({ originPropName }) => !!pristineProps[originPropName])
+      .filter(({ originPropName }) => isset(pristineProps[originPropName]))
       /* Map each prop to a CSS string */
       .map(({ purePropName, originPropName, breakpoint, behavior }) => {
         const { props, transformValue } = propAliases[purePropName]
