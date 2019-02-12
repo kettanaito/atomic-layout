@@ -1,7 +1,8 @@
 import Layout from '../../Layout'
+import isset from '../functions/isset'
 
 export default function transformNumeric(value?: number | string): string {
-  if (!value) {
+  if (!isset(value)) {
     return ''
   }
 

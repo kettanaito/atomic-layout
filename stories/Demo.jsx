@@ -29,7 +29,8 @@ const templateTv = `
 const Demo = () => (
   <div>
     <Composition
-      gutter={16}
+      gutter={10}
+      margin={10}
       template={templateMobile}
       templateSm={templateTablet}
       templateMd={templateDesktop}
