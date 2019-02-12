@@ -12,6 +12,7 @@ test('Returns "undefined" when no value is given', () => {
   expect(transformNumeric()).toEqual('')
 })
 
-test('Suffixes numeric values with "px" string, if value is zero the result should be 0px', () => {
+test('Outputs CSS for 0 as a value', () => {
+  expect(transformNumeric('0')).toEqual('0')
   expect(transformNumeric(0)).toEqual('0px')
 })
