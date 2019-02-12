@@ -29,7 +29,8 @@ const templateTv = `
 const Demo = () => (
   <div>
     <Composition
-      gutter={16}
+      gutter={0} // this is not getting generated
+      margin={10} // this is getting generated 
       template={templateMobile}
       templateSm={templateTablet}
       templateMd={templateDesktop}

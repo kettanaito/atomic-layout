@@ -1,6 +1,6 @@
 import transformNumeric from './transformNumeric'
 
-test('Suffixes numeric values with "rem" string', () => {
+test('Suffixes numeric values with "px" string', () => {
   expect(transformNumeric(5)).toEqual('5px')
 })
 
@@ -10,4 +10,8 @@ test('Returns string values as is', () => {
 
 test('Returns "undefined" when no value is given', () => {
   expect(transformNumeric()).toEqual('')
+})
+
+test('Suffixes numeric values with "px" string, if value is zero the result should be 0px', () => {
+  expect(transformNumeric(0)).toEqual('0px')
 })

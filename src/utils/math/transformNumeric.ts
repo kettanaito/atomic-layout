@@ -1,7 +1,7 @@
 import Layout from '../../Layout'
 
 export default function transformNumeric(value?: number | string): string {
-  if (!value) {
+  if (typeof value === 'undefined' || value === null) {
     return ''
   }
 
