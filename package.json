@@ -1,6 +1,6 @@
 {
   "name": "atomic-layout",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
   "license": "MIT",
   "main": "lib/index.js",
