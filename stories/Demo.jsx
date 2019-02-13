@@ -30,7 +30,7 @@ const Demo = () => (
   <div>
     <Composition
       gutter={10}
-      margin={10}
+      margin={0}
       template={templateMobile}
       templateSm={templateTablet}
       templateMd={templateDesktop}
