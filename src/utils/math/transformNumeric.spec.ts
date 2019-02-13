@@ -4,7 +4,7 @@ test('Suffixes numeric values with "px" string', () => {
   expect(transformNumeric(5)).toEqual('5px')
 })
 
-test('Returns string values as it is', () => {
+test('Returns string values as is', () => {
   expect(transformNumeric('2vh')).toEqual('2vh')
 })
 
