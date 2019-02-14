@@ -9,6 +9,7 @@ const assertValues = {
   colStart: '2',
   colEnd: '3',
   gutter: '20px 25px',
+  margin: 0,
   row: '1 / auto',
   rowStart: '2',
   rowEnd: '3',
