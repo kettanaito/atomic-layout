@@ -1,5 +1,6 @@
 import propAliases from '../../../src/const/propAliases'
 
+const defaultValue = 10
 const assertValues = {
   // prettier-ignore
   template: "first",
@@ -9,7 +10,7 @@ const assertValues = {
   colStart: '2',
   colEnd: '3',
   gutter: '20px 25px',
-  margin: 0,
+  margin: ['0px', 10],
   row: '1 / auto',
   rowStart: '2',
   rowEnd: '3',
@@ -33,19 +34,21 @@ const exactAssertion = {
 }
 
 describe('Prop aliases', () => {
-  Object.keys(propAliases).forEach((aliasPropName) => {
-    it(aliasPropName, () => {
-      const propValue = assertValues[aliasPropName] || 10
+  Object.keys(propAliases).forEach((propAliasName) => {
+    it(propAliasName, () => {
+      const propValues = assertValues[propAliasName] || defaultValue
 
-      cy.visit(
-        `/other/prop-aliases?propAlias=${aliasPropName}&propValue=${propValue}`,
-      )
+      Array.prototype.concat(propValues).forEach((propValue) => {
+        cy.visit(
+          `/other/prop-aliases?propAlias=${propAliasName}&propValue=${propValue}`,
+        )
 
-      cy.get('#composition').assertPropAlias(
-        aliasPropName,
-        propValue,
-        exactAssertion[aliasPropName],
-      )
+        cy.get('#composition').assertPropAlias(
+          propAliasName,
+          propValue,
+          exactAssertion[propAliasName],
+        )
+      })
     })
   })
 })
