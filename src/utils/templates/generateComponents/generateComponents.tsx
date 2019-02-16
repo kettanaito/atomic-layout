@@ -1,7 +1,7 @@
 import { AreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
-import MediaQuery from 'react-responsive'
+import MediaQuery from '../../../components/MediaQuery'
 import Box, { BoxProps } from '../../../components/Box'
 import capitalize from '../../strings/capitalize'
 import getAreaBreakpoints, {
@@ -29,9 +29,11 @@ export const wrapInPlaceholder = (
     ...restProps
   }: { children: React.ReactNode } & GenericProps) =>
     breakpoints.filter(Boolean).reduce((components, breakpointProps, index) => {
+      const { behavior, ...queryProps } = breakpointProps
+
       return components.concat(
         <MediaQuery
-          {...breakpointProps}
+          {...queryProps}
           key={`${Component.displayName}_${index}`}
         >
           {(matches) =>

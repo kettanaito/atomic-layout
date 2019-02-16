@@ -44,9 +44,6 @@ module.exports = {
     minimize: false,
   },
   resolve: {
-    alias: {
-      'react-responsive': 'react-responsive/dist/react-responsive.min',
-    },
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
 }

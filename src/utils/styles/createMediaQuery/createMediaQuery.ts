@@ -1,4 +1,5 @@
 import { Breakpoint, BreakpointBehavior } from '../../../const/defaultOptions'
+import isset from '../../functions/isset'
 import transformNumeric from '../../math/transformNumeric'
 import toDashedString from '../../strings/toDashedString'
 
@@ -16,12 +17,17 @@ const shouldAppendProp = (propName: string, behavior: BreakpointBehavior) => {
   )
 }
 
+export function normalizeQuery(queryProps: Breakpoint): any {
+  return Object.entries<string>(queryProps)
+    .filter(([_, propValue]) => isset(propValue))
+    .map(([propName, propValue]) => [toDashedString(propName), propValue])
+}
+
 export default function createMediaQuery(
   breakpoint: Breakpoint,
   behavior: BreakpointBehavior,
 ): string {
-  return Object.entries(breakpoint)
-    .map(([propName, propValue]) => [toDashedString(propName), propValue])
+  return normalizeQuery(breakpoint)
     .filter(([dashedPropName]) =>
       shouldAppendProp(dashedPropName as string, behavior),
     )
