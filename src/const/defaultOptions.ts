@@ -38,9 +38,7 @@ export interface LayoutOptions {
   defaultBehavior: BreakpointBehavior
 }
 
-export interface Breakpoint {
-  /* Index signature for dynamic breakpoint composition */
-  [propName: string]: any
+export interface MediaQuery {
   minHeight?: Numeric
   maxHeight?: Numeric
   minWidth?: Numeric
@@ -53,6 +51,11 @@ export interface Breakpoint {
   scan?: 'interlace' | 'progressive'
   orientation?: 'portrait' | 'landscape'
   displayMode?: 'fullscreen' | 'standalone' | 'minimal-ui' | 'browser'
+}
+
+export interface Breakpoint extends MediaQuery {
+  /* Index signature for dynamic breakpoint composition */
+  [propName: string]: any
 }
 
 const defaultOptions: LayoutOptions = {
