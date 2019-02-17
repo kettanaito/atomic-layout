@@ -8,6 +8,11 @@
     "ordered-imports": [false, "never"],
     "object-literal-sort-keys": [false, "never"],
     "only-arrow-functions": [false],
-    "interface-name": [true, "never-prefix"]
+    "interface-name": [true, "never-prefix"],
+    "no-submodule-imports": [true, "@src", "@components", "@const", "@utils"],
+    "no-implicit-dependencies": [
+      true,
+      ["@src", "@components", "@const", "@utils"]
+    ]
   }
 }

@@ -1,8 +1,8 @@
-import { BreakpointBehavior } from '../../../const/defaultOptions'
-import propAliases from '../../../const/propAliases'
-import Layout from '../../../Layout'
-import parsePropName, { Props } from '../../strings/parsePropName'
-import isset from '../../functions/isset'
+import Layout from '@src/Layout'
+import { BreakpointBehavior } from '@const/defaultOptions'
+import propAliases from '@const/propAliases'
+import parsePropName, { Props } from '@utils/strings/parsePropName'
+import isset from '@utils/functions/isset'
 import createMediaQuery from '../createMediaQuery'
 
 const createStyleString = (

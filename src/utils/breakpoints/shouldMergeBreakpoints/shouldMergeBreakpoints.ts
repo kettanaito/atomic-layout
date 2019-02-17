@@ -1,4 +1,4 @@
-import { Breakpoint } from '../../../const/defaultOptions'
+import { Breakpoint } from '@const/defaultOptions'
 
 /**
  * Replaces the prefixes in a parameter name.

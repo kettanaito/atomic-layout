@@ -1,5 +1,5 @@
-import Layout from '../../Layout'
-import isset from '../functions/isset'
+import Layout from '@src/Layout'
+import isset from '@utils/functions/isset'
 
 export default function transformNumeric(value?: number | string): string {
   if (!isset(value)) {

@@ -1,8 +1,8 @@
-import compose from '../../functions/compose'
-import memoizeWith from '../../functions/memoizeWith'
+import compose from '@utils/functions/compose'
+import memoizeWith from '@utils/functions/memoizeWith'
 import getAreasList from '../getAreasList'
-import hashString from '../../strings/hashString'
-import { Props } from '../../strings/parsePropName'
+import hashString from '@utils/strings/hashString'
+import { Props } from '@utils/strings/parsePropName'
 import generateComponents, { AreasMap } from '../generateComponents'
 import filterTemplateProps, { TemplateProps } from './filterTemplateProps'
 

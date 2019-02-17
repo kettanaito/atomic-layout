@@ -1,7 +1,7 @@
 import { AreaBreakpoint } from '../getAreaBreakpoints'
-import defaultOptions from '../../../const/defaultOptions'
-import transformNumeric from '../../math/transformNumeric'
-import getPrefix from '../../strings/getPrefix'
+import defaultOptions from '@const/defaultOptions'
+import transformNumeric from '@utils/math/transformNumeric'
+import getPrefix from '@utils/strings/getPrefix'
 
 export default function mergeBreakpoints(
   breakpointA: AreaBreakpoint,

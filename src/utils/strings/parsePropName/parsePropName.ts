@@ -1,5 +1,5 @@
-import { BreakpointBehavior } from '../../../const/defaultOptions'
-import Layout from '../../../Layout'
+import { BreakpointBehavior } from '@const/defaultOptions'
+import Layout from '@src/Layout'
 import toLowerCaseFirst from '../toLowerCaseFirst'
 
 export interface Props {

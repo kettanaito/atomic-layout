@@ -1,7 +1,7 @@
-import { Numeric } from '../const/defaultOptions'
-import compose from '../utils/functions/compose'
-import transformNumeric from '../utils/math/transformNumeric'
-import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
+import { Numeric } from '@const/defaultOptions'
+import compose from '@utils/functions/compose'
+import transformNumeric from '@utils/math/transformNumeric'
+import sanitizeTemplateArea from '@utils/strings/sanitizeTemplateArea'
 
 type ValueTransformer<I, R> = (val: I) => R
 

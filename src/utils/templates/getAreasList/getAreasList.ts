@@ -1,6 +1,6 @@
-import { Breakpoint, BreakpointBehavior } from '../../../const/defaultOptions'
-import Layout from '../../../Layout'
-import parsePropName from '../../strings/parsePropName'
+import { Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
+import Layout from '@src/Layout'
+import parsePropName from '@utils/strings/parsePropName'
 
 export interface Template {
   breakpoint: Breakpoint

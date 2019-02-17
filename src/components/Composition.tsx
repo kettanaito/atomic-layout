@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { GenericProps, GridProps } from '../const/props'
-import { AreasMap } from '../utils/templates/generateComponents'
-import parseTemplates from '../utils/templates/parseTemplates'
-import applyStyles from '../utils/styles/applyStyles'
-import invariant from '../utils/invariant'
+import { GenericProps, GridProps } from '@const/props'
+import { AreasMap } from '@utils/templates/generateComponents'
+import parseTemplates from '@utils/templates/parseTemplates'
+import applyStyles from '@utils/styles/applyStyles'
+import invariant from '@utils/invariant'
 
 type ChildrenFunction = (areas: AreasMap) => React.ReactNode
 
