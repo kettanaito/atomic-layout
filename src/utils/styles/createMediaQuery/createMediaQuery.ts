@@ -1,7 +1,7 @@
-import { Breakpoint, BreakpointBehavior } from '../../../const/defaultOptions'
-import isset from '../../functions/isset'
-import transformNumeric from '../../math/transformNumeric'
-import toDashedString from '../../strings/toDashedString'
+import { Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
+import isset from '@utils/functions/isset'
+import transformNumeric from '@utils/math/transformNumeric'
+import toDashedString from '@utils/strings/toDashedString'
 
 const shouldAppendProp = (propName: string, behavior: BreakpointBehavior) => {
   const [prefix, splitPropName] = propName.split('-')

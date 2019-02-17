@@ -1,14 +1,14 @@
 import { AreasList } from '../getAreasList'
 import * as React from 'react'
 import styled from 'styled-components'
-import MediaQuery from '../../../components/MediaQuery'
-import Box, { BoxProps } from '../../../components/Box'
-import capitalize from '../../strings/capitalize'
+import { Breakpoint } from '@const/defaultOptions'
+import { GenericProps } from '@const/props'
+import MediaQuery from '@components/MediaQuery'
+import Box, { BoxProps } from '@components/Box'
+import capitalize from '@utils/strings/capitalize'
 import getAreaBreakpoints, {
   AreaBreakpoint,
-} from '../../breakpoints/getAreaBreakpoints'
-import { Breakpoint } from '../../../const/defaultOptions'
-import { GenericProps } from '../../../const/props'
+} from '@utils/breakpoints/getAreaBreakpoints'
 
 export type AreaComponent = React.FunctionComponent<BoxProps>
 export interface AreasMap {
@@ -32,10 +32,7 @@ export const wrapInPlaceholder = (
       const { behavior, ...queryProps } = breakpointProps
 
       return components.concat(
-        <MediaQuery
-          {...queryProps}
-          key={`${Component.displayName}_${index}`}
-        >
+        <MediaQuery {...queryProps} key={`${Component.displayName}_${index}`}>
           {(matches) =>
             matches && <Component {...restProps}>{children}</Component>
           }

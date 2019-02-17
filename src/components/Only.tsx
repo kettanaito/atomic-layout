@@ -1,12 +1,12 @@
 import * as React from 'react'
 import Layout from '../Layout'
 import Box from './Box'
-import { Breakpoint } from '../const/defaultOptions'
-import { GenericProps } from '../const/props'
-import { wrapInPlaceholder } from '../utils/templates/generateComponents'
-import openBreakpoint from '../utils/breakpoints/openBreakpoint'
-import closeBreakpoint from '../utils/breakpoints/closeBreakpoint'
-import mergeBreakpoints from '../utils/breakpoints/mergeBreakpoints'
+import { Breakpoint } from '@const/defaultOptions'
+import { GenericProps } from '@const/props'
+import { wrapInPlaceholder } from '@utils/templates/generateComponents'
+import openBreakpoint from '@utils/breakpoints/openBreakpoint'
+import closeBreakpoint from '@utils/breakpoints/closeBreakpoint'
+import mergeBreakpoints from '@utils/breakpoints/mergeBreakpoints'
 
 export type BreakpointRef = string | Breakpoint
 

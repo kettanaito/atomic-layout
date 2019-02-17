@@ -1,5 +1,5 @@
-import { Breakpoint } from '../../../const/defaultOptions'
-import getPrefix from '../../strings/getPrefix'
+import { Breakpoint } from '@const/defaultOptions'
+import getPrefix from '@utils/strings/getPrefix'
 
 /**
  * Accepts a breakpoint and returns a new breakpoint where

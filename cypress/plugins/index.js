@@ -1,4 +1,5 @@
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
+const webpackConfig = require('../../webpack.config')
 const babelConfig = require('../../babel.config')
 
 const webpackOptions = {
@@ -17,6 +18,7 @@ const webpackOptions = {
     ],
   },
   resolve: {
+    plugins: webpackConfig.resolve.plugins,
     extensions: ['.ts', '.tsx', '.spec.jsx', '.spec.js', '.jsx', '.js'],
   },
 }

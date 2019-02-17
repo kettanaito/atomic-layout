@@ -1,5 +1,5 @@
-import parsePropName, { Props } from '../../strings/parsePropName'
-import sanitizeTemplateString from '../../strings/sanitizeTemplateString'
+import parsePropName, { Props } from '@utils/strings/parsePropName'
+import sanitizeTemplateString from '@utils/strings/sanitizeTemplateString'
 
 export interface TemplateProps {
   [templateProp: string]: string[]

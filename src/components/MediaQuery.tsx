@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { MediaQuery as MediaQueryProps } from '../const/defaultOptions'
-import { normalizeQuery } from '../utils/styles/createMediaQuery'
-import transformNumeric from '../utils/math/transformNumeric'
+import { MediaQuery as MediaQueryProps } from '@const/defaultOptions'
+import { normalizeQuery } from '@utils/styles/createMediaQuery'
+import transformNumeric from '@utils/math/transformNumeric'
 
 interface Props extends MediaQueryProps {
   children: (matches: boolean) => JSX.Element

@@ -1,4 +1,4 @@
-import compose from '../../functions/compose'
+import compose from '@utils/functions/compose'
 
 type SanitizeTemplateString = (str: string) => string[]
 
