@@ -246,13 +246,13 @@ export interface FlexProps extends GenericProps {
    * @css `flex-shrink`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
    */
-  flexShrink?: Numeric
+  flexShrink?: string
   /**
    * Species the "flex grow factor",
    * @css `flex-grow`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
    */
-  flexGrow?: Numeric
+  flexGrow?: string
   /**
    * Species if the flex items are forced
    * in a single line or multiple lines
