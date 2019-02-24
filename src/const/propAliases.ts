@@ -95,6 +95,20 @@ const propAliases: PropAliases = {
     props: ['place-content'],
   },
 
+  /* CSS Flexbox */
+  flexDirection: {
+    props: ['flex-direction'],
+  },
+  flexShrink: {
+    props: ['flex-shrink'],
+  },
+  flexGrow: {
+    props: ['flex-grow'],
+  },
+  flexWrap: {
+    props: ['flex-wrap'],
+  },
+
   /* Dimensions */
   height: {
     props: ['height'],
