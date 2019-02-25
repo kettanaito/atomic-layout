@@ -22,6 +22,31 @@ type FlexboxOverflowAlignment = 'safe center' | 'unsafe center'
 
 export interface GenericProps {
   /**
+   * Specifies direction of flex-items
+   * @css `flex-direction`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+   */
+  flexDirection?: string
+  /**
+   * Specifies the "flex shrink factor",
+   * @css `flex-shrink`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
+   */
+  flexShrink?: string
+  /**
+   * Species the "flex grow factor",
+   * @css `flex-grow`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
+   */
+  flexGrow?: string
+  /**
+   * Species if the flex items are forced
+   * in a single line or multiple lines
+   * @css `flex-wrap`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+   */
+  flexWrap?: string
+  /**
    * Aligns flex items of the current flex.
    * @css `align-self`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
@@ -234,30 +259,3 @@ export interface GridProps extends GenericProps {
   gutterRow?: Numeric
 }
 
-export interface FlexProps extends GenericProps {
-  /**
-   * Specifies direction of flex-items
-   * @css `flex-direction`
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
-   */
-  flexDirection?: string
-  /**
-   * Specifies the "flex shrink factor",
-   * @css `flex-shrink`
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
-   */
-  flexShrink?: string
-  /**
-   * Species the "flex grow factor",
-   * @css `flex-grow`
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
-   */
-  flexGrow?: string
-  /**
-   * Species if the flex items are forced
-   * in a single line or multiple lines
-   * @css `flex-wrap`
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
-   */
-  flexWrap?: string
-}
