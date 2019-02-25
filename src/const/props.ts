@@ -28,20 +28,20 @@ export interface GenericProps {
    */
   flexDirection?: string
   /**
-   * Specifies the "flex shrink factor",
+   * Specifies the flex shrink factor.
    * @css `flex-shrink`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
    */
   flexShrink?: string
   /**
-   * Species the "flex grow factor",
+   * Specifies the flex grow factor.
    * @css `flex-grow`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
    */
   flexGrow?: string
   /**
-   * Species if the flex items are forced
-   * in a single line or multiple lines
+   * Specifies if the flex items are forced
+   * in a single line or multiple lines.
    * @css `flex-wrap`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
    */
