@@ -19,7 +19,7 @@ thumbnail description description
 
 const Video = ({ isBox, title, channelName, views, description }) => (
   <Composition
-    template={isBox ? templateBox : templateRow}
+    areas={isBox ? templateBox : templateRow}
     templateCols={!isBox && '200px auto 1fr'}
     templateRows={!isBox && 'auto auto 1fr'}
     gutter={10}

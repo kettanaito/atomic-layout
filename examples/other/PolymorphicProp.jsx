@@ -4,7 +4,7 @@ import { Composition } from 'atomic-layout'
 export default class PolymorphicProp extends React.Component {
   render() {
     return (
-      <Composition template="header main element footer" gutter={10}>
+      <Composition areas="header main element footer" gutter={10}>
         {({ Header, Main, Element, Footer }) => (
           <React.Fragment>
             <Header as="header" id="header">

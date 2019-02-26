@@ -31,7 +31,7 @@ export default class CustomBreakpoints extends React.Component {
     return (
       <Composition
         id="composition"
-        template={template}
+        areas={template}
         gutter={1}
         padding={1}
         paddingTablet={2}

@@ -10,7 +10,7 @@ const template = `'first second'`
 const BreakpointSpecific = () => (
   <Composition
     id="composition"
-    template={template}
+    areas={template}
     gutter={10}
     gutterSm={20}
     gutterMd={30}

@@ -13,7 +13,7 @@ const filterTemplateProps = (props: Props): TemplateProps => {
   return Object.keys(props)
     .filter((propName) => {
       const { purePropName } = parsePropName(propName)
-      return purePropName === 'template'
+      return ['areas', 'template'].includes(purePropName)
     })
     .reduce<TemplateProps>((acc, propName) => {
       return {

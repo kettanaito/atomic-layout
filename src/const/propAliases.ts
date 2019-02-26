@@ -30,6 +30,10 @@ const transformTemplateString: TransformTemplateString = compose(
  */
 const propAliases: PropAliases = {
   /* CSS Grid */
+  areas: {
+    props: ['grid-template-areas'],
+    transformValue: transformTemplateString,
+  },
   template: {
     props: ['grid-template-areas'],
     transformValue: transformTemplateString,

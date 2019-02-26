@@ -3,6 +3,8 @@ import propAliases from '../../../src/const/propAliases'
 const defaultValue = 10
 const assertValues = {
   // prettier-ignore
+  areas: 'first',
+  // prettier-ignore
   template: "first",
   templateCols: '500px',
   templateRows: '500px',
@@ -30,11 +32,13 @@ const assertValues = {
 }
 
 const normalizeQuotes = (str) => str.replace(/"+/g, "'")
+const assertAreas = (cssValue, expectedValue) => {
+  return normalizeQuotes(cssValue) === normalizeQuotes(expectedValue)
+}
 
 const exactAssertion = {
-  template: (cssValue, expectedValue) => {
-    return normalizeQuotes(cssValue) === normalizeQuotes(expectedValue)
-  },
+  areas: assertAreas,
+  template: assertAreas,
 }
 
 describe('Prop aliases', () => {

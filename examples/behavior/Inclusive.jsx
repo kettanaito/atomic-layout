@@ -8,9 +8,9 @@ const templateLg = 'first second'
 
 const Inclusive = ({ children }) => (
   <Composition
-    template={template}
-    templateSm={templateSm}
-    templateLg={templateLg}
+    areas={template}
+    areasSm={templateSm}
+    areasLg={templateLg}
     gutter={10}
   >
     {({ First, Second, Third }) => (
