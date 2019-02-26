@@ -28,7 +28,7 @@ class PropAliases extends React.Component {
     }
 
     return (
-      <Composition template="first" {...props} id="composition">
+      <Composition areas="first" {...props} id="composition">
         {({ First }) => <First>{propAlias}</First>}
       </Composition>
     )

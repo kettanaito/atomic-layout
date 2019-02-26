@@ -11,7 +11,7 @@ const InclusiveNotch = () => (
   <React.Fragment>
     <Composition
       id="composition-one"
-      template={template}
+      areas={template}
       padding={10}
       paddingSm={20}
       paddingXl={10}

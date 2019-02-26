@@ -31,10 +31,10 @@ const Demo = () => (
     <Composition
       gutter={10}
       margin={0}
-      template={templateMobile}
-      templateSm={templateTablet}
-      templateMd={templateDesktop}
-      templateLg={templateTv}
+      areas={templateMobile}
+      areasSm={templateTablet}
+      areasMd={templateDesktop}
+      areasLg={templateTv}
     >
       {({ Image, Content, Actions, Footer }) => (
         <React.Fragment>

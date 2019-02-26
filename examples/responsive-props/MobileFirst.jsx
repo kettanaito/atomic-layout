@@ -8,7 +8,7 @@ resetLayout(Layout)
 const template = `'first second'`
 
 const Foo = () => (
-  <Composition id="composition" template={template} gutter={10}>
+  <Composition id="composition" areas={template} gutter={10}>
     {({ First, Second }) => (
       <React.Fragment>
         <First>

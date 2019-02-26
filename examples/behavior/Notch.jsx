@@ -8,9 +8,9 @@ const templateLg = `'first second'`
 
 const Notch = () => (
   <Composition
-    template={template}
-    templateMd={templateMd}
-    templateLg={templateLg}
+    areas={template}
+    areasMd={templateMd}
+    areasLg={templateLg}
     gutter={10}
   >
     {({ First, Second }) => (

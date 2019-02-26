@@ -8,7 +8,7 @@ second
 `
 
 const TemplateIndentation = () => (
-  <Composition template={template} gutter={10}>
+  <Composition areas={template} gutter={10}>
     {({ First, Second }) => (
       <React.Fragment>
         <First id="first">

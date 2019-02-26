@@ -5,7 +5,7 @@ import Square from '../../stories/Square'
 const template = `'first second'`
 
 const MobileFirst = () => (
-  <Composition template={template} gutter={10}>
+  <Composition areas={template} gutter={10}>
     {({ First, Second }) => (
       <React.Fragment>
         <First id="mobile-first-first">
