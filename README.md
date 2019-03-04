@@ -19,17 +19,15 @@
 <br>
 
 <p align="center">
-  <img src="./logo.svg" alt="Atomic layout" width="200" />
+  <img src="./logo.svg" width="200" alt="Atomic layout" />
 </p>
 
 <h1 align="center">Atomic layout</h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between any layout composites to the dedicated layer. That helps to create declarative, immutable, and maintainable layouts using CSS Grid.
-
-<br>
+[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between layout composites to the dedicated layer. That helps to create declarative, immutable, and maintainable layouts using CSS Grid.
 
 <p align="center">
-  <img src="example.png" width="650" />
+  <img src="example.png" width="650" alt="Atomic layout usage example" />
 </p>
 
 > Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
@@ -48,11 +46,11 @@ Install the package using any package manager (npm, yarn, etc.):
 yarn add atomic-layout
 ```
 
-> Requires [React](https://github.com/facebook/react) (15.0+) and [styled-components](https://github.com/styled-components/styled-components) (3.0+) as peer dependencies. Make sure those are installed.
+> Make sure to have [React](https://github.com/facebook/react) (16.0+) and [styled-components](https://github.com/styled-components/styled-components) (4.0+) installed.
 
 ## Documentation
 
-See the [Official documentation](https://redd.gitbook.io/atomic-layout).
+> See the [Official documentation](https://redd.gitbook.io/atomic-layout).
 
 Here are some shortcuts to get you started:
 
@@ -63,15 +61,22 @@ Here are some shortcuts to get you started:
 
 ## Materials
 
-### The Future of Layouts (React Vienna)
-
-Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.
-
-<a href="https://www.youtube.com/watch?v=x_93DjN_bUA">
-  <img width="500" src="./materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
-</a>
-
-- [**Live demo** (Codesandbox)](https://codesandbox.io/s/8z6xnmnnnj)
+<table border="0">
+  <tr>
+    <td>
+      <a href="https://www.youtube.com/watch?v=x_93DjN_bUA">
+        <img width="500" src="./materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
+      </a>
+    </td>
+    <td>
+      <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The Future of Layouts (React Vienna)</a></h3>
+      <p>Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.</p>
+      <ul>
+        <li><a href="https://codesandbox.io/s/8z6xnmnnnj"><strong>Live demo</strong> (Codesandbox)</a></li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## Browser support
 
@@ -79,6 +84,6 @@ Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and
 
 ## Contributing
 
-Thank you to those deciding to contribute! Your involvement makes a significant impact on the library and its future.
+Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome.
 
-After reading the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), take a look at the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue), those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome.
+Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
