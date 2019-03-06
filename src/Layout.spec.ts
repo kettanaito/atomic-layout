@@ -84,10 +84,6 @@ test('getBreakpoint: Returns existing breakpoint info', () => {
   expect(Layout.getBreakpoint('md')).toEqual(defaultOptions.breakpoints.md)
 })
 
-test('getBreakpoint: Returns "undefined" for non-existing breakpoint', () => {
-  expect(Layout.getBreakpoint('foo')).toBeUndefined()
-})
-
 test('Returns "undefined" when no breakpoint name specified', () => {
   expect(Layout.getBreakpoint('non-existing')).toBeUndefined()
 })
