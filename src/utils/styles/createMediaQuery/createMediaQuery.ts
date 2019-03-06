@@ -1,10 +1,17 @@
 import { Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
-import isset from '@utils/functions/isset'
 import transformNumeric from '@utils/math/transformNumeric'
-import toDashedString from '@utils/strings/toDashedString'
+import normalizeQuery from '@src/utils/styles/normalizeQuery'
+import compose from '@src/utils/functions/compose'
 
-const shouldAppendProp = (propName: string, behavior: BreakpointBehavior) => {
-  const [prefix, splitPropName] = propName.split('-')
+/**
+ * Determines whether a given media query param should be added
+ * to the media query string based on a breakpoint's behavior.
+ */
+const shouldAppendProperty = (
+  queryParam: string,
+  behavior: BreakpointBehavior,
+): boolean => {
+  const [prefix, splitPropName] = queryParam.split('-')
   const isDimensionalProp = ['height', 'width'].includes(splitPropName)
 
   if (!isDimensionalProp) {
@@ -17,22 +24,30 @@ const shouldAppendProp = (propName: string, behavior: BreakpointBehavior) => {
   )
 }
 
-export function normalizeQuery(queryProps: Breakpoint): any {
-  return Object.entries<string>(queryProps)
-    .filter(([_, propValue]) => isset(propValue))
-    .map(([propName, propValue]) => [toDashedString(propName), propValue])
+const filterRelevantQueryParams = (behavior: BreakpointBehavior) => (
+  queryList,
+): boolean => {
+  return queryList.filter(([queryParam]) =>
+    shouldAppendProperty(queryParam, behavior),
+  )
+}
+
+/**
+ * Joins a given query params list with the given transformer function.
+ */
+export const joinQueryList = (transformer: Function) => (queryList) => {
+  return queryList.map(transformer).join(' and ')
 }
 
 export default function createMediaQuery(
   breakpoint: Breakpoint,
   behavior: BreakpointBehavior,
 ): string {
-  return normalizeQuery(breakpoint)
-    .filter(([dashedPropName]) =>
-      shouldAppendProp(dashedPropName as string, behavior),
-    )
-    .map(([dashedPropName, propValue]) => {
-      return `(${dashedPropName}:${String(transformNumeric(propValue))})`
-    })
-    .join(' and ')
+  return compose(
+    joinQueryList(([dashedQueryProp, propValue]) => {
+      return `(${dashedQueryProp}:${String(transformNumeric(propValue))})`
+    }),
+    filterRelevantQueryParams(behavior),
+    normalizeQuery,
+  )(breakpoint)
 }

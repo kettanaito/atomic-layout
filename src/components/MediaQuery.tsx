@@ -1,16 +1,18 @@
 import * as React from 'react'
-import { MediaQuery as MediaQueryProps } from '@const/defaultOptions'
-import { normalizeQuery } from '@utils/styles/createMediaQuery'
+import { MediaQuery as MediaQueryParams } from '@const/defaultOptions'
+import { joinQueryList } from '@utils/styles/createMediaQuery'
+import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import transformNumeric from '@utils/math/transformNumeric'
+import compose from '@src/utils/functions/compose'
 
-interface Props extends MediaQueryProps {
+interface Props extends MediaQueryParams {
   children: (matches: boolean) => JSX.Element
   matches?: boolean
 }
 
-const createMediaQuery = (queryProps: MediaQueryProps): string => {
-  return normalizeQuery(queryProps)
-    .map(([propName, propValue]) => {
+const createMediaQuery = (queryParams: MediaQueryParams): string => {
+  return compose(
+    joinQueryList(([paramName, paramValue]) => {
       /**
        * Transform values that begin with a number to prevent
        * transformations of "calc" expressions.
@@ -19,17 +21,18 @@ const createMediaQuery = (queryProps: MediaQueryProps): string => {
        *
        * (min-width: 750) ==> (min-width: 750px)
        */
-      const resolvedPropValue = /^\d/.test(propValue as string)
-        ? transformNumeric(propValue)
-        : propValue
-      return `(${propName}:${resolvedPropValue})`
-    })
-    .join(' and ')
+      const resolvedParamValue = /^\d/.test(paramValue as string)
+        ? transformNumeric(paramValue)
+        : paramValue
+      return `(${paramName}:${resolvedParamValue})`
+    }),
+    normalizeQuery,
+  )(queryParams)
 }
 
 const MediaQuery = (props: Props): JSX.Element => {
-  const { children, ...queryProps } = props
-  const query = createMediaQuery(queryProps)
+  const { children, ...queryParams } = props
+  const query = createMediaQuery(queryParams)
   const [matches, setMatches] = React.useState(
     /**
      * Match the query on the client, and use "false" on the server.
@@ -50,7 +53,7 @@ const MediaQuery = (props: Props): JSX.Element => {
     mediaQueryList.addListener(handleMediaQueryChange)
 
     return () => mediaQueryList.removeListener(handleMediaQueryChange)
-  }, Object.keys(queryProps))
+  }, Object.keys(queryParams))
 
   return children(matches)
 }
