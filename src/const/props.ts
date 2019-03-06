@@ -118,6 +118,7 @@ export interface GenericProps {
   justifyContent?:
     | 'normal'
     | 'stretch'
+    | FlexboxBasicAlignment
     | FlexboxSelfAlignment
     | FlexboxDistributedAlignment
     | FlexboxOverflowAlignment
@@ -258,4 +259,3 @@ export interface GridProps extends GenericProps {
    */
   gutterRow?: Numeric
 }
-
