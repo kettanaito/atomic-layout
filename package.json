@@ -52,8 +52,8 @@
     "react"
   ],
   "peerDependencies": {
-    "react": ">= 16.6",
-    "styled-components": ">= 3"
+    "react": ">= 16.8",
+    "styled-components": ">= 4"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -90,8 +90,8 @@
     "jest": "23.6.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
     "rimraf": "^2.6.3",
     "start-server-and-test": "^1.7.11",
