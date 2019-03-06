@@ -8,20 +8,16 @@ interface Props extends MediaQueryProps {
   matches?: boolean
 }
 
-const MediaQuery = (props: Props): JSX.Element => {
-  const { children, matches: defaultMatches, ...queryProps } = props
-  const [matches, setMatches] = React.useState(defaultMatches)
-
-  /**
-   * @todo Make this query composition adequate.
-   */
-  const query = normalizeQuery(queryProps)
+const createMediaQuery = (queryProps: MediaQueryProps): string => {
+  return normalizeQuery(queryProps)
     .map(([propName, propValue]) => {
       /**
        * Transform values that begin with a number to prevent
        * transformations of "calc" expressions.
        * Transformation of numerics is necessary when a simple
        * number is used as a value (min-width: 750) is not valid.
+       *
+       * (min-width: 750) ==> (min-width: 750px)
        */
       const resolvedPropValue = /^\d/.test(propValue as string)
         ? transformNumeric(propValue)
@@ -29,8 +25,20 @@ const MediaQuery = (props: Props): JSX.Element => {
       return `(${propName}:${resolvedPropValue})`
     })
     .join(' and ')
+}
 
-  const handleChange = (
+const MediaQuery = (props: Props): JSX.Element => {
+  const { children, ...queryProps } = props
+  const query = createMediaQuery(queryProps)
+  const [matches, setMatches] = React.useState(
+    /**
+     * Match the query on the client, and use "false" on the server.
+     * (?) Use some "staticMatch" with explicit values
+     */
+    typeof matchMedia !== 'undefined' ? matchMedia(query).matches : false,
+  )
+
+  const handleMediaQueryChange = (
     mediaQueryList: MediaQueryList | MediaQueryListEvent,
   ) => {
     setMatches(mediaQueryList.matches)
@@ -38,17 +46,13 @@ const MediaQuery = (props: Props): JSX.Element => {
 
   React.useEffect(() => {
     const mediaQueryList = matchMedia(query)
-    handleChange(mediaQueryList)
-    mediaQueryList.addListener(handleChange)
+    handleMediaQueryChange(mediaQueryList)
+    mediaQueryList.addListener(handleMediaQueryChange)
 
-    return () => mediaQueryList.removeListener(handleChange)
+    return () => mediaQueryList.removeListener(handleMediaQueryChange)
   }, Object.keys(queryProps))
 
   return children(matches)
-}
-
-MediaQuery.defaultProps = {
-  matches: false,
 }
 
 export default MediaQuery
