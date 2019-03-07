@@ -27,3 +27,4 @@ materials
 cypress*
 coverage
 jest.*
+tests

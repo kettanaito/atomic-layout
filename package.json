@@ -1,6 +1,6 @@
 {
   "name": "atomic-layout",
-  "version": "0.7.0-beta.0",
+  "version": "0.7.0-beta.2",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
   "license": "MIT",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
     "bundlesize": "node_modules/.bin/bundlesize",
     "precommit": "lint-staged",
     "prepush": "yarn run bundlesize && yarn run test:unit",
-    "preversion": "yarn run build && yarn run bundlesize && yarn test"
+    "prepublishOnly": "yarn run build && yarn run bundlesize && yarn test"
   },
   "lint-staged": {
     ".{js,jsx}": [
