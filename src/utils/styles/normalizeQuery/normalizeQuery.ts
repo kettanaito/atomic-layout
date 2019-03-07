@@ -10,7 +10,7 @@ import toDashedString from '@utils/strings/toDashedString'
  */
 export default function normalizeQuery(
   queryProps: Breakpoint,
-): [string, Numeric][] {
+): Array<[string, Numeric]> {
   return Object.entries<Numeric>(queryProps)
     .filter(([_, propValue]) => isset(propValue))
     .map<[string, Numeric]>(([propName, propValue]) => [

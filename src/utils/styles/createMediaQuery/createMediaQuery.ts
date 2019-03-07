@@ -1,4 +1,4 @@
-import { Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
+import { Numeric, Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
 import transformNumeric from '@utils/math/transformNumeric'
 import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import compose from '@src/utils/functions/compose'
@@ -35,7 +35,9 @@ const filterRelevantQueryParams = (behavior: BreakpointBehavior) => (
 /**
  * Joins a given query params list with the given transformer function.
  */
-export const joinQueryList = (transformer: Function) => (queryList) => {
+export const joinQueryList = (
+  transformer: (pair: [string, Numeric]) => any,
+) => (queryList) => {
   return queryList.map(transformer).join(' and ')
 }
 

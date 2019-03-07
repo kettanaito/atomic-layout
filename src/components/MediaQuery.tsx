@@ -21,7 +21,7 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
        *
        * (min-width: 750) ==> (min-width: 750px)
        */
-      const resolvedParamValue = /^\d/.test(paramValue as string)
+      const resolvedParamValue = /^\d/.test(String(paramValue))
         ? transformNumeric(paramValue)
         : paramValue
       return `(${paramName}:${resolvedParamValue})`
