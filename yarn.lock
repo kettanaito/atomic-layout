@@ -1594,13 +1594,6 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
-"@types/react-responsive@^3.0.2":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react-responsive/-/react-responsive-3.0.3.tgz#a31b599c7cfe4135c5cc2f45d0b71df64803b23f"
-  integrity sha512-paTAvXIFgv/jG60d7WSV0+yWCjqJ05cG+KOV48SiqYGjGi9kFdss9QnVTTLnFJmbUwWnoM+VD1Iyay1JBy/HPQ==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^16.7.18":
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.6.tgz#fa1de3fe56cc9b6afeddc73d093d7f30fd5e31cc"
