@@ -123,7 +123,12 @@ export interface GenericProps {
     | FlexboxDistributedAlignment
     | FlexboxOverflowAlignment
 
-  place?: '...'
+  place?:
+    | 'auto'
+    | 'normal'
+    | CSSGlobalValues
+    | FlexboxBasicAlignment
+    | FlexboxBaselineAlignment
 
   /**
    * Shorthand for `align-items` and `justify-items`.
