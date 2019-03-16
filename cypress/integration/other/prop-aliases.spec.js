@@ -2,6 +2,7 @@ import propAliases from '../../../src/const/propAliases'
 
 const defaultValue = 10
 const assertValues = {
+  area: 'first',
   // prettier-ignore
   areas: 'first',
   // prettier-ignore
@@ -37,6 +38,12 @@ const assertAreas = (cssValue, expectedValue) => {
 }
 
 const exactAssertion = {
+  area: (cssValue, expectedValue) => {
+    return (
+      cssValue ===
+      `${expectedValue} / ${expectedValue} / ${expectedValue} / ${expectedValue}`
+    )
+  },
   areas: assertAreas,
   template: assertAreas,
 }
