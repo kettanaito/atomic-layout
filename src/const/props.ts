@@ -275,4 +275,22 @@ export interface GridProps extends GenericProps {
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap
    */
   gutterRow?: Numeric
+  /**
+   * Size of implicitly created rows
+   * @css grid-auto-rows
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows
+   */
+  autoRows?: string | Numeric
+  /**
+   * Size of implicitly created columns
+   * @css grid-auto-columns
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns
+   */
+  autoColumns?: string | Numeric
+  /**
+   * Flow of auto-placed items
+   * @css grid-auto-flow
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow
+   */
+  autoFlow?: string
 }
