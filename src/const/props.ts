@@ -192,6 +192,18 @@ export interface GenericProps {
 
 export interface GridProps extends GenericProps {
   /**
+   * Grid area.
+   * @css `grid-area`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area
+   */
+  area?: string
+  /**
+   * Grid areas.
+   * @css `grid-template-areas`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas
+   */
+  areas?: string
+  /**
    * Grid areas.
    * @css `grid-template-areas`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas
