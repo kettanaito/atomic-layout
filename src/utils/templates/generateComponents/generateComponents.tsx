@@ -20,14 +20,16 @@ export interface AreasMap {
  * This is used for conditional components, where placeholder component is rendered
  * until the condition for the area component is met (i.e. breakpoint).
  */
-export const wrapInPlaceholder = (
+export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
   const Placeholder = ({
     children,
     ...restProps
-  }: { children: React.ReactNode } & GenericProps) =>
+  }: {
+    children: React.ReactNode
+  } & GenericProps) =>
     breakpoints.filter(Boolean).reduce((components, breakpointProps, index) => {
       const { behavior, ...queryProps } = breakpointProps
 
@@ -45,9 +47,9 @@ export const wrapInPlaceholder = (
   return Placeholder
 }
 
-const createAreaComponent = (areaName: string): AreaComponent => styled(Box)`
-  grid-area: ${areaName};
-`
+const createAreaComponent = (areaName: string): AreaComponent => (props) => (
+  <Box area={areaName} {...props} />
+)
 
 /**
  * Returns a map of React components based on the given grid areas
@@ -58,10 +60,7 @@ export default function generateComponents({
   templates,
 }: AreasList): AreasMap {
   const componentsMap = areas.reduce<AreasMap>((components, areaName) => {
-    const areaParams = getAreaBreakpoints(
-      areaName,
-      templates,
-    ) as AreaBreakpoint[]
+    const areaParams = getAreaBreakpoints(areaName, templates)
     const shouldAlwaysRender =
       areaParams.length === 1 &&
       areaParams.every(
@@ -72,19 +71,19 @@ export default function generateComponents({
     const capitalizedAreaName = capitalize(areaName)
     Component.displayName = capitalizedAreaName
 
-    const ResolvedComponent = shouldAlwaysRender
+    const ResponsiveComponent = shouldAlwaysRender
       ? Component
-      : wrapInPlaceholder(Component, areaParams)
+      : withPlaceholder(Component, areaParams)
 
     return {
       ...components,
-      [capitalizedAreaName]: ResolvedComponent,
+      [capitalizedAreaName]: ResponsiveComponent,
     }
   }, {})
 
   /**
    * Return plain components map for browsers that don't support Proxy.
-   * Demands safety check before rendering conditional areas.
+   * Requires safety check before rendering conditional areas.
    */
   return typeof Proxy === 'undefined'
     ? componentsMap
@@ -97,7 +96,7 @@ export default function generateComponents({
           // @ts-ignore-line
           if (!__PROD__) {
             console.warn(
-              'Prevented the render of area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
+              'Prevented render of the area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
               areaName,
               areas
                 /* Filter out "." placeholder from the list of areas */
@@ -113,7 +112,7 @@ export default function generateComponents({
 
           /**
            * Replace non-existing area component with
-           * the placeholder component that renders nothing.
+           * the dummy component that renders nothing.
            * This prevents from the exception when rendering "undefined"
            * and allows conditional template areas.
            */

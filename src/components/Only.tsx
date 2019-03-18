@@ -3,7 +3,7 @@ import Layout from '../Layout'
 import Box from './Box'
 import { Breakpoint } from '@const/defaultOptions'
 import { GenericProps } from '@const/props'
-import { wrapInPlaceholder } from '@utils/templates/generateComponents'
+import { withPlaceholder } from '@utils/templates/generateComponents'
 import openBreakpoint from '@utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '@utils/breakpoints/closeBreakpoint'
 import mergeBreakpoints from '@utils/breakpoints/mergeBreakpoints'
@@ -40,7 +40,7 @@ const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
 const createWrapper = (children: React.ReactNode, props: GenericProps) => (
   ...breakpoints: Breakpoint[]
 ) => {
-  const Placeholder = wrapInPlaceholder(Box, breakpoints)
+  const Placeholder = withPlaceholder(Box, breakpoints)
   return <Placeholder {...props}>{children}</Placeholder>
 }
 

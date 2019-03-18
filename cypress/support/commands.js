@@ -68,9 +68,9 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'haveSameAxis',
   { prevSubject: true },
-  (subject, axis, target) => {
+  (subject, axis, targetSelector) => {
     const rectA = subject[0].getBoundingClientRect()
-    cy.get(target).then((elem) => {
+    cy.get(targetSelector).then((elem) => {
       const rectB = elem[0].getBoundingClientRect()
 
       expect(rectA[axis]).to.equal(rectB[axis])
@@ -86,23 +86,29 @@ Cypress.Commands.add(
   (subject, targetSelector) => {
     const a = subject[0].getBoundingClientRect()
 
-    cy.get(targetSelector).then((elem) => {
-      const b = elem[0] && elem[0].getBoundingClientRect()
+    cy.log(
+      `Assert no intersection between "#${
+        subject[0].id
+      }" and "${targetSelector}"`,
+    )
+      .get(targetSelector)
+      .then((elem) => {
+        const b = elem[0] && elem[0].getBoundingClientRect()
 
-      const intersectsByX = Math.max(
-        0,
-        Math.min(a.right, b.right) - Math.max(a.left, b.left),
-      )
-      const intersectsByY = Math.max(
-        0,
-        Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top),
-      )
+        const intersectsByX = Math.max(
+          0,
+          Math.min(a.right, b.right) - Math.max(a.left, b.left),
+        )
+        const intersectsByY = Math.max(
+          0,
+          Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top),
+        )
 
-      const intersectionArea = intersectsByX * intersectsByY
+        const intersectionArea = intersectsByX * intersectsByY
 
-      assert.isAtMost(intersectionArea, 0, 'Must not intersect')
+        assert.isAtMost(intersectionArea, 0, 'Must not intersect')
 
-      return subject
-    })
+        return subject
+      })
   },
 )
