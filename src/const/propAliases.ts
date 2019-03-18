@@ -74,6 +74,17 @@ const propAliases: PropAliases = {
     props: ['grid-row-gap'],
     transformValue: transformNumeric,
   },
+  autoRows: {
+    props: ['grid-auto-rows'],
+    transformValue: transformNumeric,
+  },
+  autoColumns: {
+    props: ['grid-auto-columns'],
+    transformValue: transformNumeric,
+  },
+  autoFlow: {
+    props: ['grid-auto-flow']
+  },
   align: {
     props: ['align-self'],
   },
