@@ -21,6 +21,7 @@ const assertValues = {
   row: '1 / auto',
   rowStart: '2',
   rowEnd: '3',
+  autoFlow: ['row', 'column', 'row dense'],
   align: 'center',
   alignItems: 'flex-end',
   alignContent: 'flex-start',
