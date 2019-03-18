@@ -280,13 +280,13 @@ export interface GridProps extends GenericProps {
    * @css grid-auto-rows
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows
    */
-  autoRows?: string | Numeric
+  autoRows?: Numeric
   /**
    * Size of implicitly created columns
    * @css grid-auto-columns
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns
    */
-  autoColumns?: string | Numeric
+  autoCols?: Numeric
   /**
    * Flow of auto-placed items
    * @css grid-auto-flow

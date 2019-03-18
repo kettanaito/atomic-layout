@@ -81,7 +81,7 @@ const propAliases: PropAliases = {
     props: ['grid-auto-rows'],
     transformValue: transformNumeric,
   },
-  autoColumns: {
+  autoCols: {
     props: ['grid-auto-columns'],
     transformValue: transformNumeric,
   },
