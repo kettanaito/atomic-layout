@@ -40,8 +40,6 @@ Atomic layout solves this problem by exposing a dedicated layer responsible for 
 
 ## Install
 
-Install the package using any package manager (npm, yarn, etc.):
-
 ```bash
 npm install atomic-layout
 ```
@@ -72,7 +70,8 @@ Here are some shortcuts to get you started:
       <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The Future of Layouts (React Vienna)</a></h3>
       <p>Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.</p>
       <ul>
-        <li><a href="https://codesandbox.io/s/8z6xnmnnnj"><strong>Live demo</strong> (Codesandbox)</a></li>
+        <li><a href="https://codesandbox.io/s/8z6xnmnnnj"><strong>Live demo</strong></a></li>
+        <li><a href="http://future-of-layouts.surge.sh">Slides</a></li>
       </ul>
     </td>
   </tr>
@@ -80,7 +79,7 @@ Here are some shortcuts to get you started:
 
 ## Browser support
 
-> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please read through [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
+> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please see [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
 
 ## Contributing
 
