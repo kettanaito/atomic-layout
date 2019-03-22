@@ -43,7 +43,7 @@ Atomic layout solves this problem by exposing a dedicated layer responsible for 
 Install the package using any package manager (npm, yarn, etc.):
 
 ```bash
-yarn add atomic-layout
+npm install atomic-layout
 ```
 
 > Make sure to have [React](https://github.com/facebook/react) (16.0+) and [styled-components](https://github.com/styled-components/styled-components) (4.0+) installed.
