@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "outDir": "lib/types",
     "declaration": true,
-    // "emitDeclarationOnly": true,
     "noImplicitThis": false,
     "esModuleInterop": true,
     "jsx": "react",
