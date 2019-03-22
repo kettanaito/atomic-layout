@@ -34,11 +34,12 @@ const MediaQuery = (props: Props): JSX.Element => {
   const { children, ...queryParams } = props
   const query = createMediaQuery(queryParams)
   const [matches, setMatches] = React.useState(
+    false,
     /**
      * Match the query on the client, and use "false" on the server.
      * (?) Use some "staticMatch" with explicit values
      */
-    typeof matchMedia !== 'undefined' ? matchMedia(query).matches : false,
+    // typeof matchMedia !== 'undefined' ? matchMedia(query).matches : false,
   )
 
   const handleMediaQueryChange = (
