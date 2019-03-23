@@ -1,7 +1,12 @@
-import { configure } from '@storybook/react'
+import { addParameters, configure } from '@storybook/react'
 
-function loadStories() {
-  require('../stories')
-}
+addParameters({
+  options: {
+    name: 'Atomic layout',
+    showAddonPanel: false,
+    showSearchBox: false,
+    isToolshown: false,
+  },
+})
 
-configure(loadStories, module)
+configure(() => require('../stories'), module)

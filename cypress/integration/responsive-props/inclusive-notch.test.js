@@ -1,5 +1,5 @@
 it('Inclusive & Notch', () => {
-  cy.visit('/responsive-props/inclusive-notch')
+  cy.loadStory(['core'], ['responsive-props', 'inclusive-notch'])
 
   const assertPadding = (selector, values) => {
     return cy.get(selector).should('have.css', 'padding', values)

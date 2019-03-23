@@ -1,6 +1,6 @@
-describe('Templateless composition', () => {
+describe('Template-less composition', () => {
   before(() => {
-    cy.visit('/composition/templateless')
+    cy.loadStory(['components'], ['composition', 'templateless'])
   })
 
   it('Renders children without crashing', () => {

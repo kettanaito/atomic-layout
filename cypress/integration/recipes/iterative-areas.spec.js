@@ -1,6 +1,6 @@
 describe('Iterative areas', function() {
   before(() => {
-    cy.visit('/recipes/iterative-areas')
+    cy.loadStory(['recipes'], ['all', 'iterative-areas'])
   })
 
   describe('Iterative columns', function() {

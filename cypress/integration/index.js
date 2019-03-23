@@ -1,4 +1,4 @@
-require('./behavior')
+require('./rendering')
 require('./only')
 require('./composition')
 require('./only')

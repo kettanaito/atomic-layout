@@ -1,5 +1,5 @@
 it('Breakpoint specific', () => {
-  cy.visit('/responsive-props/breakpoint-specific')
+  cy.loadStory(['core'], ['responsive-props', 'breakpoint-specific'])
 
   const assertGutter = (values) => {
     return cy.get('#composition').should('have.css', 'grid-gap', values)

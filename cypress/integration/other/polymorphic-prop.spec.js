@@ -1,6 +1,6 @@
 describe('Polymorphic prop', () => {
   before(() => {
-    cy.visit('/other/polymorphic-prop')
+    cy.loadStory(['core'], ['rendering', 'polymorphic-prop'])
   })
 
   it('Renders <div> by default', () => {

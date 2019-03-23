@@ -1,5 +1,5 @@
 it('Supports custom breakpoints and measurement unit', () => {
-  cy.visit('/custom-configuration/custom-breakpoints')
+  cy.loadStory(['core'], ['configuration', 'custom-breakpoints'])
 
   const assertPadding = (values) => {
     return cy.get('#composition').should('have.css', 'padding', values)

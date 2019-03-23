@@ -2,7 +2,7 @@ import { testCases } from '.'
 
 describe('Custom breakpoints', () => {
   before(() => {
-    cy.visit('/only/custom')
+    cy.loadStory(['components'], ['only', 'custom-breakpoint'])
   })
 
   testCases()

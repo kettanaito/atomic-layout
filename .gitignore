@@ -15,6 +15,7 @@ lib
 cypress/fixtures
 cypress/videos
 cypress/screenshots
+storybook-static
 
 # Editors
 .idea
