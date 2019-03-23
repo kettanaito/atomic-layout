@@ -9,4 +9,4 @@ addParameters({
   },
 })
 
-configure(() => require('../stories'), module)
+configure(() => require('../examples'), module)
