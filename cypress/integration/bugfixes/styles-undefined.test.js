@@ -1,5 +1,5 @@
 it('Omits style props with "undefined" value', () => {
-  cy.visit('/bugfixes/styles-undefined')
+  cy.loadStory(['bugfixes'], ['all', 'styles-undefined'])
 
   cy.get('#composition')
     .should('be.visible')

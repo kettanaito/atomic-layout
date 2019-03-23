@@ -12,6 +12,7 @@ export default function mobileFirst() {
   }
 
   assertAllVisible()
+
   cy.setBreakpoint('sm').then(assertAllVisible)
   cy.setBreakpoint('md').then(assertAllVisible)
   cy.setBreakpoint('lg').then(assertAllVisible)

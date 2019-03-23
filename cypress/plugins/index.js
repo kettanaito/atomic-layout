@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 const webpackConfig = require('../../webpack.config')
 const babelConfig = require('../../babel.config')
@@ -23,6 +25,14 @@ const webpackOptions = {
   },
 }
 
+const getCypressConfig = (envName = '') => {
+  const configFilename = ['cypress', envName, 'json'].filter(Boolean).join('.')
+  console.log(`Loading Cypress config: ${configFilename}...`)
+  return JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, '../../', configFilename)),
+  )
+}
+
 module.exports = (on, config) => {
   on(
     'file:preprocessor',
@@ -31,4 +41,9 @@ module.exports = (on, config) => {
       watchOptions: {},
     }),
   )
+
+  const { envName } = config.env
+  const env = getCypressConfig(envName)
+  console.log({ env })
+  return env
 }

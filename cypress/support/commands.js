@@ -1,6 +1,21 @@
 import { assert } from 'chai'
+import url from 'url'
 import defaultOptions from '../../src/const/defaultOptions'
 import propAliases from '../../src/const/propAliases'
+
+Cypress.Commands.add('loadStory', (storyGroup, storyPath) => {
+  const storyUrl = url.format({
+    pathname: '/iframe.html',
+    query: {
+      path: [
+        '/story',
+        [storyGroup, storyPath.join('--')].filter(Boolean).join('-'),
+      ].join('/'),
+    },
+  })
+
+  cy.visit(storyUrl)
+})
 
 Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   const parsedBreakpoint = parseFloat(breakpointName)
@@ -39,31 +54,6 @@ Cypress.Commands.add('haveArea', { prevSubject: true }, (subject, gridArea) => {
   wrapper.should('have.css', 'grid-column-start', gridArea)
   wrapper.should('have.css', 'grid-column-end', gridArea)
 })
-
-Cypress.Commands.add(
-  'assertPropAlias',
-  {
-    prevSubject: true,
-  },
-  (subject, propAliasName, value, exactAssertion) => {
-    const wrapper = cy.wrap(subject)
-    const { props: originProps, transformValue } = propAliases[propAliasName]
-    const expectedValue = transformValue ? transformValue(value) : value
-
-    originProps.forEach((originPropName) => {
-      wrapper.should('have.css', originPropName).then((cssPropValue) => {
-        assert(
-          exactAssertion
-            ? exactAssertion(cssPropValue, expectedValue, value)
-            : cssPropValue === expectedValue,
-          `Expected (${cssPropValue}) to equal (${expectedValue}).`,
-        )
-
-        return subject
-      })
-    })
-  },
-)
 
 Cypress.Commands.add(
   'haveSameAxis',
