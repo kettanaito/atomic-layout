@@ -50,7 +50,7 @@ const Card = ({ title, imageUrl, actions }) => (
     gutter={20}>
     {/* Get React components based on provided areas */}
     {({ Thumbnail, Header, Footer }) => (
-      <>
+      <React.Fragment>
         <Thumbnail>
           {/* Render anything, including another Composition */}
           <img src={imageUrl} alt={title} />
@@ -59,10 +59,11 @@ const Card = ({ title, imageUrl, actions }) => (
         <Header as="h3">
           {title}
         </Header>
-        <Footer paddingHorizontal={10}>
+        {/* Responsive props: just suffix with a breakpoint name */}
+        <Footer padding={10} paddingMd={20}>
           {actions}
         </Footer>
-      </>
+      </React.Fragment>
     )}
   </Composition>
 )
@@ -70,7 +71,7 @@ const Card = ({ title, imageUrl, actions }) => (
 export default Card
 ```
 
-> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
+> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
 
 ## Motivation
 
@@ -132,6 +133,6 @@ Here are some shortcuts to get you started:
 
 ## Contributing
 
-Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome.
-
 Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
+
+Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
