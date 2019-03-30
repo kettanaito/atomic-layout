@@ -62,6 +62,15 @@ Here are some shortcuts to get you started:
 <table border="0">
   <tr>
     <td>
+      <img width="500" src="https://pbs.twimg.com/profile_images/699140827218649088/mooXwM62_400x400.png" alt="SurviveJS logo" />
+    </td>
+    <td>
+      <h3><a href="https://survivejs.com/blog/atomic-layout-interview/">Layout composition as a React component (SurviveJS)</a></h3>
+      <p>Read through the extensive interview about how Atomic layout came to be, how it's different from other solutions, and which practices it encourages.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
       <a href="https://www.youtube.com/watch?v=x_93DjN_bUA">
         <img width="500" src="./materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
       </a>
