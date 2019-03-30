@@ -22,7 +22,7 @@
     "prepublishOnly": "yarn build && yarn bundlesize && yarn test"
   },
   "lint-staged": {
-    ".{ts,tsx}": [
+    "*.{ts,tsx}": [
       "eslint ./src/",
       "prettier --write",
       "git add"
