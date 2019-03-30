@@ -2,9 +2,9 @@ import { addParameters, configure } from '@storybook/react'
 
 addParameters({
   options: {
-    name: 'Atomic layout',
-    showAddonPanel: false,
-    showSearchBox: false,
+    brandName: 'Atomic layout',
+    brandUrl: 'https://github.com/kettanaito/atomic-layout',
+    showPanel: false,
     isToolshown: false,
   },
 })
