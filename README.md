@@ -26,9 +26,49 @@
 
 [Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between layout composites to the dedicated layer. That helps to create declarative, immutable, and maintainable layouts using CSS Grid.
 
-<p align="center">
-  <img src="example.png" width="650" alt="Atomic layout usage example" />
-</p>
+```jsx
+import React from 'react'
+import { Composition } from 'atomic-layout'
+
+// Define layout areas as a string
+const areasMobile = `
+  thumbnail
+  header
+  footer
+`
+
+// Responsive areas? Built-in!
+const areasTablet = `
+  thumbnail header
+  thumbnail footer
+`
+
+const Card = ({ title, imageUrl, actions }) => (
+  <Composition
+    areas={areasMobile}
+    areasMd={areasTablet}
+    gutter={20}>
+    {/* Get React components based on provided areas */}
+    {({ Thumbnail, Header, Footer }) => (
+      <>
+        <Thumbnail>
+          {/* Render anything, including another Composition */}
+          <img src={imageUrl} alt={title} />
+        </Thumbnail>
+        {/* Preserve semantics with polymorphic prop */}
+        <Header as="h3">
+          {title}
+        </Header>
+        <Footer paddingHorizontal={10}>
+          {actions}
+        </Footer>
+      </>
+    )}
+  </Composition>
+)
+
+export default Card
+```
 
 > Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can always [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
 
