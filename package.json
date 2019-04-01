@@ -1,7 +1,39 @@
 {
   "name": "atomic-layout",
-  "version": "0.3.4",
+  "version": "0.7.0",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack --watch",
+    "storybook": "start-storybook -p 6020",
+    "clean": "rimraf lib && exit 0",
+    "build": "yarn clean && yarn build:types && cross-env NODE_ENV=production webpack",
+    "build:types": "tsc",
+    "build:storybook": "cross-env NODE_ENV=production build-storybook",
+    "cypress": "node_modules/.bin/cypress open -e envName=dev",
+    "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
+    "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
+    "test:e2e": "yarn build:storybook && yarn cypress:cli",
+    "test": "yarn test:unit && yarn test:e2e",
+    "bundlesize": "node_modules/.bin/bundlesize",
+    "precommit": "lint-staged",
+    "prepush": "yarn bundlesize && yarn test:unit",
+    "prepublishOnly": "yarn build && yarn bundlesize && yarn test"
+  },
+  "lint-staged": {
+    ".{ts,tsx}": [
+      "eslint ./src/",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "bundlesize": [
+    {
+      "path": "./lib/index.js",
+      "maxSize": "20 kB"
+    }
+  ],
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
@@ -10,75 +42,70 @@
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"
   },
-  "main": "./index.js",
-  "scripts": {
-    "start": "start-storybook -p 6020",
-    "dev": "NODE_ENV=development webpack --watch",
-    "build": "webpack",
-    "cypress": "node_modules/.bin/cypress open",
-    "examples": "webpack-dev-server --config examples/webpack.config.js",
-    "flow": "node_modules/.bin/flow",
-    "test:unit": "BABEL_ENV=test jest",
-    "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
-    "test:e2e": "server-test examples http-get://localhost:9987 cypress:cli",
-    "test": "npm run test:unit && npm run test:e2e",
-    "prettify": "node_modules/.bin/prettier 'src/**/*.js' --write",
-    "prepush": "npm run test:unit && npm run prettify",
-    "prepublishOnly": "npm run build && npm test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint ./src/"
-    }
-  },
-  "bundlesize": [
-    {
-      "path": "./index.js",
-      "maxSize": "8 kB"
-    }
+  "keywords": [
+    "atomic",
+    "layout",
+    "responsive",
+    "composition",
+    "css grid",
+    "react"
   ],
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0",
-    "styled-components": "^3.0.0"
+    "react": ">= 16.8",
+    "styled-components": ">= 4"
   },
   "devDependencies": {
-    "@cypress/webpack-preprocessor": "^1.1.3",
-    "@storybook/addon-actions": "^3.4.7",
-    "@storybook/addon-links": "^3.4.7",
-    "@storybook/react": "^3.4.7",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.5",
-    "babel-loader": "^7.1.4",
-    "babel-minify-webpack-plugin": "^0.3.1",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@cypress/webpack-preprocessor": "^4.0.2",
+    "@storybook/addon-actions": "^5.0.3",
+    "@storybook/addon-links": "^5.0.3",
+    "@storybook/react": "^5.0.3",
+    "@types/jest": "^23.3.12",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/styled-components": "^4.1.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "7.1.5",
     "bundlesize": "^0.17.0",
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "coveralls": "^3.0.2",
-    "cypress": "^3.0.1",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-flowtype": "^2.49.3",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.54.1",
+    "cross-env": "^5.2.0",
+    "cypress": "^3.0.3",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.1",
     "husky": "^1.0.0-rc.9",
-    "jest": "^23.1.0",
-    "prettier": "^1.13.5",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-router-dom": "^4.3.1",
-    "start-server-and-test": "^1.4.1",
+    "jest": "23.6.0",
+    "jest-dom": "^3.1.2",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.2",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-testing-library": "^6.0.0",
+    "rimraf": "^2.6.3",
     "storybook": "^1.0.0",
-    "styled-components": "^3.2.6",
-    "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.2"
-  },
-  "dependencies": {
-    "react-responsive": "^4.1.0"
+    "styled-components": "^4.1.3",
+    "ts-jest": "^23.10.5",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.2",
+    "url": "^0.11.0",
+    "webpack": "^4.26.1",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.1.10"
   }
 }

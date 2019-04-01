@@ -2,19 +2,24 @@
 __*
 internal
 deprecated
+yarn-*
 
 # Modules
 node_modules
 /coverage
 
 # Build
-/index.js
+lib
 
 # Cypress
 cypress/fixtures
 cypress/videos
 cypress/screenshots
+storybook-static
 
 # Editors
-.idea/
+.idea
 .vscode
+
+# OS
+.DS_*

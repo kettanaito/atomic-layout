@@ -1,29 +1,35 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-
 ---
 
-## What
+## What:
+
 A clear and concise description of what the bug is.
 
-## Why
+## Why:
+
 Your best guess why the issue occurs, or what may cause it.
 
-## Environment
-* node vesrion: `0.0.0`
-* npm version: `0.0.0`
-* atomic-layout version: `0.0.0`
+## Environment:
 
-## Steps to reproduce
+- node vesrion: `0.0.0`
+- npm version: `0.0.0`
+- atomic-layout version: `0.0.0`
+
+## Steps to reproduce:
+
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-## Expected behavior
+## Expected behavior:
+
 A clear and concise description of what you expected to happen.
 
-## Screenshots
+## Screenshots:
+
 If applicable, add screenshots to help explain your problem.

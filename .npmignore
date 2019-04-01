@@ -1,28 +1,31 @@
 # Configurations
 .circleci
 .github
+.storybook
 .vscode
 .babelrc
-.eslintrc
-.flowconfig
+babel.config.js
 .gitignore
 .prettierrc
-.flowconfig
+tsconfig.*
+tslint.*
 jest.*
 webpack.*
+yarn-*
 
 # Sources
+__*
 src
 internal
 examples
-example.png
-logo.png
 stories
 examples
-.storybook
 /*.png
+materials
+storybook-static
 
 # Tests
 cypress*
 coverage
 jest.*
+tests
