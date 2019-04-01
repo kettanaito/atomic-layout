@@ -2095,6 +2095,20 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zerollup/ts-helpers@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@zerollup/ts-helpers/-/ts-helpers-1.7.0.tgz#491269c65fbe4207ad7d88b483488f652f83ade8"
+  integrity sha512-Nr5taViAcvl4uo41/vlXcyDoLrEKiJUJkk4jN/WUzCyHZC5In6pGFK7WpYabwi67wxWn2Na6OV8oBtbFpqKUXw==
+  dependencies:
+    resolve "^1.8.1"
+
+"@zerollup/ts-transform-paths@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@zerollup/ts-transform-paths/-/ts-transform-paths-1.7.0.tgz#dcb88d438a8c748e0db95d0d7cd24ee227db0e32"
+  integrity sha512-D2PyN5lT2Z1pCSuHo6MX/a71i7IUJ9K1g7iugLFx0c8O54XQ99wpb2qd88hY+ZPRrssjRapLCPopEwA+Nbf0MA==
+  dependencies:
+    "@zerollup/ts-helpers" "^1.7.0"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -2434,7 +2448,7 @@ array.prototype.flatmap@^1.2.1:
     es-abstract "^1.10.0"
     function-bind "^1.1.1"
 
-arrify@^1.0.1:
+arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
   integrity sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=
@@ -4114,7 +4128,7 @@ buffer-fill@^1.0.0:
   resolved "https://registry.yarnpkg.com/buffer-fill/-/buffer-fill-1.0.0.tgz#f8f78b76789888ef39f205cd637f68e702122b2c"
   integrity sha1-+PeLdniYiO858gXNY39o5wISKyw=
 
-buffer-from@1.x, buffer-from@^1.0.0:
+buffer-from@1.x, buffer-from@^1.0.0, buffer-from@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
@@ -5494,7 +5508,7 @@ diff-sequences@^24.0.0:
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-24.0.0.tgz#cdf8e27ed20d8b8d3caccb4e0c0d8fe31a173013"
   integrity sha512-46OkIuVGBBnrC0soO/4LHu5LHGHx0uhP65OVz8XOrAJpqiCB2aVIuESvjI1F9oqebuvY8lekS1pt6TN7vt7qsw==
 
-diff@^3.2.0:
+diff@^3.1.0, diff@^3.2.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
@@ -9290,7 +9304,7 @@ make-dir@^1.0.0:
   dependencies:
     pify "^3.0.0"
 
-make-error@1.x, make-error@^1.3.5:
+make-error@1.x, make-error@^1.1.1, make-error@^1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
   integrity sha512-c3sIjNUow0+8swNwVpqoH4YCShKNFkMaw6oH1mNS2haDZQqkeZFlHS3dhoeEbKKmJB4vXpJucU6oH75aDYeE9g==
@@ -13287,6 +13301,20 @@ ts-jest@^23.10.5:
     semver "^5.5"
     yargs-parser "10.x"
 
+ts-node@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"
+  integrity sha512-BVwVbPJRspzNh2yfslyT1PSbl5uIk03EZlb493RKHN4qej/D06n1cEhjlOJG69oFsE7OT8XjpTUcYf6pKTLMhw==
+  dependencies:
+    arrify "^1.0.0"
+    buffer-from "^1.1.0"
+    diff "^3.1.0"
+    make-error "^1.1.1"
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map-support "^0.5.6"
+    yn "^2.0.0"
+
 tsconfig-paths-webpack-plugin@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-3.2.0.tgz#6e70bd42915ad0efb64d3385163f0c1270f3e04d"
@@ -13365,6 +13393,14 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
+
+ttypescript@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/ttypescript/-/ttypescript-1.5.6.tgz#b87908009ade01b880b86d91699a14f8ab057a8a"
+  integrity sha512-+JbeQt3W+VJMsnvDMVX2/LojRJqLBQzQWE1hI5ZTR2+9EoWXnQ4fUD+tMWCCda1LY2Z5EtwWWrWYmNziw4CYZA==
+  dependencies:
+    resolve "^1.9.0"
+    ts-node "^7.0.1"
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
@@ -14240,6 +14276,11 @@ yauzl@2.8.0:
   dependencies:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.0.1"
+
+yn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
+  integrity sha1-5a2ryKz0CPY4X8dklWhMiOavaJo=
 
 yup@^0.26.10:
   version "0.26.10"
