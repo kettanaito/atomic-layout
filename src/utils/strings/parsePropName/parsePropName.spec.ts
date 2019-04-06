@@ -1,77 +1,79 @@
 import Layout from '../../../Layout'
 import parsePropName from './parsePropName'
 
-test('Parses a prop name without breakpoint or behavior', () => {
-  expect(parsePropName('gutter')).toEqual({
-    originPropName: 'gutter',
-    purePropName: 'gutter',
-    behavior: 'up',
-    breakpoint: {
-      name: 'xs',
-      isDefault: true,
-    },
+describe('Parses a prop name', () => {
+  test('without breakpoint or behavior', () => {
+    expect(parsePropName('gutter')).toEqual({
+      originPropName: 'gutter',
+      purePropName: 'gutter',
+      behavior: 'up',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
+  })
+
+  test('with breakpoint, without behavior', () => {
+    expect(parsePropName('gutterMd')).toEqual({
+      originPropName: 'gutterMd',
+      purePropName: 'gutter',
+      behavior: 'up',
+      breakpoint: {
+        name: 'md',
+        isDefault: false,
+      },
+    })
+  })
+
+  test('with behavior and without breakpoint', () => {
+    expect(parsePropName('gutterDown')).toEqual({
+      originPropName: 'gutterDown',
+      purePropName: 'gutter',
+      behavior: 'down',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
+  })
+
+  test('with breakpoint and behavior', () => {
+    expect(parsePropName('gutterLgOnly')).toEqual({
+      originPropName: 'gutterLgOnly',
+      purePropName: 'gutter',
+      behavior: 'only',
+      breakpoint: {
+        name: 'lg',
+        isDefault: false,
+      },
+    })
+
+    expect(parsePropName('paddingVerticalMdDown')).toEqual({
+      originPropName: 'paddingVerticalMdDown',
+      purePropName: 'paddingVertical',
+      behavior: 'down',
+      breakpoint: {
+        name: 'md',
+        isDefault: false,
+      },
+    })
+  })
+
+  test('Ignores unknown suffixes', () => {
+    expect(parsePropName('gutterFoo')).toEqual({
+      originPropName: 'gutterFoo',
+      purePropName: 'gutterFoo',
+      behavior: 'up',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
   })
 })
 
-test('Parses a prop name with breakpoint without behavior', () => {
-  expect(parsePropName('gutterMd')).toEqual({
-    originPropName: 'gutterMd',
-    purePropName: 'gutter',
-    behavior: 'up',
-    breakpoint: {
-      name: 'md',
-      isDefault: false,
-    },
-  })
-})
-
-test('Parses prop name with behavior and without breakpoint', () => {
-  expect(parsePropName('gutterDown')).toEqual({
-    originPropName: 'gutterDown',
-    purePropName: 'gutter',
-    behavior: 'down',
-    breakpoint: {
-      name: 'xs',
-      isDefault: true,
-    },
-  })
-})
-
-test('Parses a prop name with a breakpoint and behavior', () => {
-  expect(parsePropName('gutterLgOnly')).toEqual({
-    originPropName: 'gutterLgOnly',
-    purePropName: 'gutter',
-    behavior: 'only',
-    breakpoint: {
-      name: 'lg',
-      isDefault: false,
-    },
-  })
-
-  expect(parsePropName('paddingVerticalMdDown')).toEqual({
-    originPropName: 'paddingVerticalMdDown',
-    purePropName: 'paddingVertical',
-    behavior: 'down',
-    breakpoint: {
-      name: 'md',
-      isDefault: false,
-    },
-  })
-})
-
-test('Ignores unknown suffixes', () => {
-  expect(parsePropName('gutterFoo')).toEqual({
-    originPropName: 'gutterFoo',
-    purePropName: 'gutterFoo',
-    behavior: 'up',
-    breakpoint: {
-      name: 'xs',
-      isDefault: true,
-    },
-  })
-})
-
-describe('Custom layout breakpoints', () => {
+describe('Parses prop name with custom layout breakpoints', () => {
   beforeAll(() => {
     Layout.configure({
       defaultBreakpointName: 'mobile',
@@ -83,7 +85,7 @@ describe('Custom layout breakpoints', () => {
     })
   })
 
-  test('Parses a prop name without breakpoint or behavior', () => {
+  test('without breakpoint or behavior', () => {
     expect(parsePropName('marginLeft')).toEqual({
       originPropName: 'marginLeft',
       purePropName: 'marginLeft',
@@ -95,7 +97,7 @@ describe('Custom layout breakpoints', () => {
     })
   })
 
-  test('Parses a prop name with custom breakpoint and without behavior', () => {
+  test('with custom breakpoint and without behavior', () => {
     expect(parsePropName('templateTablet')).toEqual({
       originPropName: 'templateTablet',
       purePropName: 'template',
@@ -117,7 +119,7 @@ describe('Custom layout breakpoints', () => {
     })
   })
 
-  test('Parses a prop name with behavior without breakpoint', () => {
+  test('with behavior without breakpoint', () => {
     expect(parsePropName('templateOnly')).toEqual({
       originPropName: 'templateOnly',
       purePropName: 'template',
@@ -129,7 +131,7 @@ describe('Custom layout breakpoints', () => {
     })
   })
 
-  test('Parses a prop name with custom breakpoint and behavior', () => {
+  test('with custom breakpoint and behavior', () => {
     expect(parsePropName('paddingHorizontalDesktopRetinaDown')).toEqual({
       originPropName: 'paddingHorizontalDesktopRetinaDown',
       purePropName: 'paddingHorizontal',
@@ -141,7 +143,7 @@ describe('Custom layout breakpoints', () => {
     })
   })
 
-  test('Ignores unknown suffixes', () => {
+  test('ignores unknown suffixes', () => {
     expect(parsePropName('gutterFoo')).toEqual({
       originPropName: 'gutterFoo',
       purePropName: 'gutterFoo',

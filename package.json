@@ -2,6 +2,10 @@
   "name": "atomic-layout",
   "version": "0.7.1",
   "description": "A single component to distribute a spacial relation in your layouts using CSS Grid.",
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
@@ -23,7 +27,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint ./src/",
+      "tslint ./src/",
       "prettier --write",
       "git add"
     ]
@@ -34,10 +38,6 @@
       "maxSize": "20 kB"
     }
   ],
-  "author": {
-    "name": "Artem Zakharchenko",
-    "email": "kettanaito@gmail.com"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kettanaito/atomic-layout"

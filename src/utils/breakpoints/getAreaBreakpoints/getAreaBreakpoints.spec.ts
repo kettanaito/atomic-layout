@@ -68,7 +68,7 @@ test('Notch', () => {
   ])
 })
 
-describe('Shuffled behavior', () => {
+describe('Combined behavior', () => {
   test('Concatenates sibling areas with "down" behavior', () => {
     const breakpointSm = Layout.getBreakpoint('sm') || {}
     const breakpointMd = Layout.getBreakpoint('md') || {}

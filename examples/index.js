@@ -22,11 +22,13 @@ storiesOf('Core|Rendering', module)
 import MobileFirstResponsiveProps from './Core/ResponsiveProps/MobileFirst'
 import BreakpointSpecificResponsiveProps from './Core/ResponsiveProps/BreakpointSpecific'
 import InclusiveNotchResponsiveProps from './Core/ResponsiveProps/InclusiveNotch'
+import CompoundResponsiveProps from './Core/ResponsiveProps/Compound'
 
 storiesOf('Core|Responsive props', module)
   .add('Mobile-first', () => <MobileFirstResponsiveProps />)
   .add('Breakpoint-specific', () => <BreakpointSpecificResponsiveProps />)
   .add('Inclusive-notch', () => <InclusiveNotchResponsiveProps />)
+  .add('Compound', () => <CompoundResponsiveProps />)
 
 /**
  * Configuration

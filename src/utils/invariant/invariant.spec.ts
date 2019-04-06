@@ -2,7 +2,7 @@ import invariant from './invariant'
 
 const createConsoleSpy = () => jest.spyOn(console, 'error')
 
-test('Should error when predicate is not satisfied', () => {
+test('Errors upon not satisfied predicate', () => {
   const consoleError = createConsoleSpy()
   const errorMessage = 'Error message'
 
@@ -12,7 +12,7 @@ test('Should error when predicate is not satisfied', () => {
   consoleError.mockRestore()
 })
 
-test('Should do nothing when predicate is satisfied', () => {
+test('Does nothing upon satisfied predicate', () => {
   const consoleError = createConsoleSpy()
 
   invariant(true, 'You should not see this')
