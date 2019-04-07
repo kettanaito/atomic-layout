@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import Layout from '../Layout'
 import { GenericProps } from '@const/props'
 import applyStyles from '@utils/styles/applyStyles'
 
@@ -9,7 +9,9 @@ export interface BoxProps extends GenericProps {
   inline?: boolean
 }
 
-const Box: React.FunctionComponent<BoxProps> = styled.div<BoxProps>`
+const Box: React.FunctionComponent<BoxProps> = Layout.options.produceStyles.div<
+  BoxProps
+>`
   && {
     ${applyStyles};
     display: ${({ flex, inline }) =>

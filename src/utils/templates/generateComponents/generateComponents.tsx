@@ -1,14 +1,11 @@
 import { AreasList } from '../getAreasList'
 import * as React from 'react'
-import styled from 'styled-components'
 import { Breakpoint } from '@const/defaultOptions'
 import { GenericProps } from '@const/props'
 import MediaQuery from '@components/MediaQuery'
 import Box, { BoxProps } from '@components/Box'
 import capitalize from '@utils/strings/capitalize'
-import getAreaBreakpoints, {
-  AreaBreakpoint,
-} from '@utils/breakpoints/getAreaBreakpoints'
+import getAreaBreakpoints from '@utils/breakpoints/getAreaBreakpoints'
 
 export type AreaComponent = React.FunctionComponent<BoxProps>
 export interface AreasMap {

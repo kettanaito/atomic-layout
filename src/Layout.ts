@@ -12,6 +12,7 @@ class Layout {
   public defaultBehavior: BreakpointBehavior = defaultOptions.defaultBehavior
   public breakpoints: Breakpoints = defaultOptions.breakpoints
   public defaultBreakpointName: string = defaultOptions.defaultBreakpointName
+  public produceStyles = defaultOptions.produceStyles
   protected isConfigureCalled: boolean = false
 
   constructor(options?: Partial<LayoutOptions>) {
@@ -38,6 +39,12 @@ class Layout {
     Object.keys(options || {}).forEach((optionName) => {
       this[optionName] = options[optionName]
     })
+
+    invariant(
+      this.produceStyles && typeof this.produceStyles === 'function',
+      'Failed to configure Layout: expected "produceStyles" to be a style producing function, but got: %s',
+      typeof this.produceStyles,
+    )
 
     invariant(
       this.breakpoints,

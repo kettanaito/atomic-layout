@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import Layout from '../Layout'
 import { GenericProps, GridProps } from '@const/props'
 import { AreasMap } from '@utils/templates/generateComponents'
 import parseTemplates from '@utils/templates/parseTemplates'
@@ -14,7 +14,7 @@ interface CompositionProps extends GenericProps, GridProps {
   inline?: boolean
 }
 
-const CompositionWrapper = styled.div<CompositionProps>`
+const CompositionWrapper = Layout.options.produceStyles.div<CompositionProps>`
   && {
     ${applyStyles};
     display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
