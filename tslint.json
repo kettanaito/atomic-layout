@@ -9,10 +9,12 @@
     "object-literal-sort-keys": [false, "never"],
     "only-arrow-functions": [false],
     "interface-name": [true, "never-prefix"],
-    "no-submodule-imports": [true, "@src", "@components", "@const", "@utils"],
+    "no-submodule-imports": [false, "@src", "@components", "@const", "@utils"],
     "no-implicit-dependencies": [
-      true,
+      false,
       ["@src", "@components", "@const", "@utils"]
-    ]
+    ],
+
+    "jsx-boolean-value": ["never"]
   }
 }

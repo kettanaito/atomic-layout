@@ -6,7 +6,7 @@ test('Returns "true" when a variable is set', () => {
   expect(isset('a')).toBe(true)
   expect(isset([])).toBe(true)
   expect(isset({})).toBe(true)
-  expect(isset(function() {})).toBe(true)
+  expect(isset(() => 'foo')).toBe(true)
 })
 
 test('Returns "false" when a variable is not set', () => {

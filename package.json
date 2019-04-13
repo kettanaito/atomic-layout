@@ -7,6 +7,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --watch",
     "storybook": "start-storybook -p 6020",
+    "lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}'",
     "clean": "rimraf lib && exit 0",
     "build": "yarn clean && yarn build:types && cross-env NODE_ENV=production webpack",
     "build:types": "ttsc",
@@ -23,7 +24,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint ./src/",
+      "yarn lint",
       "prettier --write",
       "git add"
     ]
@@ -80,11 +81,6 @@
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "cypress": "^3.0.3",
-    "eslint": "^5.9.0",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-react": "^7.11.1",
     "husky": "^1.0.0-rc.9",
     "jest": "23.6.0",
     "jest-dom": "^3.1.2",
