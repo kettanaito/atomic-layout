@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import withBreakpoints from './withBreakpoints'
+import debounce from '@utils/functions/debounce'
 
 const useResponsiveValue = <T>(
   breakpoints: Record<string, T>,
@@ -7,10 +8,10 @@ const useResponsiveValue = <T>(
 ): T => {
   const [value, updateValue] = useState<T>(defaultValue)
 
-  const handleWindowResize = () => {
+  const handleWindowResize = debounce(() => {
     const nextValue = withBreakpoints<T>(breakpoints, defaultValue)
     updateValue(nextValue)
-  }
+  })
 
   useEffect(() => {
     handleWindowResize()
