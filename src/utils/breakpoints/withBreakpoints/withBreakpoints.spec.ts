@@ -1,4 +1,4 @@
-import '../../../tests/matchMedia.mock'
+import '@src/../tests/matchMedia.mock'
 import withBreakpoints from './withBreakpoints'
 
 describe('withBreakpoints', () => {

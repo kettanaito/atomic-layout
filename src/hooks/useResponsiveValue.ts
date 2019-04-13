@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import withBreakpoints from './withBreakpoints'
 import debounce from '@utils/functions/debounce'
+import withBreakpoints from '@utils/breakpoints/withBreakpoints'
 
 const useResponsiveValue = <T>(
   breakpoints: Record<string, T>,
