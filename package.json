@@ -85,6 +85,7 @@
     "jest": "^24.8.0",
     "jest-dom": "^3.1.2",
     "lint-staged": "^8.1.0",
+    "match-media-mock": "^0.1.1",
     "prettier": "^1.15.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

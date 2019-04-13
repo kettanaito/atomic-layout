@@ -59,6 +59,14 @@ storiesOf('Components|Only', module)
   .add('Custom breakpoint', () => <OnlyCustomBreakpoint />)
 
 /**
+ * Hooks
+ */
+import UserResponsiveValue from './Hooks/UseResponsiveValue'
+storiesOf('Hooks', module).add('useResponsiveValue', () => (
+  <UserResponsiveValue />
+))
+
+/**
  * Recipes
  */
 import IterativeAreas from './Recipes/IterativeAreas'
