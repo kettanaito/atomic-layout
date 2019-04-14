@@ -4,8 +4,6 @@ import { Composition } from '..'
 import { render, cleanup, getByTestId } from 'react-testing-library'
 import 'jest-dom/extend-expect'
 
-afterEach(cleanup)
-
 const defaultValue = 10
 const explicitValues = {
   area: 'first',
@@ -39,25 +37,31 @@ const explicitValues = {
   placeContent: 'flex-start flex-start',
 }
 
-Object.keys(propAliases).forEach((propAliasName) => {
-  test(propAliasName, () => {
-    const propValue = explicitValues[propAliasName] || defaultValue
-    const props = {
-      [propAliasName]: propValue,
-    }
-    const { container } = render(
-      <Composition data-testid="composition" areas="first" {...props}>
-        {({ First }) => <First>{propAliasName}</First>}
-      </Composition>,
-    )
-    const domElement = getByTestId(container, 'composition')
+describe('Prop aliases', () => {
+  afterEach(cleanup)
 
-    /* Assertion */
-    const { props: cssProps, transformValue } = propAliases[propAliasName]
-    const expectedValue = transformValue ? transformValue(propValue) : propValue
+  Object.keys(propAliases).forEach((propAliasName) => {
+    it(propAliasName, () => {
+      const propValue = explicitValues[propAliasName] || defaultValue
+      const props = {
+        [propAliasName]: propValue,
+      }
+      const { container } = render(
+        <Composition data-testid="composition" areas="first" {...props}>
+          {({ First }) => <First>{propAliasName}</First>}
+        </Composition>,
+      )
+      const domElement = getByTestId(container, 'composition')
 
-    cssProps.forEach((cssPropName) => {
-      expect(domElement).toHaveStyle(`${cssPropName}:${expectedValue}`)
+      /* Assertion */
+      const { props: cssProps, transformValue } = propAliases[propAliasName]
+      const expectedValue = transformValue
+        ? transformValue(propValue)
+        : propValue
+
+      cssProps.forEach((cssPropName) => {
+        expect(domElement).toHaveStyle(`${cssPropName}:${expectedValue}`)
+      })
     })
   })
 })

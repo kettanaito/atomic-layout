@@ -1,33 +1,29 @@
 import sanitizeTemplateString from './sanitizeTemplateString'
 
-test('Sanitizes a template string with quotes', () => {
-  const template = `
-    'header header'
-    'content aside'
-    'footer footer'
-  `
+describe('sanitizeTemplateString', () => {
+  it('sanitizes string with quotes', () => {
+    const sanitized = sanitizeTemplateString(`
+      'header header'
+      'content aside'
+      'footer footer'
+    `)
+    expect(sanitized).toEqual(['aside', 'content', 'footer', 'header'])
+  })
 
-  const sanitized = sanitizeTemplateString(template)
-  expect(sanitized).toEqual(['aside', 'content', 'footer', 'header'])
-})
+  it('sanitizes string without quotes', () => {
+    const sanitized = sanitizeTemplateString(`
+      first first
+      second third
+      fourth fourth
+    `)
+    expect(sanitized).toEqual(['first', 'fourth', 'second', 'third'])
+  })
 
-test('Sanitizes template string without quotes', () => {
-  const template = `
-    first first
-    second third
-    fourth fourth
-  `
-
-  const sanitized = sanitizeTemplateString(template)
-  expect(sanitized).toEqual(['first', 'fourth', 'second', 'third'])
-})
-
-test('Sanitizes a template string without indentation', () => {
-  const template = `
+  it('sanitizes string without indentation', () => {
+    const sanitized = sanitizeTemplateString(`
 first first
 second third
-  `
-
-  const sanitized = sanitizeTemplateString(template)
-  expect(sanitized).toEqual(['first', 'second', 'third'])
+    `)
+    expect(sanitized).toEqual(['first', 'second', 'third'])
+  })
 })

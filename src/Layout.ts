@@ -34,22 +34,29 @@ class Layout {
       ...options,
     }
 
-    const { defaultBreakpointName } = this.options
+    const { breakpoints, defaultBreakpointName } = this.options
+
     invariant(
-      defaultBreakpointName && typeof defaultBreakpointName === 'string',
+      breakpoints,
+      'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
+    )
+
+    invariant(
+      breakpoints.hasOwnProperty(defaultBreakpointName),
+      'Failed to configure Layout: cannot use "%s" as the default breakpoint (breakpoint not found).',
+      defaultBreakpointName,
+    )
+
+    invariant(
+      defaultBreakpointName,
       'Failed to configure Layout: expected "defaultBreakpointName" property set, but got: %s.',
       defaultBreakpointName,
     )
 
     invariant(
-      this.options.breakpoints,
-      'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
-    )
-
-    invariant(
-      this.options.breakpoints.hasOwnProperty(defaultBreakpointName),
-      'Failed to configure Layout: cannot use "%s" as the default breakpoint (breakpoint not found).',
-      defaultBreakpointName,
+      typeof defaultBreakpointName === 'string',
+      'Failed to configure Layout: expected "defaultBreakpointName" to be a string, but got: %s',
+      typeof defaultBreakpointName,
     )
 
     /* Mark configure method as called to prevent its multiple calls */
@@ -70,11 +77,7 @@ class Layout {
    * Returns breakpoint options by the given breakpoint name.
    */
   public getBreakpoint(breakpointName: string): Breakpoint | undefined {
-    if (breakpointName) {
-      return this.options.breakpoints[breakpointName]
-    }
-
-    return
+    return this.options.breakpoints[breakpointName]
   }
 }
 

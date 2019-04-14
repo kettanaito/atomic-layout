@@ -2,16 +2,16 @@ import getPrefix from './getPrefix'
 
 describe('getPrefix', () => {
   it('returns matching prefix', () => {
-    expect(getPrefix('maxHeight')).toEqual('max')
-    expect(getPrefix('minResolution')).toEqual('min')
+    expect(getPrefix('maxHeight')).toBe('max')
+    expect(getPrefix('minResolution')).toBe('min')
   })
 
   it('ignores in-string matches', () => {
-    expect(getPrefix('aminmaxWidth')).toEqual('')
+    expect(getPrefix('aminmaxWidth')).toBe('')
   })
 
   it('returns empty string upon no match', () => {
-    expect(getPrefix('fooBar')).toEqual('')
-    expect(getPrefix('abcDef')).toEqual('')
+    expect(getPrefix('fooBar')).toBe('')
+    expect(getPrefix('abcDef')).toBe('')
   })
 })

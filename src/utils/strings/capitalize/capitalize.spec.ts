@@ -1,6 +1,15 @@
 import capitalize from './capitalize'
 
-test('Capitalizes the given string', () => {
-  expect(capitalize('foo')).toBe('Foo')
-  expect(capitalize('fooSome')).toBe('FooSome')
+describe('capitalize', () => {
+  it('capitalizes the given string', () => {
+    expect(capitalize('foo')).toBe('Foo')
+  })
+
+  it('bypasses already capitalized string', () => {
+    expect(capitalize('Foo')).toBe('Foo')
+  })
+
+  it('preserves existing capital letters', () => {
+    expect(capitalize('fooBarDoe')).toBe('FooBarDoe')
+  })
 })

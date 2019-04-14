@@ -1,6 +1,13 @@
 import toLowerCaseFirst from './toLowerCaseFirst'
 
-test('Transforms first letter to lowercase', () => {
-  expect(toLowerCaseFirst('Foo')).toBe('foo')
-  expect(toLowerCaseFirst('FooBar')).toBe('fooBar')
+describe('toLowerCaseFirst', () => {
+  it('converts first letter to lowercase', () => {
+    expect(toLowerCaseFirst('Foo')).toBe('foo')
+    expect(toLowerCaseFirst('FooBar')).toBe('fooBar')
+  })
+
+  it('bypasses strings with first lowercase letter', () => {
+    expect(toLowerCaseFirst('foo')).toBe('foo')
+    expect(toLowerCaseFirst('fooBar')).toBe('fooBar')
+  })
 })
