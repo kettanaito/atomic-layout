@@ -41,14 +41,14 @@ export default function applyStyles(pristineProps: Props): string {
       .filter(({ originPropName }) => isset(pristineProps[originPropName]))
       /* Map each prop to a CSS string */
       .map(({ purePropName, originPropName, breakpoint, behavior }) => {
-        const { props, transformValue } = propAliases[purePropName]
+        const { output, transformValue } = propAliases[purePropName]
         const propValue = pristineProps[originPropName]
         const transformedPropValue = transformValue
           ? transformValue(propValue)
           : propValue
 
         return createStyleString(
-          props,
+          output,
           transformedPropValue,
           breakpoint,
           behavior,

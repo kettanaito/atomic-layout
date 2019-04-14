@@ -3,15 +3,15 @@ import compose from '@utils/functions/compose'
 import transformNumeric from '@utils/math/transformNumeric'
 import sanitizeTemplateArea from '@utils/strings/sanitizeTemplateArea'
 
-type ValueTransformer<I, R> = (val: I) => R
+export type ValueTransformer<Input, Return> = (value: Input) => Return
 
-interface PropAliasDeclaration {
-  props: string[]
+interface PropAlias {
+  output: string[]
   transformValue?: ValueTransformer<Numeric, string>
 }
 
 export interface PropAliases {
-  [aliasName: string]: PropAliasDeclaration
+  [aliasName: string]: PropAlias
 }
 
 type TransformTemplateString = (template: string) => string
@@ -31,196 +31,196 @@ const transformTemplateString: TransformTemplateString = compose(
 const propAliases: PropAliases = {
   /* CSS Grid */
   area: {
-    props: ['grid-area'],
+    output: ['grid-area'],
   },
   areas: {
-    props: ['grid-template-areas'],
+    output: ['grid-template-areas'],
     transformValue: transformTemplateString,
   },
   template: {
-    props: ['grid-template'],
+    output: ['grid-template'],
     transformValue: transformTemplateString,
   },
   templateCols: {
-    props: ['grid-template-columns'],
+    output: ['grid-template-columns'],
   },
   templateRows: {
-    props: ['grid-template-rows'],
+    output: ['grid-template-rows'],
   },
   col: {
-    props: ['grid-column'],
+    output: ['grid-column'],
   },
   colStart: {
-    props: ['grid-column-start'],
+    output: ['grid-column-start'],
   },
   colEnd: {
-    props: ['grid-column-end'],
+    output: ['grid-column-end'],
   },
   row: {
-    props: ['grid-row'],
+    output: ['grid-row'],
   },
   rowStart: {
-    props: ['grid-row-start'],
+    output: ['grid-row-start'],
   },
   rowEnd: {
-    props: ['grid-row-end'],
+    output: ['grid-row-end'],
   },
   gap: {
-    props: ['grid-gap'],
+    output: ['grid-gap'],
     transformValue: transformNumeric,
   },
   gapCol: {
-    props: ['grid-column-gap'],
+    output: ['grid-column-gap'],
     transformValue: transformNumeric,
   },
   gapRow: {
-    props: ['grid-row-gap'],
+    output: ['grid-row-gap'],
     transformValue: transformNumeric,
   },
   gutter: {
-    props: ['grid-gap'],
+    output: ['grid-gap'],
     transformValue: transformNumeric,
   },
   gutterCol: {
-    props: ['grid-column-gap'],
+    output: ['grid-column-gap'],
     transformValue: transformNumeric,
   },
   gutterRow: {
-    props: ['grid-row-gap'],
+    output: ['grid-row-gap'],
     transformValue: transformNumeric,
   },
   autoRows: {
-    props: ['grid-auto-rows'],
+    output: ['grid-auto-rows'],
     transformValue: transformNumeric,
   },
   autoCols: {
-    props: ['grid-auto-columns'],
+    output: ['grid-auto-columns'],
     transformValue: transformNumeric,
   },
   autoFlow: {
-    props: ['grid-auto-flow'],
+    output: ['grid-auto-flow'],
   },
   align: {
-    props: ['align-self'],
+    output: ['align-self'],
   },
   alignItems: {
-    props: ['align-items'],
+    output: ['align-items'],
   },
   justify: {
-    props: ['justify-self'],
+    output: ['justify-self'],
   },
   justifyItems: {
-    props: ['justify-items'],
+    output: ['justify-items'],
   },
   justifyContent: {
-    props: ['justify-content'],
+    output: ['justify-content'],
   },
   place: {
-    props: ['place-self'],
+    output: ['place-self'],
   },
   placeItems: {
-    props: ['place-items'],
+    output: ['place-items'],
   },
   placeContent: {
-    props: ['place-content'],
+    output: ['place-content'],
   },
 
   /* CSS Flexbox */
   flexDirection: {
-    props: ['flex-direction'],
+    output: ['flex-direction'],
   },
   flexShrink: {
-    props: ['flex-shrink'],
+    output: ['flex-shrink'],
   },
   flexGrow: {
-    props: ['flex-grow'],
+    output: ['flex-grow'],
   },
   flexWrap: {
-    props: ['flex-wrap'],
+    output: ['flex-wrap'],
   },
 
   /* Dimensions */
   height: {
-    props: ['height'],
+    output: ['height'],
     transformValue: transformNumeric,
   },
   minHeight: {
-    props: ['min-height'],
+    output: ['min-height'],
     transformValue: transformNumeric,
   },
   maxHeight: {
-    props: ['max-height'],
+    output: ['max-height'],
     transformValue: transformNumeric,
   },
   width: {
-    props: ['width'],
+    output: ['width'],
     transformValue: transformNumeric,
   },
   minWidth: {
-    props: ['min-width'],
+    output: ['min-width'],
     transformValue: transformNumeric,
   },
   maxWidth: {
-    props: ['max-width'],
+    output: ['max-width'],
     transformValue: transformNumeric,
   },
 
-  /* Space */
+  /* Spacing */
   margin: {
-    props: ['margin'],
+    output: ['margin'],
     transformValue: transformNumeric,
   },
   marginTop: {
-    props: ['margin-top'],
+    output: ['margin-top'],
     transformValue: transformNumeric,
   },
   marginRight: {
-    props: ['margin-right'],
+    output: ['margin-right'],
     transformValue: transformNumeric,
   },
   marginBottom: {
-    props: ['margin-bottom'],
+    output: ['margin-bottom'],
     transformValue: transformNumeric,
   },
   marginLeft: {
-    props: ['margin-left'],
+    output: ['margin-left'],
     transformValue: transformNumeric,
   },
   marginVertical: {
-    props: ['margin-top', 'margin-bottom'],
+    output: ['margin-top', 'margin-bottom'],
     transformValue: transformNumeric,
   },
   marginHorizontal: {
-    props: ['margin-right', 'margin-left'],
+    output: ['margin-right', 'margin-left'],
     transformValue: transformNumeric,
   },
 
   padding: {
-    props: ['padding'],
+    output: ['padding'],
     transformValue: transformNumeric,
   },
   paddingTop: {
-    props: ['padding-top'],
+    output: ['padding-top'],
     transformValue: transformNumeric,
   },
   paddingRight: {
-    props: ['padding-right'],
+    output: ['padding-right'],
     transformValue: transformNumeric,
   },
   paddingBottom: {
-    props: ['padding-bottom'],
+    output: ['padding-bottom'],
     transformValue: transformNumeric,
   },
   paddingLeft: {
-    props: ['padding-left'],
+    output: ['padding-left'],
     transformValue: transformNumeric,
   },
   paddingVertical: {
-    props: ['padding-top', 'padding-bottom'],
+    output: ['padding-top', 'padding-bottom'],
     transformValue: transformNumeric,
   },
   paddingHorizontal: {
-    props: ['padding-right', 'padding-left'],
+    output: ['padding-right', 'padding-left'],
     transformValue: transformNumeric,
   },
 }
