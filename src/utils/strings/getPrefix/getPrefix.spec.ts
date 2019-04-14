@@ -1,11 +1,17 @@
 import getPrefix from './getPrefix'
 
-test('Returns the min/max prefix of the given string', () => {
-  expect(getPrefix('maxHeight')).toEqual('max')
-  expect(getPrefix('minResolution')).toEqual('min')
-})
+describe('getPrefix', () => {
+  it('returns matching prefix', () => {
+    expect(getPrefix('maxHeight')).toEqual('max')
+    expect(getPrefix('minResolution')).toEqual('min')
+  })
 
-test('Bypasses unknown prefixes', () => {
-  expect(getPrefix('fooBar')).toEqual('')
-  expect(getPrefix('abcDef')).toEqual('')
+  it('ignores in-string matches', () => {
+    expect(getPrefix('aminmaxWidth')).toEqual('')
+  })
+
+  it('returns empty string upon no match', () => {
+    expect(getPrefix('fooBar')).toEqual('')
+    expect(getPrefix('abcDef')).toEqual('')
+  })
 })
