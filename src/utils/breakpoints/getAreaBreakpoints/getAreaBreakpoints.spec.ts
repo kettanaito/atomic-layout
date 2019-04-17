@@ -1,5 +1,4 @@
 import Layout from '../../../Layout'
-import transformNumeric from '../../math/transformNumeric'
 import getAreasList from '../../templates/getAreasList'
 import getAreaBreakpoints from './getAreaBreakpoints'
 
@@ -38,7 +37,9 @@ describe('getAreaBreakpoints', () => {
         {
           behavior: 'down',
           minWidth: breakpointMd.minWidth,
-          maxWidth: `calc(${transformNumeric(breakpointXl.minWidth)} - 1px)`,
+          maxWidth: `calc(${Layout.transformNumeric(
+            breakpointXl.minWidth,
+          )} - 1px)`,
         },
         null,
       ])
@@ -60,7 +61,9 @@ describe('getAreaBreakpoints', () => {
         {
           behavior: 'down',
           minWidth: breakpointXs.minWidth,
-          maxWidth: `calc(${transformNumeric(breakpointMd.minWidth)} - 1px)`,
+          maxWidth: `calc(${Layout.transformNumeric(
+            breakpointMd.minWidth,
+          )} - 1px)`,
         },
         null,
         {
@@ -87,7 +90,9 @@ describe('getAreaBreakpoints', () => {
           {
             behavior: 'down',
             minWidth: undefined,
-            maxWidth: `calc(${transformNumeric(breakpointSm.minWidth)} - 1px)`,
+            maxWidth: `calc(${Layout.transformNumeric(
+              breakpointSm.minWidth,
+            )} - 1px)`,
           },
           null,
           {

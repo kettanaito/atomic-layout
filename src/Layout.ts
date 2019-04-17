@@ -4,11 +4,14 @@ import defaultOptions, {
   Breakpoints,
   MeasurementUnit,
   BreakpointBehavior,
+  Numeric,
 } from './const/defaultOptions'
+import { PropAliases } from './const/propAliases'
 import invariant from './utils/invariant'
 import warn from './utils/functions/warn'
 
 class Layout {
+  public propAliases: PropAliases = defaultOptions.propAliases
   public defaultUnit: MeasurementUnit = defaultOptions.defaultUnit
   public defaultBehavior: BreakpointBehavior = defaultOptions.defaultBehavior
   public breakpoints: Breakpoints = defaultOptions.breakpoints
@@ -47,14 +50,14 @@ class Layout {
     invariant(
       this.breakpoints.hasOwnProperty(this.defaultBreakpointName),
       `Failed to configure Layout: cannot use "${
-        this.defaultBreakpointName
+      this.defaultBreakpointName
       }" as the default breakpoint (breakpoint not found).`,
     )
 
     invariant(
       this.defaultBreakpointName,
       `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${
-        this.defaultBreakpointName
+      this.defaultBreakpointName
       }.`,
     )
 

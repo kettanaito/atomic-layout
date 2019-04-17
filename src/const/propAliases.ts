@@ -1,9 +1,11 @@
 import { Numeric } from '@const/defaultOptions'
 import compose from '@utils/functions/compose'
-import transformNumeric from '@utils/math/transformNumeric'
 import sanitizeTemplateArea from '@utils/strings/sanitizeTemplateArea'
 
-export type ValueTransformer<Input, Return> = (value: Input) => Return
+export type ValueTransformer<Input, Return> = (
+  value: Input,
+  Layout: any,
+) => Return
 
 interface PropAlias {
   output: string[]
@@ -12,6 +14,13 @@ interface PropAlias {
 
 export interface PropAliases {
   [aliasName: string]: PropAlias
+}
+
+const deferredTransformNumeric: ValueTransformer<Numeric, string> = (
+  value,
+  Layout,
+) => {
+  return Layout.transformNumeric(value)
 }
 
 type TransformTemplateString = (template: string) => string
@@ -67,35 +76,35 @@ const propAliases: PropAliases = {
   },
   gap: {
     output: ['grid-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   gapCol: {
     output: ['grid-column-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   gapRow: {
     output: ['grid-row-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   gutter: {
     output: ['grid-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   gutterCol: {
     output: ['grid-column-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   gutterRow: {
     output: ['grid-row-gap'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   autoRows: {
     output: ['grid-auto-rows'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   autoCols: {
     output: ['grid-auto-columns'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   autoFlow: {
     output: ['grid-auto-flow'],
@@ -142,86 +151,86 @@ const propAliases: PropAliases = {
   /* Dimensions */
   height: {
     output: ['height'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   minHeight: {
     output: ['min-height'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   maxHeight: {
     output: ['max-height'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   width: {
     output: ['width'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   minWidth: {
     output: ['min-width'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   maxWidth: {
     output: ['max-width'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
 
   /* Spacing */
   margin: {
     output: ['margin'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginTop: {
     output: ['margin-top'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginRight: {
     output: ['margin-right'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginBottom: {
     output: ['margin-bottom'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginLeft: {
     output: ['margin-left'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginVertical: {
     output: ['margin-top', 'margin-bottom'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   marginHorizontal: {
     output: ['margin-right', 'margin-left'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
 
   padding: {
     output: ['padding'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingTop: {
     output: ['padding-top'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingRight: {
     output: ['padding-right'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingBottom: {
     output: ['padding-bottom'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingLeft: {
     output: ['padding-left'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingVertical: {
     output: ['padding-top', 'padding-bottom'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
   paddingHorizontal: {
     output: ['padding-right', 'padding-left'],
-    transformValue: transformNumeric,
+    transformValue: deferredTransformNumeric,
   },
 }
 

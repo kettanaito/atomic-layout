@@ -1,4 +1,6 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
+import Layout from '@src/Layout'
 import propAliases from './propAliases'
 import { Composition } from '..'
 import { render, cleanup, getByTestId } from '@testing-library/react'
@@ -57,7 +59,7 @@ describe('Prop aliases', () => {
       /* Assertion */
       const { output, transformValue } = propAliases[propAliasName]
       const expectedValue = transformValue
-        ? transformValue(propValue)
+        ? transformValue(propValue, Layout)
         : propValue
 
       output.forEach((cssPropName) => {

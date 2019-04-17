@@ -1,6 +1,5 @@
 import Layout from '@src/Layout'
 import { BreakpointBehavior } from '@const/defaultOptions'
-import propAliases from '@const/propAliases'
 import parsePropName, { Props } from '@utils/strings/parsePropName'
 import isset from '@utils/functions/isset'
 import createMediaQuery from '../createMediaQuery'
@@ -31,6 +30,8 @@ const createStyleString = (
 }
 
 export default function applyStyles(pristineProps: Props): string {
+  const { propAliases } = Layout
+
   return (
     Object.keys(pristineProps)
       /* Parse each prop to include "breakpoint" and "behavior" */
@@ -44,7 +45,7 @@ export default function applyStyles(pristineProps: Props): string {
         const { output, transformValue } = propAliases[purePropName]
         const propValue = pristineProps[originPropName]
         const transformedPropValue = transformValue
-          ? transformValue(propValue)
+          ? transformValue(propValue, Layout)
           : propValue
 
         return createStyleString(

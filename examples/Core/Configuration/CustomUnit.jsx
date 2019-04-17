@@ -3,7 +3,7 @@ import Layout from 'atomic-layout'
 import Notch from '../Rendering/Notch'
 
 export default class CustomUnit extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     Layout.configure({
       defaultUnit: 'rem',
     })

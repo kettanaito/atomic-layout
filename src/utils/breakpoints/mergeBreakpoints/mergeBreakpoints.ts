@@ -1,6 +1,7 @@
 import { AreaBreakpoint } from '../getAreaBreakpoints'
+import Layout from '@src/Layout'
 import defaultOptions from '@const/defaultOptions'
-import transformNumeric from '@utils/math/transformNumeric'
+// import transformNumeric from '@utils/math/transformNumeric'
 import getPrefix from '@utils/strings/getPrefix'
 
 /**
@@ -36,7 +37,7 @@ export default function mergeBreakpoints(
       if (prefix === 'max') {
         if (!includesArea && shouldStretch) {
           const mirrorValue = breakpointA[propName.replace(/^max/, 'min')]
-          nextValue = `calc(${transformNumeric(mirrorValue)} - 1px)`
+          nextValue = `calc(${Layout.transformNumeric(mirrorValue)} - 1px)`
         }
       }
 

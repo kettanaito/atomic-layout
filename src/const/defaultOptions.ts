@@ -1,3 +1,5 @@
+import propAliases, { PropAliases } from './propAliases'
+
 type AbsoluteUnits = 'cm' | 'mm' | 'in' | 'px' | 'pt' | 'pc'
 type RelativeUnits =
   | '%'
@@ -16,13 +18,15 @@ export type BreakpointBehavior = 'up' | 'down' | 'only'
 export interface Breakpoints {
   [breakpointName: string]: Breakpoint
 }
+
 export interface LayoutOptions {
+  propAliases: PropAliases
   /**
    * Measurement unit that suffixes numeric prop values.
    * @default "px"
    * @example
    * <Box padding={10} />
-   * // "padding: 10px"
+   * @returns "padding: 10px"
    */
   defaultUnit: MeasurementUnit
   /**
@@ -54,11 +58,12 @@ export interface MediaQuery {
 }
 
 export interface Breakpoint extends MediaQuery {
-  /* Index signature for dynamic breakpoint composition */
+  // Index signature for dynamic breakpoint composition
   [propName: string]: any
 }
 
 const defaultOptions: LayoutOptions = {
+  propAliases,
   defaultUnit: 'px',
   defaultBehavior: 'up',
   defaultBreakpointName: 'xs',
