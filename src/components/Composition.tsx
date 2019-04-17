@@ -15,8 +15,10 @@ interface CompositionProps extends GenericProps, GridProps {
 }
 
 const CompositionWrapper = styled.div<CompositionProps>`
-  ${applyStyles};
-  display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
+  && {
+    ${applyStyles};
+    display: ${({ inline }) => (inline ? 'inline-grid' : 'grid')};
+  }
 `
 
 const Composition: React.FunctionComponent<CompositionProps> = ({
