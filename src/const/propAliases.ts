@@ -65,6 +65,18 @@ const propAliases: PropAliases = {
   rowEnd: {
     props: ['grid-row-end'],
   },
+  gap: {
+    props: ['grid-gap'],
+    transformValue: transformNumeric,
+  },
+  gapCol: {
+    props: ['grid-column-gap'],
+    transformValue: transformNumeric,
+  },
+  gapRow: {
+    props: ['grid-row-gap'],
+    transformValue: transformNumeric,
+  },
   gutter: {
     props: ['grid-gap'],
     transformValue: transformNumeric,
@@ -86,7 +98,7 @@ const propAliases: PropAliases = {
     transformValue: transformNumeric,
   },
   autoFlow: {
-    props: ['grid-auto-flow']
+    props: ['grid-auto-flow'],
   },
   align: {
     props: ['align-self'],

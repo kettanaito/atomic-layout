@@ -28,7 +28,7 @@ describe('when handling "up" behavior', () => {
     ])
   })
 
-  it('always render area with min/max resolution', () => {
+  it('always renders area with min/max resolution', () => {
     expect(
       getAreaBreakpoints('first', [
         {

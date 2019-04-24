@@ -16,6 +16,7 @@ const explicitValues = {
   col: '1 / auto',
   colStart: '2',
   colEnd: '3',
+  gap: '20px 25px',
   gutter: '20px 25px',
   margin: ['0px', 10],
   flexDirection: ['row', 'column'],
