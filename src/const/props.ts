@@ -262,6 +262,24 @@ export interface GridProps extends GenericProps {
    * @css `grid-gap`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap
    */
+  gap?: Numeric
+  /**
+   * Spacing between the grid columns.
+   * @css `grid-column-gap`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-gap
+   */
+  gapCol?: Numeric
+  /**
+   * Spacing between the grid rows.
+   * @css `grid-row-gap`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-gap
+   */
+  gapRow?: Numeric
+  /**
+   * Spacing between rows and columns.
+   * @css `grid-gap`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-gap
+   */
   gutter?: Numeric
   /**
    * Spacing between the grid columns.
