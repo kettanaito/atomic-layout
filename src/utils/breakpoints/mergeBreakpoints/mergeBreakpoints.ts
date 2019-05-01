@@ -3,6 +3,9 @@ import defaultOptions from '@const/defaultOptions'
 import transformNumeric from '@utils/math/transformNumeric'
 import getPrefix from '@utils/strings/getPrefix'
 
+/**
+ * Merges two given mergable breakpoints.
+ */
 export default function mergeBreakpoints(
   breakpointA: AreaBreakpoint,
   breakpointB: AreaBreakpoint,
