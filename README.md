@@ -44,10 +44,7 @@ const areasTablet = `
 `
 
 const Card = ({ title, imageUrl, actions }) => (
-  <Composition
-    areas={areasMobile}
-    areasMd={areasTablet}
-    gutter={20}>
+  <Composition areas={areasMobile} areasMd={areasTablet} gutter={20}>
     {/* Get React components based on provided areas */}
     {({ Thumbnail, Header, Footer }) => (
       <React.Fragment>
@@ -56,9 +53,7 @@ const Card = ({ title, imageUrl, actions }) => (
           <img src={imageUrl} alt={title} />
         </Thumbnail>
         {/* Preserve semantics with polymorphic prop */}
-        <Header as="h3">
-          {title}
-        </Header>
+        <Header as="h3">{title}</Header>
         {/* Responsive props: just suffix with a breakpoint name */}
         <Footer padding={10} paddingMd={20}>
           {actions}
@@ -103,6 +98,17 @@ Here are some shortcuts to get you started:
 <table border="0">
   <tr>
     <td>
+      <a href="https://www.youtube.com/watch?v=_HrXUB97xQs">
+        <img width="500" src="./materials/react-finland-thumbnail.jpg" alt="Artem speaking at React Finland" />
+      </a>
+    </td>
+    <td>
+      <h3><a href="https://www.youtube.com/watch?v=_HrXUB97xQs">Creating layouts that last (React Finland, 2019)</a></h3>
+      <p>Find out the main aspects of a layout's maintainability and why spacing plays a large role in it. Learn how to wield layout composition as an actual React component–a missing glue for your elements and design systems.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
       <img width="500" src="https://pbs.twimg.com/profile_images/699140827218649088/mooXwM62_400x400.png" alt="SurviveJS logo" />
     </td>
     <td>
@@ -117,7 +123,7 @@ Here are some shortcuts to get you started:
       </a>
     </td>
     <td>
-      <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The Future of Layouts (React Vienna)</a></h3>
+      <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The Future of Layouts (React Vienna, 2018)</a></h3>
       <p>Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.</p>
       <ul>
         <li><a href="https://codesandbox.io/s/8z6xnmnnnj"><strong>Live demo</strong></a></li>
