@@ -1,40 +1,35 @@
 import path from 'path'
-import resolve from 'rollup-plugin-node-resolve'
+import nodeResolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import babel from 'rollup-plugin-babel'
-import typescript from 'rollup-plugin-typescript'
+import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
-const babelOptions = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        modules: false,
-      },
-    ],
-    '@babel/preset-react',
-    '@babel/preset-typescript',
-  ],
-  plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-export-namespace-from',
-  ],
-}
+const babelConfig = require('./babel.config')
 
-const input = './src/index.ts'
-const external = (id) => !id.startsWith('.') && !path.isAbsolute(id)
-const resolveOptions = {
-  extensions: ['.ts', '.tsx'],
-}
 const env = process.env.NODE_ENV
 const PRODUCTION = env === 'production'
+const input = packageJson.esnext
 
+const external = (moduleName) => {
+  return !moduleName.startsWith('.') && !path.isAbsolute(moduleName)
+}
+
+const resolve = () => {
+  return [
+    nodeResolve({
+      mainFields: ['esnext'],
+      extensions: ['.ts', '.tsx'],
+    }),
+  ]
+}
+
+/**
+ * UMD module
+ */
 const buildUmd = () => ({
   input,
   external: ['react', 'styled-components'],
@@ -49,20 +44,13 @@ const buildUmd = () => ({
     },
   },
   plugins: [
-    resolve(resolveOptions),
+    ...resolve(),
     typescript(),
-    babel(babelOptions),
+    babel(babelConfig),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
-    commonjs({
-      include: /node_modules/,
-      namedExports: {
-        'node_modules/react-responsive/dist/react-responsive.js': [
-          'MediaQuery',
-        ],
-      },
-    }),
+    commonjs(),
     sourceMaps(),
     PRODUCTION &&
       terser({
@@ -77,6 +65,9 @@ const buildUmd = () => ({
   ],
 })
 
+/**
+ * CommonJS module
+ */
 const buildCjs = () => ({
   input,
   external,
@@ -87,7 +78,7 @@ const buildCjs = () => ({
     sourcemap: true,
   },
   plugins: [
-    resolve(resolveOptions),
+    ...resolve(),
     typescript(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
@@ -95,17 +86,20 @@ const buildCjs = () => ({
     sourceMaps(),
     PRODUCTION &&
       terser({
+        ecma: 5,
         sourcemap: true,
         output: {
           comments: false,
         },
         warnings: true,
-        ecma: 5,
         toplevel: true,
       }),
   ],
 })
 
+/**
+ * ECMAScript module
+ */
 const buildEsm = () => ({
   input,
   external,
@@ -114,12 +108,7 @@ const buildEsm = () => ({
     format: 'esm',
     sourcemap: true,
   },
-  plugins: [
-    resolve(resolveOptions),
-    typescript(),
-    babel(babelOptions),
-    sourceMaps(),
-  ],
+  plugins: [resolve(), typescript(), babel(babelConfig), sourceMaps()],
 })
 
 export default [buildUmd(), buildCjs(), buildEsm()]

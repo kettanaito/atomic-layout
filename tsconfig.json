@@ -2,6 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "types": ["jest"],
+    "module": "es6",
     "target": "esnext",
     "moduleResolution": "node",
     "outDir": "lib/types",
