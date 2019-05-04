@@ -19,7 +19,7 @@
     "test": "yarn test:unit && yarn test:e2e",
     "bundlesize": "node_modules/.bin/bundlesize",
     "precommit": "lint-staged",
-    "prepush": "yarn bundlesize && yarn test:unit",
+    "prepush": "yarn test:unit",
     "prepublishOnly": "yarn build && yarn bundlesize && yarn test"
   },
   "lint-staged": {
