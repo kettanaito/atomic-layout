@@ -52,7 +52,7 @@
     "react"
   ],
   "peerDependencies": {
-    "react": ">= 16.8",
+    "react": ">= 16",
     "styled-components": ">= 4"
   },
   "devDependencies": {
