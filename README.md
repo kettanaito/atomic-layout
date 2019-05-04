@@ -105,6 +105,9 @@ Here are some shortcuts to get you started:
     <td>
       <h3><a href="https://www.youtube.com/watch?v=_HrXUB97xQs">Creating layouts that last (React Finland, 2019)</a></h3>
       <p>Find out the main aspects of a layout's maintainability and why spacing plays a large role in it. Learn how to wield layout composition as an actual React component–a missing glue for your elements and design systems.</p>
+      <ul>
+        <li><a href="https://codesandbox.io/s/5wwp76310n"><strong>Live demo</strong></a></li>
+      </ul>
     </td>
   </tr>
   <tr>
