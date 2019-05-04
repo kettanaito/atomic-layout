@@ -1,14 +1,20 @@
 import defaultOptions, {
   LayoutOptions,
   Breakpoint,
+  Breakpoints,
+  MeasurementUnit,
+  BreakpointBehavior,
 } from './const/defaultOptions'
 import invariant from './utils/invariant'
 
 class Layout {
-  public options: LayoutOptions = defaultOptions
+  public defaultUnit: MeasurementUnit = defaultOptions.defaultUnit
+  public defaultBehavior: BreakpointBehavior = defaultOptions.defaultBehavior
+  public breakpoints: Breakpoints = defaultOptions.breakpoints
+  public defaultBreakpointName: string = defaultOptions.defaultBreakpointName
   protected isConfigureCalled: boolean = false
 
-  constructor(options: Partial<LayoutOptions>) {
+  constructor(options?: Partial<LayoutOptions>) {
     return this.configure(options, false)
   }
 
@@ -16,6 +22,8 @@ class Layout {
    * Applies global layout options.
    */
   public configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
+    console.log({ options })
+
     if (warnOnMultiple) {
       invariant(
         !this.isConfigureCalled,
@@ -29,34 +37,31 @@ class Layout {
       options,
     )
 
-    this.options = {
-      ...defaultOptions,
-      ...options,
-    }
-
-    const { breakpoints, defaultBreakpointName } = this.options
+    Object.keys(options || {}).forEach((optionName) => {
+      this[optionName] = options[optionName]
+    })
 
     invariant(
-      breakpoints,
+      this.breakpoints,
       'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
     )
 
     invariant(
-      breakpoints.hasOwnProperty(defaultBreakpointName),
+      this.breakpoints.hasOwnProperty(this.defaultBreakpointName),
       'Failed to configure Layout: cannot use "%s" as the default breakpoint (breakpoint not found).',
-      defaultBreakpointName,
+      this.defaultBreakpointName,
     )
 
     invariant(
-      defaultBreakpointName,
+      this.defaultBreakpointName,
       'Failed to configure Layout: expected "defaultBreakpointName" property set, but got: %s.',
-      defaultBreakpointName,
+      this.defaultBreakpointName,
     )
 
     invariant(
-      typeof defaultBreakpointName === 'string',
+      typeof this.defaultBreakpointName === 'string',
       'Failed to configure Layout: expected "defaultBreakpointName" to be a string, but got: %s',
-      typeof defaultBreakpointName,
+      typeof this.defaultBreakpointName,
     )
 
     /* Mark configure method as called to prevent its multiple calls */
@@ -70,15 +75,15 @@ class Layout {
    * in the current layout configuration.
    */
   public getBreakpointNames(): string[] {
-    return Object.keys(this.options.breakpoints)
+    return Object.keys(this.breakpoints)
   }
 
   /**
    * Returns breakpoint options by the given breakpoint name.
    */
   public getBreakpoint(breakpointName: string): Breakpoint | undefined {
-    return this.options.breakpoints[breakpointName]
+    return this.breakpoints[breakpointName]
   }
 }
 
-export default new Layout(defaultOptions)
+export default new Layout()

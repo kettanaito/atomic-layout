@@ -48,17 +48,17 @@ export default function parsePropName(originPropName: string): ParsedProp {
    */
   const normalizedBreakpointName = breakpointName
     ? toLowerCaseFirst(breakpointName)
-    : Layout.options.defaultBreakpointName
+    : Layout.defaultBreakpointName
 
   const isDefaultBreakpoint =
-    normalizedBreakpointName === Layout.options.defaultBreakpointName
+    normalizedBreakpointName === Layout.defaultBreakpointName
 
   return {
     originPropName,
     purePropName,
     behavior: behavior
       ? toLowerCaseFirst<BreakpointBehavior>(behavior)
-      : Layout.options.defaultBehavior,
+      : Layout.defaultBehavior,
     breakpoint: {
       name: normalizedBreakpointName,
       isDefault: isDefaultBreakpoint,
