@@ -14,7 +14,16 @@ describe('Layout', () => {
   })
 
   it('instantiated with default options', () => {
-    expect(Layout).toHaveProperty('options', defaultOptions)
+    expect(Layout).toHaveProperty('defaultUnit', defaultOptions.defaultUnit)
+    expect(Layout).toHaveProperty(
+      'defaultBehavior',
+      defaultOptions.defaultBehavior,
+    )
+    expect(Layout).toHaveProperty(
+      'defaultBreakpointName',
+      defaultOptions.defaultBreakpointName,
+    )
+    expect(Layout).toHaveProperty('breakpoints', defaultOptions.breakpoints)
   })
 
   describe('exports public API', () => {

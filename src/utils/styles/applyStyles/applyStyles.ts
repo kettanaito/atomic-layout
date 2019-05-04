@@ -23,7 +23,7 @@ const createStyleString = (
    */
   const shouldWrapInMediaQuery =
     breakpointOptions &&
-    !(breakpoint.isDefault && behavior === Layout.options.defaultBehavior)
+    !(breakpoint.isDefault && behavior === Layout.defaultBehavior)
 
   return shouldWrapInMediaQuery
     ? `@media ${createMediaQuery(breakpointOptions, behavior)} {${styleProps}}`

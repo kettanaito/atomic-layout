@@ -13,7 +13,7 @@ export default function transformNumeric(value?: number | string): string {
    * When given value is zero then its generated as it is, no suffix is attached
    */
   const suffix =
-    typeof value === 'number' && value !== 0 ? Layout.options.defaultUnit : ''
+    typeof value === 'number' && value !== 0 ? Layout.defaultUnit : ''
 
   return `${value}${suffix}`
 }
