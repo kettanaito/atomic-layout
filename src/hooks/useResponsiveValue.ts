@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react'
 import debounce from '@utils/functions/debounce'
 import withBreakpoints from '@utils/breakpoints/withBreakpoints'
 
+/**
+ * Accepts a map of { breakpointName: value } pairs
+ * and returns a value based on the current viewport.
+ * Returns default value when no matching pair is found.
+ */
 const useResponsiveValue = <T>(
   breakpoints: Record<string, T>,
   defaultValue?: T,
