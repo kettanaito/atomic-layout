@@ -22,8 +22,6 @@ class Layout {
    * Applies global layout options.
    */
   public configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
-    console.log({ options })
-
     if (warnOnMultiple) {
       invariant(
         !this.isConfigureCalled,
