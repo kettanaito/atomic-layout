@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import debounce from '@utils/functions/debounce'
+import { useState } from 'react'
+import useViewportChange from './useViewportChange'
 import withBreakpoints from '@utils/breakpoints/withBreakpoints'
 
 /**
@@ -13,15 +13,9 @@ const useResponsiveValue = <T>(
 ): T => {
   const [value, updateValue] = useState<T>(defaultValue)
 
-  const handleWindowResize = debounce(() => {
+  useViewportChange(() => {
     const nextValue = withBreakpoints<T>(breakpoints, defaultValue)
     updateValue(nextValue)
-  })
-
-  useEffect(() => {
-    handleWindowResize()
-    window.addEventListener('resize', handleWindowResize)
-    return () => window.removeEventListener('resize', handleWindowResize)
   })
 
   return value
