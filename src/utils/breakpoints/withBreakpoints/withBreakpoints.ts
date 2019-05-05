@@ -8,9 +8,9 @@ const createWithBreakpoints = (breakpoints: Breakpoints) => {
   return <T>(breakpointsMap: Record<string, T>, defaultValue?: T): T => {
     const breakpointMatch = Object.keys(breakpointsMap)
       .filter((breakpointName) => {
-        const isKnownBreakpoint = existingBreakpoints.includes(breakpointName)
+        const hasBreakpoint = existingBreakpoints.includes(breakpointName)
 
-        if (!isKnownBreakpoint) {
+        if (!hasBreakpoint) {
           console.warn(
             'useBreakpoints: Breakpoint "%s" is not found. Add it via "Layout.configure()", or use one of the existing breakpoints (%s).',
             breakpointName,
@@ -18,7 +18,7 @@ const createWithBreakpoints = (breakpoints: Breakpoints) => {
           )
         }
 
-        return isKnownBreakpoint
+        return hasBreakpoint
       })
       .find((breakpointName) => {
         const breakpoint: Breakpoints | undefined = breakpoints[breakpointName]
@@ -30,6 +30,6 @@ const createWithBreakpoints = (breakpoints: Breakpoints) => {
   }
 }
 
-const withBreakpoints = createWithBreakpoints(Layout.options.breakpoints)
+const withBreakpoints = createWithBreakpoints(Layout.breakpoints)
 
 export default withBreakpoints
