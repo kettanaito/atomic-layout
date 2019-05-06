@@ -1,3 +1,4 @@
 describe('Hooks', () => {
-  require('./use-responsive-value.spec')
+  require('./useViewportChange.spec')
+  require('./useResponsiveValue.spec')
 })
