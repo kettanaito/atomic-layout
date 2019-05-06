@@ -61,12 +61,14 @@ storiesOf('Components|Only', module)
 /**
  * Hooks
  */
-import UseResponsiveValue from './Hooks/UseResponsiveValue'
 import UseViewportChange from './Hooks/UseViewportChange'
+import UseResponsiveValue from './Hooks/UseResponsiveValue'
+import UseBreakpointChange from './Hooks/UseBreakpointChange'
 
 storiesOf('Hooks', module)
   .add('useViewportChange', () => <UseViewportChange />)
   .add('useResponsiveValue', () => <UseResponsiveValue />)
+  .add('useBreakpointChange', () => <UseBreakpointChange />)
 
 /**
  * Recipes
