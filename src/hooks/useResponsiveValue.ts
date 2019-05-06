@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import useViewportChange from './useViewportChange'
+import useBreakpointChange from './useBreakpointChange'
 import withBreakpoints from '@utils/breakpoints/withBreakpoints'
 
 /**
@@ -13,7 +13,7 @@ const useResponsiveValue = <T>(
 ): T => {
   const [value, updateValue] = useState<T>(defaultValue)
 
-  useViewportChange(() => {
+  useBreakpointChange(() => {
     const nextValue = withBreakpoints<T>(breakpoints, defaultValue)
     updateValue(nextValue)
   })
