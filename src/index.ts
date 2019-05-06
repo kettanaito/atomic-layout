@@ -8,6 +8,7 @@ export { default as Only } from '@components/Only'
 export { default as MediaQuery } from '@components/MediaQuery'
 
 /* Hooks */
+export { default as useViewportChange } from './hooks/useViewportChange'
 export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 
 /* Utils */

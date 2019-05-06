@@ -61,10 +61,12 @@ storiesOf('Components|Only', module)
 /**
  * Hooks
  */
-import UserResponsiveValue from './Hooks/UseResponsiveValue'
-storiesOf('Hooks', module).add('useResponsiveValue', () => (
-  <UserResponsiveValue />
-))
+import UseResponsiveValue from './Hooks/UseResponsiveValue'
+import UseViewportChange from './Hooks/UseViewportChange'
+
+storiesOf('Hooks', module)
+  .add('useViewportChange', () => <UseViewportChange />)
+  .add('useResponsiveValue', () => <UseResponsiveValue />)
 
 /**
  * Recipes
