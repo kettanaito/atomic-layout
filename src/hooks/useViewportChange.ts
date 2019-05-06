@@ -11,7 +11,7 @@ const useViewportChange = (callback: () => void, debounceDuration?: number) => {
     handleWindowResize()
     window.addEventListener('resize', handleWindowResize)
     return () => window.removeEventListener('resize', handleWindowResize)
-  })
+  }, [])
 }
 
 export default useViewportChange
