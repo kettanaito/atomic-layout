@@ -11,6 +11,7 @@ export { default as MediaQuery } from '@components/MediaQuery'
 export { default as useViewportChange } from './hooks/useViewportChange'
 export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 export { default as useBreakpointChange } from './hooks/useBreakpointChange'
+export { default as useResponsiveProps } from './hooks/useResponsiveProps'
 
 /* Utils */
 export { default as withBreakpoints } from '@utils/breakpoints/withBreakpoints'
