@@ -4,6 +4,10 @@ import useBreakpointChange from './useBreakpointChange'
 import parsePropName from '@utils/strings/parsePropName'
 import createMediaQuery from '@utils/styles/createMediaQuery'
 
+/**
+ * Accepts an object of responsive props and returns
+ * an object of props relative to the current viewport.
+ */
 const useResponsiveProps = <ResponsiveProps = {}>(
   responsiveProps: ResponsiveProps,
 ) => {
