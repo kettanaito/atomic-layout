@@ -1,4 +1,4 @@
-it('Inclusive & Notch', () => {
+it('Bell & Notch', () => {
   cy.loadStory(['core'], ['responsive-props', 'inclusive-notch'])
 
   const assertPadding = (selector, values) => {

@@ -1,11 +1,11 @@
 import assertNotch from '../../asserts/assertNotch'
-import assertInclusive from '../../asserts/assertInclusive'
+import assertBell from '../../asserts/assertBell'
 
 describe('Nested composition', () => {
   before(() => {
     cy.loadStory(['components'], ['composition', 'nested-composition'])
   })
 
-  it('Composition behaves as Inclusive', assertNotch)
-  it('Composite behaves as Notch', assertInclusive)
+  it('Composition behaves as Bell', assertNotch)
+  it('Composite behaves as Notch', assertBell)
 })

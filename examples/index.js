@@ -5,14 +5,14 @@ import './styles.css'
 /**
  * Rendering
  */
-import InclusiveRendering from './Core/Rendering/Inclusive'
+import BellRendering from './Core/Rendering/Bell'
 import MobileFirstRendering from './Core/Rendering/MobileFirst'
 import NotchRendering from './Core/Rendering/Notch'
 import PolymorphicProp from './Core/Rendering/PolymorphicProp'
 
 storiesOf('Core|Rendering', module)
   .add('Mobile-first', () => <MobileFirstRendering />)
-  .add('Inclusive', () => <InclusiveRendering />)
+  .add('Bell', () => <BellRendering />)
   .add('Notch', () => <NotchRendering />)
   .add('Polymorphic prop', () => <PolymorphicProp />)
 

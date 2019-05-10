@@ -1,12 +1,11 @@
 import React from 'react'
-import { Composition } from 'atomic-layout'
-import Inclusive from '@stories/Core/Rendering/Inclusive'
+import Bell from '@stories/Core/Rendering/Bell'
 import Notch from '@stories/Core/Rendering/Notch'
 
 const NestedComposition = () => (
-  <Inclusive>
+  <Bell>
     <Notch />
-  </Inclusive>
+  </Bell>
 )
 
 export default NestedComposition

@@ -1,4 +1,4 @@
-export default function assertInclusive() {
+export default function assertBell() {
   const assertAllVisible = () => {
     cy.get('#inclusive-first')
       .should('be.visible')

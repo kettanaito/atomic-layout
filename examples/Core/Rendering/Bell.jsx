@@ -6,7 +6,7 @@ const template = 'first second'
 const templateSm = 'first second third'
 const templateLg = 'first second'
 
-const InclusiveBehavior = ({ children }) => (
+const BellBehavior = ({ children }) => (
   <Composition
     areas={template}
     areasSm={templateSm}
@@ -29,4 +29,4 @@ const InclusiveBehavior = ({ children }) => (
   </Composition>
 )
 
-export default InclusiveBehavior
+export default BellBehavior
