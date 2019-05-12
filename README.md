@@ -2,6 +2,9 @@
   <a href="https://www.npmjs.com/package/atomic-layout" target="_blank">
     <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="Package version" />
   </a>
+  <a href="https://github.com/kettanaito/atomic-layout/releases">
+    <img src="https://img.shields.io/github/release-date/kettanaito/atomic-layout.svg" alt="Release date" />
+  </a>
   <a href="https://circleci.com/gh/kettanaito/atomic-layout" target="_blank">
     <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
   </a>
