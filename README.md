@@ -12,8 +12,12 @@
     <img src="https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg" alt="Test coverage" />
   </a>
   <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Package size (minzip)" />
-  <img src="https://img.shields.io/david/kettanaito/atomic-layout.svg" alt="Dependencies status" />
-  <img src="https://img.shields.io/david/dev/kettanaito/atomic-layout.svg" alt="Development dependencies status" />
+  <a href="https://david-dm.org/kettanaito/atomic-layout" target="_blank">
+    <img src="https://img.shields.io/david/kettanaito/atomic-layout.svg" alt="Dependencies status" />
+  </a>
+  <a href="https://david-dm.org/kettanaito/atomic-layout?type=dev" target="_blank">
+    <img src="https://img.shields.io/david/dev/kettanaito/atomic-layout.svg" alt="Dev dependencies status" />
+  </a>
   <a href="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat">
     <img src="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat" alt="Discord channel">
   </a>
