@@ -17,15 +17,13 @@ const createStyleString = (
 
   const breakpointOptions = Layout.getBreakpoint(breakpoint.name)
 
-  /**
-   * Wrap CSS rule in a media query only if its prop includes
-   * a breakpoint and behavior different than the default ones.
-   */
-  const shouldWrapInMediaQuery =
+  // Wrap CSS rule in a media query only if its prop includes
+  // a breakpoint and behavior different than the default ones.
+  const isConditionalStyle =
     breakpointOptions &&
     !(breakpoint.isDefault && behavior === Layout.defaultBehavior)
 
-  return shouldWrapInMediaQuery
+  return isConditionalStyle
     ? `@media ${createMediaQuery(breakpointOptions, behavior)} {${styleProps}}`
     : styleProps
 }
@@ -33,19 +31,25 @@ const createStyleString = (
 export default function applyStyles(pristineProps: Props): string {
   return (
     Object.keys(pristineProps)
-      /* Parse each prop to include "breakpoint" and "behavior" */
+      // Parse each prop to include "breakpoint" and "behavior"
       .map(parsePropName)
-      /* Filter out props that are not included in prop aliases */
+      // Filter out props that are not included in prop aliases
       .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
-      /* Filter out props with "undefined" or "null" as value */
+      // Filter out props with "undefined" or "null" as value
       .filter(({ originPropName }) => isset(pristineProps[originPropName]))
-      /* Map each prop to a CSS string */
+      // Map each prop to a CSS string
       .map(({ purePropName, originPropName, breakpoint, behavior }) => {
         const { props, transformValue } = propAliases[purePropName]
         const propValue = pristineProps[originPropName]
         const transformedPropValue = transformValue
           ? transformValue(propValue)
           : propValue
+
+        if (behavior === 'down') {
+          console.warn(
+            `Deprecated usage of "down" behavior for prop "${originPropName}". Please replace this behavior with "up" or "only" behavior type instead.`,
+          )
+        }
 
         return createStyleString(
           props,
