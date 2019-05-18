@@ -76,10 +76,11 @@ storiesOf('Hooks', module)
  * Recipes
  */
 import IterativeAreas from './Recipes/IterativeAreas'
+import GridTemplate from './Recipes/GridTemplate'
 
-storiesOf('Recipes|All', module).add('Iterative areas', () => (
-  <IterativeAreas />
-))
+storiesOf('Recipes|All', module)
+  .add('Iterative areas', () => <IterativeAreas />)
+  .add('Grid template', () => <GridTemplate />)
 
 /**
  * Bugfixes

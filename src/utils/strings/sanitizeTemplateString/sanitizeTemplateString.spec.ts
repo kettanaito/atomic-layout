@@ -2,28 +2,38 @@ import sanitizeTemplateString from './sanitizeTemplateString'
 
 describe('sanitizeTemplateString', () => {
   it('sanitizes string with quotes', () => {
-    const sanitized = sanitizeTemplateString(`
-      'header header'
-      'content aside'
-      'footer footer'
+    const areas = sanitizeTemplateString(`
+      header header
+      content aside
+      footer footer
     `)
-    expect(sanitized).toEqual(['aside', 'content', 'footer', 'header'])
+    expect(areas).toEqual(['aside', 'content', 'footer', 'header'])
   })
 
   it('sanitizes string without quotes', () => {
-    const sanitized = sanitizeTemplateString(`
+    const areas = sanitizeTemplateString(`
       first first
       second third
       fourth fourth
     `)
-    expect(sanitized).toEqual(['first', 'fourth', 'second', 'third'])
+    expect(areas).toEqual(['first', 'fourth', 'second', 'third'])
   })
 
   it('sanitizes string without indentation', () => {
-    const sanitized = sanitizeTemplateString(`
+    const areas = sanitizeTemplateString(`
 first first
 second third
     `)
-    expect(sanitized).toEqual(['first', 'second', 'third'])
+    expect(areas).toEqual(['first', 'second', 'third'])
+  })
+
+  it('sanitizes "grid-template" string', () => {
+    const areas = sanitizeTemplateString(`
+      200px 1fr
+      header header 100px
+      content aside auto
+    `)
+
+    expect(areas).toEqual(['aside', 'content', 'header'])
   })
 })
