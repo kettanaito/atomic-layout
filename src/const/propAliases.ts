@@ -38,7 +38,7 @@ const propAliases: PropAliases = {
     transformValue: transformTemplateString,
   },
   template: {
-    props: ['grid-template-areas'],
+    props: ['grid-template'],
     transformValue: transformTemplateString,
   },
   templateCols: {
