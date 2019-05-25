@@ -30,7 +30,7 @@ class Layout {
     }
 
     invariant(
-      options && typeof options === 'object',
+      options === undefined || (options && typeof options === 'object'),
       'Failed to configure Layout: expected an options Object, but got: %o.',
       options,
     )
