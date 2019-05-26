@@ -6,6 +6,7 @@ import defaultOptions, {
   BreakpointBehavior,
 } from './const/defaultOptions'
 import invariant from './utils/invariant'
+import warn from './utils/functions/warn'
 
 class Layout {
   public defaultUnit: MeasurementUnit = defaultOptions.defaultUnit
@@ -23,7 +24,7 @@ class Layout {
    */
   public configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
     if (warnOnMultiple) {
-      invariant(
+      warn(
         !this.isConfigureCalled,
         'Failed to configure Layout: do not call `Layout.configure()` more than once. Layout configuration must remain consistent throughout the application.',
       )
@@ -31,8 +32,7 @@ class Layout {
 
     invariant(
       options && typeof options === 'object',
-      'Failed to configure Layout: expected an options Object, but got: %o.',
-      options,
+      `Failed to configure Layout: expected an options Object, but got: ${options}.`,
     )
 
     Object.keys(options || {}).forEach((optionName) => {
@@ -46,23 +46,25 @@ class Layout {
 
     invariant(
       this.breakpoints.hasOwnProperty(this.defaultBreakpointName),
-      'Failed to configure Layout: cannot use "%s" as the default breakpoint (breakpoint not found).',
-      this.defaultBreakpointName,
+      `Failed to configure Layout: cannot use "${
+        this.defaultBreakpointName
+      }" as the default breakpoint (breakpoint not found).`,
     )
 
     invariant(
       this.defaultBreakpointName,
-      'Failed to configure Layout: expected "defaultBreakpointName" property set, but got: %s.',
-      this.defaultBreakpointName,
+      `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${
+        this.defaultBreakpointName
+      }.`,
     )
 
-    invariant(
-      typeof this.defaultBreakpointName === 'string',
-      'Failed to configure Layout: expected "defaultBreakpointName" to be a string, but got: %s',
-      typeof this.defaultBreakpointName,
-    )
+    // invariant(
+    //   typeof this.defaultBreakpointName === 'string',
+    //   `Failed to configure Layout: expected "defaultBreakpointName" to be a string, but got: ${typeof this
+    //     .defaultBreakpointName}`,
+    // )
 
-    /* Mark configure method as called to prevent its multiple calls */
+    // Mark configure method as called to prevent its multiple calls
     this.isConfigureCalled = warnOnMultiple
 
     return this
