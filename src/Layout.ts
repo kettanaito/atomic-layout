@@ -15,7 +15,7 @@ class Layout {
   protected isConfigureCalled: boolean = false
 
   constructor(options?: Partial<LayoutOptions>) {
-    return this.configure(options, false)
+    return options ? this.configure(options, false) : this
   }
 
   /**
