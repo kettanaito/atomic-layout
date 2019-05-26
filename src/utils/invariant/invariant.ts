@@ -1,9 +1,5 @@
-export default function invariant(
-  variable: any,
-  message: string,
-  ...messageArgs: any[]
-): void {
+export default function invariant(variable: any, message: string): void {
   if (!variable) {
-    console.error(message, ...messageArgs)
+    throw new Error(message)
   }
 }

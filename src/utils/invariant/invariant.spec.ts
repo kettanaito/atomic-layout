@@ -1,24 +1,15 @@
 import invariant from './invariant'
 
-const createConsoleSpy = () => jest.spyOn(console, 'error')
-
 describe('invariant', () => {
   it('errors when predicate is not satisfied', () => {
-    const consoleError = createConsoleSpy()
     const errorMessage = 'Error message'
+    const run = () => invariant(false, errorMessage)
 
-    invariant(false, errorMessage)
-    expect(consoleError).toBeCalledWith(errorMessage)
-
-    consoleError.mockRestore()
+    expect(run).toThrowError(errorMessage)
   })
 
-  it('idle when predicate is satisfied', () => {
-    const consoleError = createConsoleSpy()
-
-    invariant(true, 'You should not see this')
-    expect(consoleError).not.toBeCalled()
-
-    consoleError.mockRestore()
+  it('does nothing on truthy predicate', () => {
+    const run = () => invariant(true, 'You should not see this')
+    expect(run).not.toThrow()
   })
 })
