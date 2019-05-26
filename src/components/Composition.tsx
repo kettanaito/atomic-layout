@@ -4,7 +4,7 @@ import { GenericProps, GridProps } from '@const/props'
 import { AreasMap } from '@utils/templates/generateComponents'
 import parseTemplates from '@utils/templates/parseTemplates'
 import applyStyles from '@utils/styles/applyStyles'
-import invariant from '@utils/invariant'
+import warn from '@utils/functions/warn'
 
 type ChildrenFunction = (areas: AreasMap) => React.ReactNode
 
@@ -30,15 +30,15 @@ const Composition: React.FunctionComponent<CompositionProps> = ({
   const childrenType = typeof children
   const hasChildrenFunction = childrenType === 'function'
 
-  /**
-   * Warn on attempt to use template props without children-as-function.
-   * Render in that case still occurs, but it doesn't produce the expected result.
-   */
-  invariant(
+  // Warn on attempt to use "areas"/"template" props without children-as-function.
+  // Render in that case still occurs, but it doesn't produce the expected result.
+  warn(
     !(hasAreaComponents && !hasChildrenFunction),
-    'Failed to render `Composition` with template areas ["%s"]: expected children to be a function, but got: %s. Please provide render function as children, or remove assigned template props.',
-    Object.keys(areaComponents).join('", "'),
-    childrenType,
+    `Failed to render 'Composition' with template areas ["${Object.keys(
+      areaComponents,
+    ).join(
+      '", "',
+    )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props.`,
   )
 
   return (

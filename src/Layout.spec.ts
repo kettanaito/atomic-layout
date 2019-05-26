@@ -1,19 +1,23 @@
 import defaultOptions from './const/defaultOptions'
 import Layout from './Layout'
 
-const createConsoleSpy = () => jest.spyOn(console, 'error')
-
 const resetLayoutOptions = () => {
   Layout.configure(defaultOptions, false)
 }
 
 describe('Layout', () => {
   afterEach(() => {
-    /* Prevent "Layout.configure()" to affect unrelated test cases */
+    // Prevent "Layout.configure()" calls to affect unrelated tests
     resetLayoutOptions()
   })
 
-  it('instantiated with default options', () => {
+  it('does not throw on initial require', () => {
+    // @ts-ignore
+    const run = () => require('./Layout')
+    expect(run).not.toThrow()
+  })
+
+  it('instantiates with default options', () => {
     expect(Layout).toHaveProperty('defaultUnit', defaultOptions.defaultUnit)
     expect(Layout).toHaveProperty(
       'defaultBehavior',
@@ -27,47 +31,87 @@ describe('Layout', () => {
   })
 
   describe('exports public API', () => {
-    ;['configure', 'getBreakpoint', 'getBreakpointNames'].forEach(
-      (apiMethod) => {
-        it(apiMethod, () => {
-          expect(Layout).toHaveProperty(apiMethod)
-          expect(Layout[apiMethod]).toBeInstanceOf(Function)
-        })
-      },
-    )
+    const publicApi = ['configure', 'getBreakpoint', 'getBreakpointNames']
+
+    publicApi.forEach((propName) => {
+      it(propName, () => {
+        expect(Layout).toHaveProperty(propName)
+      })
+    })
   })
 
   describe('configure()', () => {
-    it('cannot call Layout.configure() without options', () => {
-      const consoleError = createConsoleSpy()
+    describe('when called with invalid options', () => {
+      const invalidOptions = [null, undefined]
 
-      Layout.configure(null as any)
-      expect(consoleError).toBeCalledTimes(1)
+      invalidOptions.forEach((layoutOption) => {
+        describe(`when called with ${layoutOption}`, () => {
+          const run = () => Layout.configure(layoutOption as any)
 
-      consoleError.mockRestore()
+          it('produces one error', () => {
+            expect(run).toThrowError(
+              `Failed to configure Layout: expected an options Object, but got: ${layoutOption}`,
+            )
+          })
+        })
+      })
     })
 
-    it('cannot set default breakpoint name to non-existing breakpoint', () => {
-      const consoleError = createConsoleSpy()
+    describe('defaultBreakpointName', () => {
+      describe('with existing breakpoint name as value', () => {
+        const run = () =>
+          Layout.configure({
+            defaultBreakpointName: 'sm',
+          })
 
-      Layout.configure({
-        defaultBreakpointName: 'foo',
+        it('produces no errors', () => {
+          expect(run).not.toThrow()
+        })
+
+        it('sets given breakpoint as default', () => {
+          run()
+          expect(Layout.defaultBreakpointName).toBe('sm')
+        })
       })
 
-      expect(consoleError).toBeCalledTimes(1)
-      consoleError.mockRestore()
-    })
+      describe('given non-string value', () => {
+        const invalidValues = [3, [], {}]
 
-    it('cannot set default breakpoint to a non-string value', () => {
-      const consoleError = createConsoleSpy()
+        invalidValues.forEach((value) => {
+          describe(`given ${typeof value}`, () => {
+            it('produces one error', () => {
+              const run = () =>
+                Layout.configure({
+                  defaultBreakpointName: value as any,
+                })
 
-      Layout.configure({
-        defaultBreakpointName: 2 as any,
-        breakpoints: { 2: {} },
+              expect(run).toThrowError(
+                `Failed to configure Layout: cannot use "${value}" as the default breakpoint (breakpoint not found).`,
+              )
+            })
+          })
+        })
       })
 
-      expect(consoleError).toBeCalledTimes(1)
-      consoleError.mockRestore()
+      describe('with non-existing breakpoint name as value', () => {
+        const values = [null, undefined, 'foo']
+
+        values.forEach((value) => {
+          describe(`when given "${value}"`, () => {
+            const run = () => {
+              Layout.configure({
+                defaultBreakpointName: value,
+              })
+            }
+
+            it('produces one error', () => {
+              expect(run).toThrowError(
+                `Failed to configure Layout: cannot use "${value}" as the default breakpoint (breakpoint not found).`,
+              )
+            })
+          })
+        })
+      })
     })
   })
 
@@ -115,18 +159,20 @@ describe('Layout', () => {
     })
 
     it('throws when Layout has no breakpoints', () => {
-      const func = () =>
+      const run = () =>
         Layout.configure({
           breakpoints: undefined,
         })
 
-      expect(func).toThrow()
+      expect(run).toThrowError(
+        'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
+      )
     })
   })
 
   describe('getBreakpoint()', () => {
     describe('with default breakpoints', () => {
-      it('returns info for existing breakpoint', () => {
+      it('returns existing breakpoint data', () => {
         expect(Layout.getBreakpoint('md')).toEqual(
           defaultOptions.breakpoints.md,
         )
@@ -140,15 +186,16 @@ describe('Layout', () => {
     describe('with custom breakpoints', () => {
       beforeEach(() => {
         Layout.configure({
+          defaultBreakpointName: 'retina',
           breakpoints: {
-            retina: { minResolution: '300dpi' },
+            retina: {
+              minResolution: '300dpi',
+            },
           },
         })
       })
 
-      afterAll(resetLayoutOptions)
-
-      it('returns info for existing breakpoint', () => {
+      it('returns existing breakpoint data', () => {
         expect(Layout.getBreakpoint('retina')).toEqual({
           minResolution: '300dpi',
         })
