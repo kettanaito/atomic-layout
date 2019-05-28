@@ -1,6 +1,6 @@
 {
   "name": "atomic-layout",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Physical representation of layout composition to create declarative, immutable layouts.",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
