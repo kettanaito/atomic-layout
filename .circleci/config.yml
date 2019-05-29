@@ -1,52 +1,128 @@
 version: 2
 jobs:
-  build:
+  ##
+  # Installs dependencies
+  ##
+  bootstrap:
+    working_directory: ~/release
     docker:
-      - image: cypress/browsers:chrome67
+      - image: circleci/node:lts
         environment:
           TERM: xterm
-
-    working_directory: ~/root
-
     steps:
       - checkout
       - restore_cache:
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
             - yarn-packages
-
       - run:
-          name: Checking versions
+          name: Checking environment
           command: |
             node --version
+            npm --version
             yarn --version
-
       - run:
           name: Installing dependencies
-          command: yarn install --frozen-lock
+          command: yarn install --frozen-lockfile
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - .cache
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .cache
+            - release
 
+  ##
+  # Builds the library
+  ##
+  build:
+    working_directory: ~/release
+    docker:
+      - image: circleci/node:lts
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages
       - run:
           name: Building package
-          command: yarn run build
-
+          command: yarn build
       - run:
-          name: Checking bundle size
-          command: yarn run bundlesize
+          name: Bundle size check
+          command: yarn bundlesize
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - release/lib
 
+  ##
+  # Runs unit tests
+  ##
+  test_unit:
+    working_directory: ~/release
+    docker:
+      - image: circleci/node:lts
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages
       - run:
           name: Unit tests
-          command: yarn run test:unit --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+          command: yarn test:unit --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
 
+  ##
+  # Runs integration tests
+  ##
+  test_integration:
+    working_directory: ~/release
+    docker:
+      - image: cypress/browsers:chrome67
+        environment:
+          TERM: xterm
+    steps:
+      - attach_workspace:
+          at: ~/
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages
       - run:
           name: Integration tests
-          command: yarn run test:e2e
+          command: yarn test:e2e
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+
+workflows:
+  version: 2
+  release:
+    jobs:
+      # Bootstrap environment
+      - bootstrap
+
+      # First parallel pipeline
+      - build:
+          requires:
+            - bootstrap
+      - test_unit:
+          requires:
+            - bootstrap
+
+      # Second parallel pipeline
+      - test_integration:
+          requires:
+            - build
