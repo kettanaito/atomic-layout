@@ -15,7 +15,7 @@ const createStyleString = (
     .map((propName) => `${propName}:${String(propValue)};`)
     .join('')
 
-  const breakpointOptions = Layout.getBreakpoint(breakpoint.name)
+  const breakpointOptions = Layout.breakpoints[breakpoint.name]
 
   /**
    * Wrap CSS rule in a media query only if its prop includes

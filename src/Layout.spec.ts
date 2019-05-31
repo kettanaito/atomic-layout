@@ -31,7 +31,7 @@ describe('Layout', () => {
   })
 
   describe('exports public API', () => {
-    const publicApi = ['configure', 'getBreakpoint', 'getBreakpointNames']
+    const publicApi = ['configure']
 
     publicApi.forEach((propName) => {
       it(propName, () => {
@@ -111,98 +111,6 @@ describe('Layout', () => {
             })
           })
         })
-      })
-    })
-  })
-
-  describe('getBreakpointNames()', () => {
-    describe('with default breakpoints', () => {
-      it('returns list of breakpoint names', () => {
-        expect(Layout.getBreakpointNames()).toEqual([
-          'xs',
-          'sm',
-          'md',
-          'lg',
-          'xl',
-        ])
-      })
-    })
-
-    describe('with custom breakpoints', () => {
-      beforeEach(() => {
-        Layout.configure({
-          defaultBreakpointName: 'mobile',
-          breakpoints: {
-            mobile: {
-              maxWidth: 768,
-            },
-            tablet: {
-              minWidth: 769,
-              maxWidth: 1099,
-            },
-            desktop: {
-              minWidth: 1100,
-            },
-          },
-        })
-      })
-
-      afterAll(resetLayoutOptions)
-
-      it('returns list of custom breakpoint names', () => {
-        expect(Layout.getBreakpointNames()).toEqual([
-          'mobile',
-          'tablet',
-          'desktop',
-        ])
-      })
-    })
-
-    it('throws when Layout has no breakpoints', () => {
-      const run = () =>
-        Layout.configure({
-          breakpoints: undefined,
-        })
-
-      expect(run).toThrowError(
-        'Failed to configure Layout: expected to have at least one breakpoint specified, but got none.',
-      )
-    })
-  })
-
-  describe('getBreakpoint()', () => {
-    describe('with default breakpoints', () => {
-      it('returns existing breakpoint data', () => {
-        expect(Layout.getBreakpoint('md')).toEqual(
-          defaultOptions.breakpoints.md,
-        )
-      })
-
-      it('returns "undefined" for not found breakpoint', () => {
-        expect(Layout.getBreakpoint('non-existing')).toBeUndefined()
-      })
-    })
-
-    describe('with custom breakpoints', () => {
-      beforeEach(() => {
-        Layout.configure({
-          defaultBreakpointName: 'retina',
-          breakpoints: {
-            retina: {
-              minResolution: '300dpi',
-            },
-          },
-        })
-      })
-
-      it('returns existing breakpoint data', () => {
-        expect(Layout.getBreakpoint('retina')).toEqual({
-          minResolution: '300dpi',
-        })
-      })
-
-      it('returns "undefined" for not found breakpoint', () => {
-        expect(Layout.getBreakpoint('md')).toBeUndefined()
       })
     })
   })

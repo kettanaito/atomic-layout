@@ -22,8 +22,8 @@ describe('getAreaBreakpoints', () => {
     })
 
     it('renders inclusive area conditionally', () => {
-      const breakpointMd = Layout.getBreakpoint('md') || {}
-      const breakpointXl = Layout.getBreakpoint('xl') || {}
+      const breakpointMd = Layout.breakpoints.md || {}
+      const breakpointXl = Layout.breakpoints.xl || {}
 
       const { templates } = getAreasList({
         template: ['a'],
@@ -45,9 +45,9 @@ describe('getAreaBreakpoints', () => {
     })
 
     it('renders notch area conditionally', () => {
-      const breakpointXs = Layout.getBreakpoint('xs') || {}
-      const breakpointMd = Layout.getBreakpoint('md') || {}
-      const breakpointXl = Layout.getBreakpoint('xl') || {}
+      const breakpointXs = Layout.breakpoints.xs || {}
+      const breakpointMd = Layout.breakpoints.md || {}
+      const breakpointXl = Layout.breakpoints.xl || {}
 
       const { templates } = getAreasList({
         template: ['a', 'b'],
@@ -72,8 +72,8 @@ describe('getAreaBreakpoints', () => {
 
     describe('Shuffled behavior', () => {
       it('concatenates sibling areas with "down" behavior', () => {
-        const breakpointSm = Layout.getBreakpoint('sm') || {}
-        const breakpointMd = Layout.getBreakpoint('md') || {}
+        const breakpointSm = Layout.breakpoints.sm || {}
+        const breakpointMd = Layout.breakpoints.md || {}
 
         const { templates } = getAreasList({
           template: ['a'],
@@ -110,8 +110,8 @@ describe('getAreaBreakpoints', () => {
       })
 
       it('notch behavior using explicit "down" area behavior', () => {
-        const breakpointXs = Layout.getBreakpoint('xs') || {}
-        const breakpointMd = Layout.getBreakpoint('md') || {}
+        const breakpointXs = Layout.breakpoints.xs || {}
+        const breakpointMd = Layout.breakpoints.md || {}
 
         const { templates } = getAreasList({
           templateDown: ['a'],
