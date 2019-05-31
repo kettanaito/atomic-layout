@@ -23,7 +23,7 @@ export default function getAreasList(templateProps: TemplateProps): AreasList {
       const { breakpoint, behavior } = parsePropName(templateName)
       const nextAreas = acc.areas.concat(templateAreas)
       const nextTemplates = acc.templates.concat({
-        breakpoint: Layout.getBreakpoint(breakpoint.name),
+        breakpoint: Layout.breakpoints[breakpoint.name],
         behavior,
         areas: templateAreas,
       })

@@ -25,7 +25,7 @@ export interface ParsedProp {
  * lookbehind is supported everywhere.
  */
 export default function parsePropName(originPropName: string): ParsedProp {
-  const joinedBreakpointNames = Layout.getBreakpointNames().join('|')
+  const joinedBreakpointNames = Object.keys(Layout.breakpoints).join('|')
   const joinedBehaviors = ['down', 'only'].join('|')
   const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
   const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')

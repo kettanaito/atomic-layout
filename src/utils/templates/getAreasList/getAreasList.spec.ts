@@ -18,7 +18,7 @@ describe('getAreasList', () => {
         {
           areas: ['a', 'b'],
           behavior: 'up',
-          breakpoint: Layout.getBreakpoint('xs'),
+          breakpoint: Layout.breakpoints.xs,
         },
       ],
     })
@@ -38,12 +38,12 @@ describe('getAreasList', () => {
         {
           areas: ['a', 'b'],
           behavior: 'up',
-          breakpoint: Layout.getBreakpoint('xs'),
+          breakpoint: Layout.breakpoints.xs,
         },
         {
           areas: ['a', 'b', 'c'],
           behavior: 'up',
-          breakpoint: Layout.getBreakpoint('md'),
+          breakpoint: Layout.breakpoints.md,
         },
       ],
     })
@@ -63,12 +63,12 @@ describe('getAreasList', () => {
         {
           areas: ['a', 'b'],
           behavior: 'up',
-          breakpoint: Layout.getBreakpoint('xs'),
+          breakpoint: Layout.breakpoints.xs,
         },
         {
           areas: ['c'],
           behavior: 'down',
-          breakpoint: Layout.getBreakpoint('md'),
+          breakpoint: Layout.breakpoints.md,
         },
       ],
     })
@@ -88,12 +88,12 @@ describe('getAreasList', () => {
         {
           areas: ['a'],
           behavior: 'up',
-          breakpoint: Layout.getBreakpoint('xs'),
+          breakpoint: Layout.breakpoints.xs,
         },
         {
           areas: ['b', 'c'],
           behavior: 'only',
-          breakpoint: Layout.getBreakpoint('md'),
+          breakpoint: Layout.breakpoints.md,
         },
       ],
     })

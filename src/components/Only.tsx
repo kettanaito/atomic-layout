@@ -33,7 +33,7 @@ export interface OnlyProps extends GenericProps {
 
 const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
   return typeof breakpointRef === 'string'
-    ? Layout.getBreakpoint(breakpointRef)
+    ? Layout.breakpoints[breakpointRef]
     : breakpointRef
 }
 
