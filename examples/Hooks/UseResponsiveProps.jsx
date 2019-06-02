@@ -38,6 +38,7 @@ const UseResponsivePropsExample = () => (
     sizeMd={75}
     sizeLg={100}
     // Bell
+    fontSize={16}
     fontSizeSm={20}
     fontSizeLg={16}
     // Notch
