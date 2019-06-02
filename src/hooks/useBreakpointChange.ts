@@ -22,7 +22,7 @@ const useBreakpointChange = (
       callback(nextBreakpointName)
       prevBreakpointName = nextBreakpointName
     }
-  })
+  }, debounceDuration)
 }
 
 export default useBreakpointChange
