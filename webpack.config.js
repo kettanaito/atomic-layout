@@ -48,4 +48,6 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin()],
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
+  cache: PRODUCTION,
+  bail: PRODUCTION,
 }
