@@ -29,15 +29,17 @@
   <img src="./logo.svg" width="200" alt="Atomic layout" />
 </p>
 
-<h1 align="center">Atomic layout</h1>
+<h1 align="center"><span>Atomic layout</span></h1>
 
-[Atomic layout](https://github.com/kettanaito/atomic-layout) is an implementational paradigm that delegates spacial distribution between layout composites to the dedicated layer. That helps to create declarative, immutable, and maintainable layouts using CSS Grid.
+**Atomic layout** is a spatial distribution library for React. It uses [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) to define layout areas and render them as React components. This pattern encourages separation of elements and spacing, preventing contextual implementations and boosting maintenance of layouts.
 
 ```jsx
 import React from 'react'
 import { Composition } from 'atomic-layout'
 
-// Define layout areas as a string
+// Define layout areas–visual representation
+// of what composes a layout, without caring
+// what components are rendered inside.
 const areasMobile = `
   thumbnail
   header
@@ -73,7 +75,7 @@ const Card = ({ title, imageUrl, actions }) => (
 export default Card
 ```
 
-> Atomic layout uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options) by default. You can [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your very requirements.
+> Atomic layout is responsive by default. It uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options), but you can [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your requirements.
 
 ## Motivation
 
@@ -111,7 +113,7 @@ Here are some shortcuts to get you started:
     </td>
     <td>
       <h3><a href="https://www.youtube.com/watch?v=_HrXUB97xQs">Creating layouts that last (React Finland, 2019)</a></h3>
-      <p>Find out the main aspects of a layout's maintainability and why spacing plays a large role in it. Learn how to wield layout composition as an actual React component–a missing glue for your elements and design systems.</p>
+      <p>Find out the main aspects of a layout's maintainability and why spacing plays a crucial role in it. Learn how to wield layout composition as an actual React component–a missing glue for your elements and design systems.</p>
       <ul>
         <li><a href="https://codesandbox.io/s/5wwp76310n"><strong>Live demo</strong></a></li>
       </ul>
