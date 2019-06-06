@@ -53,7 +53,7 @@ const areasTablet = `
 `
 
 const Card = ({ title, imageUrl, actions }) => (
-  <Composition areas={areasMobile} areasMd={areasTablet} gutter={20}>
+  <Composition areas={areasMobile} areasMd={areasTablet} gap={20}>
     {/* Get React components based on provided areas */}
     {({ Thumbnail, Header, Footer }) => (
       <React.Fragment>
