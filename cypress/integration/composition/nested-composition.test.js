@@ -1,5 +1,5 @@
-import assertNotch from '../../asserts/assertNotch'
-import assertBell from '../../asserts/assertBell'
+import { assertBell } from '../rendering/bell.test'
+import { assertNotch } from '../rendering/notch.test'
 
 describe('Nested composition', () => {
   before(() => {

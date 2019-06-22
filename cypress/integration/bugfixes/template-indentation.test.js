@@ -1,5 +1,3 @@
-import assertMobileFirst from '../../asserts/assertMobileFirst'
-
 it('Supports unindented template strings', () => {
   cy.loadStory(['bugfixes'], ['all', 'template-indentation'])
 

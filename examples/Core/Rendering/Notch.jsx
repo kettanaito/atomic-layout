@@ -2,28 +2,32 @@ import React from 'react'
 import { Composition } from 'atomic-layout'
 import Square from '@stories/Square'
 
-const template = 'first second'
-const templateMd = 'first'
-const templateLg = 'first second'
+const template = 'left center right'
+const templateMd = 'left right'
+const templateLg = 'left center right'
 
-const NotchBehavior = () => (
+const Scenario = () => (
   <Composition
+    id="notch"
     areas={template}
     areasMd={templateMd}
     areasLg={templateLg}
     gutter={10}
   >
-    {({ First, Second }) => (
+    {({ Left, Center, Right }) => (
       <>
-        <First id="notch-first">
-          <Square>First</Square>
-        </First>
-        <Second id="notch-second">
-          <Square>Second</Square>
-        </Second>
+        <Left data-area="left">
+          <Square>Left</Square>
+        </Left>
+        <Center data-area="center">
+          <Square>Center</Square>
+        </Center>
+        <Right data-area="right">
+          <Square>Right</Square>
+        </Right>
       </>
     )}
   </Composition>
 )
 
-export default NotchBehavior
+export default Scenario
