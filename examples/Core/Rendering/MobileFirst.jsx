@@ -2,19 +2,22 @@ import React from 'react'
 import { Composition } from 'atomic-layout'
 import Square from '@stories/Square'
 
-const MobileFirstBehavior = () => (
-  <Composition areas="first second" gutter={10}>
-    {({ First, Second }) => (
+const Scenario = () => (
+  <Composition id="composition" areas="left center right" gutter={10}>
+    {({ Left, Center, Right }) => (
       <>
-        <First id="mobile-first-first">
-          <Square>First</Square>
-        </First>
-        <Second id="mobile-first-second">
-          <Square>Second</Square>
-        </Second>
+        <Left data-area="left">
+          <Square>Left</Square>
+        </Left>
+        <Center data-area="center">
+          <Square>Center</Square>
+        </Center>
+        <Right data-area="right">
+          <Square>Right</Square>
+        </Right>
       </>
     )}
   </Composition>
 )
 
-export default MobileFirstBehavior
+export default Scenario

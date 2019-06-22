@@ -8,6 +8,7 @@ const templateLg = 'first second'
 
 const BellBehavior = ({ children }) => (
   <Composition
+    id="bell"
     areas={template}
     areasSm={templateSm}
     areasLg={templateLg}
@@ -15,13 +16,13 @@ const BellBehavior = ({ children }) => (
   >
     {({ First, Second, Third }) => (
       <>
-        <First id="inclusive-first">
+        <First data-area="first">
           <Square>{children || 'First'}</Square>
         </First>
-        <Second id="inclusive-second">
+        <Second data-area="second">
           <Square>Second</Square>
         </Second>
-        <Third id="inclusive-third">
+        <Third data-area="third">
           <Square>Third</Square>
         </Third>
       </>

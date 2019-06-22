@@ -1,7 +1,6 @@
 import { assert } from 'chai'
 import url from 'url'
 import defaultOptions from '../../src/const/defaultOptions'
-import propAliases from '../../src/const/propAliases'
 
 Cypress.Commands.add('loadStory', (storyGroup, storyPath) => {
   const storyUrl = url.format({
@@ -59,10 +58,11 @@ Cypress.Commands.add(
   'haveSameAxis',
   { prevSubject: true },
   (subject, axis, targetSelector) => {
+    console.warn('haveSameAxis', subject, axis, targetSelector)
+
     const rectA = subject[0].getBoundingClientRect()
     cy.get(targetSelector).then((elem) => {
       const rectB = elem[0].getBoundingClientRect()
-
       expect(rectA[axis]).to.equal(rectB[axis])
 
       return subject
@@ -82,8 +82,8 @@ Cypress.Commands.add(
       }" and "${targetSelector}"`,
     )
       .get(targetSelector)
-      .then((elem) => {
-        const b = elem[0] && elem[0].getBoundingClientRect()
+      .then((element) => {
+        const b = element[0] && element[0].getBoundingClientRect()
 
         const intersectsByX = Math.max(
           0,
@@ -95,10 +95,22 @@ Cypress.Commands.add(
         )
 
         const intersectionArea = intersectsByX * intersectsByY
-
         assert.isAtMost(intersectionArea, 0, 'Must not intersect')
 
         return subject
       })
   },
 )
+
+//
+// New set of commands
+//
+import assertAreas from './commands/assertAreas'
+
+Cypress.Commands.add('assertAreas', { prevSubject: true }, function(
+  subject,
+  areasMatrix,
+) {
+  // const wrapper = cy.wrap(subject)
+  assertAreas(areasMatrix, subject.selector)
+})
