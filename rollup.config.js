@@ -4,32 +4,40 @@ import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import babel from 'rollup-plugin-babel'
-import typescript from 'rollup-plugin-typescript2'
+import ttypescript from 'ttypescript'
+import compileTypescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
+// Import as CJS since writing Babel config in ES
+// makes it unreadable by other tools (i.e. storybook).
 const babelConfig = require('./babel.config')
 
-const env = process.env.NODE_ENV
-const PRODUCTION = env === 'production'
+const nodeEnv = process.env.NODE_ENV
+const PRODUCTION = nodeEnv === 'production'
 const input = packageJson.esnext
 
 const external = (moduleName) => {
   return !moduleName.startsWith('.') && !path.isAbsolute(moduleName)
 }
 
-const resolve = () => {
-  return [
-    nodeResolve({
-      mainFields: ['esnext'],
-      extensions: ['.ts', '.tsx'],
-    }),
-  ]
+const typescript = () => {
+  return compileTypescript({
+    clean: true,
+    // Provide custom TypeScript instance so it can
+    // resolve path aliases (i.e. "@utils/").
+    typescript: ttypescript,
+  })
 }
 
-/**
- * UMD module
- */
+const resolve = () => {
+  return nodeResolve({
+    mainFields: ['esnext'],
+    extensions: ['.ts', '.tsx'],
+  })
+}
+
+// UMD module
 const buildUmd = () => ({
   input,
   external: ['react', 'styled-components'],
@@ -37,18 +45,18 @@ const buildUmd = () => ({
     name: 'AtomicLayout',
     format: 'umd',
     exports: 'named',
-    file: `./lib/${packageJson.name}.umd.js`,
+    file: `./lib/umd.js`,
     globals: {
       react: 'React',
       'styled-components': 'styled',
     },
   },
   plugins: [
-    ...resolve(),
+    resolve(),
     typescript(),
     babel(babelConfig),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     commonjs(),
     sourceMaps(),
@@ -65,23 +73,21 @@ const buildUmd = () => ({
   ],
 })
 
-/**
- * CommonJS module
- */
+// CommonJS module
 const buildCjs = () => ({
   input,
   external,
   output: {
-    file: `./lib/${packageJson.name}.cjs.js`,
+    file: `./lib/cjs.js`,
     format: 'cjs',
     exports: 'named',
     sourcemap: true,
   },
   plugins: [
-    ...resolve(),
+    resolve(),
     typescript(),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     sourceMaps(),
     PRODUCTION &&
@@ -97,9 +103,7 @@ const buildCjs = () => ({
   ],
 })
 
-/**
- * ECMAScript module
- */
+// ECMAScript module
 const buildEsm = () => ({
   input,
   external,
