@@ -117,9 +117,9 @@ const buildEsm = () => ({
 })
 
 const buildTargets = {
-  cjs: buildCjs,
-  umd: buildUmd,
-  esm: buildEsm,
+  cjs: buildCjs(),
+  umd: buildUmd(),
+  esm: buildEsm(),
 }
 
 export default (target ? buildTargets[target] : Object.values(buildTargets))
