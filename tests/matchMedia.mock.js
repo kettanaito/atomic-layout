@@ -1,4 +1,3 @@
-// require('matchmedia-polyfill')
 const matchMediaMock = require('match-media-mock').create()
 
 matchMediaMock.setConfig({
