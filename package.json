@@ -40,7 +40,7 @@
   },
   "bundlesize": [
     {
-      "path": "./lib/index.js",
+      "path": "./lib/cjs.js",
       "maxSize": "20 kB"
     }
   ],
