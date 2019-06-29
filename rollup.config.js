@@ -14,6 +14,7 @@ import packageJson from './package.json'
 const babelConfig = require('./babel.config')
 
 const nodeEnv = process.env.NODE_ENV
+const target = process.env.TARGET
 const PRODUCTION = nodeEnv === 'production'
 const input = packageJson.esnext
 
@@ -36,6 +37,36 @@ const resolve = () => {
     extensions: ['.ts', '.tsx'],
   })
 }
+
+// CommonJS module
+const buildCjs = () => ({
+  input,
+  external,
+  output: {
+    file: `./lib/cjs.js`,
+    format: 'cjs',
+    exports: 'named',
+    sourcemap: true,
+  },
+  plugins: [
+    resolve(),
+    typescript(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+    }),
+    sourceMaps(),
+    PRODUCTION &&
+      terser({
+        ecma: 5,
+        sourcemap: true,
+        output: {
+          comments: false,
+        },
+        warnings: true,
+        toplevel: true,
+      }),
+  ],
+})
 
 // UMD module
 const buildUmd = () => ({
@@ -73,36 +104,6 @@ const buildUmd = () => ({
   ],
 })
 
-// CommonJS module
-const buildCjs = () => ({
-  input,
-  external,
-  output: {
-    file: `./lib/cjs.js`,
-    format: 'cjs',
-    exports: 'named',
-    sourcemap: true,
-  },
-  plugins: [
-    resolve(),
-    typescript(),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
-    }),
-    sourceMaps(),
-    PRODUCTION &&
-      terser({
-        ecma: 5,
-        sourcemap: true,
-        output: {
-          comments: false,
-        },
-        warnings: true,
-        toplevel: true,
-      }),
-  ],
-})
-
 // ECMAScript module
 const buildEsm = () => ({
   input,
@@ -115,4 +116,10 @@ const buildEsm = () => ({
   plugins: [resolve(), typescript(), babel(babelConfig), sourceMaps()],
 })
 
-export default [buildUmd(), buildCjs(), buildEsm()]
+const buildTargets = {
+  cjs: buildCjs,
+  umd: buildUmd,
+  esm: buildEsm,
+}
+
+export default (target ? buildTargets[target] : Object.values(buildTargets))
