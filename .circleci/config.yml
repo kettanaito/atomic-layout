@@ -1,20 +1,37 @@
 version: 2
+
+aliases:
+  - &workspace
+    at: ~/
+  - &yarn_cache
+    keys:
+      - yarn-packages-{{ checksum "yarn.lock" }}
+      - yarn-packages
+  - &persist_build
+    root: ~/
+    paths:
+      - release/lib
+
+node_env: &node_env
+  working_directory: ~/release
+  docker:
+    - image: circleci/node:lts
+      environment:
+        TERM: xterm
+
+e2e_env: &e2e_env
+  working_directory: ~/release
+  docker:
+    - image: cypress/browsers:chrome67
+      environment:
+        TERM: xterm
+
 jobs:
-  ##
-  # Installs dependencies
-  ##
   bootstrap:
-    working_directory: ~/release
-    docker:
-      - image: circleci/node:lts
-        environment:
-          TERM: xterm
+    <<: *node_env
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages
+      - restore_cache: *yarn_cache
       - run:
           name: Checking environment
           command: |
@@ -34,69 +51,92 @@ jobs:
             - .cache
             - release
 
-  ##
-  # Builds the library
-  ##
-  build:
-    working_directory: ~/release
-    docker:
-      - image: circleci/node:lts
-        environment:
-          TERM: xterm
+  build_cjs:
+    <<: *node_env
     steps:
-      - attach_workspace:
-          at: ~/
-      - restore_cache:
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
       - run:
-          name: Building package
-          command: yarn build
+          name: Building CJS module
+          command: yarn build:cjs
       - run:
-          name: Bundle size check
+          name: Checking bundle size
           command: yarn bundlesize
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - release/lib
+      - persist_to_workspace: *persist_build
 
-  ##
-  # Runs unit tests
-  ##
-  test_unit:
-    working_directory: ~/release
-    docker:
-      - image: circleci/node:lts
-        environment:
-          TERM: xterm
+  build_umd:
+    <<: *node_env
     steps:
-      - attach_workspace:
-          at: ~/
-      - restore_cache:
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
+      - run:
+          name: Building UMD module
+          command: yarn build:umd
+      - persist_to_workspace: *persist_build
+
+  build_esm:
+    <<: *node_env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
+      - run:
+          name: Building ESM module
+          command: yarn build:esm
+      - persist_to_workspace: *persist_build
+
+  test_unit:
+    <<: *node_env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
       - run:
           name: Unit tests
           command: yarn test:unit --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
 
-  ##
-  # Runs integration tests
-  ##
-  test_integration:
-    working_directory: ~/release
-    docker:
-      - image: cypress/browsers:chrome67
-        environment:
-          TERM: xterm
+  test_e2e_cjs:
+    <<: *e2e_env
     steps:
-      - attach_workspace:
-          at: ~/
-      - restore_cache:
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-            - yarn-packages
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
+      - run:
+          name: Building Storybook (CJS)
+          command: yarn build:storybook
+      - run:
+          name: Integration tests
+          command: yarn test:e2e
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+
+  test_e2e_umd:
+    <<: *e2e_env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
+      - run:
+          name: Building Storybook (UMD)
+          command: yarn build:storybook:umd
+      - run:
+          name: Integration tests
+          command: yarn test:e2e
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+
+  test_e2e_esm:
+    <<: *e2e_env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn_cache
+      - run:
+          name: Building Storybook (ESM)
+          command: yarn build:storybook:esm
       - run:
           name: Integration tests
           command: yarn test:e2e
@@ -111,18 +151,29 @@ workflows:
   version: 2
   release:
     jobs:
-      # Bootstrap environment
       - bootstrap
 
-      # First parallel pipeline
-      - build:
-          requires:
-            - bootstrap
       - test_unit:
           requires:
             - bootstrap
 
-      # Second parallel pipeline
-      - test_integration:
+      - build_cjs:
           requires:
-            - build
+            - bootstrap
+      - test_e2e_cjs:
+          requires:
+            - build_cjs
+
+      - build_umd:
+          requires:
+            - bootstrap
+      - test_e2e_umd:
+          requires:
+            - build_umd
+
+      - build_esm:
+          requires:
+            - bootstrap
+      - test_e2e_esm:
+          requires:
+            - build_esm
