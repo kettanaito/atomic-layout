@@ -5,18 +5,18 @@ const Logo = () => <span>Logo</span>
 const Menu = () => <span>Menu</span>
 
 const Namespaces = () => (
-  <Composition areas="logo menu actions">
-    {({ Areas }) => (
+  <Composition id="composition" areas="logo menu actions">
+    {({ Areas, Actions }) => (
       <>
-        <Areas.Logo>
+        <Areas.Logo data-area="logo">
           <Logo />
         </Areas.Logo>
-        <Areas.Menu>
+        <Areas.Menu data-area="menu">
           <Menu />
         </Areas.Menu>
-        <Areas.Actions>
+        <Actions data-area="actions">
           <span>Actions</span>
-        </Areas.Actions>
+        </Actions>
       </>
     )}
   </Composition>
