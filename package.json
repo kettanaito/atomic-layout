@@ -8,7 +8,7 @@
   "umd:main": "lib/umd.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
-    "start": "echo do this",
+    "start": "rollup -c -w --environment NODE_ENV:production,TARGET:cjs",
     "storybook": "start-storybook -p 6020",
     "lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}'",
     "clean": "rimraf lib && exit 0",
