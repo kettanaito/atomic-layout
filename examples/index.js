@@ -43,10 +43,12 @@ storiesOf('Core|Configuration', module)
  */
 import NestedComposition from './Components/Composition/NestedComposition'
 import Templateless from './Components/Composition/Templateless'
+import Namespace from './Components/Composition/Namespace'
 
 storiesOf('Components|Composition', module)
   .add('Nested composition', () => <NestedComposition />)
   .add('Templateless', () => <Templateless />)
+  .add('Namespace', () => <Namespace />)
 
 /**
  * Only
