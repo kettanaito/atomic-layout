@@ -21,7 +21,7 @@
     "build:storybook": "cross-env TARGET=cjs build-storybook",
     "build:storybook:umd": "cross-env TARGET=umd build-storybook",
     "build:storybook:esm": "cross-env TARGET=esm build-storybook",
-    "cypress": "node_modules/.bin/cypress open",
+    "cypress": "node_modules/.bin/cypress open --env envName=dev",
     "cypress:cli": "node_modules/.bin/cypress run --spec cypress/integration/index.js --browser chrome",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "test:e2e": "yarn cypress:cli",
