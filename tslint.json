@@ -4,6 +4,7 @@
     "no-console": false,
     "prefer-template": [true, "always"],
     "no-bitwise": false,
+    "prefer-object-spread": false,
 
     "ordered-imports": [false, "never"],
     "object-literal-sort-keys": [false, "never"],
