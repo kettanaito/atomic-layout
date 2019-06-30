@@ -26,6 +26,12 @@ const external = (moduleName) => {
 const typescript = () => {
   return compileTypescript({
     clean: true,
+    // Disable type checking during the build
+    // to increase the build speed. Types must be
+    // checked during the local development.
+    // They may also be checked during type definition
+    // emitting (ttsc)
+    check: false,
     // Provide custom TypeScript instance so it can
     // resolve path aliases (i.e. "@utils/").
     typescript: ttypescript,
@@ -47,7 +53,7 @@ const buildCjs = () => ({
     file: `./lib/cjs.js`,
     format: 'cjs',
     exports: 'named',
-    sourcemap: true,
+    sourcemap: PRODUCTION,
   },
   plugins: [
     resolve(),
@@ -56,7 +62,7 @@ const buildCjs = () => ({
       __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
-    sourceMaps(),
+    PRODUCTION && sourceMaps(),
     PRODUCTION &&
       terser({
         ecma: 5,
@@ -93,7 +99,7 @@ const buildUmd = () => ({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     commonjs(),
-    sourceMaps(),
+    PRODUCTION && sourceMaps(),
     PRODUCTION &&
       terser({
         sourcemap: true,
@@ -114,9 +120,14 @@ const buildEsm = () => ({
   output: {
     file: packageJson.module,
     format: 'esm',
-    sourcemap: true,
+    sourcemap: PRODUCTION,
   },
-  plugins: [resolve(), typescript(), babel(babelConfig), sourceMaps()],
+  plugins: [
+    resolve(),
+    typescript(),
+    babel(babelConfig),
+    PRODUCTION && sourceMaps(),
+  ],
 })
 
 const buildTargets = {
