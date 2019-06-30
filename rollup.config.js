@@ -16,6 +16,7 @@ const babelConfig = require('./babel.config')
 const nodeEnv = process.env.NODE_ENV
 const target = process.env.TARGET
 const PRODUCTION = nodeEnv === 'production'
+const __PROD__ = PRODUCTION ? 'true' : ''
 const input = packageJson.esnext
 
 const external = (moduleName) => {
@@ -52,6 +53,7 @@ const buildCjs = () => ({
     resolve(),
     typescript(),
     replace({
+      __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     sourceMaps(),
@@ -87,6 +89,7 @@ const buildUmd = () => ({
     typescript(),
     babel(babelConfig),
     replace({
+      __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     commonjs(),
