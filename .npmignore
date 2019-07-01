@@ -1,10 +1,10 @@
 # Configurations
-.circleci
 .github
+.circleci
 .storybook
 .vscode
 .babelrc
-babel.config.js
+*.config.js
 .gitignore
 .prettierrc
 tsconfig.*
