@@ -10,7 +10,9 @@ aliases:
   - &persist_build
     root: ~/
     paths:
-      - release/lib
+      - release/cjs
+      - release/esm
+      - release/umd
 
 node_env: &node_env
   working_directory: ~/release

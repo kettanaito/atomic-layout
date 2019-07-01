@@ -9,7 +9,10 @@ node_modules
 /coverage
 
 # Build
-lib
+cjs
+esm
+umd
+types
 
 # Cypress
 cypress/fixtures
