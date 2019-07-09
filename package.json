@@ -27,9 +27,13 @@
     "test:e2e": "yarn cypress:cli",
     "test": "yarn test:unit && yarn test:e2e",
     "bundlesize": "node_modules/.bin/bundlesize",
-    "precommit": "lint-staged",
-    "prepush": "yarn test:unit",
     "prepublishOnly": "yarn build && yarn bundlesize && yarn test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test:unit"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -90,7 +94,7 @@
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "cypress": "^3.0.3",
-    "husky": "^2.2.0",
+    "husky": "^3.0.0",
     "jest": "^24.8.0",
     "jest-dom": "^3.1.2",
     "lint-staged": "^8.1.0",
