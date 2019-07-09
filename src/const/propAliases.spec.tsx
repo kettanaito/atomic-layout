@@ -1,8 +1,8 @@
 import React from 'react'
 import propAliases from './propAliases'
 import { Composition } from '..'
-import { render, cleanup, getByTestId } from 'react-testing-library'
-import 'jest-dom/extend-expect'
+import { render, cleanup, getByTestId } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 
 const defaultValue = 10
 const explicitValues = {
@@ -52,7 +52,7 @@ describe('Prop aliases', () => {
           {({ First }) => <First>{propAliasName}</First>}
         </Composition>,
       )
-      const domElement = getByTestId(container, 'composition')
+      const element = getByTestId(container, 'composition')
 
       /* Assertion */
       const { props: cssProps, transformValue } = propAliases[propAliasName]
@@ -61,7 +61,7 @@ describe('Prop aliases', () => {
         : propValue
 
       cssProps.forEach((cssPropName) => {
-        expect(domElement).toHaveStyle(`${cssPropName}:${expectedValue}`)
+        expect(element).toHaveStyle(`${cssPropName}:${expectedValue}`)
       })
     })
   })

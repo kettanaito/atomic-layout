@@ -1,7 +1,6 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "types": ["jest"],
     "module": "es6",
     "target": "esnext",
     "moduleResolution": "node",
@@ -13,17 +12,33 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@const/*": ["src/const/*"],
-      "@utils/*": ["src/utils/*"]
+      "@src/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@const/*": [
+        "src/const/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ]
     },
+    "types": [
+      "jest"
+    ],
     "plugins": [
       {
         "transform": "@zerollup/ts-transform-paths"
       }
     ]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
