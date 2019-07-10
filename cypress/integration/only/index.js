@@ -46,5 +46,6 @@ export const testCases = () => {
 
 describe('Only', () => {
   require('./default.spec')
-  require('./custom.spec')
+  require('./custom-breakpoint.spec')
+  require('./custom-unit.spec')
 })

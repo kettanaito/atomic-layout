@@ -54,11 +54,13 @@ storiesOf('Components|Composition', module)
  * Only
  */
 import OnlyDefault from './Components/Only/OnlyDefault'
-import OnlyCustomBreakpoint from './Components/Only/OnlyCustom'
+import OnlyCustomBreakpoint from './Components/Only/OnlyCustomBreakpoint'
+import OnlyCustomUnit from './Components/Only/OnlyCustomUnit'
 
 storiesOf('Components|Only', module)
   .add('Default', () => <OnlyDefault />)
   .add('Custom breakpoint', () => <OnlyCustomBreakpoint />)
+  .add('Custom default unit', () => <OnlyCustomUnit />)
 
 /**
  * Hooks
