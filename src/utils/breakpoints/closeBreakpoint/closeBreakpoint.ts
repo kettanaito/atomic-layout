@@ -21,6 +21,10 @@ export default function flipBreakpoint(breakpoint: Breakpoint): Breakpoint {
         ? propName.replace(/^min/, 'max')
         : propName
 
+      // Parse a breakpoint property value into a numeric value
+      // and its measurement unit.
+      const [, numericValue, unit] = /(\d+)(.+)?/.exec(propValue)
+
       /**
        * Subtracts 1 from the edge to not include the area at the beginning
        * of the breakpoint.
@@ -29,9 +33,15 @@ export default function flipBreakpoint(breakpoint: Breakpoint): Breakpoint {
        * How is "parseFloat" going to work with non-dimensional options?
        * (i.e. aspectRatio)
        */
-      const nextValue = hasMinPrefix
-        ? parseFloat(String(propValue)) - 1
-        : propValue
+      const nextNumericValue = hasMinPrefix
+        ? parseFloat(numericValue) - 1
+        : numericValue
+
+      // Append back the measurement unit.
+      // Prevents breakpoints like { "minWidth": "768px" }
+      // becoming { "minWidth": 768 } -> { "minWidth": "768rem" }
+      // when the measurement unit is not "px".
+      const nextValue = unit ? `${nextNumericValue}${unit}` : nextNumericValue
 
       return {
         ...newBreakpoint,
