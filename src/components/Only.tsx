@@ -10,6 +10,12 @@ import mergeBreakpoints from '@utils/breakpoints/mergeBreakpoints'
 
 export type BreakpointRef = string | Breakpoint
 
+const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
+  return typeof breakpointRef === 'string'
+    ? Layout.breakpoints[breakpointRef]
+    : breakpointRef
+}
+
 export interface OnlyProps extends GenericProps {
   /**
    * Renders children only at the specified breakpoint.
@@ -29,12 +35,6 @@ export interface OnlyProps extends GenericProps {
    * Renders children everywhere except the given breakpoint range.
    */
   except?: boolean
-}
-
-const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
-  return typeof breakpointRef === 'string'
-    ? Layout.breakpoints[breakpointRef]
-    : breakpointRef
 }
 
 const createWrapper = (children: React.ReactNode, props: GenericProps) => (
