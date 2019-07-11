@@ -1,9 +1,6 @@
 import React from 'react'
-import Layout, { Composition } from 'atomic-layout'
-// import resetLayout from '../resetLayout'
+import { Composition } from 'atomic-layout'
 import Square from '@stories/Square'
-
-// resetLayout(Layout)
 
 const Foo = () => (
   <Composition id="composition" areas="first second" gutter={10}>
