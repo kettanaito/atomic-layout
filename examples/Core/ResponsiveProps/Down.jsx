@@ -17,7 +17,7 @@ const DownResponsiveProps = () => (
     </Composition>
 
     {/* Combination of "up" and "down" */}
-    <Composition
+    {/* <Composition
       id="composition-combination"
       templateCols="200px"
       templateColsSmDown="100px"
@@ -25,7 +25,7 @@ const DownResponsiveProps = () => (
     >
       <Square>First</Square>
       <Square>Second</Square>
-    </Composition>
+    </Composition> */}
   </>
 )
 export default DownResponsiveProps
