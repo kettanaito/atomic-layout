@@ -10,15 +10,15 @@ import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
 // Import as CJS since writing Babel config in ES
-// makes it unreadable by other tools (i.e. storybook).
+// makes it unreadable by other tools (i.e. Storybook).
 const babelConfig = require('./babel.config')
+
 const BUILD_DIR = '.'
 const getPath = (filepath) => {
   return path.resolve(BUILD_DIR, filepath)
 }
 
-const nodeEnv = process.env.NODE_ENV
-const target = process.env.TARGET
+const { NODE_ENV: nodeEnv, TARGET: target } = process.env
 const PRODUCTION = nodeEnv === 'production'
 const __PROD__ = PRODUCTION ? 'true' : ''
 const input = packageJson.esnext
@@ -134,6 +134,9 @@ const buildEsm = () => ({
   },
   plugins: [
     resolve(),
+    replace({
+      __PROD__,
+    }),
     typescript(),
     babel(babelConfig),
     PRODUCTION && sourceMaps(),
@@ -146,4 +149,4 @@ const buildTargets = {
   esm: buildEsm(),
 }
 
-export default (target ? buildTargets[target] : Object.values(buildTargets))
+export default target ? buildTargets[target] : Object.values(buildTargets)
