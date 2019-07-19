@@ -27,7 +27,7 @@ describe('Polymorphic prop', () => {
 
     it('overrides layout styles', () => {
       cy.get('#header')
-        .should('have.css', 'display', 'flex')
+        .should('have.css', 'display', 'block')
         .should('have.css', 'padding', '20px')
     })
   })

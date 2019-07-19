@@ -10,14 +10,14 @@ second
 const TemplateIndentation = () => (
   <Composition areas={template} gutter={10}>
     {({ First, Second }) => (
-      <React.Fragment>
+      <>
         <First id="first">
           <Square>First</Square>
         </First>
         <Second id="second">
           <Square>Second</Square>
         </Second>
-      </React.Fragment>
+      </>
     )}
   </Composition>
 )

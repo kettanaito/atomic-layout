@@ -10,16 +10,17 @@ export interface BoxProps extends GenericProps {
 }
 
 const Box: React.FunctionComponent<BoxProps> = styled.div<BoxProps>`
+  display: ${({ flex, inline }) =>
+    flex
+      ? inline
+        ? 'inline-flex'
+        : 'flex'
+      : inline
+      ? 'inline-block'
+      : 'block'};
+
   && {
     ${applyStyles};
-    display: ${({ flex, inline }) =>
-      flex
-        ? inline
-          ? 'inline-flex'
-          : 'flex'
-        : inline
-        ? 'inline-block'
-        : 'block'};
   }
 `
 

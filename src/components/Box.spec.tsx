@@ -1,7 +1,8 @@
 import React from 'react'
-import Box from './Box'
+import styled from 'styled-components'
 import { render, cleanup, getByText } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import Box from './Box'
 
 describe('Box', () => {
   afterEach(cleanup)
@@ -9,6 +10,7 @@ describe('Box', () => {
   it('renders default Box', () => {
     const { container } = render(<Box padding={10}>Content</Box>)
     const renderedBox = getByText(container, 'Content')
+
     expect(renderedBox).toHaveTextContent('Content')
     expect(renderedBox).toHaveStyle('display:block')
     expect(renderedBox).toHaveStyle('padding:10px')
@@ -21,6 +23,7 @@ describe('Box', () => {
       </Box>,
     )
     const renderedBox = getByText(container, 'Content')
+
     expect(renderedBox).toHaveTextContent('Content')
     expect(renderedBox).toHaveStyle('display:inline-block')
   })
@@ -32,6 +35,7 @@ describe('Box', () => {
       </Box>,
     )
     const renderedBlock = getByText(container, 'Content')
+
     expect(renderedBlock).toHaveTextContent('Content')
     expect(renderedBlock).toHaveStyle('display:flex')
     expect(renderedBlock).toHaveStyle('align-items:center')
@@ -44,6 +48,7 @@ describe('Box', () => {
       </Box>,
     )
     const renderedBlock = getByText(container, 'Content')
+
     expect(renderedBlock).toHaveTextContent('Content')
     expect(renderedBlock).toHaveStyle('display:inline-flex')
     expect(renderedBlock).toHaveStyle('justify-content:center')
