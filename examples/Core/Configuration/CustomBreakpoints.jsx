@@ -38,14 +38,14 @@ export default class CustomBreakpoints extends React.Component {
         paddingDesktop={3}
       >
         {({ First, Second }) => (
-          <React.Fragment>
+          <>
             <First>
               <Square>First</Square>
             </First>
             <Second>
               <Square>Second</Square>
             </Second>
-          </React.Fragment>
+          </>
         )}
       </Composition>
     )

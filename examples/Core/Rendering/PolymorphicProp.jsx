@@ -12,8 +12,8 @@ const CustomHeader = styled.header`
 const PolymorphicProp = () => (
   <Composition areas="header main element footer" gutter={10}>
     {({ Header, Main, Element, Footer }) => (
-      <React.Fragment>
-        <Header flex as={CustomHeader} id="header" padding={20}>
+      <>
+        <Header as={CustomHeader} flex id="header" padding={20}>
           <Square>Header</Square>
         </Header>
         <Main as="main" id="main">
@@ -25,7 +25,7 @@ const PolymorphicProp = () => (
         <Footer as="footer" id="footer">
           <Square>Footer</Square>
         </Footer>
-      </React.Fragment>
+      </>
     )}
   </Composition>
 )

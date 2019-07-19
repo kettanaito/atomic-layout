@@ -93,10 +93,12 @@ storiesOf('Recipes|All', module)
  */
 import StylesUndefined from './Bugfixes/StylesUndefined'
 import TemplateIndentation from './Bugfixes/TemplateIndentation'
+import BoxDisplayOverride from './Bugfixes/BoxDisplayOverride'
 
 storiesOf('Bugfixes|All', module)
   .add('Styles undefined', () => <StylesUndefined />)
   .add('Template indentation', () => <TemplateIndentation />)
+  .add('Box display override', () => <BoxDisplayOverride />)
 
 /**
  * Playground
