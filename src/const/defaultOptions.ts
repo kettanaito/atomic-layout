@@ -68,14 +68,14 @@ const defaultOptions: LayoutOptions = {
     },
     sm: {
       minWidth: '576px',
-      maxWidth: '768px',
+      maxWidth: '767px',
     },
     md: {
-      minWidth: '769px',
-      maxWidth: '992px',
+      minWidth: '768px',
+      maxWidth: '991px',
     },
     lg: {
-      minWidth: '993px',
+      minWidth: '992px',
       maxWidth: '1199px',
     },
     xl: {
