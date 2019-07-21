@@ -1,3 +1,5 @@
+const { expect } = require('chai')
+
 describe('Grid template', function() {
   before(() => {
     cy.loadStory(['recipes'], ['all', 'grid-template'])
@@ -37,7 +39,13 @@ describe('Grid template', function() {
 
     it('supports dynamic column width', () => {
       cy.setBreakpoint('md').then(() => {
-        cy.get('#content').should('have.css', 'width', '543px')
+        cy.get('#composition').then(([parent]) => {
+          const { clientWidth: parentWidth } = parent
+          const { header, content } = parent.children
+          const { clientWidth: contentWidth } = content
+
+          expect(contentWidth).to.equal(parentWidth - header.clientWidth - 10)
+        })
       })
     })
   })

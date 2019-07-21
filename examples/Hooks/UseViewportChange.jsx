@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { useViewportChange, Box } from 'atomic-layout'
+import Layout, { useViewportChange, Box } from 'atomic-layout'
 
 const UseViewportChange = () => {
   const [isVisible, updateVisibility] = useState(false)
 
   useViewportChange(() => {
-    updateVisibility(matchMedia('(min-width: 993px)').matches)
+    updateVisibility(
+      matchMedia(`(min-width: ${Layout.breakpoints.lg.minWidth})`).matches,
+    )
   })
 
   return (
