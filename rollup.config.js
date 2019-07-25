@@ -3,7 +3,7 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
-import babel from 'rollup-plugin-babel'
+import useBabel from 'rollup-plugin-babel'
 import ttypescript from 'ttypescript'
 import tsPlugin from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
@@ -25,6 +25,14 @@ const input = packageJson.esnext
 
 const external = (moduleName) => {
   return !moduleName.startsWith('.') && !path.isAbsolute(moduleName)
+}
+
+const babel = (overrides = {}) => {
+  return useBabel({
+    ...babelConfig,
+    ...overrides,
+    extensions: ['.ts', '.tsx'],
+  })
 }
 
 const typescript = () => {
@@ -103,7 +111,7 @@ const buildUmd = () => ({
   plugins: [
     resolve(),
     typescript(),
-    babel(babelConfig),
+    babel(),
     replace({
       __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
@@ -138,7 +146,7 @@ const buildEsm = () => ({
       __PROD__,
     }),
     typescript(),
-    babel(babelConfig),
+    babel(),
     PRODUCTION && sourceMaps(),
   ],
 })
@@ -149,4 +157,4 @@ const buildTargets = {
   esm: buildEsm(),
 }
 
-export default target ? buildTargets[target] : Object.values(buildTargets)
+export default (target ? buildTargets[target] : Object.values(buildTargets))
