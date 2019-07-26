@@ -20,7 +20,7 @@ const getPath = (filepath) => {
 
 const { NODE_ENV: nodeEnv, TARGET: target } = process.env
 const PRODUCTION = nodeEnv === 'production'
-const __PROD__ = PRODUCTION ? 'true' : ''
+const __PROD__ = PRODUCTION ? 'true' : '""'
 const input = packageJson.esnext
 
 const external = (moduleName) => {
@@ -157,4 +157,4 @@ const buildTargets = {
   esm: buildEsm(),
 }
 
-export default (target ? buildTargets[target] : Object.values(buildTargets))
+export default target ? buildTargets[target] : Object.values(buildTargets)
