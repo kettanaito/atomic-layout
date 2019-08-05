@@ -33,10 +33,12 @@ storiesOf('Core|Responsive props', module)
  */
 import ConfigCustomUnit from './Core/Configuration/CustomUnit'
 import ConfigCustomBreakpoints from './Core/Configuration/CustomBreakpoints'
+import ConfigCustomPropAliases from './Core/Configuration/CustomPropAliases'
 
 storiesOf('Core|Configuration', module)
   .add('Custom unit', () => <ConfigCustomUnit />)
   .add('Custom breakpoints', () => <ConfigCustomBreakpoints />)
+  .add('Custom prop aliases', () => <ConfigCustomPropAliases />)
 
 /**
  * Composition

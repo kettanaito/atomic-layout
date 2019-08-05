@@ -1,8 +1,9 @@
 import * as React from 'react'
+import Layout from '@src/Layout'
 import { MediaQuery as MediaQueryParams } from '@const/defaultOptions'
 import { joinQueryList } from '@utils/styles/createMediaQuery'
 import normalizeQuery from '@src/utils/styles/normalizeQuery'
-import transformNumeric from '@utils/math/transformNumeric'
+// import transformNumeric from '@utils/math/transformNumeric'
 import compose from '@src/utils/functions/compose'
 
 interface Props extends MediaQueryParams {
@@ -22,7 +23,7 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
        * (min-width: 750) ==> (min-width: 750px)
        */
       const resolvedParamValue = /^\d/.test(String(paramValue))
-        ? transformNumeric(paramValue)
+        ? Layout.transformNumeric(paramValue)
         : paramValue
       return `(${paramName}:${resolvedParamValue})`
     }),
@@ -32,7 +33,9 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
 
 const MediaQuery = (props: Props): JSX.Element => {
   const { children, ...queryParams } = props
-  const query = React.useMemo(() => createMediaQuery(queryParams), [queryParams])
+  const query = React.useMemo(() => createMediaQuery(queryParams), [
+    queryParams,
+  ])
   const [matches, setMatches] = React.useState(false)
 
   const handleMediaQueryChange = (

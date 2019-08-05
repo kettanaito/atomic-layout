@@ -1,5 +1,5 @@
+import Layout from '@src/Layout'
 import { Numeric, Breakpoint, BreakpointBehavior } from '@const/defaultOptions'
-import transformNumeric from '@utils/math/transformNumeric'
 import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import compose from '@src/utils/functions/compose'
 
@@ -47,7 +47,9 @@ export default function createMediaQuery(
 ): string {
   return compose(
     joinQueryList(([dashedQueryProp, propValue]) => {
-      return `(${dashedQueryProp}:${String(transformNumeric(propValue))})`
+      return `(${dashedQueryProp}:${String(
+        Layout.transformNumeric(propValue),
+      )})`
     }),
     filterRelevantQueryParams(behavior),
     normalizeQuery,
