@@ -8,10 +8,10 @@ import getPrefix from '@utils/strings/getPrefix'
  * of the original breakpoint are omitted.
  *
  * @example
- * flipBreakpoint({ minWidth: 500, maxWidth: 600 })
+ * closeBreakpoint({ minWidth: 500, maxWidth: 600 })
  * // { maxWidth: 499 }
  */
-export default function flipBreakpoint(breakpoint: Breakpoint): Breakpoint {
+export default function closeBreakpoint(breakpoint: Breakpoint): Breakpoint {
   return Object.entries(breakpoint)
     .map(([propName, propValue]) => [getPrefix(propName), propName, propValue])
     .filter(([prefix]) => prefix !== 'max')
