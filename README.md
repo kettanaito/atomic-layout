@@ -102,6 +102,10 @@ Here are some shortcuts to get you started:
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Recipes](https://redd.gitbook.io/atomic-layout/recipes/semantics)
 
+## Examples
+
+- Flats list (https://codesandbox.io/s/5wwp76310n)
+
 ## Materials
 
 <table border="0">
@@ -147,7 +151,7 @@ Here are some shortcuts to get you started:
 
 ## Browser support
 
-> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please see [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
+> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please read [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
 
 ## Contributing
 
