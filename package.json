@@ -2,6 +2,7 @@
   "name": "atomic-layout",
   "version": "0.9.6",
   "description": "Physical representation of layout composition to create declarative, responsive layouts in React.",
+  "license": "MIT",
   "esnext": "src/index.ts",
   "main": "cjs/index.js",
   "module": "esm/index.js",
