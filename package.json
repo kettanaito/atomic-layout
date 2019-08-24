@@ -23,7 +23,7 @@
     "build:storybook:umd": "cross-env TARGET=umd build-storybook",
     "build:storybook:esm": "cross-env TARGET=esm build-storybook",
     "cypress": "node_modules/.bin/cypress open --env envName=dev",
-    "cypress:cli": "node_modules/.bin/cypress run --spec examples/tests.js --browser chrome --env envName=ci",
+    "cypress:cli": "node_modules/.bin/cypress run --spec examples/all.test.js --browser chrome --env envName=ci",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "test:e2e": "yarn cypress:cli",
     "test": "yarn test:unit && yarn test:e2e",
