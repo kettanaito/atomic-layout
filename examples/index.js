@@ -82,12 +82,14 @@ import UseViewportChange from './hooks/UseViewportChange'
 import UseResponsiveValue from './hooks/UseResponsiveValue'
 import UseBreakpointChange from './hooks/UseBreakpointChange'
 import UseResponsiveProps from './hooks/UseResponsiveProps'
+import UseResponsiveComponent from './hooks/UseResponsiveComponent'
 
 storiesOf('Hooks', module)
   .add('useViewportChange', () => <UseViewportChange />)
   .add('useResponsiveValue', () => <UseResponsiveValue />)
   .add('useBreakpointChange', () => <UseBreakpointChange />)
   .add('useResponsiveProps', () => <UseResponsiveProps />)
+  .add('useResponsiveComponent', () => <UseResponsiveComponent />)
 
 /**
  * Semantics
