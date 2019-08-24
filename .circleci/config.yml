@@ -5,8 +5,8 @@ aliases:
     at: ~/
   - &yarn_cache
     keys:
-      - yarn-packages-{{ checksum "yarn.lock" }}
-      - yarn-packages
+      - v1-yarn-packages-{{ checksum "yarn.lock" }}
+      - v1-yarn-packages-
   - &persist_build
     root: ~/
     paths:
@@ -44,7 +44,7 @@ jobs:
           name: Installing dependencies
           command: yarn install --frozen-lockfile
       - save_cache:
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: v1-yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - .cache
       - persist_to_workspace:
