@@ -3,6 +3,10 @@ import { Breakpoints } from '@src/const/defaultOptions'
 import createMediaQuery from '@utils/styles/createMediaQuery'
 import useViewportChange from './useViewportChange'
 
+/**
+ * Executes a given callback upon any breakpoint change.
+ * Callback calls are debounced by default.
+ */
 const useBreakpointChange = (
   callback: (breakpointName: string) => void,
   debounceDuration?: number,

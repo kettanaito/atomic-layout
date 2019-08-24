@@ -6,7 +6,7 @@ import { renderToString } from 'react-dom/server'
 import { Box, Only, Composition } from '../src'
 
 describe('Server-side rendering', () => {
-  it('render on a server without crashing', () => {
+  it('renders on a server without crashing', () => {
     const renderOnServer = () =>
       renderToString(
         <main>

@@ -8,7 +8,7 @@ Cypress.Commands.add('loadStory', (storyGroup, storyPath) => {
     query: {
       path: [
         '/story',
-        [storyGroup, storyPath.join('--')].filter(Boolean).join('-'),
+        [storyGroup.join('-'), storyPath.join('--')].filter(Boolean).join('--'),
       ].join('/'),
     },
   })
@@ -29,8 +29,8 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
   }
 
   cy.viewport(
-    parseFloat(breakpoint.minWidth) || 550,
-    parseFloat(breakpoint.minHeight) || 550,
+    parseFloat(breakpoint.minWidth) || 500,
+    parseFloat(breakpoint.minHeight) || 500,
   )
 
   /**
@@ -77,9 +77,7 @@ Cypress.Commands.add(
     const a = subject[0].getBoundingClientRect()
 
     cy.log(
-      `Assert no intersection between "#${
-        subject[0].id
-      }" and "${targetSelector}"`,
+      `Assert no intersection between "#${subject[0].id}" and "${targetSelector}"`,
     )
       .get(targetSelector)
       .then((element) => {
@@ -106,6 +104,12 @@ Cypress.Commands.add(
 // New set of commands
 //
 import assertAreas from './commands/assertAreas'
+
+Cypress.Commands.add('shouldRender', function(selector, shouldRender = true) {
+  return cy
+    .get(selector)
+    .should([!shouldRender && 'not', 'be', 'visible'].filter(Boolean).join('.'))
+})
 
 Cypress.Commands.add('assertAreas', { prevSubject: true }, function(
   subject,

@@ -1,0 +1,5 @@
+{
+  "integrationFolder": "./examples",
+  "testFiles": "**/*.test.js",
+  "viewportWidth": 500
+}

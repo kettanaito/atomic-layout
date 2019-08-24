@@ -11,11 +11,7 @@ const UseResponsiveValue = () => {
     'default',
   )
 
-  return (
-    <Box id="element" padding={10}>
-      {text}
-    </Box>
-  )
+  return <Box id="element">{text}</Box>
 }
 
 export default UseResponsiveValue

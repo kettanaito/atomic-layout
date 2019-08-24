@@ -7,7 +7,7 @@ const webpackOptions = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -25,11 +25,13 @@ const webpackOptions = {
 
 const getCypressConfig = (envName = '') => {
   const configFilename = ['cypress', envName, 'json'].filter(Boolean).join('.')
+
+  const commonConfig = require('../../cypress.common.json')
+  const customConfig = envName ? require(`../../cypress.${envName}.json`) : {}
+
   console.log(`Loading Cypress config: ${configFilename}...`)
 
-  return JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, '../../', configFilename)),
-  )
+  return Object.assign({}, commonConfig, customConfig)
 }
 
 module.exports = (on, config) => {
