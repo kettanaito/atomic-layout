@@ -9,12 +9,12 @@ import createMediaQuery from '@utils/styles/createMediaQuery'
  * an object of props relative to the current viewport.
  */
 const useResponsiveProps = <ResponsiveProps = {}>(
-  responsiveProps: ResponsiveProps,
-) => {
-  const [props, setProps] = useState({})
+  responsiveProps: Object,
+): Partial<ResponsiveProps> => {
+  const [props, setProps] = useState<ResponsiveProps>({})
 
   useBreakpointChange(() => {
-    const relevantProps = Object.keys(responsiveProps)
+    const nextProps = Object.keys(responsiveProps)
       .map(parsePropName)
       .filter(({ breakpoint, behavior }) => {
         const mediaQuery = createMediaQuery(
@@ -23,15 +23,15 @@ const useResponsiveProps = <ResponsiveProps = {}>(
         )
         return matchMedia(mediaQuery).matches
       })
-      .reduce(
+      .reduce<ResponsiveProps>(
         (acc, { originPropName, purePropName }) => ({
           ...acc,
           [purePropName]: responsiveProps[originPropName],
         }),
-        {},
+        {} as ResponsiveProps,
       )
 
-    setProps(relevantProps)
+    setProps(nextProps)
   })
 
   return props

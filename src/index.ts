@@ -12,6 +12,7 @@ export { default as useViewportChange } from './hooks/useViewportChange'
 export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 export { default as useBreakpointChange } from './hooks/useBreakpointChange'
 export { default as useResponsiveProps } from './hooks/useResponsiveProps'
+export { default as withResponsiveProps } from './hooks/useResponsiveComponent'
 
 /* Utils */
 export { default as withBreakpoints } from '@utils/breakpoints/withBreakpoints'

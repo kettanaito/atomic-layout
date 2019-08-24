@@ -71,12 +71,14 @@ import UseViewportChange from './Hooks/UseViewportChange'
 import UseResponsiveValue from './Hooks/UseResponsiveValue'
 import UseBreakpointChange from './Hooks/UseBreakpointChange'
 import UseResponsiveProps from './Hooks/UseResponsiveProps'
+import UseResponsiveComponent from './Styled/UseResponsiveComponent'
 
 storiesOf('Hooks', module)
   .add('useViewportChange', () => <UseViewportChange />)
   .add('useResponsiveValue', () => <UseResponsiveValue />)
   .add('useBreakpointChange', () => <UseBreakpointChange />)
   .add('useResponsiveProps', () => <UseResponsiveProps />)
+  .add('useResponsiveComponent', () => <UseResponsiveComponent />)
 
 /**
  * Recipes
