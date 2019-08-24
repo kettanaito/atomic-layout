@@ -21,8 +21,6 @@ const assertAxis = (areas, areaName, getArea, createSelector, areaPosition) => {
     }, [])
     .filter(existingAreasOtherThan(areaName))
 
-  console.log('looking for samew X axis', columnSiblings)
-
   columnSiblings.forEach((siblingAreaName) => {
     getArea(areaName)
       .haveSameAxis('x', createSelector(siblingAreaName))

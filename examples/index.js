@@ -3,74 +3,85 @@ import { storiesOf } from '@storybook/react'
 import './styles.css'
 
 /**
- * Rendering
- */
-import BellRendering from './Core/Rendering/Bell'
-import MobileFirstRendering from './Core/Rendering/MobileFirst'
-import NotchRendering from './Core/Rendering/Notch'
-import PolymorphicProp from './Core/Rendering/PolymorphicProp'
-
-storiesOf('Core|Rendering', module)
-  .add('Mobile-first', () => <MobileFirstRendering />)
-  .add('Bell', () => <BellRendering />)
-  .add('Notch', () => <NotchRendering />)
-  .add('Polymorphic prop', () => <PolymorphicProp />)
-
-/**
- * Responsive props
- */
-import MobileFirstResponsiveProps from './Core/ResponsiveProps/MobileFirst'
-import BreakpointSpecificResponsiveProps from './Core/ResponsiveProps/BreakpointSpecific'
-import InclusiveNotchResponsiveProps from './Core/ResponsiveProps/InclusiveNotch'
-
-storiesOf('Core|Responsive props', module)
-  .add('Mobile-first', () => <MobileFirstResponsiveProps />)
-  .add('Breakpoint-specific', () => <BreakpointSpecificResponsiveProps />)
-  .add('Inclusive-notch', () => <InclusiveNotchResponsiveProps />)
-
-/**
  * Configuration
  */
-import ConfigCustomUnit from './Core/Configuration/CustomUnit'
-import ConfigCustomBreakpoints from './Core/Configuration/CustomBreakpoints'
+import ConfigCustomUnit from './configuration/CustomUnit'
+import ConfigCustomBreakpoints from './configuration/CustomBreakpoints'
 
-storiesOf('Core|Configuration', module)
+storiesOf('Configuration|Default configuration', module).add(
+  'Nothing so far',
+  () => <p>TODO</p>,
+)
+storiesOf('Configuration|Custom configuration', module)
   .add('Custom unit', () => <ConfigCustomUnit />)
   .add('Custom breakpoints', () => <ConfigCustomBreakpoints />)
 
 /**
+ * Box
+ */
+import BoxDisplayOverride from './components/Box/DisplayOverride'
+
+storiesOf('Components|Box', module).add(
+  'Properties override',
+  BoxDisplayOverride,
+)
+
+/**
  * Composition
  */
-import NestedComposition from './Components/Composition/NestedComposition'
-import Templateless from './Components/Composition/Templateless'
-import Namespace from './Components/Composition/Namespace'
-import WeakArea from './Components/Composition/WeakArea'
+import TemplateIndentation from './components/Composition/declaration/TemplateIndentation'
+import Templateless from './components/Composition/declaration/Templateless'
+import TemplatePeriod from './components/Composition/declaration/TemplatePeriod'
+import GridTemplate from './components/Composition/declaration/GridTemplate'
+storiesOf('Components|Composition/Declaration', module)
+  .add('Template indentation', TemplateIndentation)
+  .add('Template-less composition', Templateless)
+  .add('Template period', TemplatePeriod)
+  .add('Grid template syntax', GridTemplate)
 
-storiesOf('Components|Composition', module)
-  .add('Nested composition', () => <NestedComposition />)
-  .add('Templateless', () => <Templateless />)
-  .add('Weak area', () => <WeakArea />)
-  .add('Namespace', () => <Namespace />)
+import WeakArea from './components/Composition/rendering/WeakArea'
+import NamespaceCollision from './components/Composition/rendering/NamespaceCollision'
+import NestedComposition from './components/Composition/rendering/NestedComposition'
+storiesOf('Components|Composition/Rendering', module)
+  .add('Weak areas', WeakArea)
+  .add('Namespace collision', NamespaceCollision)
+  .add('Nested composition', NestedComposition)
+
+import BellRendering from './components/Composition/rendering/behaviors/Bell'
+import MobileFirstRendering from './components/Composition/rendering/behaviors/MobileFirst'
+import NotchRendering from './components/Composition/rendering/behaviors/Notch'
+storiesOf('Components|Composition/Rendering/Behaviors', module)
+  .add('Mobile-first', MobileFirstRendering)
+  .add('Bell', BellRendering)
+  .add('Notch', NotchRendering)
+
+import BreakpointEdges from './components/Composition/rendering/responsive-props/BreakpointEdges'
+import MobileFirstResponsiveProps from './components/Composition/rendering/responsive-props/MobileFirst'
+import BreakpointSpecificResponsiveProps from './components/Composition/rendering/responsive-props/BreakpointSpecific'
+import InclusiveNotchResponsiveProps from './components/Composition/rendering/responsive-props/InclusiveNotch'
+storiesOf('Components|Composition/Rendering/Responsive props', module)
+  .add('Breakpoint edges', BreakpointEdges)
+  .add('Mobile-first', MobileFirstResponsiveProps)
+  .add('Breakpoint-specific', BreakpointSpecificResponsiveProps)
+  .add('Inclusive-notch', InclusiveNotchResponsiveProps)
 
 /**
  * Only
  */
-import OnlyDefault from './Components/Only/OnlyDefault'
-import OnlyCustomBreakpoint from './Components/Only/OnlyCustomBreakpoint'
-import OnlyCustomUnit from './Components/Only/OnlyCustomUnit'
+import OnlyDefaultBehavior from './components/Only/OnlyDefaultBehavior'
+import OnlyCustomBreakpoints from './components/Only/OnlyCustomBreakpoints'
 
 storiesOf('Components|Only', module)
-  .add('Default', () => <OnlyDefault />)
-  .add('Custom breakpoint', () => <OnlyCustomBreakpoint />)
-  .add('Custom default unit', () => <OnlyCustomUnit />)
+  .add('Default behavior', OnlyDefaultBehavior)
+  .add('Custom breakpoints', OnlyCustomBreakpoints)
 
 /**
  * Hooks
  */
-import UseViewportChange from './Hooks/UseViewportChange'
-import UseResponsiveValue from './Hooks/UseResponsiveValue'
-import UseBreakpointChange from './Hooks/UseBreakpointChange'
-import UseResponsiveProps from './Hooks/UseResponsiveProps'
+import UseViewportChange from './hooks/UseViewportChange'
+import UseResponsiveValue from './hooks/UseResponsiveValue'
+import UseBreakpointChange from './hooks/UseBreakpointChange'
+import UseResponsiveProps from './hooks/UseResponsiveProps'
 
 storiesOf('Hooks', module)
   .add('useViewportChange', () => <UseViewportChange />)
@@ -79,33 +90,22 @@ storiesOf('Hooks', module)
   .add('useResponsiveProps', () => <UseResponsiveProps />)
 
 /**
+ * Semantics
+ */
+import PolymorphicProp from './semantics/PolymorphicProp'
+
+storiesOf('Semantics', module).add('Polymorphic prop', PolymorphicProp)
+
+/**
  * Recipes
  */
-import IterativeAreas from './Recipes/IterativeAreas'
-import GridTemplate from './Recipes/GridTemplate'
+import IterativeAreas from './recipes/IterativeAreas'
 
-storiesOf('Recipes|All', module)
-  .add('Iterative areas', () => <IterativeAreas />)
-  .add('Grid template', () => <GridTemplate />)
+storiesOf('Recipes|All', module).add('Iterative areas', IterativeAreas)
 
 /**
  * Bugfixes
  */
-import StylesUndefined from './Bugfixes/StylesUndefined'
-import TemplateIndentation from './Bugfixes/TemplateIndentation'
-import BoxDisplayOverride from './Bugfixes/BoxDisplayOverride'
+import StylesUndefined from './regression/StylesUndefined'
 
-storiesOf('Bugfixes|All', module)
-  .add('Styles undefined', () => <StylesUndefined />)
-  .add('Template indentation', () => <TemplateIndentation />)
-  .add('Box display override', () => <BoxDisplayOverride />)
-
-/**
- * Playground
- */
-import PeriodExample from './Playground/PeriodExample'
-import MediaQuery from './Playground/MediaQuery'
-
-storiesOf('Playground', module)
-  .add('Period', () => <PeriodExample />)
-  .add('MediaQuery', () => <MediaQuery />)
+storiesOf('Regression|All', module).add('Styles undefined', StylesUndefined)
