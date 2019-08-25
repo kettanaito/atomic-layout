@@ -2,32 +2,18 @@ import React from 'react'
 import { Composition } from 'atomic-layout'
 import Square from '@stories/Square'
 
-const areasMobile = `left right`
-const areasTablet = `left center right`
-
 const BreakpointEdges = () => (
   <Composition
     id="composition"
-    areas={areasMobile}
-    areasMd={areasTablet}
+    templateCols="20% 1fr"
     gap={10}
-    maxWidth={300}
-    maxWidthSm={600}
-    maxWidthLg={900}
+    maxWidthDown={200}
+    maxWidthSm={400}
+    maxWidthLg="100%"
+    marginHorizontal="auto"
   >
-    {({ Left, Center, Right }) => (
-      <>
-        <Left data-area="left">
-          <Square>Left</Square>
-        </Left>
-        <Center data-area="center">
-          <Square>Center</Square>
-        </Center>
-        <Right data-area="right">
-          <Square>Right</Square>
-        </Right>
-      </>
-    )}
+    <Square>Left</Square>
+    <Square>Right</Square>
   </Composition>
 )
 

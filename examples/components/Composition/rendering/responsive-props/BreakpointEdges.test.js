@@ -6,83 +6,89 @@ describe('Breakpoint edges', () => {
     )
   })
 
-  const assertAreas = (areas) => {
-    return cy.get('#composition').assertAreas(areas)
-  }
-
   const assertMaxWidth = (value) => {
-    return cy.get('#composition').should('have.css', 'max-width', `${value}px`)
+    return cy.get('#composition').should('have.css', 'max-width', value)
   }
 
   it('Renders correctly on initial render', () => {
-    assertAreas([['left', 'right']])
-    assertMaxWidth(300)
+    assertMaxWidth('200px')
   })
 
   it('Renders correctly at a breakpoint', () => {
     cy.setBreakpoint('sm').then(() => {
-      assertAreas([['left', 'right']])
-      assertMaxWidth(500)
+      assertMaxWidth('400px')
     })
     cy.setBreakpoint('md').then(() => {
-      assertAreas([['left', 'center', 'right']])
-      assertMaxWidth(500)
+      assertMaxWidth('400px')
     })
     cy.setBreakpoint('lg').then(() => {
-      assertAreas([['left', 'center', 'right']])
-      assertMaxWidth(600)
+      assertMaxWidth('100%')
     })
     cy.setBreakpoint('xl').then(() => {
-      assertAreas([['left', 'center', 'right']])
-      assertMaxWidth(600)
+      assertMaxWidth('100%')
     })
   })
 
   it('Renders correctly within a breakpoint', () => {
     // xs
     cy.setBreakpoint({ minWidth: 550 }).then(() => {
-      assertAreas([['left', 'right']])
-      assertMaxWidth(300)
+      assertMaxWidth('200px')
     })
 
     //sm
     cy.setBreakpoint({ minWidth: 650 }).then(() => {
-      assertAreas([['left', 'right']])
-      assertMaxWidth(600)
+      assertMaxWidth('400px')
     })
 
     // md
     cy.setBreakpoint({ minWidth: 850 }).then(() => {
-      assertAreas([['left', 'center', 'right']])
-      assertMaxWidth(600)
+      assertMaxWidth('400px')
     })
 
     // lg
     cy.setBreakpoint({ minWidth: 1050 }).then(() => {
-      assertAreas([['left', 'center', 'right']])
-      assertMaxWidth(900)
+      assertMaxWidth('100%')
+    })
+
+    // xl
+    cy.setBreakpoint({ minWidth: 1400 }).then(() => {
+      assertMaxWidth('100%')
     })
   })
 
   it('Renders correctly on the trailing edge', () => {
     // xs
     cy.setBreakpoint({ minWidth: 575 }).then(() => {
-      assertAreas([['left', 'right']])
+      assertMaxWidth('200px')
     })
 
     // sm
+    cy.setBreakpoint({ minWidth: 576 }).then(() => {
+      assertMaxWidth('400px')
+    })
     cy.setBreakpoint({ minWidth: 767 }).then(() => {
-      assertAreas([['left', 'right']])
+      assertMaxWidth('400px')
     })
 
     // md
+    cy.setBreakpoint({ minWidth: 768 }).then(() => {
+      assertMaxWidth('400px')
+    })
     cy.setBreakpoint({ minWidth: 991 }).then(() => {
-      assertAreas([['left', 'center', 'right']])
+      assertMaxWidth('400px')
     })
 
     // lg
+    cy.setBreakpoint({ minWidth: 992 }).then(() => {
+      assertMaxWidth('100%')
+    })
     cy.setBreakpoint({ minWidth: 1199 }).then(() => {
-      assertAreas([['left', 'center', 'right']])
+      assertMaxWidth('100%')
+    })
+
+    // xl
+    cy.setBreakpoint({ minWidth: 1200 }).then(() => {
+      assertMaxWidth('100%')
     })
   })
 })
