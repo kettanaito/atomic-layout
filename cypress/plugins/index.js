@@ -26,12 +26,16 @@ const webpackOptions = {
 const getCypressConfig = (envName = '') => {
   const configFilename = ['cypress', envName, 'json'].filter(Boolean).join('.')
 
-  const commonConfig = require('../../cypress.common.json')
-  const customConfig = envName ? require(`../../cypress.${envName}.json`) : {}
+  const baseConfig = require('../../cypress.json')
+  const envConfig = envName ? require(`../../cypress.${envName}.json`) : {}
 
-  console.log(`Loading Cypress config: ${configFilename}...`)
+  console.log(`Loading base Cypress config...`)
 
-  return Object.assign({}, commonConfig, customConfig)
+  if (envName) {
+    console.log(`Loading environmental Cypress config: ${configFilename}...`)
+  }
+
+  return Object.assign({}, baseConfig, envConfig)
 }
 
 module.exports = (on, config) => {
