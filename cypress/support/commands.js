@@ -41,8 +41,8 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
 })
 
 Cypress.Commands.add('haveTag', { prevSubject: true }, (subject, tagName) => {
-  cy.wrap(subject).then(($elem) => {
-    assert($elem.is(tagName), `Renders as "<${tagName}>"`)
+  cy.wrap(subject).then(($element) => {
+    assert($element.is(tagName), `Renders as "<${tagName}>"`)
   })
 })
 
@@ -58,7 +58,9 @@ Cypress.Commands.add(
   'haveSameAxis',
   { prevSubject: true },
   (subject, axis, targetSelector) => {
-    console.warn('haveSameAxis', subject, axis, targetSelector)
+    cy.log(
+      `Assert same ${axis} axis between "${subject.selector}" and "${targetSelector}"`,
+    )
 
     const rectA = subject[0].getBoundingClientRect()
     cy.get(targetSelector).then((elem) => {
@@ -115,6 +117,41 @@ Cypress.Commands.add('assertAreas', { prevSubject: true }, function(
   subject,
   areasMatrix,
 ) {
-  // const wrapper = cy.wrap(subject)
   assertAreas(areasMatrix, subject.selector)
+})
+
+Cypress.Commands.add('assertNotch', { prevSubject: true }, function(subject) {
+  cy.log(`Assert "${subject.selector}" behaves as Notch`)
+
+  const assertAllVisible = () => {
+    cy.wrap(subject).assertAreas([['left', 'center', 'right']])
+  }
+
+  const assertCenterHidden = () => {
+    cy.wrap(subject).assertAreas([['left', 'right']])
+  }
+
+  assertAllVisible()
+  cy.setBreakpoint('sm').then(assertAllVisible)
+  cy.setBreakpoint('md').then(assertCenterHidden)
+  cy.setBreakpoint('lg').then(assertAllVisible)
+  cy.setBreakpoint('xl').then(assertAllVisible)
+})
+
+Cypress.Commands.add('assertBell', { prevSubject: true }, function(subject) {
+  cy.log(`Assert "${subject.selector}" behaves as Bell`)
+
+  const assertAllVisible = () => {
+    cy.wrap(subject).assertAreas([['first', 'second', 'third']])
+  }
+
+  const assertThirdHidden = () => {
+    cy.wrap(subject).assertAreas([['first', 'second', false]])
+  }
+
+  assertThirdHidden()
+  cy.setBreakpoint('sm').then(assertAllVisible)
+  cy.setBreakpoint('md').then(assertAllVisible)
+  cy.setBreakpoint('lg').then(assertThirdHidden)
+  cy.setBreakpoint('lg').then(assertThirdHidden)
 })

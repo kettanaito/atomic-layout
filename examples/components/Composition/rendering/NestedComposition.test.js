@@ -1,6 +1,3 @@
-import { assertBell } from './behaviors/Bell.test'
-import { assertNotch } from './behaviors/Notch.test'
-
 describe('Nested composition', () => {
   before(() => {
     cy.loadStory(
@@ -9,6 +6,11 @@ describe('Nested composition', () => {
     )
   })
 
-  it('Parent composition behaves as bell', assertNotch)
-  it('Child composite behaves as notch', assertBell)
+  it('Parent composition behaves as bell', () => {
+    cy.get('#notch').assertNotch()
+  })
+
+  it('Child composite behaves as notch', () => {
+    cy.get('#bell').assertBell()
+  })
 })
