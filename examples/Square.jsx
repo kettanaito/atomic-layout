@@ -7,9 +7,9 @@ const Square = styled.span`
   align-items: center;
   justify-content: center;
 
-  min-height: 60px;
-  height: 100%;
-  width: 100%;
+  min-height: 40px;
+  height: ${({ height }) => height || '100%'};
+  width: ${({ width }) => width || '100%'};
   background-color: hsla(235, 90%, 72%, 0.25);
   border: 1px solid hsla(235, 50%, 75%, 0.35);
   border-radius: 3px;
