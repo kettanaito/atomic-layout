@@ -28,7 +28,7 @@
     "test:e2e": "yarn cypress:cli",
     "test": "yarn test:unit && yarn test:e2e",
     "bundlesize": "node_modules/.bin/bundlesize",
-    "prepublishOnly": "yarn build && yarn bundlesize && yarn test"
+    "prepublishOnly": "yarn build && yarn bundlesize && yarn build:storybook && yarn test"
   },
   "husky": {
     "hooks": {
