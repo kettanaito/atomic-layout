@@ -29,7 +29,7 @@ const explicitValues = {
   autoFlow: ['row', 'column', 'row dense'],
   align: 'center',
   alignItems: 'flex-end',
-  alignContent: 'flex-start',
+  alignContent: ['flex-start', 'space-around', 'space-between'],
   justify: 'center',
   justifyItems: 'flex-end',
   justifyContent: 'flex-start',

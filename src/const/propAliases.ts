@@ -106,6 +106,9 @@ const propAliases: PropAliases = {
   alignItems: {
     props: ['align-items'],
   },
+  alignContent: {
+    props: ['align-content'],
+  },
   justify: {
     props: ['justify-self'],
   },
