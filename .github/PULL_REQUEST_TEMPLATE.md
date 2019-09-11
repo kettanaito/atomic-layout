@@ -1,7 +1,7 @@
-# Change log
+## Changes
 
 - Describe your changes
 
-# GitHub
+## GitHub
 
 - Closes #ISSUE_NUMBER
