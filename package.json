@@ -113,7 +113,7 @@
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.21.2",
-    "storybook": "^1.0.0",
+    "storybook": "^5.1.11",
     "styled-components": "^4.3.2",
     "ts-jest": "^24.0.2",
     "tslib": "^1.10.0",
