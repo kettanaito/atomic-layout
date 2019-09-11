@@ -112,7 +112,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.21.2",
+    "rollup-plugin-typescript2": "0.24.1",
     "storybook": "^5.1.11",
     "styled-components": "^4.3.2",
     "ts-jest": "^24.0.2",
