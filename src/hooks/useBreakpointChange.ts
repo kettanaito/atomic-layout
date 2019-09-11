@@ -22,6 +22,8 @@ const useBreakpointChange = (
       },
     )
 
+    // Executes the callback only when breakpoint name has changed
+    // between viewport changes.
     if (prevBreakpointName !== nextBreakpointName) {
       callback(nextBreakpointName)
       prevBreakpointName = nextBreakpointName

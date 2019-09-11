@@ -91,7 +91,6 @@
     "@zerollup/ts-transform-paths": "^1.7.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.6",
     "bundlesize": "^0.18.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.6",
