@@ -2,12 +2,13 @@ const path = require('path')
 
 module.exports = async ({ config }) => {
   const target = process.env.TARGET || 'cjs'
+  const packageFilepath = `../${target}`
 
-  console.log(`\nIncluding "atomic-layout" build target "${target}"...\n`)
+  console.log(`\nLoading "atomic-layout" package from: ${packageFilepath}\n`)
 
   config.resolve.alias = {
     ...config.resolve.alias,
-    'atomic-layout': path.resolve(__dirname, `../${target}`),
+    'atomic-layout': path.resolve(__dirname, packageFilepath),
     '@stories': path.resolve(__dirname, '../examples'),
   }
 

@@ -27,11 +27,6 @@ describe('Components', () => {
       require('./components/Composition/rendering/NestedComposition.test')
       require('./components/Composition/rendering/WeakAreas.test')
 
-      /**
-       * @todo Behavior test suites are not loaded correctly in Cypress.
-       * May be related to reusage of these scenarios in other tests
-       * (i.e. Configuration > Custom unit)
-       */
       describe('Behaviors', () => {
         require('./components/Composition/rendering/behaviors/MobileFirst.test')
         require('./components/Composition/rendering/behaviors/Bell.test')
@@ -61,6 +56,7 @@ describe('Hooks', () => {
   require('./hooks/UseBreakpointChange.test')
   require('./hooks/UseResponsiveValue.test')
   require('./hooks/useResponsiveProps.test')
+  require('./hooks/useResponsiveComponent.test')
 })
 
 /**
