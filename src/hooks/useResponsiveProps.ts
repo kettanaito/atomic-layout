@@ -11,7 +11,7 @@ import createMediaQuery from '@utils/styles/createMediaQuery'
 const useResponsiveProps = <ResponsiveProps = Record<string, any>>(
   responsiveProps: ResponsiveProps,
 ): Partial<ResponsiveProps> => {
-  const [props, setProps] = useState<ResponsiveProps>({} as ResponsiveProps)
+  const [props, setProps] = useState<ResponsiveProps>()
 
   useBreakpointChange(() => {
     const nextProps = Object.keys(responsiveProps)
@@ -34,7 +34,7 @@ const useResponsiveProps = <ResponsiveProps = Record<string, any>>(
     setProps(nextProps)
   })
 
-  return props
+  return props || {}
 }
 
 export default useResponsiveProps

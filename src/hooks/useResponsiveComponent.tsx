@@ -6,16 +6,19 @@ import useResponsiveProps from './useResponsiveProps'
  * that supports Responsive Props API.
  */
 function useResponsiveComponent<
-  OwnProps = Record<string, any>,
-  ResponsiveProps = Record<string, any>
+  OwnProps extends object = Record<string, any>,
+  ResponsiveProps extends object = Record<string, any>
 >(
   Component: React.FunctionComponent<OwnProps>,
 ): React.FunctionComponent<OwnProps & Partial<ResponsiveProps>> {
   return (responsiveProps) => {
     /**
-     * @todo Typing this needs some help.
+     * @see https://github.com/Microsoft/TypeScript/issues/29049
      */
-    const actualProps: any = useResponsiveProps(responsiveProps)
+    const actualProps = useResponsiveProps<typeof responsiveProps>(
+      responsiveProps,
+    ) as OwnProps & Partial<ResponsiveProps>
+
     return <Component {...actualProps} />
   }
 }
