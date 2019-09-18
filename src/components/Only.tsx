@@ -6,7 +6,7 @@ import { GenericProps } from '@const/props'
 import { withPlaceholder } from '@utils/templates/generateComponents'
 import openBreakpoint from '@utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '@utils/breakpoints/closeBreakpoint'
-import mergeAreaRecords from '@src/utils/breakpoints/mergeAreaRecords'
+import mergeAreaRecords from '@utils/breakpoints/mergeAreaRecords'
 
 export type BreakpointRef = string | Breakpoint
 

@@ -74,6 +74,7 @@ export default function getAreaRecords(
         )
       }
 
+      // Append the new area record.
       return list.concat(handleLastRecord(isLastTempate, areaRecord))
     }
 
