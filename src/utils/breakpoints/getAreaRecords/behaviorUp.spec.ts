@@ -1,9 +1,9 @@
-import getAreaBreakpoints from './getAreaBreakpoints'
+import getAreaRecords from './getAreaRecords'
 
 describe('when handling "up" behavior', () => {
   it('always renders area with min/max height', () => {
     expect(
-      getAreaBreakpoints('first', [
+      getAreaRecords('first', [
         {
           areas: ['first'],
           behavior: 'up',
@@ -22,15 +22,17 @@ describe('when handling "up" behavior', () => {
     ).toEqual([
       {
         behavior: 'up',
-        minHeight: undefined,
-        maxHeight: undefined,
+        breakpoint: {
+          minHeight: undefined,
+          maxHeight: undefined,
+        },
       },
     ])
   })
 
   it('always renders area with min/max resolution', () => {
     expect(
-      getAreaBreakpoints('first', [
+      getAreaRecords('first', [
         {
           areas: ['first'],
           behavior: 'up',
@@ -49,15 +51,17 @@ describe('when handling "up" behavior', () => {
     ).toEqual([
       {
         behavior: 'up',
-        minHeight: undefined,
-        maxHeight: undefined,
+        breakpoint: {
+          minHeight: undefined,
+          maxHeight: undefined,
+        },
       },
     ])
   })
 
   it('always renders area with min/max aspect ratios', () => {
     expect(
-      getAreaBreakpoints('first', [
+      getAreaRecords('first', [
         {
           areas: ['first'],
           behavior: 'up',
@@ -76,15 +80,17 @@ describe('when handling "up" behavior', () => {
     ).toEqual([
       {
         behavior: 'up',
-        minHeight: undefined,
-        maxHeight: undefined,
+        breakpoint: {
+          minHeight: undefined,
+          maxHeight: undefined,
+        },
       },
     ])
   })
 
   it('encloses "up" breakpoint with "max" media query property', () => {
     expect(
-      getAreaBreakpoints('first', [
+      getAreaRecords('first', [
         {
           areas: ['first'],
           behavior: 'up',
@@ -103,8 +109,10 @@ describe('when handling "up" behavior', () => {
     ).toEqual([
       {
         behavior: 'down',
-        minHeight: undefined,
-        maxHeight: 'calc(750px - 1px)',
+        breakpoint: {
+          minHeight: undefined,
+          maxHeight: 'calc(750px - 1px)',
+        },
       },
       null,
     ])

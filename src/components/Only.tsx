@@ -6,7 +6,7 @@ import { GenericProps } from '@const/props'
 import { withPlaceholder } from '@utils/templates/generateComponents'
 import openBreakpoint from '@utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '@utils/breakpoints/closeBreakpoint'
-import mergeBreakpoints from '@utils/breakpoints/mergeBreakpoints'
+import mergeAreaRecords from '@src/utils/breakpoints/mergeAreaRecords'
 
 export type BreakpointRef = string | Breakpoint
 
@@ -54,7 +54,7 @@ const Only = ({
 }: { children: any } & OnlyProps): JSX.Element => {
   const wrapWith = createWrapper(children, restProps)
 
-  /* Render on explicit breakpoint */
+  // Render on explicit breakpoint
   if (exactBreakpointName) {
     return wrapWith(resolveBreakpoint(exactBreakpointName))
   }
@@ -62,18 +62,24 @@ const Only = ({
   const minBreakpoint = resolveBreakpoint(minBreakpointName)
   const maxBreakpoint = resolveBreakpoint(maxBreakpointName)
 
-  /* Bell, __/--\__ */
+  // Bell, __/--\__
   if (minBreakpoint && maxBreakpoint && !except) {
-    return wrapWith(
-      mergeBreakpoints(
-        { behavior: 'down', ...maxBreakpoint },
-        { behavior: 'up', ...minBreakpoint },
-        false,
-      ),
+    const mergedAreaRecord = mergeAreaRecords(
+      {
+        behavior: 'down',
+        breakpoint: maxBreakpoint,
+      },
+      {
+        behavior: 'up',
+        breakpoint: minBreakpoint,
+      },
+      false,
     )
+
+    return wrapWith(mergedAreaRecord.breakpoint)
   }
 
-  /* Notch, --\__/-- */
+  // Notch, --\__/--
   if (minBreakpoint && maxBreakpoint && except) {
     return wrapWith(
       closeBreakpoint(minBreakpoint),
@@ -81,17 +87,17 @@ const Only = ({
     )
   }
 
-  /* High-pass, __/-- */
+  // High-pass, __/--
   if (minBreakpoint && !maxBreakpoint) {
     return wrapWith(openBreakpoint(minBreakpoint))
   }
 
-  /* Low-pass, --\__ */
+  // Low-pass, --\__
   if (!minBreakpoint && maxBreakpoint) {
     return wrapWith(closeBreakpoint(maxBreakpoint))
   }
 
-  /* Render always when no constrains are provided */
+  // Render always when no constrains are provided
   return children
 }
 

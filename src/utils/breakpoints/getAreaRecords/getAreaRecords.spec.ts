@@ -1,7 +1,7 @@
 import Layout from '../../../Layout'
 import transformNumeric from '../../math/transformNumeric'
 import getAreasList from '../../templates/getAreasList'
-import getAreaBreakpoints from './getAreaBreakpoints'
+import getAreaBreakpoints from './getAreaRecords'
 
 describe('getAreaBreakpoints', () => {
   describe('with compatible breakpoints', () => {
@@ -15,8 +15,10 @@ describe('getAreaBreakpoints', () => {
       expect(areaBreakpoints).toEqual([
         {
           behavior: 'up',
-          minWidth: undefined,
-          maxWidth: undefined,
+          breakpoint: {
+            minWidth: undefined,
+            maxWidth: undefined,
+          },
         },
       ])
     })
@@ -37,8 +39,10 @@ describe('getAreaBreakpoints', () => {
         null,
         {
           behavior: 'down',
-          minWidth: breakpointMd.minWidth,
-          maxWidth: `calc(${transformNumeric(breakpointXl.minWidth)} - 1px)`,
+          breakpoint: {
+            minWidth: breakpointMd.minWidth,
+            maxWidth: `calc(${transformNumeric(breakpointXl.minWidth)} - 1px)`,
+          },
         },
         null,
       ])
@@ -59,13 +63,17 @@ describe('getAreaBreakpoints', () => {
       expect(areaBreakpoints).toEqual([
         {
           behavior: 'down',
-          minWidth: breakpointXs.minWidth,
-          maxWidth: `calc(${transformNumeric(breakpointMd.minWidth)} - 1px)`,
+          breakpoint: {
+            minWidth: breakpointXs.minWidth,
+            maxWidth: `calc(${transformNumeric(breakpointMd.minWidth)} - 1px)`,
+          },
         },
         null,
         {
           behavior: 'up',
-          minWidth: breakpointXl.minWidth,
+          breakpoint: {
+            minWidth: breakpointXl.minWidth,
+          },
         },
       ])
     })
@@ -86,14 +94,20 @@ describe('getAreaBreakpoints', () => {
         expect(areaBreakpointsA).toEqual([
           {
             behavior: 'down',
-            minWidth: undefined,
-            maxWidth: `calc(${transformNumeric(breakpointSm.minWidth)} - 1px)`,
+            breakpoint: {
+              minWidth: undefined,
+              maxWidth: `calc(${transformNumeric(
+                breakpointSm.minWidth,
+              )} - 1px)`,
+            },
           },
           null,
           {
             behavior: 'down',
-            minWidth: breakpointMd.minWidth,
-            maxWidth: breakpointMd.maxWidth,
+            breakpoint: {
+              minWidth: breakpointMd.minWidth,
+              maxWidth: breakpointMd.maxWidth,
+            },
           },
         ])
 
@@ -103,8 +117,10 @@ describe('getAreaBreakpoints', () => {
           null,
           {
             behavior: 'down',
-            minWidth: breakpointSm.minWidth,
-            maxWidth: breakpointMd.maxWidth,
+            breakpoint: {
+              minWidth: breakpointSm.minWidth,
+              maxWidth: breakpointMd.maxWidth,
+            },
           },
         ])
       })
@@ -123,12 +139,16 @@ describe('getAreaBreakpoints', () => {
         expect(areaBreakpointsA).toEqual([
           {
             behavior: 'down',
-            maxWidth: breakpointXs.maxWidth,
+            breakpoint: {
+              maxWidth: breakpointXs.maxWidth,
+            },
           },
           {
             behavior: 'up',
-            minWidth: breakpointMd.minWidth,
-            maxWidth: undefined,
+            breakpoint: {
+              minWidth: breakpointMd.minWidth,
+              maxWidth: undefined,
+            },
           },
         ])
 
@@ -138,8 +158,10 @@ describe('getAreaBreakpoints', () => {
           null,
           {
             behavior: 'up',
-            minWidth: breakpointMd.minWidth,
-            maxWidth: undefined,
+            breakpoint: {
+              minWidth: breakpointMd.minWidth,
+              maxWidth: undefined,
+            },
           },
         ])
       })
@@ -168,13 +190,17 @@ describe('getAreaBreakpoints', () => {
       ).toEqual([
         {
           behavior: 'up',
-          minHeight: undefined,
-          maxHeight: 500,
+          breakpoint: {
+            minHeight: undefined,
+            maxHeight: 500,
+          },
         },
         {
           behavior: 'up',
-          minResolution: '200dpi',
-          maxResolution: undefined,
+          breakpoint: {
+            minResolution: '200dpi',
+            maxResolution: undefined,
+          },
         },
       ])
     })
@@ -208,12 +234,16 @@ describe('getAreaBreakpoints', () => {
       ).toEqual([
         {
           behavior: 'down',
-          maxHeight: 'calc(650px - 1px)',
+          breakpoint: {
+            maxHeight: 'calc(650px - 1px)',
+          },
         },
         null,
         {
           behavior: 'up',
-          minResolution: '200dpi',
+          breakpoint: {
+            minResolution: '200dpi',
+          },
         },
       ])
     })

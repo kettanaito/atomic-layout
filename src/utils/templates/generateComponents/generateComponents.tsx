@@ -1,14 +1,11 @@
 import { AreasList } from '../getAreasList'
 import * as React from 'react'
-import styled from 'styled-components'
 import { Breakpoint } from '@const/defaultOptions'
 import { GenericProps } from '@const/props'
 import MediaQuery from '@components/MediaQuery'
 import Box, { BoxProps } from '@components/Box'
 import capitalize from '@utils/strings/capitalize'
-import getAreaBreakpoints, {
-  AreaBreakpoint,
-} from '@utils/breakpoints/getAreaBreakpoints'
+import getAreaRecords, { AreaRecord } from '@utils/breakpoints/getAreaRecords'
 
 export type AreaComponent = React.FunctionComponent<BoxProps>
 export interface AreasMap {
@@ -24,23 +21,27 @@ export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
-  const Placeholder = ({
+  const Placeholder: React.FunctionComponent<GenericProps> = ({
     children,
     ...restProps
-  }: {
-    children: React.ReactNode
-  } & GenericProps) =>
-    breakpoints.filter(Boolean).reduce((components, breakpointProps, index) => {
-      const { behavior, ...queryProps } = breakpointProps
+  }) => {
+    const PlaceholderComponent = breakpoints.reduce<JSX.Element[]>(
+      (components, breakpoint, index) => {
+        return components.concat(
+          <MediaQuery {...breakpoint} key={`${Component.displayName}_${index}`}>
+            {(matches) =>
+              matches && <Component {...restProps}>{children}</Component>
+            }
+          </MediaQuery>,
+        )
+      },
+      [],
+    )
 
-      return components.concat(
-        <MediaQuery {...queryProps} key={`${Component.displayName}_${index}`}>
-          {(matches) =>
-            matches && <Component {...restProps}>{children}</Component>
-          }
-        </MediaQuery>,
-      )
-    }, [])
+    // Wrapping in a Fragment due to type issue
+    // when returning JSX.Element[].
+    return <>{PlaceholderComponent}</>
+  }
 
   Placeholder.displayName = `Placeholder(${Component.displayName})`
 
@@ -60,10 +61,13 @@ export default function generateComponents({
   templates,
 }: AreasList): AreasMap {
   const componentsMap = areas.reduce<AreasMap>((components, areaName) => {
-    const areaParams = getAreaBreakpoints(areaName, templates)
+    const areaRecords = getAreaRecords(areaName, templates)
+    const areaBreakpoints = areaRecords
+      .filter(Boolean)
+      .map((areaRecord) => areaRecord.breakpoint)
     const shouldAlwaysRender =
-      areaParams.length === 1 &&
-      areaParams.every(
+      areaRecords.length === 1 &&
+      areaBreakpoints.every(
         (breakpoint) => !breakpoint.minWidth && !breakpoint.maxWidth,
       )
 
@@ -73,7 +77,7 @@ export default function generateComponents({
 
     const ResponsiveComponent = shouldAlwaysRender
       ? Component
-      : withPlaceholder(Component, areaParams)
+      : withPlaceholder(Component, areaBreakpoints)
 
     return {
       ...components,
@@ -81,10 +85,8 @@ export default function generateComponents({
     }
   }, {})
 
-  /**
-   * Return plain components map for browsers that don't support Proxy.
-   * Requires safety check before rendering conditional areas.
-   */
+  // Return plain components map for browsers that don't support Proxy.
+  // Requires safety check before rendering conditional areas.
   return typeof Proxy === 'undefined'
     ? componentsMap
     : new Proxy<AreasMap>(componentsMap, {
@@ -99,23 +101,21 @@ export default function generateComponents({
               'Prevented render of the area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
               areaName,
               areas
-                /* Filter out "." placeholder from the list of areas */
+                // Filter out "." placeholder from the list of areas
                 .filter((singleAreaName) => /\w+/.test(singleAreaName))
-                /* Sort areas alphabetically for easier eye navigation */
+                // Sort areas alphabetically for easier eye navigation
                 .sort()
-                /* Capitalize areas to correspond to area components */
+                // Capitalize areas to correspond to area components
                 .map(capitalize)
                 .join('", "'),
               areaName.toLowerCase(),
             )
           }
 
-          /**
-           * Replace non-existing area component with
-           * the dummy component that renders nothing.
-           * This prevents from the exception when rendering "undefined"
-           * and allows conditional template areas.
-           */
+          // Replace non-existing area component with
+          // the dummy component that renders nothing.
+          // This prevents from the exception when rendering "undefined"
+          // and allows conditional template areas.
           return () => null
         },
       })
