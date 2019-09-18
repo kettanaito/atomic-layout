@@ -28,7 +28,8 @@
     "test:e2e": "yarn cypress:cli",
     "test": "yarn test:unit && yarn test:e2e",
     "bundlesize": "node_modules/.bin/bundlesize",
-    "prepublishOnly": "yarn build && yarn bundlesize && yarn build:storybook && yarn test"
+    "prepublishOnly": "yarn build && yarn bundlesize && yarn build:storybook && yarn test",
+    "postinstall": "opencollective-postinstall || true"
   },
   "husky": {
     "hooks": {
@@ -123,5 +124,12 @@
     "ttypescript": "^1.5.7",
     "typescript": "^3.5.3",
     "url": "^0.11.0"
+  },
+  "dependencies": {
+    "opencollective-postinstall": "^2.0.2"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
   }
 }
