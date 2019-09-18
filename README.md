@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/atomic-layout" target="_blank">
-    <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="Package version" />
+    <a href="https://opencollective.com/atomic-layout" alt="Financial Contributors on Open Collective"><img src="https://opencollective.com/atomic-layout/all/badge.svg?label=financial+contributors" /></a> <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="Package version" />
   </a>
   <a href="https://github.com/kettanaito/atomic-layout/releases">
     <img src="https://img.shields.io/github/release-date/kettanaito/atomic-layout.svg" alt="Release date" />
@@ -158,3 +158,33 @@ Here are some shortcuts to get you started:
 Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
 
 Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/kettanaito/atomic-layout/graphs/contributors"><img src="https://opencollective.com/atomic-layout/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/atomic-layout/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/atomic-layout"><img src="https://opencollective.com/atomic-layout/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/atomic-layout/contribute)]
+
+<a href="https://opencollective.com/atomic-layout/organization/0/website"><img src="https://opencollective.com/atomic-layout/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/1/website"><img src="https://opencollective.com/atomic-layout/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/2/website"><img src="https://opencollective.com/atomic-layout/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/3/website"><img src="https://opencollective.com/atomic-layout/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/4/website"><img src="https://opencollective.com/atomic-layout/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/5/website"><img src="https://opencollective.com/atomic-layout/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/6/website"><img src="https://opencollective.com/atomic-layout/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/7/website"><img src="https://opencollective.com/atomic-layout/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/8/website"><img src="https://opencollective.com/atomic-layout/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/atomic-layout/organization/9/website"><img src="https://opencollective.com/atomic-layout/organization/9/avatar.svg"></a>
