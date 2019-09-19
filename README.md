@@ -1,26 +1,16 @@
 <p align="center">
-  <a href="https://www.npmjs.com/package/atomic-layout" target="_blank">
-    <img src="https://img.shields.io/npm/v/atomic-layout.svg" alt="Package version" />
-  </a>
-  <a href="https://github.com/kettanaito/atomic-layout/releases">
-    <img src="https://img.shields.io/github/release-date/kettanaito/atomic-layout.svg" alt="Release date" />
-  </a>
-  <a href="https://circleci.com/gh/kettanaito/atomic-layout" target="_blank">
-    <img src="https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg" alt="Build status" />
-  </a>
-  <a href="https://coveralls.io/github/kettanaito/atomic-layout" target="_blank">
-    <img src="https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg" alt="Test coverage" />
-  </a>
-  <img src="https://img.shields.io/bundlephobia/minzip/atomic-layout.svg" alt="Package size (minzip)" />
-  <a href="https://david-dm.org/kettanaito/atomic-layout" target="_blank">
-    <img src="https://img.shields.io/david/kettanaito/atomic-layout.svg" alt="Dependencies status" />
-  </a>
-  <a href="https://david-dm.org/kettanaito/atomic-layout?type=dev" target="_blank">
-    <img src="https://img.shields.io/david/dev/kettanaito/atomic-layout.svg" alt="Dev dependencies status" />
-  </a>
-  <a href="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat">
-    <img src="https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat" alt="Discord channel">
-  </a>
+
+[![Package version](https://img.shields.io/npm/v/atomic-layout.svg)][npm-url]
+[![Latest release](https://img.shields.io/github/release-date/kettanaito/atomic-layout.svg)][releases-url]
+[![Package size](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)][bundlephobia-url]
+[![Build status](https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg)][build-url]
+[![Test coverage](https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg)][test-coverage-url]
+[![Dependencies status](https://img.shields.io/david/kettanaito/atomic-layout.svg)][dependencies-url]
+[![Dev dependencies status](https://img.shields.io/david/dev/kettanaito/atomic-layout.svg)][dev-dependencies-url]
+
+[![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat)][community-reactiflux]
+[![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
+
 </p>
 
 <br>
@@ -149,6 +139,11 @@ Here are some shortcuts to get you started:
   </tr>
 </table>
 
+## Community
+
+- [Spectrum][community-spectrum]
+- [Reactiflux][community-reactiflux]
+
 ## Browser support
 
 > **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please read [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
@@ -158,3 +153,13 @@ Here are some shortcuts to get you started:
 Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
 
 Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
+
+[npm-url]: https://npmjs.com/package/atomic-layout
+[releases-url]: https://github.com/kettanaito/atomic-layout/releases
+[bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
+[build-url]: https://circleci.com/gh/kettanaito/atomic-layout
+[test-coverage-url]: https://coveralls.io/github/kettanaito/atomic-layout
+[dependencies-url]: https://david-dm.org/kettanaito/atomic-layout
+[dev-dependencies-url]: https://david-dm.org/kettanaito/atomic-layout?type=dev
+[community-spectrum]: https://spectrum.chat/atomic-layout
+[community-reactiflux]: https://discordapp.com/channels/102860784329052160/543033450924474378
