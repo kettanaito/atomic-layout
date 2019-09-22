@@ -28,6 +28,10 @@ const createStyleString = (
     : styleProps
 }
 
+/**
+ * Produces a CSS string based on the given component props.
+ * Takes only known prop aliases, ignores all the other props.
+ */
 export default function applyStyles(pristineProps: Props): string {
   return (
     Object.keys(pristineProps)
