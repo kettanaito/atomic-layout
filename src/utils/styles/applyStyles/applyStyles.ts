@@ -1,6 +1,6 @@
 import Layout from '@src/Layout'
-import { BreakpointBehavior } from '@const/defaultOptions'
-import propAliases from '@const/propAliases'
+import { BreakpointBehavior, Breakpoint } from '@const/defaultOptions'
+import propAliases, { PropAliasDeclaration } from '@const/propAliases'
 import parsePropName, { Props } from '@utils/strings/parsePropName'
 import isset from '@utils/functions/isset'
 import createMediaQuery from '../createMediaQuery'
@@ -28,37 +28,76 @@ const createStyleString = (
     : styleProps
 }
 
+interface PropAliasGroup {
+  propAlias: PropAliasDeclaration
+  records: Array<{
+    propValue: any
+    breakpoint: Breakpoint
+    behavior: BreakpointBehavior
+  }>
+}
+
 /**
  * Produces a CSS string based on the given component props.
  * Takes only known prop aliases, ignores all the other props.
  */
 export default function applyStyles(pristineProps: Props): string {
-  return Object.entries(pristineProps)
-    .reduce<string[]>((css, [pristinePropName, pristinePropValue]) => {
-      const { purePropName, breakpoint, behavior } = parsePropName(
-        pristinePropName,
-      )
-      const propAlias = propAliases[purePropName]
+  // First, split pritstine component's props into prop alias groups.
+  // This allows to operate with each prop alias with all its records at once.
+  const propAliasGroups = Object.entries(pristineProps)
+    // Filter out props with "undefined" or "null" as a value.
+    .filter(([_, propValue]) => isset(propValue))
+    .reduce<Record<string, PropAliasGroup>>(
+      (groups, [pristinePropName, pristinePropValue]) => {
+        const { purePropName, breakpoint, behavior } = parsePropName(
+          pristinePropName,
+        )
+        const propAlias = propAliases[purePropName]
 
-      // Filter out props with "undefined" or "null" as a value.
-      // Filter out props that are not in the known prop aliases.
-      if (!isset(pristineProps[pristinePropName]) || !propAlias) {
-        return css
-      }
+        // Filter out props that are not in the known prop aliases.
+        if (!propAlias) {
+          return groups
+        }
 
+        const prevRecords = groups[purePropName]
+          ? groups[purePropName].records
+          : []
+        const nextRecords = prevRecords.concat({
+          breakpoint,
+          behavior,
+          propValue: pristinePropValue,
+        })
+        const groupItem: PropAliasGroup = {
+          propAlias,
+          records: nextRecords,
+        }
+
+        return {
+          ...groups,
+          [purePropName]: groupItem,
+        }
+      },
+      {},
+    )
+
+  return Object.entries(propAliasGroups)
+    .reduce<string[]>((css, [_, propAliasGroup]) => {
+      const { propAlias, records } = propAliasGroup
       const { props, transformValue } = propAlias
-      const propValue = transformValue
-        ? transformValue(pristinePropValue)
-        : pristinePropValue
 
-      const styleString = createStyleString(
-        props,
-        propValue,
-        breakpoint,
-        behavior,
-      )
+      const styles = records.map(({ breakpoint, behavior, propValue }) => {
+        const transformedPropValue = transformValue
+          ? transformValue(propValue)
+          : propValue
+        return createStyleString(
+          props,
+          transformedPropValue,
+          breakpoint,
+          behavior,
+        )
+      })
 
-      return css.concat(styleString)
+      return css.concat(styles)
     }, [])
     .join(' ')
 }
