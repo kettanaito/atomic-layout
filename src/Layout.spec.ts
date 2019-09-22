@@ -41,7 +41,7 @@ describe('Layout', () => {
   })
 
   describe('configure()', () => {
-    describe('when called with invalid options', () => {
+    describe('given Layout is called with invalid options', () => {
       const invalidOptions = [null, undefined]
 
       invalidOptions.forEach((layoutOption) => {
@@ -58,7 +58,7 @@ describe('Layout', () => {
     })
 
     describe('defaultBreakpointName', () => {
-      describe('with existing breakpoint name as value', () => {
+      describe('given using existing breakpoint name as value', () => {
         const run = () =>
           Layout.configure({
             defaultBreakpointName: 'sm',
@@ -74,7 +74,7 @@ describe('Layout', () => {
         })
       })
 
-      describe('given non-string value', () => {
+      describe('given a non-string value', () => {
         const invalidValues = [3, [], {}]
 
         invalidValues.forEach((value) => {

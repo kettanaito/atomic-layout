@@ -2,8 +2,8 @@ import '@src/../tests/matchMedia.mock'
 import withBreakpoints from './withBreakpoints'
 
 describe('withBreakpoints', () => {
-  describe('when given existing breakpoints', () => {
-    it('returns value associated with matching breakpoint', () => {
+  describe('given existing breakpoints', () => {
+    it('should return value associated with matching breakpoint', () => {
       expect(
         withBreakpoints({
           xs: 'extra small',
@@ -13,7 +13,7 @@ describe('withBreakpoints', () => {
       ).toEqual('large')
     })
 
-    it('returns default value when no breakpoints match', () => {
+    it('should return the default value when no breakpoints match', () => {
       expect(
         withBreakpoints(
           {
@@ -24,7 +24,7 @@ describe('withBreakpoints', () => {
       ).toEqual('default')
     })
 
-    it('returns "undefined" when not given default value', () => {
+    it('should return "undefined" when not given default value', () => {
       expect(
         withBreakpoints({
           md: 'medium',
@@ -33,8 +33,8 @@ describe('withBreakpoints', () => {
     })
   })
 
-  describe('when given non-existing breakpoints', () => {
-    it('prints console warning', () => {
+  describe('given non-existing breakpoints', () => {
+    it('should print console warning', () => {
       const consoleSpy = jest.spyOn(console, 'warn')
       withBreakpoints({
         foo: 'bar',
@@ -43,7 +43,7 @@ describe('withBreakpoints', () => {
       consoleSpy.mockRestore()
     })
 
-    it('returns default value when given', () => {
+    it('should return default value when given', () => {
       expect(
         withBreakpoints(
           {
@@ -54,7 +54,7 @@ describe('withBreakpoints', () => {
       ).toEqual('default')
     })
 
-    it('returns "undefined" when not given default value', () => {
+    it('should return "undefined" when not given default value', () => {
       expect(
         withBreakpoints({
           foo: 'bar',

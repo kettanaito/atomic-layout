@@ -1,39 +1,70 @@
 import sanitizeTemplateString from './sanitizeTemplateString'
 
 describe('sanitizeTemplateString', () => {
-  it('sanitizes string with quotes', () => {
-    const areas = sanitizeTemplateString(`
-      header header
-      content aside
-      footer footer
-    `)
-    expect(areas).toEqual(['aside', 'content', 'footer', 'header'])
+  describe('given a template string with quotes', () => {
+    it('should return the list of areas names', () => {
+      const areas = sanitizeTemplateString(`
+        'header header'
+        'content aside'
+        'footer footer'
+      `)
+      expect(areas).toEqual(['aside', 'content', 'footer', 'header'])
+    })
   })
 
-  it('sanitizes string without quotes', () => {
-    const areas = sanitizeTemplateString(`
-      first first
-      second third
-      fourth fourth
-    `)
-    expect(areas).toEqual(['first', 'fourth', 'second', 'third'])
+  describe('given a template string without quotes', () => {
+    it('should return the list of areas names', () => {
+      const areas = sanitizeTemplateString(`
+        first first
+        second third
+        fourth fourth
+      `)
+      expect(areas).toEqual(['first', 'fourth', 'second', 'third'])
+    })
   })
 
-  it('sanitizes string without indentation', () => {
-    const areas = sanitizeTemplateString(`
+  describe('given a template string without indentation', () => {
+    it('should return the list of areas names', () => {
+      const areas = sanitizeTemplateString(`
 first first
 second third
-    `)
-    expect(areas).toEqual(['first', 'second', 'third'])
+      `)
+      expect(areas).toEqual(['first', 'second', 'third'])
+    })
   })
 
-  it('sanitizes "grid-template" string', () => {
-    const areas = sanitizeTemplateString(`
-      200px 1fr
-      header header 100px
-      content aside auto
-    `)
+  describe('given a template string with arbitrary indentation', () => {
+    it('should return the list of areas names', () => {
+      const areas = sanitizeTemplateString(`
+  first first
+      second third
+      `)
+      expect(areas).toEqual(['first', 'second', 'third'])
+    })
+  })
+  describe('given a template string written in "grid-template" syntax', () => {
+    let areas: string[]
 
-    expect(areas).toEqual(['aside', 'content', 'header'])
+    beforeAll(() => {
+      areas = sanitizeTemplateString(`
+        200px 1fr
+        header header 100px
+        content aside auto
+      `)
+    })
+
+    it('should not contain any dimensions', () => {
+      expect(areas).not.toContain('200px')
+      expect(areas).not.toContain('1fr')
+      expect(areas).not.toContain('100px')
+      expect(areas).not.toContain('auto')
+    })
+
+    it('should return the list of areas names', () => {
+      expect(areas).toHaveLength(3)
+      expect(areas).toContain('aside')
+      expect(areas).toContain('content')
+      expect(areas).toContain('header')
+    })
   })
 })

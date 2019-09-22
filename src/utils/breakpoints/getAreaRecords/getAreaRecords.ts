@@ -61,7 +61,6 @@ export default function getAreaRecords(
         lastAreaRecord && canMergeRecords(lastAreaRecord, areaRecord)
 
       if (shouldMergeRecords) {
-        console.log('should merge with the previous record')
         const mergedAreaRecord = mergeAreaRecords(
           areaRecord,
           lastAreaRecord,

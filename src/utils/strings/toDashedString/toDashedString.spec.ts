@@ -1,12 +1,16 @@
 import toDashedString from './toDashedString'
 
 describe('toDashedString', () => {
-  it('ronverts cammelCase to dashed-string', () => {
-    expect(toDashedString('loremIpsum')).toBe('lorem-ipsum')
-    expect(toDashedString('loremIpsumDolor')).toBe('lorem-ipsum-dolor')
+  describe('given a cammelCase string', () => {
+    it('should convert the string to kebab-case', () => {
+      expect(toDashedString('loremIpsum')).toBe('lorem-ipsum')
+      expect(toDashedString('loremIpsumDolor')).toBe('lorem-ipsum-dolor')
+    })
   })
 
-  it('bypasses strings without capital letter', () => {
-    expect(toDashedString('lorem')).toBe('lorem')
+  describe('given a string without a capital letter', () => {
+    it('should return the string as-is', () => {
+      expect(toDashedString('lorem')).toBe('lorem')
+    })
   })
 })

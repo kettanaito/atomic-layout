@@ -1,8 +1,8 @@
 import mergeAreaRecords from './mergeAreaRecords'
 
 describe('mergeAreaRecords', () => {
-  describe('with two breakpoints going up', () => {
-    describe('when includes area', () => {
+  describe('given two breakpoints going up', () => {
+    describe('and the area is included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'up',
@@ -21,20 +21,20 @@ describe('mergeAreaRecords', () => {
         true,
       )
 
-      it('has "up" behavior', () => {
+      it('should have "up" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'up')
       })
 
-      it('has "minWidth" from the lower breakpoint', () => {
+      it('should have "minWidth" from the lower breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 500)
       })
 
-      it('has "maxWidth" from the higher breakpoint', () => {
+      it('should have "maxWidth" from the higher breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
 
-    describe('when does not include area', () => {
+    describe('and the area is not included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'up',
@@ -53,15 +53,15 @@ describe('mergeAreaRecords', () => {
         false,
       )
 
-      it('has "down" behavior', () => {
+      it('should have "down" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'down')
       })
 
-      it('has "minWidth" from the lower breakpoint', () => {
+      it('should have "minWidth" from the lower breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 500)
       })
 
-      it('calculates "maxWidth" from the highest "minWidth"', () => {
+      it('should calculate "maxWidth" from the highest "minWidth"', () => {
         expect(breakpoint).toHaveProperty(
           ['breakpoint', 'maxWidth'],
           'calc(768px - 1px)',
@@ -70,8 +70,8 @@ describe('mergeAreaRecords', () => {
     })
   })
 
-  describe('with two breakpoints going down', () => {
-    describe('when includes the area', () => {
+  describe('given two breakpoints going down', () => {
+    describe('and the area is included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'down',
@@ -89,20 +89,20 @@ describe('mergeAreaRecords', () => {
         true,
       )
 
-      it('has "down" behavior', () => {
+      it('should have "down" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'down')
       })
 
-      it('has "minWidth" from the lowest breakpoint', () => {
+      it('should have "minWidth" from the lowest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], undefined)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
 
-    describe('when does not include the area', () => {
+    describe('and the area is not included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'down',
@@ -121,22 +121,22 @@ describe('mergeAreaRecords', () => {
         false,
       )
 
-      it('has "down" behavior', () => {
+      it('should have "down" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'down')
       })
 
-      it('has "minWidth" from the highest breakpoint', () => {
+      it('should have "minWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 768)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
   })
 
-  describe('with two bell breakpoints', () => {
-    describe('when includes the area', () => {
+  describe('given two bell breakpoints', () => {
+    describe('and the area is included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'down',
@@ -154,20 +154,20 @@ describe('mergeAreaRecords', () => {
         true,
       )
 
-      it('has "down" behavior', () => {
+      it('should have "down" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'down')
       })
 
-      it('has no "minWidth"', () => {
+      it('should not have any "minWidth"', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], undefined)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
 
-    describe('when does not include the area', () => {
+    describe('and the area is not included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'up',
@@ -185,22 +185,22 @@ describe('mergeAreaRecords', () => {
         false,
       )
 
-      it('has "up" behavior', () => {
+      it('should have "up" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'up')
       })
 
-      it('has "minWidth" from the lowest breakpoint', () => {
+      it('should have "minWidth" from the lowest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 768)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
   })
 
-  describe('with two notch breakpoints', () => {
-    describe('when includes the area', () => {
+  describe('given two notch breakpoints', () => {
+    describe('and the area is included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'up',
@@ -218,20 +218,20 @@ describe('mergeAreaRecords', () => {
         true,
       )
 
-      it('has "up" behavior', () => {
+      it('should have "up" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'up')
       })
 
-      it('has "minWidth" from the highest breakpoint', () => {
+      it('should have "minWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 768)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })
 
-    describe('when does not include the area', () => {
+    describe('and the area is not included', () => {
       const breakpoint = mergeAreaRecords(
         {
           behavior: 'up',
@@ -249,15 +249,15 @@ describe('mergeAreaRecords', () => {
         false,
       )
 
-      it('has "up" behavior', () => {
+      it('should have "up" behavior', () => {
         expect(breakpoint).toHaveProperty('behavior', 'up')
       })
 
-      it('has "minWidth" from the highest breakpoint', () => {
+      it('should have "minWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'minWidth'], 768)
       })
 
-      it('has "maxWidth" from the highest breakpoint', () => {
+      it('should have "maxWidth" from the highest breakpoint', () => {
         expect(breakpoint).toHaveProperty(['breakpoint', 'maxWidth'], 960)
       })
     })

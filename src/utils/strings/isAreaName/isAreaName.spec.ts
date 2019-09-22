@@ -1,19 +1,21 @@
 import isAreaName from './isAreaName'
 
 describe('isAreaName', () => {
-  describe('returns true', () => {
-    it('when given area name', () => {
+  describe('given a valid string value', () => {
+    it('should return true', () => {
       expect(isAreaName('footer')).toBe(true)
     })
   })
 
-  describe('returns false', () => {
-    it('when given numeric value', () => {
+  describe('given a numeric value', () => {
+    it('should return false', () => {
       expect(isAreaName('100px')).toBe(false)
       expect(isAreaName('2fr')).toBe(false)
     })
+  })
 
-    it('when given dimensional keyword', () => {
+  describe('given a reserved keyword', () => {
+    it('should return false', () => {
       expect(isAreaName('auto')).toBe(false)
     })
   })

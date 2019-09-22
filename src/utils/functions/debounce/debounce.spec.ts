@@ -1,27 +1,39 @@
 import debounce from './debounce'
 
 describe('debounce', () => {
-  it('is called once within duration', () => {
+  describe('given debounced a function', () => {
     let count = 0
-    const increment = debounce(() => count++, 100)
+    const DEBOUNCE_DURATION = 100
+    const increment = debounce(() => count++, DEBOUNCE_DURATION)
 
-    increment()
-    setTimeout(increment, 50)
-    setTimeout(increment, 100)
+    afterEach(() => {
+      count = 0
+    })
 
-    setTimeout(() => {
-      expect(count).toEqual(1)
-    }, 200)
-  })
+    it('should execute initially', () => {
+      increment()
+      setTimeout(() => {
+        expect(count).toEqual(1)
+      }, DEBOUNCE_DURATION)
+    })
 
-  it('can be called multiple times after duration', () => {
-    let count = 0
-    const increment = debounce(() => count++, 100)
-    increment()
-    setTimeout(increment, 100)
+    it('should ignore subsequent calls within debounce duration', () => {
+      increment()
+      setTimeout(increment, DEBOUNCE_DURATION / 2)
+      setTimeout(increment, DEBOUNCE_DURATION)
 
-    setTimeout(() => {
-      expect(count).toEqual(2)
-    }, 200)
+      setTimeout(() => {
+        expect(count).toEqual(1)
+      }, DEBOUNCE_DURATION * 2)
+    })
+
+    it('should execute subsequent calls outside of debounce duration', () => {
+      increment()
+      setTimeout(increment, DEBOUNCE_DURATION)
+
+      setTimeout(() => {
+        expect(count).toEqual(2)
+      }, DEBOUNCE_DURATION * 2)
+    })
   })
 })

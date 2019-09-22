@@ -1,15 +1,54 @@
-import pop from './index'
+import pop from '../pop'
 
 describe('pop', () => {
-  it('removes the last entry of an array', () => {
-    expect(pop([1, 2, 3])).toEqual([1, 2])
-    expect(pop([1, 2])).toEqual([1])
-    expect(pop([1])).toEqual([])
+  describe('given an empty array', () => {
+    const array = []
+    let result: string[]
+
+    beforeAll(() => {
+      result = pop(array)
+    })
+
+    it('should return a new empty array', () => {
+      expect(result).toEqual([])
+    })
+
+    it('should not mutate the original array', () => {
+      expect(array).toEqual([])
+    })
   })
 
-  it('does not mutate original array', () => {
-    const arr = [1, 2]
-    pop(arr)
-    expect(arr).toEqual([1, 2])
+  describe('given an array with a single member', () => {
+    const array = ['area']
+    let result: string[]
+
+    beforeAll(() => {
+      result = pop(array)
+    })
+
+    it('should return a new array with the last member removed', () => {
+      expect(result).toEqual([])
+    })
+
+    it('should not mutate the original array', () => {
+      expect(array).toEqual(['area'])
+    })
+  })
+
+  describe('given an array with multiple members', () => {
+    const array = [1, 2, 3]
+    let result: number[]
+
+    beforeAll(() => {
+      result = pop<number>(array)
+    })
+
+    it('should return a new array with the last member removed', () => {
+      expect(result).toEqual([1, 2])
+    })
+
+    it('should not mutate the original array', () => {
+      expect(array).toEqual([1, 2, 3])
+    })
   })
 })

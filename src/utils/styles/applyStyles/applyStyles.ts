@@ -8,7 +8,7 @@ import createMediaQuery from '../createMediaQuery'
 const createStyleString = (
   propsList: string[],
   propValue: any,
-  breakpoint: any,
+  breakpoint: any /** @todo annotate this! */,
   behavior: BreakpointBehavior,
 ) => {
   const styleProps = propsList
@@ -17,10 +17,8 @@ const createStyleString = (
 
   const breakpointOptions = Layout.breakpoints[breakpoint.name]
 
-  /**
-   * Wrap CSS rule in a media query only if its prop includes
-   * a breakpoint and behavior different than the default ones.
-   */
+  // Wrap CSS rule in a media query only if its prop includes
+  // a breakpoint and behavior different than the default ones.
   const shouldWrapInMediaQuery =
     breakpointOptions &&
     !(breakpoint.isDefault && behavior === Layout.defaultBehavior)
@@ -33,13 +31,13 @@ const createStyleString = (
 export default function applyStyles(pristineProps: Props): string {
   return (
     Object.keys(pristineProps)
-      /* Parse each prop to include "breakpoint" and "behavior" */
+      // Parse each prop to include "breakpoint" and "behavior"
       .map(parsePropName)
-      /* Filter out props that are not included in prop aliases */
+      // Filter out props that are not included in prop aliases
       .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
-      /* Filter out props with "undefined" or "null" as value */
+      // Filter out props with "undefined" or "null" as value
       .filter(({ originPropName }) => isset(pristineProps[originPropName]))
-      /* Map each prop to a CSS string */
+      // Map each prop to a CSS string
       .map(({ purePropName, originPropName, breakpoint, behavior }) => {
         const { props, transformValue } = propAliases[purePropName]
         const propValue = pristineProps[originPropName]

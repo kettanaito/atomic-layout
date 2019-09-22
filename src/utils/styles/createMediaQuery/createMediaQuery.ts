@@ -3,6 +3,8 @@ import transformNumeric from '@utils/math/transformNumeric'
 import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import compose from '@src/utils/functions/compose'
 
+type MediaQueryPair = [string, Numeric]
+
 /**
  * Determines whether a given media query param should be added
  * to the media query string based on a breakpoint's behavior.
@@ -25,19 +27,19 @@ const shouldAppendProperty = (
 }
 
 const filterRelevantQueryParams = (behavior: BreakpointBehavior) => (
-  queryList,
-): boolean => {
+  queryList: MediaQueryPair[],
+): MediaQueryPair[] => {
   return queryList.filter(([queryParam]) =>
     shouldAppendProperty(queryParam, behavior),
   )
 }
 
 /**
- * Joins a given query params list with the given transformer function.
+ * Joins a given media query params list with the given transformer function.
  */
-export const joinQueryList = (
-  transformer: (pair: [string, Numeric]) => any,
-) => (queryList) => {
+export const joinQueryList = (transformer: (pair: MediaQueryPair) => any) => (
+  queryList: MediaQueryPair[],
+) => {
   return queryList.map(transformer).join(' and ')
 }
 

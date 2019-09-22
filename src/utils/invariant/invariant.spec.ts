@@ -1,15 +1,19 @@
 import invariant from './invariant'
 
 describe('invariant', () => {
-  it('errors when predicate is not satisfied', () => {
-    const errorMessage = 'Error message'
-    const run = () => invariant(false, errorMessage)
-
-    expect(run).toThrowError(errorMessage)
+  describe('given predicate is satisfied', () => {
+    it('should not throw any errors', () => {
+      const run = () => invariant(true, 'You should not see this')
+      expect(run).not.toThrow()
+    })
   })
 
-  it('does nothing on truthy predicate', () => {
-    const run = () => invariant(true, 'You should not see this')
-    expect(run).not.toThrow()
+  describe('given predicate is not satisfied', () => {
+    it('should throw an error with the correct message', () => {
+      const errorMessage = 'Error message'
+      const run = () => invariant(false, errorMessage)
+
+      expect(run).toThrowError(errorMessage)
+    })
   })
 })

@@ -1,7 +1,7 @@
 import closeBreakpoint from './closeBreakpoint'
 
 describe('closeBreakpoint', () => {
-  describe('when given numeric breakpoints', () => {
+  describe('given numeric breakpoints', () => {
     const breakpoint = closeBreakpoint({
       minHeight: 350,
       maxHeight: 700,
@@ -19,7 +19,7 @@ describe('closeBreakpoint', () => {
     })
   })
 
-  describe('when using custom measurement unit', () => {
+  describe('given custom measurement unit', () => {
     const breakpoint = closeBreakpoint({
       minHeight: '350px',
       maxHeight: '700px',

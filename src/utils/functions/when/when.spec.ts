@@ -4,11 +4,15 @@ describe('when', () => {
   const predicate = (num: number) => num > 5
   const call = when(predicate, () => 'foo')
 
-  test('calls function only when predicate resolves', () => {
-    expect(call(8)).toBe('foo')
+  describe('given a predicate resolves', () => {
+    it('should call the function', () => {
+      expect(call(8)).toBe('foo')
+    })
   })
 
-  test('returns input as-is when predicate rejects', () => {
-    expect(call(3)).toBe(3)
+  describe('given a predicate rejects', () => {
+    it('should return the input as-is', () => {
+      expect(call(3)).toBe(3)
+    })
   })
 })
