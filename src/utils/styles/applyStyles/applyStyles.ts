@@ -33,29 +33,32 @@ const createStyleString = (
  * Takes only known prop aliases, ignores all the other props.
  */
 export default function applyStyles(pristineProps: Props): string {
-  return (
-    Object.keys(pristineProps)
-      // Parse each prop to include "breakpoint" and "behavior"
-      .map(parsePropName)
-      // Filter out props that are not included in prop aliases
-      .filter(({ purePropName }) => propAliases.hasOwnProperty(purePropName))
-      // Filter out props with "undefined" or "null" as value
-      .filter(({ originPropName }) => isset(pristineProps[originPropName]))
-      // Map each prop to a CSS string
-      .map(({ purePropName, originPropName, breakpoint, behavior }) => {
-        const { props, transformValue } = propAliases[purePropName]
-        const propValue = pristineProps[originPropName]
-        const transformedPropValue = transformValue
-          ? transformValue(propValue)
-          : propValue
+  return Object.entries(pristineProps)
+    .reduce<string[]>((css, [pristinePropName, pristinePropValue]) => {
+      const { purePropName, breakpoint, behavior } = parsePropName(
+        pristinePropName,
+      )
+      const propAlias = propAliases[purePropName]
 
-        return createStyleString(
-          props,
-          transformedPropValue,
-          breakpoint,
-          behavior,
-        )
-      })
-      .join(' ')
-  )
+      // Filter out props with "undefined" or "null" as a value.
+      // Filter out props that are not in the known prop aliases.
+      if (!isset(pristineProps[pristinePropName]) || !propAlias) {
+        return css
+      }
+
+      const { props, transformValue } = propAlias
+      const propValue = transformValue
+        ? transformValue(pristinePropValue)
+        : pristinePropValue
+
+      const styleString = createStyleString(
+        props,
+        propValue,
+        breakpoint,
+        behavior,
+      )
+
+      return css.concat(styleString)
+    }, [])
+    .join(' ')
 }
