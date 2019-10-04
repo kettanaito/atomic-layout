@@ -5,11 +5,11 @@ import useViewportChange from './useViewportChange'
 
 /**
  * Executes a given callback upon any breakpoint change.
- * Callback calls are debounced by default.
+ * Callback calls are throttled by default.
  */
 const useBreakpointChange = (
   callback: (breakpointName: string) => void,
-  debounceDuration?: number,
+  throttleInterval?: number,
   breakpoints: Breakpoints = Layout.breakpoints,
 ) => {
   let prevBreakpointName: string
@@ -28,7 +28,7 @@ const useBreakpointChange = (
       callback(nextBreakpointName)
       prevBreakpointName = nextBreakpointName
     }
-  }, debounceDuration)
+  }, throttleInterval)
 }
 
 export default useBreakpointChange

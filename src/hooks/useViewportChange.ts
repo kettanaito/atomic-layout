@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import debounce from '@utils/functions/debounce'
+import throttle from '@utils/functions/throttle'
 
 /**
  * Executes a callback on viewport change (window resize).
- * Callback calls are debounced by default.
+ * Callback calls are throttled by default.
  */
 const useViewportChange = (
   callback: () => void,
-  debounceDuration: number = 50,
+  throttleInterval: number = 70,
 ) => {
-  const handleWindowResize = debounce(callback, debounceDuration)
+  const handleWindowResize = throttle(callback, throttleInterval)
 
   useEffect(() => {
     handleWindowResize()
