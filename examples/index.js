@@ -59,11 +59,13 @@ import BreakpointEdges from './components/Composition/rendering/responsive-props
 import MobileFirstResponsiveProps from './components/Composition/rendering/responsive-props/MobileFirst'
 import BreakpointSpecificResponsiveProps from './components/Composition/rendering/responsive-props/BreakpointSpecific'
 import InclusiveNotchResponsiveProps from './components/Composition/rendering/responsive-props/InclusiveNotch'
+import DownResponsiveProps from './components/Composition/rendering/responsive-props/Down'
 storiesOf('Components|Composition/Rendering/Responsive props', module)
   .add('Breakpoint edges', BreakpointEdges)
   .add('Mobile-first', MobileFirstResponsiveProps)
   .add('Breakpoint-specific', BreakpointSpecificResponsiveProps)
   .add('Inclusive-notch', InclusiveNotchResponsiveProps)
+  .add('Down', DownResponsiveProps)
 
 /**
  * Only

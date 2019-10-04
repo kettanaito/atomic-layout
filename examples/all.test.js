@@ -38,6 +38,7 @@ describe('Components', () => {
         require('./components/Composition/rendering/responsive-props/InclusiveNotch.test')
         require('./components/Composition/rendering/responsive-props/BreakpointSpecific.test')
         require('./components/Composition/rendering/responsive-props/BreakpointEdges.test')
+        require('./components/Composition/rendering/responsive-props/Down.test')
       })
     })
   })
