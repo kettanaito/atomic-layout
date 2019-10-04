@@ -19,26 +19,26 @@ describe('useBreakpointChange', () => {
   it('Sets breakpoint name on breakpoint change', () => {
     cy.setBreakpoint('sm').then(() => {
       assertText('sm')
-      assertCalledTimes(1)
+      assertCalledTimes(2)
     })
   })
 
   it('Ignores resize within the same breakpoint', () => {
     cy.viewport(580, 700).then(() => {
       assertText('sm')
-      assertCalledTimes(1)
+      assertCalledTimes(2)
     })
 
     cy.viewport(600, 700).then(() => {
       assertText('sm')
-      assertCalledTimes(1)
+      assertCalledTimes(2)
     })
   })
 
   it('Re-renders on breakpoint change', () => {
     cy.setBreakpoint('md').then(() => {
       assertText('md')
-      assertCalledTimes(2)
+      assertCalledTimes(3)
     })
   })
 })
