@@ -52,9 +52,9 @@ describe('Components', () => {
  * Hooks
  */
 describe('Hooks', () => {
-  require('./hooks/UseViewportChange.test')
-  require('./hooks/UseBreakpointChange.test')
-  require('./hooks/UseResponsiveValue.test')
+  require('./hooks/useViewportChange.test')
+  require('./hooks/useBreakpointChange.test')
+  require('./hooks/useResponsiveValue.test')
   require('./hooks/useResponsiveProps.test')
   require('./hooks/useResponsiveComponent.test')
 })
