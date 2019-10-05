@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import throttle from '@utils/functions/throttle'
 
 /**
@@ -9,12 +9,17 @@ const useViewportChange = (
   callback: () => void,
   throttleInterval: number = 70,
 ) => {
-  const handleWindowResize = throttle(callback, throttleInterval)
+  const handleWindowResize = useRef<any>()
 
   useEffect(() => {
-    handleWindowResize()
-    window.addEventListener('resize', handleWindowResize)
-    return () => window.removeEventListener('resize', handleWindowResize)
+    handleWindowResize.current = throttle(callback, throttleInterval)
+  })
+
+  useEffect(() => {
+    handleWindowResize.current()
+    window.addEventListener('resize', handleWindowResize.current)
+    return () =>
+      window.removeEventListener('resize', handleWindowResize.current)
   }, [])
 }
 
