@@ -9,7 +9,7 @@ const useViewportChange = (
   callback: () => void,
   throttleInterval: number = 70,
 ) => {
-  const handleWindowResize = useRef<any>()
+  const handleWindowResize = useRef<(...args: any[]) => any>()
 
   useEffect(() => {
     handleWindowResize.current = throttle(callback, throttleInterval)
