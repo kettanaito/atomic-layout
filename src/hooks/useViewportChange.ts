@@ -16,10 +16,11 @@ const useViewportChange = (
   })
 
   useEffect(() => {
-    handleWindowResize.current()
-    window.addEventListener('resize', handleWindowResize.current)
-    return () =>
-      window.removeEventListener('resize', handleWindowResize.current)
+    const { current } = handleWindowResize
+
+    current()
+    window.addEventListener('resize', current)
+    return () => window.removeEventListener('resize', current)
   }, [])
 }
 
