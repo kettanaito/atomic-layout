@@ -1,5 +1,3 @@
-<p align="center">
-
 [![Package version](https://img.shields.io/npm/v/atomic-layout.svg)][npm-url]
 [![Package size](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)][bundlephobia-url]
 [![Build status](https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg)][build-url]
@@ -9,32 +7,32 @@
 [![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat)][community-reactiflux]
 [![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
 
-</p>
-
-<br>
+<br/>
 
 <p align="center">
-  <img src="./logo.svg" width="200" alt="Atomic layout" />
+  <img src="./logo.svg" width="200" alt="Atomic Layout" />
 </p>
 
-<h1 align="center"><span>Atomic layout</span></h1>
+<h1 align="center">Atomic Layout</h1>
 
-**Atomic layout** is a spatial distribution library for React. It uses [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) to define layout areas and render them as React components. This pattern encourages separation of elements and spacing, preventing contextual implementations and boosting maintenance of layouts.
+**Atomic Layout** is a spatial distribution library for React. It uses [CSS Grid][css-grid] to define layout areas and render them as React components. This pattern encourages separation of elements and spacing, preventing contextual implementations and boosting maintenance of layouts.
 
 ```jsx
 import React from 'react'
 import { Composition } from 'atomic-layout'
 
-// Define layout areas–visual representation
-// of what composes a layout, without caring
-// what components are rendered inside.
+// Define layout areas: visual representation
+// of what composes a layout, detached from
+// what components are actually rendered.
 const areasMobile = `
   thumbnail
   header
   footer
 `
 
-// Responsive areas? Built-in!
+// Declare responsive changes of your areas.
+// Operate in two dimensions, remove areas
+// or introduce new ones.
 const areasTablet = `
   thumbnail header
   thumbnail footer
@@ -63,13 +61,15 @@ const Card = ({ title, imageUrl, actions }) => (
 export default Card
 ```
 
-> Atomic layout is responsive by default. It uses [Bootstrap 4 breakpoints](https://getbootstrap.com/docs/4.0/layout/grid/#grid-options), but you can [define custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your requirements.
+> Atomic Layout comes with built-in responsive support. It uses [Bootstrap 4 breakpoints][bootstrap-4-breakpoints] by default, which you can always [override with the custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your requirements.
 
 ## Motivation
 
-Think of how we create layouts today. Most likely we define a set of reusable units \(atoms\) to combine them into functional compositions. But how do we handle spacing that should describe the position of our units? Usually, we manage CSS properties of those units to make sure the spacing is just right. Not only that results into writing redundant CSS, but it also makes our atoms **contextual** and, thus, **non-maintainable**.
+Modern layout development is about modularity and composition. Following the best practices of [Atomic design][atomic-design], we strive toward independent UI units that gradually compose into more meaningful pieces. While the attention paid to units implementation is thorough, we often overlook how to achieve layout composition that scales. It's as if we forget that _spacing defines composition_.
 
-Atomic layout solves this problem by exposing a dedicated layer responsible for spacial distribution in a layout, or any of its parts. That allows to reuse atom components in any layout possible **without mutating** them.
+When it comes to distributing the spacing things get more difficult. First of all, true contextless spacing is hard. To make things worse, all present solutions couple spacing with UI elements, inevitably making small resusable pieces **contextful** and, thus, hard to maintain.
+
+Atomic Layout helps you to compose your elements by introducing a dedicated spacing layer called _Composition_. It encourages you to separate concerns between UI elements' visual appearance and spacing between them. With the first-class responsive support at your disposal you can build gorgeous responsive permutations of your elements without leaving the dedicated spacing layer, keeping UI elements contextless and predictable. Embrace the era of a true layout composition!
 
 ## Install
 
@@ -77,13 +77,13 @@ Atomic layout solves this problem by exposing a dedicated layer responsible for 
 npm install atomic-layout
 ```
 
-> Make sure to have [React](https://github.com/facebook/react) (16.0+) and [styled-components](https://github.com/styled-components/styled-components) (4.0+) installed.
+> Make sure to have [React][react] (16.0+) and [styled-components][styled-components] (4.0+) installed.
 
 ## Documentation
 
-> See the [Official documentation](https://redd.gitbook.io/atomic-layout).
+> **See the [Official documentation][atomic-layout-docs].**
 
-Here are some shortcuts to get you started:
+There are some shortcuts to get you started:
 
 - [Motivation](https://redd.gitbook.io/atomic-layout/general/motivation)
 - [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
@@ -144,13 +144,15 @@ Here are some shortcuts to get you started:
 
 ## Browser support
 
-> **See the [Support table for CSS Grid](https://caniuse.com/css-grid)**. For Internet Explorer support please read [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
+Atomic Layout's browser support is made by the browser support of underlying technologies the library uses. Pay attention if your project can support CSS Grid to be sure you can use Atomic Layout.
+
+> **See the [Support table for CSS Grid][css-grid-support]**. For Internet Explorer support please read [this issue](https://github.com/kettanaito/atomic-layout/issues/92).
 
 ## Contributing
 
 Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
 
-Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing), and browse through the issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue). Those are a good place to start. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
+Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get familiar with the contributing process. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a good place to start cooperating on Atomic Layout. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
 
 [npm-url]: https://npmjs.com/package/atomic-layout
 [bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
@@ -159,3 +161,10 @@ Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/
 [dependencies-url]: https://david-dm.org/kettanaito/atomic-layout
 [community-spectrum]: https://spectrum.chat/atomic-layout
 [community-reactiflux]: https://discordapp.com/channels/102860784329052160/543033450924474378
+[bootstrap-4-breakpoints]: https://getbootstrap.com/docs/4.0/layout/grid/#grid-options
+[css-grid]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+[css-grid-support]: https://caniuse.com/css-grid
+[atomic-design]: https://bradfrost.com/blog/post/atomic-web-design/
+[atomic-layout-docs]: https://redd.gitbook.io/atomic-layout
+[react]: https://github.com/facebook/react
+[styled-components]: https://github.com/styled-components/styled-components
