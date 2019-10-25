@@ -2,11 +2,14 @@
  * Throttles a given function.
  * Implements both leading and trailing function calls.
  */
-export default function throttle(func, interval: number) {
+export default function throttle<F extends (...args: any[]) => any>(
+  func: F,
+  interval: number,
+) {
   let previous: number
   let queuedToRun: number = null
 
-  return function invoker(...args: any[]) {
+  return function invoker(...args: Parameters<typeof func>): void {
     const now = Date.now()
     clearTimeout(queuedToRun)
 

@@ -47,13 +47,14 @@ export default function getAreaRecords(
 
   return templates.reduce<AreaRecordsList>((list, template, index) => {
     const { areas, behavior, breakpoint } = template
+    // Important to know if operating on the last record
+    // to properly construct the trailing breakpoint.
     const isLastTempate = index === templatesCount - 1
     const includesArea = areas.includes(areaName)
     const areaRecord = {
       breakpoint,
       behavior,
     }
-
     const lastAreaRecord = list[list.length - 1]
 
     if (includesArea) {
@@ -94,6 +95,9 @@ export default function getAreaRecords(
       return pop(list).concat([closedLastAreaRecord, null])
     }
 
+    // Appending explicit "null" creates a separation between breakpoints
+    // that prevents them being treated like siblings. Breakpoints separated
+    // by "null" are not attempted to be merged, or analyzed together in any way.
     return list.concat(null)
   }, [])
 }

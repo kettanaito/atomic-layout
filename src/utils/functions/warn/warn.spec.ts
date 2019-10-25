@@ -24,7 +24,12 @@ describe('warn', () => {
   })
 
   describe('does nothing when satisfies predicate', () => {
-    const values = [['one', 1], ['true', true], ['object', {}], ['array', []]]
+    const values = [
+      ['one', 1],
+      ['true', true],
+      ['object', {}],
+      ['array', [] as any[]],
+    ]
 
     values.forEach(([name, value]) => {
       it(`when given ${name}`, () => {

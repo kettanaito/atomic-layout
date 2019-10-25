@@ -7,8 +7,8 @@ type SanitizeTemplateArea = (str: string) => string
 // Takes into account proper single quote wrapping around the areas
 // and no single quotes around the dimensions (row/columns).
 const joinTemplateFragments = (fragments: string[]): string => {
-  const areas = []
-  const suffixes = []
+  const areas: string[] = []
+  const suffixes: string[] = []
 
   fragments.forEach((areaName) => {
     if (isAreaName(areaName)) {

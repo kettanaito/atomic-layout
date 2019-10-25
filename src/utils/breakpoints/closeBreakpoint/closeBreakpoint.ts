@@ -6,6 +6,8 @@ import getPrefix from '@utils/strings/getPrefix'
  * all the "min" properties of the original breakpoint are
  * flipped into the "max" properties. Any "max" properties
  * of the original breakpoint are omitted.
+ * Subtracts 1 from the numeric values of all "min" properties
+ * to not overlap with the given breakpoint.
  *
  * @example
  * flipBreakpoint({ minWidth: 500, maxWidth: 600 })
@@ -13,7 +15,11 @@ import getPrefix from '@utils/strings/getPrefix'
  */
 export default function flipBreakpoint(breakpoint: Breakpoint): Breakpoint {
   return Object.entries(breakpoint)
-    .map(([propName, propValue]) => [getPrefix(propName), propName, propValue])
+    .map<[string, string, any]>(([propName, propValue]) => [
+      getPrefix(propName),
+      propName,
+      propValue,
+    ])
     .filter(([prefix]) => prefix !== 'max')
     .reduce<Breakpoint>((newBreakpoint, [prefix, propName, propValue]) => {
       const hasMinPrefix = prefix === 'min'

@@ -21,6 +21,8 @@ class Layout {
 
   /**
    * Applies global layout options.
+   * Make sure to call this method once, preferably on the rool level
+   * of your application.
    */
   public configure(options: Partial<LayoutOptions>, warnOnMultiple = true) {
     if (warnOnMultiple) {
@@ -35,8 +37,8 @@ class Layout {
       `Failed to configure Layout: expected an options Object, but got: ${options}.`,
     )
 
-    Object.keys(options || {}).forEach((optionName) => {
-      this[optionName] = options[optionName]
+    Object.keys(options || {}).forEach((optionName: keyof LayoutOptions) => {
+      ;(this[optionName] as any) = options[optionName]
     })
 
     invariant(
@@ -46,23 +48,13 @@ class Layout {
 
     invariant(
       this.breakpoints.hasOwnProperty(this.defaultBreakpointName),
-      `Failed to configure Layout: cannot use "${
-        this.defaultBreakpointName
-      }" as the default breakpoint (breakpoint not found).`,
+      `Failed to configure Layout: cannot use "${this.defaultBreakpointName}" as the default breakpoint (breakpoint not found).`,
     )
 
     invariant(
       this.defaultBreakpointName,
-      `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${
-        this.defaultBreakpointName
-      }.`,
+      `Failed to configure Layout: expected "defaultBreakpointName" property set, but got: ${this.defaultBreakpointName}.`,
     )
-
-    // invariant(
-    //   typeof this.defaultBreakpointName === 'string',
-    //   `Failed to configure Layout: expected "defaultBreakpointName" to be a string, but got: ${typeof this
-    //     .defaultBreakpointName}`,
-    // )
 
     // Mark configure method as called to prevent its multiple calls
     this.isConfigureCalled = warnOnMultiple

@@ -9,11 +9,13 @@ export interface Props {
 export interface ParsedProp {
   originPropName: string
   purePropName: string
-  breakpoint: {
-    name: string
-    isDefault: boolean
-  }
+  breakpoint: ParsedBreakpoint
   behavior: BreakpointBehavior
+}
+
+export interface ParsedBreakpoint {
+  name: string
+  isDefault: boolean
 }
 
 /**

@@ -42,7 +42,7 @@ describe('Layout', () => {
 
   describe('configure()', () => {
     describe('given Layout is called with invalid options', () => {
-      const invalidOptions = [null, undefined]
+      const invalidOptions: Array<null | undefined> = [null, undefined]
 
       invalidOptions.forEach((layoutOption) => {
         describe(`when called with ${layoutOption}`, () => {
