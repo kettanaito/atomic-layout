@@ -5,7 +5,10 @@ import { render, cleanup, getByTestId } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 const defaultValue = 10
-const explicitValues = {
+const explicitValues: Record<
+  string,
+  string | number | Array<string | number>
+> = {
   area: 'first',
   // prettier-ignore
   areas: 'first',
@@ -42,26 +45,36 @@ describe('Prop aliases', () => {
   afterEach(cleanup)
 
   Object.keys(propAliases).forEach((propAliasName) => {
-    it(propAliasName, () => {
-      const propValue = explicitValues[propAliasName] || defaultValue
-      const props = {
-        [propAliasName]: propValue,
-      }
-      const { container } = render(
-        <Composition data-testid="composition" areas="first" {...props}>
-          {({ First }) => <First>{propAliasName}</First>}
-        </Composition>,
+    describe(propAliasName, () => {
+      const propValues: Array<string | number> = [].concat(
+        explicitValues[propAliasName] || defaultValue,
       )
-      const element = getByTestId(container, 'composition')
 
-      /* Assertion */
-      const { props: cssProps, transformValue } = propAliases[propAliasName]
-      const expectedValue = transformValue
-        ? transformValue(propValue)
-        : propValue
+      propValues.forEach((propValue) => {
+        describe(`given the value: ${propValue}`, () => {
+          const props = {
+            [propAliasName]: propValue,
+          }
+          const { container } = render(
+            <Composition data-testid="composition" areas="first" {...props}>
+              {({ First }) => <First>{propAliasName}</First>}
+            </Composition>,
+          )
+          const element = getByTestId(container, 'composition')
 
-      cssProps.forEach((cssPropName) => {
-        expect(element).toHaveStyle(`${cssPropName}:${expectedValue}`)
+          const { props: cssProps, transformValue } = propAliases[propAliasName]
+          const expectedValue = transformValue
+            ? transformValue(propValue)
+            : propValue
+
+          cssProps.forEach((cssPropName) => {
+            const expectedStylesString = `${cssPropName}:${expectedValue}`
+
+            it(`produces "${expectedStylesString}"`, () => {
+              expect(element).toHaveStyle(expectedStylesString)
+            })
+          })
+        })
       })
     })
   })

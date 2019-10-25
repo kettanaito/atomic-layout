@@ -7,16 +7,17 @@ describe('throttle', () => {
     payload = 0
   })
 
-  const func = throttle((amount: number = 1) => {
+  const func = (amount: number = 1) => {
     payload += amount
-  }, 50)
+  }
+  const throttledFunc = throttle<typeof func>(func, 50)
 
   it('should not be called more than once per interval', (done) => {
-    func() // 1 (leading)
-    func() // ignore
-    setTimeout(func, 30) // ignore
-    setTimeout(func, 60) // 2
-    setTimeout(func, 70) // 3 (trailing)
+    throttledFunc() // 1 (leading)
+    throttledFunc() // ignore
+    setTimeout(throttledFunc, 30) // ignore
+    setTimeout(throttledFunc, 60) // 2
+    setTimeout(throttledFunc, 70) // 3 (trailing)
 
     setTimeout(
       () => {
@@ -30,7 +31,7 @@ describe('throttle', () => {
   })
 
   it('should preserve original call signature', () => {
-    func(5)
+    throttledFunc(5)
     setTimeout(() => {
       expect(payload).toBe(5)
     }, 50)

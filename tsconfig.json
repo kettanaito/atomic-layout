@@ -8,37 +8,23 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "noImplicitThis": false,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@const/*": [
-        "src/const/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+      "@src/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@const/*": ["src/const/*"],
+      "@utils/*": ["src/utils/*"]
     },
-    "types": [
-      "jest"
-    ],
+    "types": ["jest"],
     "plugins": [
       {
         "transform": "@zerollup/ts-transform-paths"
       }
     ]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -116,7 +116,7 @@ export default function generateComponents({
           // the dummy component that renders nothing.
           // This prevents from the exception when rendering "undefined"
           // and allows conditional template areas.
-          return () => null
+          return (): void => null
         },
       })
 }

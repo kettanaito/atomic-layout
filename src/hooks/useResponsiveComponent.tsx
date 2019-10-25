@@ -1,13 +1,14 @@
 import React from 'react'
 import useResponsiveProps from './useResponsiveProps'
+import { Numeric } from '@src/const/defaultOptions'
 
 /**
  * Returns a copy of the given React component
  * that supports Responsive Props API.
  */
 function useResponsiveComponent<
-  OwnProps extends object = Record<string, any>,
-  ResponsiveProps extends object = Record<string, any>
+  OwnProps extends Record<string, any>,
+  ResponsiveProps extends Record<string, Numeric>
 >(
   Component: React.FunctionComponent<OwnProps>,
 ): React.FunctionComponent<OwnProps & Partial<ResponsiveProps>> {

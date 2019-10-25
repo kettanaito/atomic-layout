@@ -2,7 +2,7 @@ import pop from '../pop'
 
 describe('pop', () => {
   describe('given an empty array', () => {
-    const array = []
+    const array: any[] = []
     let result: string[]
 
     beforeAll(() => {
