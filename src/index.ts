@@ -1,6 +1,8 @@
 import Layout from './Layout'
 export default Layout
 
+export { default as defaultOptions } from '@const/defaultOptions'
+
 /* Components */
 export { default as Box } from '@components/Box'
 export { default as Composition } from '@components/Composition'
