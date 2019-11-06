@@ -43,14 +43,14 @@ const createWrapper = (children: React.ReactNode, props: BoxProps) => (
   return <Placeholder {...props}>{children}</Placeholder>
 }
 
-const Only = ({
+const Only: React.FC<OnlyProps> = ({
   children,
   except,
   for: exactBreakpointName,
   from: minBreakpointName,
   to: maxBreakpointName,
   ...restProps
-}: { children: any } & OnlyProps): JSX.Element => {
+}) => {
   const wrapWith = createWrapper(children, restProps)
 
   // Render on explicit breakpoint
@@ -97,7 +97,7 @@ const Only = ({
   }
 
   // Render always when no constrains are provided
-  return children
+  return <>children</>
 }
 
 export default Only
