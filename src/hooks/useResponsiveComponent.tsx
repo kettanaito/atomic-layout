@@ -10,8 +10,8 @@ function useResponsiveComponent<
   OwnProps extends Record<string, any>,
   ResponsiveProps extends Record<string, Numeric>
 >(
-  Component: React.FunctionComponent<OwnProps>,
-): React.FunctionComponent<OwnProps & Partial<ResponsiveProps>> {
+  Component: React.FC<OwnProps>,
+): React.FC<OwnProps & Partial<ResponsiveProps>> {
   return (responsiveProps) => {
     /**
      * @see https://github.com/Microsoft/TypeScript/issues/29049
