@@ -216,7 +216,7 @@ export interface GenericProps {
   paddingHorizontal?: Numeric
 }
 
-export interface GridProps extends GenericProps {
+export interface GridProps {
   /**
    * Grid area.
    * @css `grid-area`

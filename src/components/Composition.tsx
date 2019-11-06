@@ -21,7 +21,7 @@ const CompositionWrapper = styled.div<CompositionProps>`
   }
 `
 
-const Composition: React.FunctionComponent<CompositionProps> = ({
+const Composition: React.FC<CompositionProps> = ({
   children,
   ...restProps
 }) => {
