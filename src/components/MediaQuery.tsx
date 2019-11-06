@@ -5,7 +5,7 @@ import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import transformNumeric from '@utils/math/transformNumeric'
 import compose from '@src/utils/functions/compose'
 
-interface Props extends MediaQueryParams {
+interface MediaQueryProps extends MediaQueryParams {
   children: (matches: boolean) => JSX.Element
   matches?: boolean
 }
@@ -30,9 +30,11 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
   )(queryParams)
 }
 
-const MediaQuery = (props: Props): JSX.Element => {
+const MediaQuery: React.FC<MediaQueryProps> = (props) => {
   const { children, ...queryParams } = props
-  const query = React.useMemo(() => createMediaQuery(queryParams), [queryParams])
+  const query = React.useMemo(() => createMediaQuery(queryParams), [
+    queryParams,
+  ])
   const [matches, setMatches] = React.useState(false)
 
   const handleMediaQueryChange = (

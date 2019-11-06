@@ -5,9 +5,9 @@ import { GenericProps } from '@const/props'
 import MediaQuery from '@components/MediaQuery'
 import Box, { BoxProps } from '@components/Box'
 import capitalize from '@utils/strings/capitalize'
-import getAreaRecords, { AreaRecord } from '@utils/breakpoints/getAreaRecords'
+import getAreaRecords from '@utils/breakpoints/getAreaRecords'
 
-export type AreaComponent = React.FunctionComponent<BoxProps>
+export type AreaComponent = React.FC<BoxProps>
 export interface AreasMap {
   [componentName: string]: AreaComponent
 }
@@ -21,10 +21,7 @@ export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
-  const Placeholder: React.FunctionComponent<GenericProps> = ({
-    children,
-    ...restProps
-  }) => {
+  const Placeholder: React.FC<GenericProps> = ({ children, ...restProps }) => {
     const PlaceholderComponent = breakpoints.reduce<JSX.Element[]>(
       (components, breakpoint, index) => {
         return components.concat(

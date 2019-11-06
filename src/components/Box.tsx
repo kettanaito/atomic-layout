@@ -9,7 +9,7 @@ export interface BoxProps extends GenericProps {
   inline?: boolean
 }
 
-const Box: React.FunctionComponent<BoxProps> = styled.div<BoxProps>`
+const Box: React.FC<BoxProps> = styled.div<BoxProps>`
   display: ${({ flex, inline }) =>
     flex
       ? inline
