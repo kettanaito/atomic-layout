@@ -1,8 +1,7 @@
 import * as React from 'react'
 import Layout from '../Layout'
-import Box from './Box'
+import Box, { BoxProps } from './Box'
 import { Breakpoint } from '@const/defaultOptions'
-import { GenericProps } from '@const/props'
 import { withPlaceholder } from '@utils/templates/generateComponents'
 import openBreakpoint from '@utils/breakpoints/openBreakpoint'
 import closeBreakpoint from '@utils/breakpoints/closeBreakpoint'
@@ -16,7 +15,7 @@ const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
     : breakpointRef
 }
 
-export interface OnlyProps extends GenericProps {
+export interface OnlyProps extends BoxProps {
   /**
    * Renders children only at the specified breakpoint.
    */
@@ -37,7 +36,7 @@ export interface OnlyProps extends GenericProps {
   except?: boolean
 }
 
-const createWrapper = (children: React.ReactNode, props: GenericProps) => (
+const createWrapper = (children: React.ReactNode, props: BoxProps) => (
   ...breakpoints: Breakpoint[]
 ) => {
   const Placeholder = withPlaceholder(Box, breakpoints)
