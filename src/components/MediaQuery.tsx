@@ -31,11 +31,11 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
 }
 
 const MediaQuery: React.FC<MediaQueryProps> = (props) => {
-  const { children, ...queryParams } = props
+  const { children, matches: initialMatches, ...queryParams } = props
   const query = React.useMemo(() => createMediaQuery(queryParams), [
     queryParams,
   ])
-  const [matches, setMatches] = React.useState(false)
+  const [matches, setMatches] = React.useState(initialMatches)
 
   const handleMediaQueryChange = (
     mediaQueryList: MediaQueryList | MediaQueryListEvent,
@@ -52,6 +52,10 @@ const MediaQuery: React.FC<MediaQueryProps> = (props) => {
   }, Object.keys(queryParams))
 
   return children(matches)
+}
+
+MediaQuery.defaultProps = {
+  matches: false,
 }
 
 export default MediaQuery
