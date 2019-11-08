@@ -1,55 +1,18 @@
 import * as React from 'react'
 import { MediaQuery as MediaQueryParams } from '@const/defaultOptions'
-import { joinQueryList } from '@utils/styles/createMediaQuery'
-import normalizeQuery from '@src/utils/styles/normalizeQuery'
-import transformNumeric from '@utils/math/transformNumeric'
-import compose from '@src/utils/functions/compose'
+import { useMediaQuery } from '@src/hooks/useMediaQuery'
 
 interface MediaQueryProps extends MediaQueryParams {
   children: (matches: boolean) => JSX.Element
   matches?: boolean
 }
 
-const createMediaQuery = (queryParams: MediaQueryParams): string => {
-  return compose(
-    joinQueryList(([paramName, paramValue]) => {
-      /**
-       * Transform values that begin with a number to prevent
-       * transformations of "calc" expressions.
-       * Transformation of numerics is necessary when a simple
-       * number is used as a value (min-width: 750) is not valid.
-       *
-       * (min-width: 750) ==> (min-width: 750px)
-       */
-      const resolvedParamValue = /^\d/.test(String(paramValue))
-        ? transformNumeric(paramValue)
-        : paramValue
-      return `(${paramName}:${resolvedParamValue})`
-    }),
-    normalizeQuery,
-  )(queryParams)
-}
-
-const MediaQuery: React.FC<MediaQueryProps> = (props) => {
-  const { children, matches: initialMatches, ...queryParams } = props
-  const query = React.useMemo(() => createMediaQuery(queryParams), [
-    queryParams,
-  ])
-  const [matches, setMatches] = React.useState(initialMatches)
-
-  const handleMediaQueryChange = (
-    mediaQueryList: MediaQueryList | MediaQueryListEvent,
-  ) => {
-    setMatches(mediaQueryList.matches)
-  }
-
-  React.useEffect(() => {
-    const mediaQueryList = matchMedia(query)
-    handleMediaQueryChange(mediaQueryList)
-    mediaQueryList.addListener(handleMediaQueryChange)
-
-    return () => mediaQueryList.removeListener(handleMediaQueryChange)
-  }, Object.keys(queryParams))
+const MediaQuery: React.FC<MediaQueryProps> = ({
+  children,
+  matches: initialMatches,
+  ...queryParams
+}) => {
+  const matches = useMediaQuery(queryParams, initialMatches)
 
   return children(matches)
 }
