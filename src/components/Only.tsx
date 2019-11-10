@@ -9,7 +9,7 @@ import mergeAreaRecords from '@utils/breakpoints/mergeAreaRecords'
 
 export type BreakpointRef = string | Breakpoint
 
-const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
+export const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
   return typeof breakpointRef === 'string'
     ? Layout.breakpoints[breakpointRef]
     : breakpointRef
