@@ -27,7 +27,7 @@ describe('Default behavior', () => {
     cy.setBreakpoint('xl').then(() => cy.shouldRender('#third'))
   })
 
-  it('Renders children within a breakpooint range (from/to)', () => {
+  it('Renders children within a breakpoint range (from/to)', () => {
     cy.setBreakpoint('xs').then(() => cy.shouldRender('#fourth', false))
     cy.setBreakpoint('sm').then(() => cy.shouldRender('#fourth'))
     cy.setBreakpoint('md').then(() => cy.shouldRender('#fourth'))
