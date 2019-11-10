@@ -5,6 +5,9 @@ import normalizeQuery from '@src/utils/styles/normalizeQuery'
 import transformNumeric from '@utils/math/transformNumeric'
 import compose from '@src/utils/functions/compose'
 
+/**
+ * Creates a media querty string based on the given params.
+ */
 const createMediaQuery = (queryParams: MediaQueryParams): string => {
   return compose(
     joinQueryList(([paramName, paramValue]) => {
@@ -19,6 +22,7 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
       const resolvedParamValue = /^\d/.test(String(paramValue))
         ? transformNumeric(paramValue)
         : paramValue
+
       return `(${paramName}:${resolvedParamValue})`
     }),
     normalizeQuery,
@@ -26,7 +30,7 @@ const createMediaQuery = (queryParams: MediaQueryParams): string => {
 }
 
 type UseMediaQuery = (
-  queryParams: MediaQueryParams,
+  queryParams: MediaQueryParams[] | MediaQueryParams,
   initialMatches?: boolean,
 ) => boolean
 
@@ -36,7 +40,10 @@ export const useMediaQuery: UseMediaQuery = (
 ): boolean => {
   const [matches, setMatches] = useState(initialMatches)
   const query = useMemo(() => {
-    return createMediaQuery(queryParams)
+    return []
+      .concat(queryParams)
+      .map(createMediaQuery)
+      .join(',')
   }, [queryParams])
 
   const handleMediaQueryChange = (
