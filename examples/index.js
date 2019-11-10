@@ -76,6 +76,16 @@ storiesOf('Components|Only', module)
   .add('Custom breakpoints', OnlyCustomBreakpoints)
 
 /**
+ * Visible
+ */
+import VisibleDefaultBehavior from './components/Visible/VisibleDefaultBehavior'
+
+storiesOf('Components|Visible', module).add(
+  'Default behavior',
+  VisibleDefaultBehavior,
+)
+
+/**
  * Hooks
  */
 import UseViewportChange from './hooks/UseViewportChange'
