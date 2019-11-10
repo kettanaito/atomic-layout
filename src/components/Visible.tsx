@@ -61,8 +61,6 @@ const Visible: React.FC<OnlyProps> = ({
     mediaQuery = closeBreakpoint(maxBreakpoint)
   }
 
-  console.log({ mediaQuery })
-
   const matches = useMediaQuery(mediaQuery)
 
   return (

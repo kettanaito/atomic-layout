@@ -46,6 +46,10 @@ describe('Components', () => {
     require('./components/Only/OnlyDefaultBehavior.test')
     require('./components/Only/OnlyCustomBreakpoints.test')
   })
+
+  describe('Visible', () => {
+    require('./components/Visible/Visible.test')
+  })
 })
 
 /**
