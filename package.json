@@ -66,6 +66,10 @@
     "css grid",
     "react"
   ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
+  },
   "peerDependencies": {
     "react": ">= 16.8",
     "styled-components": ">= 4"
