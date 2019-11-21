@@ -62,9 +62,10 @@ const Visible: React.FC<OnlyProps> = ({
   }
 
   const matches = useMediaQuery(mediaQuery)
+  const ariaHidden = !matches ? { 'aria-hidden': 'true' } : {}
 
   return (
-    <VisibleContainer {...boxProps} matches={matches}>
+    <VisibleContainer {...boxProps} {...ariaHidden} matches={matches}>
       {children}
     </VisibleContainer>
   )
