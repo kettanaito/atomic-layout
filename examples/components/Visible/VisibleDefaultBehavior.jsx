@@ -5,25 +5,25 @@ import Square from '@stories/Square'
 const VisibleDefaultBehavior = () => (
   <>
     {/* Explicit breakpoint */}
-    <Visible for="sm">
-      <Square id="first">For "sm"</Square>
+    <Visible id="first" for="sm">
+      <Square>For "sm"</Square>
     </Visible>
     {/* High-pass */}
-    <Visible to="md">
-      <Square id="second">To "md"</Square>
+    <Visible id="second" to="md">
+      <Square>To "md"</Square>
     </Visible>
     {/* Low-pass */}
-    <Visible from="lg">
-      <Square id="third">From "lg"</Square>
+    <Visible id="third" from="lg">
+      <Square>From "lg"</Square>
     </Visible>
     {/* Bell */}
-    <Visible from="sm" to="lg">
-      <Square id="fourth">From "sm" to "lg"</Square>
+    <Visible id="fourth" from="sm" to="lg">
+      <Square>From "sm" to "lg"</Square>
     </Visible>
     {/* Notch */}
-    <Visible except from="md" to="lg">
-      <Square id="fifth">Except from "md" to "lg"</Square>
-    </Visible>{' '}
+    <Visible id="fifth" except from="md" to="lg">
+      <Square>Except from "md" to "lg"</Square>
+    </Visible>
   </>
 )
 
