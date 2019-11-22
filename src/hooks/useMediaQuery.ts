@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useLayoutEffect } from 'react'
 import { MediaQuery as MediaQueryParams } from '@const/defaultOptions'
 import { joinQueryList } from '@utils/styles/createMediaQuery'
 import normalizeQuery from '@src/utils/styles/normalizeQuery'
@@ -52,7 +52,7 @@ export const useMediaQuery: UseMediaQuery = (
     setMatches(mediaQueryList.matches)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mediaQueryList = matchMedia(query)
     handleMediaQueryChange(mediaQueryList)
     mediaQueryList.addListener(handleMediaQueryChange)
