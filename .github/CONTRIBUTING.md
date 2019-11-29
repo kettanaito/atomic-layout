@@ -14,6 +14,13 @@ $ git clone git@github.com:kettanaito/atomic-layout.git
 
 We are using [Yarn][yarn] for package management. Please refer to the [Yarn installation][yarn-installation] for instructions on how to install Yarn on your machine.
 
+### 3. Install dependencies
+
+```bash
+$ cd atomic-layout
+$ yarn install
+```
+
 ---
 
 ## Git workflow
@@ -21,7 +28,6 @@ We are using [Yarn][yarn] for package management. Please refer to the [Yarn inst
 ### 1. Create a feature branch
 
 ```bash
-$ cd atomic-layout
 $ git checkout -b ISSUE_NUMBER-BRANCH_NAME
 ```
 
