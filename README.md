@@ -152,7 +152,7 @@ Atomic Layout's browser support is made by the browser support of underlying tec
 
 Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
 
-Please read the [Contribution guidelines](https://redd.gitbook.io/atomic-layout/developers/contributing) to get familiar with the contributing process. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a good place to start cooperating on Atomic Layout. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
+**Please read the [Contribution guidelines](./.github/CONTRIBUTING.md)** to get familiar with the contributing process. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a good place to start cooperating on Atomic Layout. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
 
 [npm-url]: https://npmjs.com/package/atomic-layout
 [bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
