@@ -1,8 +1,13 @@
 {
   "name": "atomic-layout",
-  "version": "0.11.0",
   "description": "Physical representation of layout composition to create declarative, responsive layouts in React.",
   "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "esnext": "src/index.ts",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -90,11 +95,6 @@
     "@storybook/react": "5.1.9",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.3.2",
-    "@types/jest": "^24.0.23",
-    "@types/react": "^16.9.13",
-    "@types/react-dom": "^16.9.4",
-    "@types/styled-components": "^4.4.0",
-    "@zerollup/ts-transform-paths": "^1.7.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "bundlesize": "^0.18.0",
@@ -104,6 +104,7 @@
     "cypress": "^3.7.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lerna": "^3.15.0",
     "lint-staged": "^9.5.0",
     "match-media-mock": "^0.1.1",
     "prettier": "^1.19.1",

@@ -1,0 +1,38 @@
+{
+  "name": "@atomic-layout/core",
+  "version": "0.11.0",
+  "description": "Atomic Layout core module",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kettanaito/atomic-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kettanaito/atomic-layout/issues"
+  },
+  "keywords": [
+    "atomic",
+    "layout",
+    "core"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "typescript": "^3.7.2"
+  }
+}

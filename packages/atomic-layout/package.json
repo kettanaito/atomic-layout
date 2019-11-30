@@ -1,0 +1,73 @@
+{
+  "name": "atomic-layout",
+  "version": "0.11.0",
+  "description": "Physical representation of layout composition to create declarative, responsive layouts in React.",
+  "license": "MIT",
+  "esnext": "src/index.ts",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "umd:main": "umd/index.js",
+  "types": "types/index.d.ts",
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
+  "homepage": "https://atomic-layout.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kettanaito/atomic-layout"
+  },
+  "bugs": {
+    "url": "https://github.com/kettanaito/atomic-layout/issues"
+  },
+  "keywords": [
+    "atomic",
+    "layout",
+    "responsive",
+    "composition",
+    "css grid",
+    "react"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
+  },
+  "files": [
+    "cjs",
+    "esm",
+    "umd",
+    "types",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "react": ">= 16.8",
+    "styled-components": ">= 4"
+  },
+  "devDependencies": {
+    "@babel/core": "7.7.2",
+    "@babel/plugin-proposal-class-properties": "7.7.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-proposal-export-namespace-from": "^7.5.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.6.2",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "^1.27.5",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "ttypescript": "^1.5.8",
+    "typescript": "^3.7.2"
+  }
+}
