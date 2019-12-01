@@ -10,8 +10,7 @@ export {
   Breakpoint,
   BreakpointBehavior,
 } from './const/defaultOptions'
-export { GenericProps } from './const/props'
-export { AreasMap } from './utils/templates/generateComponents'
+export { GenericProps, BoxProps, GridProps } from './const/props'
 
 /* Styles */
 export { default as applyStyles } from './utils/styles/applyStyles'
@@ -28,8 +27,18 @@ export { default as closeBreakpoint } from './utils/breakpoints/closeBreakpoint'
 export { default as mergeAreaRecords } from './utils/breakpoints/mergeAreaRecords'
 
 /* Props */
+export {
+  default as propAliases,
+  PropAliases,
+  PropAliasDeclaration,
+} from './const/propAliases'
 export { default as parsePropName } from './utils/strings/parsePropName'
-export { default as parseTeplates } from './utils/templates/parseTemplates'
+export { default as parseTemplates } from './utils/templates/parseTemplates'
+export {
+  default as generateComponents,
+  AreasMap,
+  AreaComponent,
+} from './utils/templates/generateComponents'
 
 /* Utilities */
 export { default as warn } from './utils/functions/warn'

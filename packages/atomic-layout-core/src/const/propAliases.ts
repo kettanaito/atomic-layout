@@ -5,7 +5,7 @@ import sanitizeTemplateArea from '../utils/strings/sanitizeTemplateArea'
 
 type ValueTransformer<I, R> = (val: I) => R
 
-interface PropAliasDeclaration {
+export interface PropAliasDeclaration {
   props: string[]
   transformValue?: ValueTransformer<Numeric, string>
 }

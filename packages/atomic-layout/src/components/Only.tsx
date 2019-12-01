@@ -2,15 +2,14 @@ import * as React from 'react'
 import {
   Layout,
   Breakpoint,
+  BoxProps,
   openBreakpoint,
   closeBreakpoint,
   mergeAreaRecords,
 } from '@atomic-layout/core'
 
-import Box, { BoxProps } from './Box'
-
-/** @TODO */
-import { withPlaceholder } from '@utils/templates/generateComponents'
+import Box from './Box'
+import { withPlaceholder } from '../utils/withPlaceholder'
 
 export type BreakpointRef = string | Breakpoint
 

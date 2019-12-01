@@ -1,68 +1,28 @@
-/**
- * @todo
- * This module is bound to React.
- * Abstract repetitive logic into core, move else to @atomic-layout.
- */
-
-import MediaQuery from '@components/MediaQuery'
-import Box, { BoxProps } from '@components/Box'
 import * as React from 'react'
+import { BoxProps } from '../../../const/props'
 import { AreasList } from '../getAreasList'
 import { Breakpoint } from '../../../const/defaultOptions'
-import { GenericProps } from '../../../const/props'
 import capitalize from '../../strings/capitalize'
 import getAreaRecords from '../../breakpoints/getAreaRecords'
 
-export type AreaComponent = React.FC<BoxProps>
 export interface AreasMap {
   [componentName: string]: AreaComponent
 }
 
-/**
- * A high-order component that wraps the given area component in a placeholder.
- * This is used for conditional components, where placeholder component is rendered
- * until the condition for the area component is met (i.e. breakpoint).
- */
-export const withPlaceholder = (
-  Component: AreaComponent,
-  breakpoints: Breakpoint[],
-) => {
-  const Placeholder: React.FC<GenericProps> = ({ children, ...restProps }) => {
-    const PlaceholderComponent = breakpoints.reduce<JSX.Element[]>(
-      (components, breakpoint, index) => {
-        return components.concat(
-          <MediaQuery {...breakpoint} key={`${Component.displayName}_${index}`}>
-            {(matches) =>
-              matches && <Component {...restProps}>{children}</Component>
-            }
-          </MediaQuery>,
-        )
-      },
-      [],
-    )
-
-    // Wrapping in a Fragment due to type issue
-    // when returning JSX.Element[].
-    return <>{PlaceholderComponent}</>
-  }
-
-  Placeholder.displayName = `Placeholder(${Component.displayName})`
-
-  return Placeholder
-}
-
-const createAreaComponent = (areaName: string): AreaComponent => (props) => (
-  <Box area={areaName} {...props} />
-)
+export type AreaComponent = React.FC<BoxProps>
 
 /**
  * Returns a map of React components based on the given grid areas
  * in the given template definitions.
  */
-export default function generateComponents({
-  areas,
-  templates,
-}: AreasList): AreasMap {
+export default function generateComponents(
+  { areas, templates }: AreasList,
+  createAreaComponent: (areaName: string) => AreaComponent,
+  withPlaceholder: (
+    Component: AreaComponent,
+    breakpoints: Breakpoint[],
+  ) => AreaComponent,
+): AreasMap {
   const componentsMap = areas.reduce<AreasMap>((components, areaName) => {
     const areaRecords = getAreaRecords(areaName, templates)
     const areaBreakpoints = areaRecords
@@ -118,7 +78,7 @@ export default function generateComponents({
           // Replace non-existing area component with
           // the dummy component that renders nothing.
           // This prevents from the exception when rendering "undefined"
-          // and allows conditional template areas.
+          // and allows dynamic runtime template areas.
           return (): void => null
         },
       })

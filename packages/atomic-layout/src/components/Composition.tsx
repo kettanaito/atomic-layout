@@ -2,11 +2,18 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {
   GenericProps,
+  BoxProps,
   GridProps,
+  Breakpoint,
   AreasMap,
+  AreaComponent,
+  parseTemplates,
+  generateComponents,
   applyStyles,
   warn,
 } from '@atomic-layout/core'
+import Box from './Box'
+import { withPlaceholder } from '../utils/withPlaceholder'
 
 type ChildrenFunction = (areas: AreasMap) => React.ReactNode
 
@@ -23,17 +30,25 @@ const CompositionWrapper = styled.div<CompositionProps>`
   }
 `
 
+const createAreaComponent = (areaName: string): AreaComponent => (
+  props: BoxProps,
+) => <Box area={areaName} {...props} />
+
 const Composition: React.FC<CompositionProps> = ({
   children,
   ...restProps
 }) => {
-  const areaComponents = parseTemplates(restProps)
+  const areasMap = parseTemplates(restProps)
+  const areaComponents = generateComponents(
+    areasMap,
+    createAreaComponent,
+    withPlaceholder,
+  )
   const hasAreaComponents = Object.keys(areaComponents).length > 0
   const childrenType = typeof children
   const hasChildrenFunction = childrenType === 'function'
 
-  // Warn on attempt to use "areas"/"template" props without children-as-function.
-  // Render in that case still occurs, but it doesn't produce the expected result.
+  // Warn when provided "areas"/"template" props, but didn't use a render prop pattern.
   warn(
     !(hasAreaComponents && !hasChildrenFunction),
     `Failed to render 'Composition' with template areas ["${Object.keys(

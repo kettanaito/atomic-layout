@@ -7,7 +7,7 @@ export default function throttle<F extends (...args: any[]) => any>(
   interval: number,
 ) {
   let previous: number
-  let queuedToRun: number = null
+  let queuedToRun: NodeJS.Timeout = null
 
   return function invoker(...args: Parameters<typeof func>): void {
     const now = Date.now()
