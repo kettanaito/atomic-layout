@@ -338,3 +338,9 @@ export interface GridProps {
    */
   autoFlow?: string
 }
+
+export interface BoxProps extends GenericProps {
+  [propName: string]: any
+  flex?: boolean
+  inline?: boolean
+}

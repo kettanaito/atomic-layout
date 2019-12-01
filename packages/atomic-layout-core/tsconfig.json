@@ -4,14 +4,12 @@
     "module": "es6",
     "target": "esnext",
     "moduleResolution": "node",
-    "outDir": "types",
     "declaration": true,
-    "emitDeclarationOnly": true,
     "noImplicitThis": false,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "types": ["jest"]
+    "types": ["node", "jest"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

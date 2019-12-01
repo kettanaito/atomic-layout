@@ -1,12 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { GenericProps, applyStyles } from '@atomic-layout/core'
-
-export interface BoxProps extends GenericProps {
-  [propName: string]: any
-  flex?: boolean
-  inline?: boolean
-}
+import { BoxProps, applyStyles } from '@atomic-layout/core'
 
 const Box: React.FC<BoxProps> = styled.div<BoxProps>`
   display: ${({ flex, inline }) =>

@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Atomic layout',
+  name: 'Atomic Layout core',
   verbose: true,
   roots: ['src'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
