@@ -56,10 +56,11 @@ const typescript = () => {
   })
 }
 
-const resolve = () => {
+const resolve = (override = {}) => {
   return nodeResolve({
-    mainFields: ['esnext'],
+    mainFields: ['main', 'esnext'],
     extensions: ['.ts', '.tsx'],
+    ...override,
   })
 }
 
@@ -116,7 +117,11 @@ const buildUmd = () => ({
       __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
-    commonjs(),
+    commonjs({
+      namedExports: {
+        '@atomic-layout/core/lib/const/defaultOptions.d.ts': ['Numeric'],
+      },
+    }),
     PRODUCTION && sourceMaps(),
     PRODUCTION &&
       terser({
@@ -141,7 +146,9 @@ const buildEsm = () => ({
     sourcemap: PRODUCTION,
   },
   plugins: [
-    resolve(),
+    resolve({
+      mainFields: ['esnext'],
+    }),
     replace({
       __PROD__,
     }),

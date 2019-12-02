@@ -5,7 +5,9 @@
   "license": "MIT",
   "esnext": "src/index.ts",
   "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
+    "src",
     "lib"
   ],
   "author": {
@@ -32,6 +34,7 @@
     "start": "rollup -cw",
     "test": "jest",
     "clean": "rimraf lib",
+    "build:types": "ttsc --skipLibCheck",
     "build": "cross-env NODE_ENV=production rollup -c"
   },
   "devDependencies": {
