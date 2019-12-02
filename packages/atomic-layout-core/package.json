@@ -6,30 +6,6 @@
   "esnext": "src/index.ts",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "files": [
-    "src",
-    "lib"
-  ],
-  "author": {
-    "name": "Artem Zakharchenko",
-    "email": "kettanaito@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kettanaito/atomic-layout.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kettanaito/atomic-layout/issues"
-  },
-  "keywords": [
-    "atomic",
-    "layout",
-    "core"
-  ],
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/atomic-layout"
-  },
   "scripts": {
     "start": "rollup -cw",
     "test": "jest",
@@ -45,5 +21,29 @@
     "match-media-mock": "0.1.1",
     "react": "16.12.0",
     "typescript": "3.7.2"
-  }
+  },
+  "files": [
+    "src",
+    "lib"
+  ],
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kettanaito/atomic-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kettanaito/atomic-layout/issues"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
+  },
+  "keywords": [
+    "atomic",
+    "layout",
+    "core"
+  ]
 }
