@@ -8,43 +8,24 @@
   "module": "lib/esm/index.js",
   "umd:main": "lib/umd/index.js",
   "types": "lib/types/index.d.ts",
-  "author": {
-    "name": "Artem Zakharchenko",
-    "email": "kettanaito@gmail.com"
-  },
-  "homepage": "https://atomic-layout.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kettanaito/atomic-layout"
-  },
-  "bugs": {
-    "url": "https://github.com/kettanaito/atomic-layout/issues"
-  },
-  "keywords": [
-    "atomic",
-    "layout",
-    "responsive",
-    "composition",
-    "css grid",
-    "react"
-  ],
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/atomic-layout"
-  },
-  "files": [
-    "lib",
-    "README.md"
-  ],
   "scripts": {
-    "test": "cross-env BABEL_ENV=test jest",
+    "start": "rollup -c -w --environment NODE_ENV:production,TARGET:cjs",
+    "storybook": "start-storybook -p 6020",
     "clean": "rimraf lib",
-    "build:types": "ttsc --skipLibCheck",
     "build": "yarn clean && yarn build:types && yarn build:all",
+    "build:types": "ttsc --skipLibCheck",
     "build:all": "rollup -c --environment NODE_ENV:production",
     "build:cjs": "rollup -c --environment NODE_ENV:production,TARGET:cjs",
     "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
-    "build:esm": "rollup -c --environment NODE_ENV:production,TARGET:esm"
+    "build:esm": "rollup -c --environment NODE_ENV:production,TARGET:esm",
+    "build:storybook": "cross-env TARGET=cjs build-storybook",
+    "build:storybook:umd": "cross-env TARGET=umd build-storybook",
+    "build:storybook:esm": "cross-env TARGET=esm build-storybook",
+    "cypress": "cypress open --env envName=dev",
+    "cypress:cli": "cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci",
+    "test": "yarn test:unit && yarn test:e2e",
+    "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
+    "test:e2e": "yarn cypress:cli"
   },
   "peerDependencies": {
     "react": ">= 16.8",
@@ -83,7 +64,6 @@
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
-    "rollup-plugin-replace": "2.2.0",
     "rollup-plugin-sourcemaps": "0.4.2",
     "rollup-plugin-terser": "5.1.2",
     "rollup-plugin-typescript": "1.0.1",
@@ -92,5 +72,32 @@
     "styled-components": "4.4.1",
     "tslint-react": "4.1.0",
     "ttypescript": "1.5.8"
-  }
+  },
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "author": {
+    "name": "Artem Zakharchenko",
+    "email": "kettanaito@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kettanaito/atomic-layout"
+  },
+  "bugs": {
+    "url": "https://github.com/kettanaito/atomic-layout/issues"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/atomic-layout"
+  },
+  "keywords": [
+    "atomic",
+    "layout",
+    "responsive",
+    "composition",
+    "css grid",
+    "react"
+  ]
 }

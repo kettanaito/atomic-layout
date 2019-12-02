@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import url from 'url'
-import defaultOptions from '../../src/const/defaultOptions'
+import { defaultOptions } from '@atomic-layout/core'
 
 Cypress.Commands.add('loadStory', (storyGroup, storyPath) => {
   const storyUrl = url.format({
