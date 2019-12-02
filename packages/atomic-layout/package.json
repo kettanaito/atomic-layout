@@ -40,7 +40,11 @@
     "test": "cross-env BABEL_ENV=test jest",
     "clean": "rimraf lib",
     "build:types": "ttsc --skipLibCheck",
-    "build": "cross-env NODE_ENV=production rollup -c"
+    "build": "yarn clean && yarn build:types && yarn build:all",
+    "build:all": "rollup -c --environment NODE_ENV:production",
+    "build:cjs": "rollup -c --environment NODE_ENV:production,TARGET:cjs",
+    "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
+    "build:esm": "rollup -c --environment NODE_ENV:production,TARGET:esm"
   },
   "peerDependencies": {
     "react": ">= 16.8",

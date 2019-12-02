@@ -1,7 +1,4 @@
-/**
- * @TODO
- * Export "Layout" and "defaultOptions". Infer from core?
- */
+export { Layout } from '@atomic-layout/core'
 
 /* Components */
 export { default as Box } from './components/Box'
