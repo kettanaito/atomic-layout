@@ -8,7 +8,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "rollup -cw",
-    "test": "jest",
+    "test": "jest --runInBand",
     "clean": "rimraf lib",
     "build:types": "ttsc --skipLibCheck",
     "build": "cross-env NODE_ENV=production rollup -c"

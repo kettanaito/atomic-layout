@@ -1,5 +1,4 @@
 const fs = require('fs')
-const path = require('path')
 const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 const babelConfig = require('../../babel.config')
 

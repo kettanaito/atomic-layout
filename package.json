@@ -10,9 +10,9 @@
   },
   "scripts": {
     "lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}'",
+    "clean": "lerna exec yarn clean",
     "build": "lerna exec yarn build",
     "test": "lerna exec yarn test",
-    "bundlesize": "node_modules/.bin/bundlesize",
     "ci": "yarn build && yarn bundlesize && yarn build:storybook && yarn test",
     "prepublishOnly": "yarn ci"
   },
@@ -30,7 +30,6 @@
     ]
   },
   "devDependencies": {
-    "coveralls": "3.0.9",
     "cross-env": "5.2.0",
     "husky": "3.1.0",
     "jest": "24.9.0",
