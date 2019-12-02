@@ -3,37 +3,35 @@ version: 2
 aliases:
   - &workspace
     at: ~/
-  - &yarn_cache
+  - &yarn-cache
     keys:
-      - v1-yarn-packages-{{ checksum "yarn.lock" }}
-      - v1-yarn-packages-
-  - &persist_build
+      - v1-yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - v1-yarn-packages-{{ .Branch }}-
+  - &persist-build
     root: ~/
     paths:
-      - release/cjs
-      - release/esm
-      - release/umd
+      - release/packages
 
-node_env: &node_env
+node-env: &node-env
   working_directory: ~/release
   docker:
     - image: circleci/node:lts
       environment:
         TERM: xterm
 
-e2e_env: &e2e_env
+e2e-env: &e2e-env
   working_directory: ~/release
   docker:
-    - image: cypress/browsers:chrome67
+    - image: cypress/browsers:node12.13.0-chrome78-ff70
       environment:
         TERM: xterm
 
 jobs:
   bootstrap:
-    <<: *node_env
+    <<: *node-env
     steps:
       - checkout
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
       - run:
           name: Checking environment
           command: |
@@ -42,112 +40,153 @@ jobs:
             yarn --version
       - run:
           name: Installing dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn --frozen-lockfile
       - save_cache:
-          key: v1-yarn-packages-{{ checksum "yarn.lock" }}
+          key: v1-yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - .cache
+      - run:
+          name: Building @atomic-layout/core
+          command: yarn build
+          working_directory: packages/atomic-layout-core
+      - run:
+          name: Bootstrapping the monorepo
+          command: node_modules/.bin/lerna bootstrap
       - persist_to_workspace:
           root: ~/
           paths:
             - .cache
             - release
 
-  build_cjs:
-    <<: *node_env
+  ##
+  # Core
+  ##
+  core-test-unit:
+    <<: *node-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
+      - run:
+          name: Running unit tests
+          command: yarn test
+          working_directory: packages/atomic-layout-core
+
+  ##
+  # styled-components
+  ##
+  styled-build-cjs:
+    <<: *node-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
       - run:
           name: Building CJS module
           command: yarn build:cjs
+          working_directory: packages/atomic-layout
       - run:
-          name: Checking bundle size
+          name: Checking CJS bundle size
           command: yarn bundlesize
-      - persist_to_workspace: *persist_build
+          working_directory: packages/atomic-layout
+      - persist_to_workspace: *persist-build
 
-  build_umd:
-    <<: *node_env
+  styled-build-umd:
+    <<: *node-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
       - run:
           name: Building UMD module
           command: yarn build:umd
-      - persist_to_workspace: *persist_build
+          working_directory: packages/atomic-layout
+      - persist_to_workspace: *persist-build
 
-  build_esm:
-    <<: *node_env
+  styled-build-esm:
+    <<: *node-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
       - run:
           name: Building ESM module
           command: yarn build:esm
-      - persist_to_workspace: *persist_build
+          working_directory: packages/atomic-layout
+      - persist_to_workspace: *persist-build
 
-  test_unit:
-    <<: *node_env
+  styled-test-unit:
+    <<: *node-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
       - run:
-          name: Unit tests
-          command: yarn test:unit --coverage --coverageReporters=text-lcov | node_modules/.bin/coveralls
+          name: Running unit tests
+          command: yarn test:unit
+          working_directory: packages/atomic-layout
 
-  test_e2e_cjs:
-    <<: *e2e_env
+  styled-test-e2e-cjs:
+    <<: *e2e-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout/lib
       - run:
           name: Building Storybook (CJS)
           command: yarn build:storybook
+          working_directory: packages/atomic-layout
       - run:
           name: Integration tests
           command: yarn test:e2e
+          working_directory: packages/atomic-layout
+      - run:
+          name: Creating test results directory
+          command: mkdir test-results
+          working_directory: packages/atomic-layout
       - store_test_results:
-          path: test-results
+          path: packages/atomic-layout/test-results
       - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
+          path: packages/atomic-layout/cypress/screenshots
 
-  test_e2e_umd:
-    <<: *e2e_env
+  styled-test-e2e-umd:
+    <<: *e2e-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout/lib
       - run:
           name: Building Storybook (UMD)
           command: yarn build:storybook:umd
+          working_directory: packages/atomic-layout
       - run:
           name: Integration tests
           command: yarn test:e2e
+          working_directory: packages/atomic-layout
       - store_test_results:
-          path: test-results
+          path: packages/atomic-layout/test-results
       - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
+          path: packages/atomic-layout/cypress/screenshots
 
-  test_e2e_esm:
-    <<: *e2e_env
+  styled-test-e2e-esm:
+    <<: *e2e-env
     steps:
       - attach_workspace: *workspace
-      - restore_cache: *yarn_cache
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout/lib
       - run:
           name: Building Storybook (ESM)
           command: yarn build:storybook:esm
+          working_directory: packages/atomic-layout
       - run:
           name: Integration tests
           command: yarn test:e2e
+          working_directory: packages/atomic-layout
       - store_test_results:
-          path: test-results
+          path: packages/atomic-layout/test-results
       - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
+          path: packages/atomic-layout/cypress/screenshots
 
 workflows:
   version: 2
@@ -155,27 +194,36 @@ workflows:
     jobs:
       - bootstrap
 
-      - test_unit:
+      # @atomic-layout/core
+      - core-test-unit:
           requires:
             - bootstrap
 
-      - build_cjs:
+      # styled-components
+      - styled-test-unit:
           requires:
             - bootstrap
-      - test_e2e_cjs:
-          requires:
-            - build_cjs
 
-      - build_umd:
+      - styled-build-cjs:
           requires:
             - bootstrap
-      - test_e2e_umd:
+      - styled-test-e2e-cjs:
           requires:
-            - build_umd
+            - bootstrap
+            - styled-build-cjs
 
-      - build_esm:
+      - styled-build-umd:
           requires:
             - bootstrap
-      - test_e2e_esm:
+      - styled-test-e2e-umd:
           requires:
-            - build_esm
+            - bootstrap
+            - styled-build-umd
+
+      - styled-build-esm:
+          requires:
+            - bootstrap
+      - styled-test-e2e-esm:
+          requires:
+            - bootstrap
+            - styled-build-esm
