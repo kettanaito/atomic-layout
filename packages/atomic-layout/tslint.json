@@ -1,16 +1,9 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "extends": ["../../tslint.json", "tslint-react"],
   "rules": {
-    "no-console": false,
-    "prefer-template": [true, "always"],
-    "no-bitwise": false,
-
-    "ordered-imports": [false, "never"],
-    "object-literal-sort-keys": [false, "never"],
-    "only-arrow-functions": [false],
-    "interface-name": [true, "never-prefix"],
-    "no-object-literal-type-assertion": false,
-
-    "jsx-boolean-value": ["never"]
+    "no-console": true,
+    "jsx-boolean-value": ["never"],
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false
   }
 }

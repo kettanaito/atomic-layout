@@ -4,7 +4,6 @@ import {
   GenericProps,
   BoxProps,
   GridProps,
-  Breakpoint,
   AreasMap,
   AreaComponent,
   parseTemplates,
@@ -38,13 +37,13 @@ const Composition: React.FC<CompositionProps> = ({
   children,
   ...restProps
 }) => {
-  const areasMap = parseTemplates(restProps)
-  const areaComponents = generateComponents(
-    areasMap,
+  const areasList = parseTemplates(restProps)
+  const Areas = generateComponents(
+    areasList,
     createAreaComponent,
     withPlaceholder,
   )
-  const hasAreaComponents = Object.keys(areaComponents).length > 0
+  const hasAreaComponents = Object.keys(Areas).length > 0
   const childrenType = typeof children
   const hasChildrenFunction = childrenType === 'function'
 
@@ -52,7 +51,7 @@ const Composition: React.FC<CompositionProps> = ({
   warn(
     !(hasAreaComponents && !hasChildrenFunction),
     `Failed to render 'Composition' with template areas ["${Object.keys(
-      areaComponents,
+      Areas,
     ).join(
       '", "',
     )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props.`,
@@ -61,7 +60,7 @@ const Composition: React.FC<CompositionProps> = ({
   return (
     <CompositionWrapper {...restProps}>
       {hasAreaComponents && hasChildrenFunction
-        ? (children as ChildrenFunction)(areaComponents)
+        ? (children as ChildrenFunction)(Areas)
         : children}
     </CompositionWrapper>
   )
