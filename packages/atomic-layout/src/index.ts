@@ -1,4 +1,5 @@
-export { Layout } from '@atomic-layout/core'
+import { Layout } from '@atomic-layout/core'
+export default Layout
 
 /* Components */
 export { default as Box } from './components/Box'
