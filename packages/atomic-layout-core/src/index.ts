@@ -1,6 +1,4 @@
-import Layout from './Layout'
-export default Layout
-
+export { default as Layout } from './Layout'
 export { default as defaultOptions } from './const/defaultOptions'
 
 /* Typings */
@@ -8,6 +6,7 @@ export {
   Numeric,
   MediaQuery,
   Breakpoint,
+  Breakpoints,
   BreakpointBehavior,
 } from './const/defaultOptions'
 export { GenericProps, BoxProps, GridProps } from './const/props'
@@ -42,3 +41,6 @@ export {
 
 /* Utilities */
 export { default as warn } from './utils/functions/warn'
+export { default as compose } from './utils/functions/compose'
+export { default as throttle } from './utils/functions/throttle'
+export { default as transformNumeric } from './utils/math/transformNumeric'

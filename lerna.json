@@ -2,8 +2,5 @@
   "packages": ["packages/*"],
   "version": "independent",
   "npmClient": "yarn",
-  "devDependencies": {
-    "lerna": "^3.16.4"
-  },
   "useWorkspaces": true
 }

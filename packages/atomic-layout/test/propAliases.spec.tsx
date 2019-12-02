@@ -1,6 +1,6 @@
 import React from 'react'
 import { propAliases } from '@atomic-layout/core'
-import Composition from './components/Composition'
+import Composition from '../src/components/Composition'
 import { render, cleanup, getByTestId } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 

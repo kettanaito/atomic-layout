@@ -1,6 +1,5 @@
 import { useState, useMemo, useLayoutEffect } from 'react'
 import {
-  Numeric,
   MediaQuery as MediaQueryParams,
   compose,
   joinQueryList,

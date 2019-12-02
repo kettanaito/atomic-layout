@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import throttle from '@utils/functions/throttle'
+import { throttle } from '@atomic-layout/core'
 
 /**
  * Executes a callback on viewport change (window resize).
