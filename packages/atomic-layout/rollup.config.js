@@ -64,6 +64,17 @@ const resolve = (override = {}) => {
   })
 }
 
+const warnOnMissingDependency = (message) => {
+  if (
+    message.code === 'UNRESOLVED_IMPORT' &&
+    message.source === '@atomic-layout/core'
+  ) {
+    throw new Error(
+      `Could not resolve "@atomic-layout/core" module. Make sure it's installed.`,
+    )
+  }
+}
+
 // CommonJS module
 const buildCjs = () => ({
   input,
@@ -112,16 +123,12 @@ const buildUmd = () => ({
   plugins: [
     resolve(),
     typescript(),
-    babel(),
     replace({
       __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
-    commonjs({
-      namedExports: {
-        '@atomic-layout/core/lib/const/defaultOptions.d.ts': ['Numeric'],
-      },
-    }),
+    babel(),
+    commonjs(),
     PRODUCTION && sourceMaps(),
     PRODUCTION &&
       terser({
@@ -134,6 +141,7 @@ const buildUmd = () => ({
         toplevel: false,
       }),
   ],
+  onwarn: warnOnMissingDependency,
 })
 
 // ECMAScript module
