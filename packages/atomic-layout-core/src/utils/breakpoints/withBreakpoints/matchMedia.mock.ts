@@ -1,9 +1,12 @@
-const matchMediaMock = require('match-media-mock').create()
+/* tslint:disable-rule no-implicit-dependencies */
+import matchMediaMock from 'match-media-mock'
 
-matchMediaMock.setConfig({
+const mock = matchMediaMock.create()
+
+mock.setConfig({
   type: 'screen',
   height: window.innerHeight,
   width: window.innerWidth,
 })
 
-window.matchMedia = matchMediaMock
+window.matchMedia = mock

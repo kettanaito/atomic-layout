@@ -5,6 +5,8 @@
     "prefer-template": [true, "always"],
     "no-bitwise": false,
 
+    "no-submodule-imports": [true, "@testing-library/jest-dom/extend-expect"],
+    "no-implicit-dependencies": [true, "dev"],
     "ordered-imports": [false, "never"],
     "object-literal-sort-keys": [false, "never"],
     "only-arrow-functions": [false],

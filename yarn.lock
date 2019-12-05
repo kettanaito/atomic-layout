@@ -2888,6 +2888,11 @@
   dependencies:
     jest-diff "^24.3.0"
 
+"@types/match-media-mock@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@types/match-media-mock/-/match-media-mock-0.1.5.tgz#773338e600d637f23a2703861e18e7473673da48"
+  integrity sha1-dzM45gDWN/I6JwOGHhjnRzZz2kg=
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
