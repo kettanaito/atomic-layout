@@ -22,6 +22,9 @@
     "build:storybook:umd": "cross-env TARGET=umd build-storybook",
     "build:storybook:esm": "cross-env TARGET=esm build-storybook",
     "bundlesize": "bundlesize",
+    "bundlesize:cjs": "bundlesize -f lib/cjs/index.js",
+    "bundlesize:umd": "bundlesize -f lib/umd/index.js",
+    "bundlesize:esm": "bundlesize -f lib/esm/index.js",
     "cypress": "cypress open --env envName=dev",
     "cypress:cli": "cypress run --spec=./examples/all.test.js --browser=chrome --env envName=ci",
     "test": "yarn test:unit && yarn test:e2e",
@@ -30,8 +33,16 @@
   },
   "bundlesize": [
     {
-      "path": "./lib/cjs/index.js",
-      "maxSize": "20 kB"
+      "path": "lib/cjs/index.js",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "lib/umd/index.js",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "lib/esm/index.js",
+      "maxSize": "10 kB"
     }
   ],
   "peerDependencies": {

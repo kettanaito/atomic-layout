@@ -12,9 +12,7 @@
     "lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}'",
     "clean": "lerna exec yarn clean",
     "build": "lerna exec yarn build",
-    "test": "lerna exec yarn test",
-    "ci": "yarn build && yarn bundlesize && yarn build:storybook && yarn test",
-    "prepublishOnly": "yarn ci"
+    "test": "lerna exec yarn test"
   },
   "husky": {
     "hooks": {
