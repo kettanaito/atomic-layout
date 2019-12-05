@@ -85,8 +85,8 @@ npm install atomic-layout
 
 There are some shortcuts to get you started:
 
-- [Motivation](https://redd.gitbook.io/atomic-layout/general/motivation)
-- [**Getting started**](https://redd.gitbook.io/atomic-layout/general/getting-started)
+- [Motivation](https://redd.gitbook.io/atomic-layout/motivation)
+- [**Getting started**](https://redd.gitbook.io/atomic-layout/getting-started)
 - [Responsive props](https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props)
 - [Recipes](https://redd.gitbook.io/atomic-layout/recipes/semantics)
 
