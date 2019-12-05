@@ -85,7 +85,7 @@ jobs:
           working_directory: packages/atomic-layout
       - run:
           name: Checking CJS bundle size
-          command: yarn bundlesize
+          command: yarn bundlesize:cjs
           working_directory: packages/atomic-layout
       - persist_to_workspace: *persist-build
 
@@ -98,6 +98,10 @@ jobs:
           name: Building UMD module
           command: yarn build:umd
           working_directory: packages/atomic-layout
+      - run:
+          name: Chechking UMD bundle size
+          command: yarn bundlesize:umd
+          working_directory: packages/atomic-layout
       - persist_to_workspace: *persist-build
 
   styled-build-esm:
@@ -108,6 +112,10 @@ jobs:
       - run:
           name: Building ESM module
           command: yarn build:esm
+          working_directory: packages/atomic-layout
+      - run:
+          name: Chechking ESM bundle size
+          command: yarn bundlesize:esm
           working_directory: packages/atomic-layout
       - persist_to_workspace: *persist-build
 
