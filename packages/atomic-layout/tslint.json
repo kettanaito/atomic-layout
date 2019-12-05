@@ -1,5 +1,5 @@
 {
-  "extends": ["../../tslint.json", "tslint-react"],
+  "extends": ["tslint-react", "../../tslint.json"],
   "rules": {
     "no-console": true,
     "jsx-boolean-value": ["never"],

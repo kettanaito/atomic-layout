@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "lint": "tslint -c ./tslint.json 'src/**/*.{ts,tsx}'",
+    "lint": "lerna exec yarn lint",
     "clean": "lerna exec yarn clean",
     "build": "lerna exec yarn build",
     "test": "lerna exec yarn test"
