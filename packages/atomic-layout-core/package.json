@@ -30,6 +30,9 @@
     "src",
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": {
     "name": "Artem Zakharchenko",
     "email": "kettanaito@gmail.com"
