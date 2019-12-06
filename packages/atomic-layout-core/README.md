@@ -1,3 +1,5 @@
+[![Package version](https://img.shields.io/npm/v/@atomic-layout/core.svg)](https://npmjs.com/package/@atomic-layout/core)
+
 # `@atomic-layout/core`
 
 Core functionality of the [Atomic Layout][atomic-layout] library.
