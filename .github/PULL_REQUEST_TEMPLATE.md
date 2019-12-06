@@ -24,4 +24,4 @@
 <!-- Make sure all of the below are checked -->
 
 - [ ] My branch is up-to-date with the latest `master`
-- [ ] I ran `yarn ci` and verified the build and tests passing
+- [ ] I ran `yarn verify` and verified the build and tests passing

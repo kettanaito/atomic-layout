@@ -12,7 +12,8 @@
     "test": "jest --runInBand",
     "clean": "rimraf lib",
     "build:types": "ttsc --skipLibCheck",
-    "build": "cross-env NODE_ENV=production rollup -c"
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "verify": "yarn lint && yarn test && yarn build"
   },
   "devDependencies": {
     "@types/jest": "24.0.23",
