@@ -222,13 +222,13 @@ Verify your newly created E2E test by [Running E2E tests](#running-e2e-tests) an
 
 ### Verifying changes
 
-There is a shorthand command to verify your introduced changes:
+There is a shorthand command to verify your newly introduced changes on local:
 
 ```bash
-$ yarn ci
+$ yarn verify
 ```
 
-> This is going to build the library, Storybook, and run unit and E2E tests. It's **recommended you perform this command** before creating a Pull request.
+> This is going to build and test all the packages. This command can also be run in a package's directory to verify that respective package.
 
 ## Afterword
 
