@@ -13,8 +13,7 @@
     "clean": "lerna exec yarn clean",
     "build": "lerna exec yarn build",
     "test": "lerna exec yarn test",
-    "verify": "lerna exec yarn verify",
-    "prepublishOnly": "yarn verify"
+    "verify": "lerna exec yarn verify"
   },
   "husky": {
     "hooks": {
