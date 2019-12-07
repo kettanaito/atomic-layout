@@ -1,4 +1,5 @@
 import { Numeric } from './defaultOptions'
+import { AreasMap } from '../utils/templates/generateComponents'
 
 type CSSGlobalValues = 'inherit' | 'initial' | 'unset'
 
@@ -342,5 +343,13 @@ export interface GridProps {
 export interface BoxProps extends GenericProps {
   [propName: string]: any
   flex?: boolean
+  inline?: boolean
+}
+
+export type CompositionRenderProp = (areas: AreasMap) => React.ReactNode
+
+export interface CompositionProps extends GenericProps, GridProps {
+  [propName: string]: any
+  children: CompositionRenderProp | React.ReactNode
   inline?: boolean
 }

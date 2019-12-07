@@ -1,17 +1,16 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import {
+  AreaComponent,
   BoxProps,
   CompositionProps,
   CompositionRenderProp,
-  AreaComponent,
+  applyStyles,
   parseTemplates,
   generateComponents,
-  applyStyles,
-  warn,
 } from '@atomic-layout/core'
+import styled from '@emotion/styled'
 import Box from './Box'
-import { withPlaceholder } from '../utils/withPlaceholder'
+import { withPlaceholder } from '../../../atomic-layout/src/utils/withPlaceholder'
 
 const CompositionWrapper = styled.div<CompositionProps>`
   && {
@@ -36,21 +35,11 @@ const Composition: React.FC<CompositionProps> = ({
   )
   const hasAreaComponents = Object.keys(Areas).length > 0
   const childrenType = typeof children
-  const hasChildrenFunction = childrenType === 'function'
-
-  // Warn when provided "areas"/"template" props, but didn't use a render prop pattern.
-  warn(
-    !(hasAreaComponents && !hasChildrenFunction),
-    `Failed to render 'Composition' with template areas ["${Object.keys(
-      Areas,
-    ).join(
-      '", "',
-    )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props.`,
-  )
+  const hasRenderProp = childrenType === 'function'
 
   return (
     <CompositionWrapper {...restProps}>
-      {hasAreaComponents && hasChildrenFunction
+      {hasAreaComponents && hasRenderProp
         ? (children as CompositionRenderProp)(Areas)
         : children}
     </CompositionWrapper>
