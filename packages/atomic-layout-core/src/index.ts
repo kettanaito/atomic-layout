@@ -9,7 +9,13 @@ export {
   Breakpoints,
   BreakpointBehavior,
 } from './const/defaultOptions'
-export { GenericProps, BoxProps, GridProps } from './const/props'
+export {
+  GenericProps,
+  GridProps,
+  BoxProps,
+  CompositionProps,
+  CompositionRenderProp,
+} from './const/props'
 
 /* Styles */
 export { default as applyStyles } from './utils/styles/applyStyles'
