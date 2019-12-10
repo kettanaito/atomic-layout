@@ -18,16 +18,24 @@ const getPath = (filepath) => {
   return path.resolve(BUILD_DIR, filepath)
 }
 
-const { NODE_ENV: nodeEnv, TARGET: target } = process.env
-const PRODUCTION = nodeEnv === 'production'
-const __PROD__ = PRODUCTION ? 'true' : '""'
+const { TARGET: target } = process.env
 const input = packageJson.esnext
 
-const external = (moduleName) => {
+export const getEnv = (env) => {
+  const { NODE_ENV: nodeEnv } = env
+  return {
+    nodeEnv,
+    PRODUCTION: nodeEnv === 'production',
+  }
+}
+
+const { nodeEnv, PRODUCTION } = getEnv(process.env)
+
+export const external = (moduleName) => {
   return !moduleName.startsWith('.') && !path.isAbsolute(moduleName)
 }
 
-const babel = (overrides = {}) => {
+export const babel = (overrides = {}) => {
   return useBabel({
     ...babelConfig,
     ...overrides,
@@ -35,7 +43,7 @@ const babel = (overrides = {}) => {
   })
 }
 
-const typescript = () => {
+export const typescript = () => {
   return tsPlugin({
     clean: true,
     // Disable type checking during the build
@@ -56,7 +64,7 @@ const typescript = () => {
   })
 }
 
-const resolve = (override = {}) => {
+export const resolve = (override = {}) => {
   return nodeResolve({
     mainFields: ['main', 'esnext'],
     extensions: ['.ts', '.tsx'],
@@ -64,7 +72,7 @@ const resolve = (override = {}) => {
   })
 }
 
-const warnOnMissingDependency = (message) => {
+export const warnOnMissingDependency = (message) => {
   if (
     message.code === 'UNRESOLVED_IMPORT' &&
     message.source === '@atomic-layout/core'
@@ -89,7 +97,6 @@ const buildCjs = () => ({
     resolve(),
     typescript(),
     replace({
-      __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     PRODUCTION && sourceMaps(),
@@ -124,7 +131,6 @@ const buildUmd = () => ({
     resolve(),
     typescript(),
     replace({
-      __PROD__,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
     babel(),
@@ -156,9 +162,6 @@ const buildEsm = () => ({
   plugins: [
     resolve({
       mainFields: ['esnext'],
-    }),
-    replace({
-      __PROD__,
     }),
     typescript(),
     babel(),

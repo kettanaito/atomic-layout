@@ -3,13 +3,17 @@
   "description": "Physical representation of layout composition to create declarative, responsive layouts in React.",
   "version": "0.11.0",
   "license": "MIT",
+  "esnext": "src/index.ts",
+  "main": "lib/cjs/index.js",
+  "umd:main": "lib/umd/index.js",
   "scripts": {
-    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "build": "cross-env NODE_ENV=production rollup -c rollup.config.js"
   },
   "peerDependencies": {
-    "react": ">= 16.8",
     "@emotion/core": ">= 10.0",
-    "@emotion/styled": ">= 10.0"
+    "@emotion/styled": ">= 10.0",
+    "react": ">= 16.8"
   },
   "dependencies": {
     "@atomic-layout/core": "^0.11.0"
@@ -41,5 +45,6 @@
     "css grid",
     "react",
     "emotion"
-  ]
+  ],
+  "devDependencies": {}
 }
