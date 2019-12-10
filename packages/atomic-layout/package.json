@@ -57,14 +57,6 @@
     "@atomic-layout/core": "^0.11.7"
   },
   "devDependencies": {
-    "@babel/core": "7.7.2",
-    "@babel/plugin-proposal-class-properties": "7.7.0",
-    "@babel/plugin-proposal-export-default-from": "7.5.2",
-    "@babel/plugin-proposal-export-namespace-from": "7.5.2",
-    "@babel/plugin-proposal-object-rest-spread": "7.6.2",
-    "@babel/preset-env": "7.7.4",
-    "@babel/preset-react": "7.7.4",
-    "@babel/preset-typescript": "7.7.4",
     "@cypress/webpack-preprocessor": "4.1.0",
     "@storybook/addon-actions": "5.1.9",
     "@storybook/addon-links": "5.1.9",
