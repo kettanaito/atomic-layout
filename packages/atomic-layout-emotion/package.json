@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
-    "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../atomic-layout/.storybook"
+    "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook"
   },
   "peerDependencies": {
     "@emotion/core": ">= 10.0",

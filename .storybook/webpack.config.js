@@ -8,7 +8,7 @@ const entryPropertyName = {
 }
 
 const resolveBuildPath = (relativeProjectPath, moduleType) => {
-  const projectPath = path.resolve(__dirname, '../../../', relativeProjectPath)
+  const projectPath = path.resolve(__dirname, '../', relativeProjectPath)
   const packageJson = require(`${projectPath}/package.json`)
   return path.resolve(projectPath, packageJson[entryPropertyName[moduleType]])
 }
