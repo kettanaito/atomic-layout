@@ -12,7 +12,7 @@ import {
 } from '../atomic-layout/rollup.config'
 import packageJson from './package.json'
 
-const { nodeEnv, PRODUCTION } = getEnv(process.env)
+const { nodeEnv, PRODUCTION, TARGET } = getEnv(process.env)
 
 const BUILD_DIR = '.'
 const getPath = (filepath) => {
@@ -62,4 +62,8 @@ const buildUmd = {
   onwarn: warnOnMissingDependency,
 }
 
-module.exports = [buildUmd]
+const targets = {
+  umd: buildUmd,
+}
+
+module.exports = TARGET ? targets[TARGET] : Object.values(targets)
