@@ -13,7 +13,8 @@
     "clean": "lerna exec yarn clean",
     "build": "lerna exec yarn build",
     "test": "lerna exec yarn test",
-    "verify": "lerna exec yarn verify"
+    "verify": "lerna exec yarn verify",
+    "postinstall": "mkdir -p packages/atomic-layout-emotion/node_modules"
   },
   "husky": {
     "hooks": {
