@@ -53,7 +53,7 @@ jobs:
           name: Bootstrapping the monorepo
           command: node_modules/.bin/lerna bootstrap
       - run:
-          name: Linting
+          name: Linting the codebase
           command: yarn lint
       - persist_to_workspace:
           root: ~/
@@ -83,7 +83,7 @@ jobs:
       - attach_workspace: *workspace
       - restore_cache: *yarn-cache
       - run:
-          name: Building CJS module
+          name: Building CJS module (styled-components)
           command: yarn build:cjs
           working_directory: packages/atomic-layout
       - run:
@@ -98,7 +98,7 @@ jobs:
       - attach_workspace: *workspace
       - restore_cache: *yarn-cache
       - run:
-          name: Building UMD module
+          name: Building UMD module (styled-components)
           command: yarn build:umd
           working_directory: packages/atomic-layout
       - run:
@@ -113,7 +113,7 @@ jobs:
       - attach_workspace: *workspace
       - restore_cache: *yarn-cache
       - run:
-          name: Building ESM module
+          name: Building ESM module (styled-components)
           command: yarn build:esm
           working_directory: packages/atomic-layout
       - run:
@@ -199,6 +199,24 @@ jobs:
       - store_artifacts:
           path: packages/atomic-layout/cypress/screenshots
 
+  ##
+  # Emotion
+  ##
+  emotion-build-umd:
+    <<: *node-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: Building UMD module (emotion)
+          command: yarn build:umd
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Chechking UMD bundle size
+          command: yarn bundlesize:umd
+          working_directory: packages/atomic-layout-emotion
+      - persist_to_workspace: *persist-build
+
 workflows:
   version: 2
   release:
@@ -238,3 +256,8 @@ workflows:
           requires:
             - bootstrap
             - styled-build-esm
+
+      # emotion
+      - emotion-build-umd:
+          requires:
+            - bootstrap

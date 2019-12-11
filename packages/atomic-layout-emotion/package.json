@@ -8,10 +8,18 @@
   "umd:main": "lib/umd/index.js",
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
-    "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
     "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook",
+    "bundlesize": "bundlesize",
+    "bundlesize:umd": "bundlesize -f lib/umd/index.js",
     "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)"
   },
+  "bundlesize": [
+    {
+      "path": "lib/umd/index.js",
+      "maxSize": "10 kB"
+    }
+  ],
   "peerDependencies": {
     "@emotion/core": ">= 10.0",
     "@emotion/styled": ">= 10.0",
