@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
-    "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook"
+    "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook",
+    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)"
   },
   "peerDependencies": {
     "@emotion/core": ">= 10.0",

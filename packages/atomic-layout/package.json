@@ -27,11 +27,10 @@
     "bundlesize:umd": "bundlesize -f lib/umd/index.js",
     "bundlesize:esm": "bundlesize -f lib/esm/index.js",
     "cypress": "cypress open --env envName=dev",
-    "cypress:cli": "cypress run --spec=./examples/all.test.js --browser=chrome --env envName=ci",
     "jest": "jest",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
-    "test:e2e": "yarn cypress:cli",
+    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout)",
     "verify": "yarn lint && yarn build && yarn bundlesize && yarn build:storybook && yarn test",
     "prepublishOnly": "yarn verify"
   },
