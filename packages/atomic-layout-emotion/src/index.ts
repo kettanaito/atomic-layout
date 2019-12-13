@@ -4,6 +4,7 @@ export default Layout
 /* Components */
 export { default as Box } from './components/Box'
 export { default as Composition } from './components/Composition'
+export { default as Only } from './components/Only'
 
 /* Hooks */
 export {
