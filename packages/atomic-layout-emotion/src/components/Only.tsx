@@ -1,53 +1,15 @@
 import * as React from 'react'
 import {
-  Layout,
-  Breakpoint,
-  BoxProps,
+  mergeAreaRecords,
   openBreakpoint,
   closeBreakpoint,
-  mergeAreaRecords,
 } from '@atomic-layout/core'
-
+import {
+  OnlyProps,
+  createWrapper,
+  resolveBreakpoint,
+} from '../../../atomic-layout/src/components/Only'
 import Box from './Box'
-import { withPlaceholder } from '../utils/withPlaceholder'
-
-export type BreakpointRef = string | Breakpoint
-
-export const resolveBreakpoint = (breakpointRef: BreakpointRef): Breakpoint => {
-  return typeof breakpointRef === 'string'
-    ? Layout.breakpoints[breakpointRef]
-    : breakpointRef
-}
-
-export interface OnlyProps extends BoxProps {
-  /**
-   * Renders children only at the specified breakpoint.
-   */
-  for?: BreakpointRef
-  /**
-   * Renders children from the specified breakpoint and up,
-   * unless enclosing `to` prop is set to form a range.
-   */
-  from?: BreakpointRef
-  /**
-   * Renders children from the specified breakpoint and down,
-   * unless the openning `from` prop is set to form a range.
-   */
-  to?: BreakpointRef
-  /**
-   * Renders children everywhere except the given breakpoint range.
-   */
-  except?: boolean
-}
-
-export const createWrapper = (
-  wrapper: React.FC,
-  children: React.ReactNode,
-  props: BoxProps,
-) => (...breakpoints: Breakpoint[]) => {
-  const Placeholder = withPlaceholder(wrapper, breakpoints)
-  return <Placeholder {...props}>{children}</Placeholder>
-}
 
 const Only: React.FC<OnlyProps> = ({
   children,
