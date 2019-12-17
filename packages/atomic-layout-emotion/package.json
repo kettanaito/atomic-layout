@@ -10,14 +10,20 @@
     "start": "rollup -c -w",
     "storybook": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd start-storybook -p 6020 -c ../../.storybook",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "build:cjs": "rollup -c --environment NODE_ENV:production,TARGET:cjs",
     "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
     "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook",
     "bundlesize": "bundlesize",
+    "bundlesize:cjs": "bundlesize -f lib/cjs/index.js",
     "bundlesize:umd": "bundlesize -f lib/umd/index.js",
     "cypress": "(cd ../../ && cypress open --env envName=dev)",
     "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)"
   },
   "bundlesize": [
+    {
+      "path": "lib/cjs/index.js",
+      "maxSize": "10 kB"
+    },
     {
       "path": "lib/umd/index.js",
       "maxSize": "10 kB"
@@ -31,8 +37,13 @@
   "dependencies": {
     "@atomic-layout/core": "^0.11.0"
   },
+  "devDependencies": {
+    "@emotion/core": "10.0.22",
+    "@emotion/styled": "10.0.23"
+  },
   "files": [
     "lib",
+    "LICENSE",
     "README.md"
   ],
   "author": {
@@ -58,9 +69,5 @@
     "css grid",
     "react",
     "emotion"
-  ],
-  "devDependencies": {
-    "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.23"
-  }
+  ]
 }
