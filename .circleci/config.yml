@@ -202,6 +202,21 @@ jobs:
   ##
   # Emotion
   ##
+  emotion-build-cjs:
+    <<: *node-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: Building CJS module (emotion)
+          command: yarn build:cjs
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Chechking CJS bundle size
+          command: yarn bundlesize:cjs
+          working_directory: packages/atomic-layout-emotion
+      - persist_to_workspace: *persist-build
+
   emotion-build-umd:
     <<: *node-env
     steps:
@@ -258,6 +273,10 @@ workflows:
             - styled-build-esm
 
       # emotion
+      - emotion-build-cjs:
+          requires:
+            - bootstrap
+
       - emotion-build-umd:
           requires:
             - bootstrap

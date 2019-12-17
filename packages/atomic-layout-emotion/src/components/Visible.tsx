@@ -6,7 +6,7 @@ import {
   mergeAreaRecords,
 } from '@atomic-layout/core'
 import Box from './Box'
-import { useMediaQuery } from '../index'
+import { useMediaQuery } from '../'
 import {
   OnlyProps,
   resolveBreakpoint,

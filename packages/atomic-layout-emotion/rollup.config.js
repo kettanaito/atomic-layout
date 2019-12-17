@@ -7,12 +7,13 @@ import {
   getEnv,
   babel,
   resolve,
+  external,
   typescript,
   warnOnMissingDependency,
 } from '../atomic-layout/rollup.config'
 import packageJson from './package.json'
 
-const { nodeEnv, PRODUCTION, TARGET } = getEnv(process.env)
+const { nodeEnv, TARGET, PRODUCTION } = getEnv(process.env)
 
 const BUILD_DIR = '.'
 const getPath = (filepath) => {
@@ -20,6 +21,35 @@ const getPath = (filepath) => {
 }
 
 const input = packageJson.esnext
+
+const buildCjs = {
+  input,
+  external,
+  output: {
+    file: getPath(packageJson.main),
+    format: 'cjs',
+    exports: 'named',
+    sourcemap: PRODUCTION,
+  },
+  plugins: [
+    resolve(),
+    typescript(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+    }),
+    PRODUCTION && sourceMaps(),
+    PRODUCTION &&
+      terser({
+        ecma: 5,
+        sourcemap: true,
+        output: {
+          comments: false,
+        },
+        warnings: true,
+        toplevel: true,
+      }),
+  ],
+}
 
 const buildUmd = {
   input,
@@ -32,7 +62,9 @@ const buildUmd = {
     sourcemap: PRODUCTION,
     globals: {
       react: 'React',
-      /** @TODO add emotion */
+      /**
+       * @TODO add "@emotion/core" and "@emotion/styled" as globals.
+       */
     },
   },
   plugins: [
@@ -62,8 +94,11 @@ const buildUmd = {
   onwarn: warnOnMissingDependency,
 }
 
-const targets = {
+const buildTargets = {
+  cjs: buildCjs,
   umd: buildUmd,
 }
 
-module.exports = TARGET ? targets[TARGET] : Object.values(targets)
+console.log('@atomic-layout/emotion: building "%s" module type', TARGET)
+
+export default TARGET ? buildTargets[TARGET] : Object.values(buildTargets)
