@@ -18,18 +18,18 @@ const getPath = (filepath) => {
   return path.resolve(BUILD_DIR, filepath)
 }
 
-const { TARGET: target } = process.env
 const input = packageJson.esnext
 
 export const getEnv = (env) => {
-  const { NODE_ENV: nodeEnv } = env
+  const { NODE_ENV: nodeEnv = 'development', TARGET } = env
   return {
     nodeEnv,
+    TARGET,
     PRODUCTION: nodeEnv === 'production',
   }
 }
 
-const { nodeEnv, PRODUCTION } = getEnv(process.env)
+const { nodeEnv, TARGET, PRODUCTION } = getEnv(process.env)
 
 export const external = (moduleName) => {
   return !moduleName.startsWith('.') && !path.isAbsolute(moduleName)
@@ -83,8 +83,7 @@ export const warnOnMissingDependency = (message) => {
   }
 }
 
-// CommonJS module
-const buildCjs = () => ({
+const buildCjs = {
   input,
   external,
   output: {
@@ -111,12 +110,11 @@ const buildCjs = () => ({
         toplevel: true,
       }),
   ],
-})
+}
 
-// UMD module
-const buildUmd = () => ({
+const buildUmd = {
   input,
-  external: ['react', 'styled-components'],
+  external: Object.keys(packageJson.peerDependencies),
   output: {
     name: 'AtomicLayout',
     format: 'umd',
@@ -148,10 +146,9 @@ const buildUmd = () => ({
       }),
   ],
   onwarn: warnOnMissingDependency,
-})
+}
 
-// ECMAScript module
-const buildEsm = () => ({
+const buildEsm = {
   input,
   external,
   output: {
@@ -167,12 +164,12 @@ const buildEsm = () => ({
     babel(),
     PRODUCTION && sourceMaps(),
   ],
-})
-
-const buildTargets = {
-  cjs: buildCjs(),
-  umd: buildUmd(),
-  esm: buildEsm(),
 }
 
-export default target ? buildTargets[target] : Object.values(buildTargets)
+const buildTargets = {
+  cjs: buildCjs,
+  umd: buildUmd,
+  esm: buildEsm,
+}
+
+export default TARGET ? buildTargets[TARGET] : Object.values(buildTargets)
