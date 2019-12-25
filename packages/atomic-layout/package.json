@@ -110,6 +110,7 @@
   "bugs": {
     "url": "https://github.com/kettanaito/atomic-layout/issues"
   },
+  "homepage": "https://redd.gitbook.io/atomic-layout",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/atomic-layout"
