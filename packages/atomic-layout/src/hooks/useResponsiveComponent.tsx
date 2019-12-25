@@ -3,25 +3,28 @@ import { Numeric } from '@atomic-layout/core'
 import useResponsiveProps from './useResponsiveProps'
 
 /**
- * Returns a copy of the given React component
- * that supports Responsive Props API.
+ * Returns a new React component based on the given one
+ * that enables support for Responsive Props API on arbitrary props.
  */
 function useResponsiveComponent<
   OwnProps extends Record<string, any>,
-  ResponsiveProps extends Record<string, Numeric>
+  ResponsiveProps extends Record<string, Numeric>,
+  RefType = unknown
 >(
   Component: React.FC<OwnProps>,
-): React.FC<OwnProps & Partial<ResponsiveProps>> {
-  return (responsiveProps) => {
-    /**
-     * @see https://github.com/Microsoft/TypeScript/issues/29049
-     */
-    const actualProps = useResponsiveProps<typeof responsiveProps>(
-      responsiveProps,
-    ) as OwnProps & Partial<ResponsiveProps>
+): React.FC<React.PropsWithoutRef<OwnProps & Partial<ResponsiveProps>>> {
+  return React.forwardRef<RefType, OwnProps & Partial<ResponsiveProps>>(
+    (responsiveProps, ref) => {
+      /**
+       * @see https://github.com/Microsoft/TypeScript/issues/29049
+       */
+      const actualProps = useResponsiveProps<typeof responsiveProps>(
+        responsiveProps,
+      ) as OwnProps & Partial<ResponsiveProps>
 
-    return <Component {...actualProps} />
-  }
+      return <Component ref={ref} {...actualProps} />
+    },
+  )
 }
 
 export default useResponsiveComponent
