@@ -11,6 +11,7 @@ const Text = useResponsiveComponent(
 
 const Scenario = () => {
   const textRef = React.useRef({})
+  const [state, setState] = React.useState('red')
   const [refDerivedData, setRefDerivedData] = React.useState(null)
 
   React.useEffect(() => {
@@ -27,13 +28,15 @@ const Scenario = () => {
         sizeLg={24}
         color="black"
         colorSm="green"
-        colorLg="red"
+        colorLg={state}
       >
-        Quick brown fox
+        <p>
+          Quick brown fox (<span id="ref">#{refDerivedData}</span>)
+        </p>
+        <button id="change-color" onClick={() => setState('violet')}>
+          Make violet
+        </button>
       </Text>
-      <p>
-        Ref: <span id="ref">#{refDerivedData}</span>
-      </p>
     </div>
   )
 }
