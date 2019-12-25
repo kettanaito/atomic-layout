@@ -31,7 +31,7 @@
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "test:e2e": "yarn cypress:cli",
-    "verify": "yarn lint && yarn build && yarn bundlesize && yarn test",
+    "verify": "yarn lint && yarn build && yarn bundlesize && yarn build:storybook && yarn test",
     "prepublishOnly": "yarn verify"
   },
   "bundlesize": [
