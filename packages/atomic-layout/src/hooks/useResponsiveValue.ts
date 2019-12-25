@@ -11,11 +11,11 @@ const useResponsiveValue = <ValueType>(
   breakpoints: Record<string, ValueType>,
   defaultValue?: ValueType,
 ): ValueType => {
-  const [value, updateValue] = useState<ValueType>(defaultValue)
+  const [value, setValue] = useState<ValueType>(defaultValue)
 
   useBreakpointChange(() => {
     const nextValue = withBreakpoints<ValueType>(breakpoints, defaultValue)
-    updateValue(nextValue)
+    setValue(nextValue)
   })
 
   return value
