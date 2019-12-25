@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kettanaito/atomic-layout/packages/atomic-layout-core"
+    "url": "https://github.com/kettanaito/atomic-layout/tree/master/packages/atomic-layout-core"
   },
   "bugs": {
     "url": "https://github.com/kettanaito/atomic-layout/issues"
