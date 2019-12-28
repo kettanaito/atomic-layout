@@ -8,11 +8,11 @@ const { NODE_ENV: nodeEnv } = process.env
 const PRODUCTION = nodeEnv === 'production'
 const __PROD__ = PRODUCTION ? 'true' : '""'
 
-const buildEsm = {
+export default {
   input: packageJson.esnext,
   output: {
     file: path.resolve(__dirname, packageJson.main),
-    format: 'esm',
+    format: 'cjs',
   },
   plugins: [
     resolve({
@@ -25,5 +25,3 @@ const buildEsm = {
     }),
   ],
 }
-
-export default buildEsm
