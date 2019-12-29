@@ -2,8 +2,9 @@
  * @jest-environment node
  */
 import React from 'react'
+import styled from 'styled-components'
 import { renderToString } from 'react-dom/server'
-import { Box, Only, Composition } from '../src'
+import { Box, Only, Composition, useResponsiveComponent } from '../src'
 
 describe('Server-side rendering', () => {
   it('renders on a server without crashing', () => {
@@ -24,5 +25,14 @@ describe('Server-side rendering', () => {
       )
 
     expect(renderOnServer).not.toThrow()
+  })
+
+  it('renders with the src attribute', () => {
+    const StyledImage = styled.img`
+      border-radius: 5px;
+    `
+    const ElementImage = useResponsiveComponent(StyledImage)
+    const ElementImageHtml = renderToString(<ElementImage src="foo.png" />)
+    expect(ElementImageHtml).toContain('src="foo.png"')
   })
 })
