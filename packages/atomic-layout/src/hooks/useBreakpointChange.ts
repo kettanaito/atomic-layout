@@ -1,5 +1,6 @@
 import { Layout, Breakpoints, createMediaQuery } from '@atomic-layout/core'
 import useViewportChange from './useViewportChange'
+import { getCompatibleMatchMedia } from '../utils/getCompatibleMatchMedia'
 
 /**
  * Executes a given callback upon any breakpoint change.
@@ -16,7 +17,7 @@ const useBreakpointChange = (
     const nextBreakpointName = Object.keys(breakpoints).find(
       (breakpointName) => {
         const mediaQuery = createMediaQuery(breakpoints[breakpointName], 'only')
-        return matchMedia(mediaQuery).matches
+        return getCompatibleMatchMedia(mediaQuery).matches
       },
     )
 

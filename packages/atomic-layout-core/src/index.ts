@@ -43,4 +43,5 @@ export {
 export { default as warn } from './utils/functions/warn'
 export { default as compose } from './utils/functions/compose'
 export { default as throttle } from './utils/functions/throttle'
+export { default as isServer } from './utils/functions/isServer'
 export { default as transformNumeric } from './utils/math/transformNumeric'

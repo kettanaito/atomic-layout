@@ -6,6 +6,7 @@ import {
   parsePropName,
 } from '@atomic-layout/core'
 import useBreakpointChange from './useBreakpointChange'
+import { getCompatibleMatchMedia } from '../utils/getCompatibleMatchMedia'
 
 /**
  * Accepts an object of responsive props and returns
@@ -25,7 +26,7 @@ const useResponsiveProps = <ResponsiveProps extends Record<string, Numeric>>(
           Layout.breakpoints[breakpoint.name],
           behavior,
         )
-        const { matches } = matchMedia(mediaQuery)
+        const { matches } = getCompatibleMatchMedia(mediaQuery)
 
         return matches
       })
