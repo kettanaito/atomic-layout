@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo-full.png" width="400" alt="Atomic Layout logo" />
+  <img src="https://raw.githubusercontent.com/kettanaito/atomic-layout/master/packages/atomic-layout-emotion/logo-full.png" width="400" alt="Atomic Layout logo" />
 </p>
 
 <div align="center">
