@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo-full.png" width="400" alt="Atomic Layout logo" />
+  <img src="https://raw.githubusercontent.com/kettanaito/atomic-layout/master/logo-full.png" width="400" alt="Atomic Layout logo" />
 </p>
 
 <div align="center">
@@ -125,7 +125,7 @@ Here are some shortcuts for quick access:
   <tr>
     <td>
       <a href="https://www.youtube.com/watch?v=_HrXUB97xQs">
-        <img width="500" src="./materials/react-finland-thumbnail.jpg" alt="Artem speaking at React Finland" />
+        <img width="500" src="https://github.com/kettanaito/atomic-layout/blob/master/materials/react-finland-thumbnail.jpg" alt="Artem speaking at React Finland" />
       </a>
     </td>
     <td>
@@ -148,7 +148,7 @@ Here are some shortcuts for quick access:
   <tr>
     <td>
       <a href="https://www.youtube.com/watch?v=x_93DjN_bUA">
-        <img width="500" src="./materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
+        <img width="500" src="https://github.com/kettanaito/atomic-layout/blob/master/materials/react-vienna-thumbnail.jpg" alt="The Future of Layouts — Artem Zakharchenko" />
       </a>
     </td>
     <td>
