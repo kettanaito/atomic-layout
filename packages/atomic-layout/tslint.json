@@ -2,6 +2,7 @@
   "extends": ["tslint-react", "../../tslint.json"],
   "rules": {
     "no-console": true,
+    "no-submodule-imports": false,
     "jsx-boolean-value": ["never"],
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false
