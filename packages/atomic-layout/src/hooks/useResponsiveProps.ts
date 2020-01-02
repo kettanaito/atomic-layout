@@ -3,9 +3,47 @@ import {
   Numeric,
   Layout,
   createMediaQuery,
+  ParsedProp,
   parsePropName,
 } from '@atomic-layout/core'
 import useBreakpointChange from './useBreakpointChange'
+
+type MatcherFunction = (parsedProp: ParsedProp) => boolean
+
+/**
+ * Default responsive props matcher.
+ * Creates a media query based on the given prop's breakpoint
+ * and uses native "window.matchMedia" to assert the match.
+ */
+const defaultMatcher: MatcherFunction = (parsedProp) => {
+  const { breakpoint, behavior } = parsedProp
+  const mediaQuery = createMediaQuery(
+    Layout.breakpoints[breakpoint.name],
+    behavior,
+  )
+
+  return matchMedia(mediaQuery).matches
+}
+
+/**
+ * Filters given responsive props against the browser state.
+ * Accepts an optional matcher function to operate on a server.
+ */
+const filterProps = <R>(
+  props: Record<string, any>,
+  matcher: MatcherFunction = defaultMatcher,
+) => {
+  return Object.keys(props)
+    .map(parsePropName)
+    .filter(matcher)
+    .reduce<R>(
+      (acc, { originPropName, purePropName }) => ({
+        ...acc,
+        [purePropName]: props[originPropName],
+      }),
+      {} as R,
+    )
+}
 
 /**
  * Accepts an object of responsive props and returns
@@ -14,30 +52,15 @@ import useBreakpointChange from './useBreakpointChange'
 const useResponsiveProps = <ResponsiveProps extends Record<string, Numeric>>(
   responsiveProps: ResponsiveProps,
 ): Partial<ResponsiveProps> => {
-  const [props, setProps] = useState<ResponsiveProps>()
+  const [props, setProps] = useState<ResponsiveProps>(
+    filterProps(responsiveProps, ({ breakpoint }) => {
+      return breakpoint.isDefault && typeof window === 'undefined'
+    }),
+  )
   const [breakpointName, setBreakpointName] = useState<string>()
 
   const resolveProps = (inputProps: ResponsiveProps) => {
-    const nextProps = Object.keys(inputProps)
-      .map(parsePropName)
-      .filter(({ breakpoint, behavior }) => {
-        const mediaQuery = createMediaQuery(
-          Layout.breakpoints[breakpoint.name],
-          behavior,
-        )
-        const { matches } = matchMedia(mediaQuery)
-
-        return matches
-      })
-      .reduce<ResponsiveProps>(
-        (acc, { originPropName, purePropName }) => ({
-          ...acc,
-          [purePropName]: inputProps[originPropName],
-        }),
-        {} as ResponsiveProps,
-      )
-
-    return nextProps
+    return filterProps<ResponsiveProps>(inputProps)
   }
 
   // Store the current breakpoint name in the state.
