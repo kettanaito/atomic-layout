@@ -28,6 +28,7 @@
     "bundlesize:esm": "bundlesize -f lib/esm/index.js",
     "cypress": "cypress open --env envName=dev",
     "cypress:cli": "cypress run --spec=./examples/all.test.js --browser=chrome --env envName=ci",
+    "jest": "jest",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "test:e2e": "yarn cypress:cli",
