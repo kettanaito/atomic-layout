@@ -31,7 +31,11 @@ export {
   PropAliases,
   PropAliasDeclaration,
 } from './const/propAliases'
-export { default as parsePropName } from './utils/strings/parsePropName'
+export {
+  default as parsePropName,
+  ParsedProp,
+  ParsedBreakpoint,
+} from './utils/strings/parsePropName'
 export { default as parseTemplates } from './utils/templates/parseTemplates'
 export {
   default as generateComponents,
