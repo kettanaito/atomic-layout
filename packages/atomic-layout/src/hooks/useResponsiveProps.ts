@@ -26,6 +26,19 @@ const defaultMatcher: MatcherFunction = (parsedProp) => {
 }
 
 /**
+ * Server-side responsive props matcher.
+ * Apply props with the default breakpoint on the server.
+ * Server assumes the default breakpoint is currently present.
+ *
+ * @TODO Resolve for non-default breakpoints.
+ * @see https://github.com/kettanaito/atomic-layout/issues/284
+ */
+const serverMatcher: MatcherFunction = (parsedProp) => {
+  const { breakpoint } = parsedProp
+  return breakpoint.isDefault && typeof window === 'undefined'
+}
+
+/**
  * Filters given responsive props against the browser state.
  * Accepts an optional matcher function to operate on a server.
  */
@@ -53,9 +66,7 @@ const useResponsiveProps = <ResponsiveProps extends Record<string, Numeric>>(
   responsiveProps: ResponsiveProps,
 ): Partial<ResponsiveProps> => {
   const [props, setProps] = useState<ResponsiveProps>(
-    filterProps(responsiveProps, ({ breakpoint }) => {
-      return breakpoint.isDefault && typeof window === 'undefined'
-    }),
+    filterProps(responsiveProps, serverMatcher),
   )
   const [breakpointName, setBreakpointName] = useState<string>()
 
