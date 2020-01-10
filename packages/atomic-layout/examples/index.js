@@ -119,5 +119,8 @@ storiesOf('Recipes|All', module).add('Iterative areas', IterativeAreas)
  * Bugfixes
  */
 import StylesUndefined from './regression/StylesUndefined'
+import SingleResponsiveProp from './regression/SingleResponsiveProp'
 
-storiesOf('Regression|All', module).add('Styles undefined', StylesUndefined)
+storiesOf('Regression|All', module)
+  .add('Styles undefined', StylesUndefined)
+  .add('Single responsive prop', SingleResponsiveProp)
