@@ -82,4 +82,5 @@ describe('Recipes', () => {
  */
 describe('Regression tests', () => {
   require('./regression/StylesUndefined.test')
+  require('./regression/SingleResponsiveProp.test')
 })
