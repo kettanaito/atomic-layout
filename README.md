@@ -92,7 +92,39 @@ There are some shortcuts to get you started:
 
 ## Examples
 
-- Flats list (https://codesandbox.io/s/5wwp76310n)
+### Basics
+
+<table border="0">
+  <tr>
+    <td width="33%" valign="top">
+      <a href="" target="_blank">
+        <img src="" alt="Basic composition image" />
+      </a>
+      <a href="https://codesandbox.io/s/simple-composition-5mvlr" target="_blank">
+        <h4>Basic composition</h4>
+      </a>
+      <p>Combine two UI elements into a single one using Composition.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://codesandbox.io/s/responsive-props-8m14f" target="_blank">
+        <img src="" alt="Responsive props image" />
+      </a>
+      <a href="https://codesandbox.io/s/responsive-props-8m14f" target="_blank">
+        <h4>Responsive props</h4>
+      </a>
+      <p>Learn how to change a prop's value depending on a breakpoint.</p>
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://codesandbox.io/s/nested-composition-8p8pk" target="_blank">
+        <img src="" alt="Nested composition image" />
+      </a>
+      <a href="https://codesandbox.io/s/nested-composition-8p8pk" target="_blank">
+        <h4>Nested composition</h4>
+      </a>
+      <p>Any element can be a composition <i>and</i> a composite at the same time.</p>
+    </td>
+  </tr>
+</table>
 
 ## Materials
 
