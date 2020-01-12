@@ -99,6 +99,4 @@ const buildTargets = {
   umd: buildUmd,
 }
 
-console.log('@atomic-layout/emotion: building "%s" module type', TARGET)
-
 export default TARGET ? buildTargets[TARGET] : Object.values(buildTargets)

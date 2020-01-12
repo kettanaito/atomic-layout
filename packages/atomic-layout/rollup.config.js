@@ -43,7 +43,7 @@ export const babel = (overrides = {}) => {
   })
 }
 
-export const typescript = () => {
+export const typescript = (options = {}) => {
   return tsPlugin({
     clean: true,
     // Disable type checking during the build
@@ -61,6 +61,7 @@ export const typescript = () => {
     // Provide custom TypeScript instance so it can
     // resolve path aliases (i.e. "@utils/").
     typescript: ttypescript,
+    ...options,
   })
 }
 
