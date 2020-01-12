@@ -5,7 +5,7 @@ import {
   closeBreakpoint,
   mergeAreaRecords,
 } from '@atomic-layout/core'
-import Box from './Box'
+import { Box } from './Box'
 import { useMediaQuery } from '../'
 import {
   OnlyProps,
@@ -20,7 +20,7 @@ const VisibleContainer = styled(Box)<{ matches: boolean }>`
     `}
 `
 
-const Visible: React.FC<OnlyProps> = ({
+export const Visible: React.FC<OnlyProps> = ({
   children,
   except,
   for: exactBreakpointName,
@@ -75,5 +75,3 @@ const Visible: React.FC<OnlyProps> = ({
     </VisibleContainer>
   )
 }
-
-export default Visible

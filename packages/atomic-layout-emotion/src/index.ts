@@ -2,10 +2,10 @@ import { Layout } from '@atomic-layout/core'
 export default Layout
 
 /* Components */
-export { default as Box } from './components/Box'
-export { default as Composition } from './components/Composition'
-export { default as Only } from './components/Only'
-export { default as Visible } from './components/Visible'
+export { Box } from './components/Box'
+export { Composition } from './components/Composition'
+export { Only } from './components/Only'
+export { Visible } from './components/Visible'
 
 /* Hooks */
 export {

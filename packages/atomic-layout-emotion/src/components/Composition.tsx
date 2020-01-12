@@ -9,7 +9,7 @@ import {
   generateComponents,
 } from '@atomic-layout/core'
 import styled from '@emotion/styled'
-import Box from './Box'
+import { Box } from './Box'
 import { withPlaceholder } from '../../../atomic-layout/src/utils/withPlaceholder'
 
 const CompositionWrapper = styled.div<CompositionProps>`
@@ -23,7 +23,7 @@ const createAreaComponent = (areaName: string): AreaComponent => (
   props: BoxProps,
 ) => <Box area={areaName} {...props} />
 
-const Composition: React.FC<CompositionProps> = ({
+export const Composition: React.FC<CompositionProps> = ({
   children,
   ...restProps
 }) => {
@@ -45,5 +45,3 @@ const Composition: React.FC<CompositionProps> = ({
     </CompositionWrapper>
   )
 }
-
-export default Composition
