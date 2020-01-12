@@ -9,9 +9,9 @@ import {
   createWrapper,
   resolveBreakpoint,
 } from '../../../atomic-layout/src/components/Only'
-import Box from './Box'
+import { Box } from './Box'
 
-const Only: React.FC<OnlyProps> = ({
+export const Only: React.FC<OnlyProps> = ({
   children,
   except,
   for: exactBreakpointName,
