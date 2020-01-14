@@ -98,7 +98,7 @@ There are some shortcuts to get you started:
   <tr>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/simple-composition-5mvlr" target="_blank">
-        <img src="materials/example-thumbnails/simple-composition.jpg" alt="Basic composition: square and circle" />
+        <img src="materials/example-thumbnails/basic-composition.jpg" alt="Basic composition: square and circle" />
         <h4>Basic composition</h4>
       </a>
       <p>Combine two UI elements into a single one using Composition.</p>
