@@ -97,7 +97,7 @@ There are some shortcuts to get you started:
 <table border="0">
   <tr>
     <td width="33%" valign="top">
-      <a href="https://codesandbox.io/s/simple-composition-5mvlr" target="_blank">
+      <a href="https://codesandbox.io/s/basic-composition-5mvlr" target="_blank">
         <img src="materials/example-thumbnails/basic-composition.jpg" alt="Basic composition: square and circle" />
         <h4>Basic composition</h4>
       </a>
