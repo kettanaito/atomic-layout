@@ -42,6 +42,7 @@ second third
       expect(areas).toEqual(['first', 'second', 'third'])
     })
   })
+
   describe('given a template string written in "grid-template" syntax', () => {
     let areas: string[]
 
@@ -65,6 +66,28 @@ second third
       expect(areas).toContain('aside')
       expect(areas).toContain('content')
       expect(areas).toContain('header')
+    })
+  })
+
+  describe('given a template string with placeholder dots', () => {
+    let areas: string[]
+
+    beforeAll(() => {
+      areas = sanitizeTemplateString(`
+        first . second
+        third fourth .
+      `)
+    })
+
+    it('should contain list of areas names', () => {
+      expect(areas).toContain('first')
+      expect(areas).toContain('second')
+      expect(areas).toContain('third')
+      expect(areas).toContain('fourth')
+    })
+
+    it('should not any contain placeholder characters', () => {
+      expect(areas).not.toContain('.')
     })
   })
 })
