@@ -13,7 +13,7 @@ const joinTemplateFragments = (fragments: string[]): string => {
   const suffixes: string[] = []
 
   fragments.forEach((areaName) => {
-    if (isAreaName(areaName, true)) {
+    if (isAreaName(areaName) || /\.+/.test(areaName)) {
       areas.push(areaName)
     } else {
       suffixes.push(areaName)
