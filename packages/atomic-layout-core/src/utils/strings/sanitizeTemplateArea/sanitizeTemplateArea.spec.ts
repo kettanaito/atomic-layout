@@ -32,4 +32,12 @@ describe('sanitizeTemplateArea', () => {
       )
     })
   })
+
+  describe('given a template string with placeholder dots', () => {
+    it('should return a parsed template string including dots', () => {
+      expect(sanitizeTemplateArea('first . second ... third')).toEqual(
+        `'first . second ... third'`,
+      )
+    })
+  })
 })

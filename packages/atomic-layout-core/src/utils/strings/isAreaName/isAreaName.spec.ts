@@ -16,7 +16,24 @@ describe('isAreaName', () => {
 
   describe('given a reserved keyword', () => {
     it('should return false', () => {
+      expect(isAreaName('/')).toBe(false)
       expect(isAreaName('auto')).toBe(false)
+    })
+  })
+
+  describe('given a dot placeholder', () => {
+    describe('given a single dot character', () => {
+      it('should return false', () => {
+        expect(isAreaName('.')).toBe(false)
+      })
+    })
+
+    describe('given a sequence of dots', () => {
+      it('should return false', () => {
+        expect(isAreaName('..')).toBe(false)
+        expect(isAreaName('....')).toBe(false)
+        expect(isAreaName('.......')).toBe(false)
+      })
     })
   })
 })

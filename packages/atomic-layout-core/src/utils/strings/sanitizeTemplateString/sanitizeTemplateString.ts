@@ -3,8 +3,11 @@ import isAreaName from '../isAreaName'
 
 type SanitizeTemplateString = (str: string) => string[]
 
-// Returns an array of unique normalized grid areas
-// from the given template string.
+/**
+ * Returns an array of unique normalized grid area names
+ * from the given template string. Any member of the returned list
+ * is later evolved into a React component.
+ */
 const sanitizeTemplateString: SanitizeTemplateString = compose(
   (list: string[]): string[] => list.sort(),
 
@@ -12,7 +15,7 @@ const sanitizeTemplateString: SanitizeTemplateString = compose(
   (list: string[]): string[] => Array.from(new Set(list)),
 
   // Filter out "template" row/columns sizes
-  (arr: string[]): string[] => arr.filter(isAreaName),
+  (arr: string[]): string[] => arr.filter((areaName) => isAreaName(areaName)),
 
   // Filter out empty area strings
   (arr: string[]): string[] => arr.filter(Boolean),
