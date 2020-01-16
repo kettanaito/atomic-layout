@@ -15,7 +15,7 @@ const sanitizeTemplateString: SanitizeTemplateString = compose(
   (list: string[]): string[] => Array.from(new Set(list)),
 
   // Filter out "template" row/columns sizes
-  (arr: string[]): string[] => arr.filter((areaName) => isAreaName(areaName)),
+  (arr: string[]): string[] => arr.filter(isAreaName),
 
   // Filter out empty area strings
   (arr: string[]): string[] => arr.filter(Boolean),

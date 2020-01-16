@@ -1,4 +1,7 @@
 export const keywords = [
+  // Dot symbol (and its sequence) is a valid placeholder,
+  // but not a valid CSS Grid area name.
+  /\.+/,
   // Numbers may be present in `grid-template` definition
   // and describe dimensions of rows/columns.
   /^[0-9]/,
@@ -15,11 +18,8 @@ export const keywords = [
  * Takes into account row/column dimensions and reserved
  * keywords used in the `grid-template` definition.
  */
-export default function isAreaName(
-  areaName: string,
-  tolerateDots?: boolean,
-): boolean {
-  return keywords.concat(tolerateDots ? [] : /\.+/).every((keyword) => {
+export default function isAreaName(areaName: string): boolean {
+  return keywords.every((keyword) => {
     return keyword instanceof RegExp
       ? !keyword.test(areaName)
       : areaName !== keyword
