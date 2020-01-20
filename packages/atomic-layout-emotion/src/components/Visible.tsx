@@ -6,7 +6,7 @@ import {
   mergeAreaRecords,
 } from '@atomic-layout/core'
 import { Box } from './Box'
-import { useMediaQuery } from '../'
+import { useMediaQuery } from '../../../atomic-layout/src/hooks/useMediaQuery'
 import {
   OnlyProps,
   resolveBreakpoint,

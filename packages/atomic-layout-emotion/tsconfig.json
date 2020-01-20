@@ -12,8 +12,9 @@
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": ".",
-    "types": ["jest"]
+    "types": ["jest"],
+    "rootDirs": ["src", "../atomic-layout/src"]
   },
-  "include": ["src/**/*", "../atomic-layout/src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

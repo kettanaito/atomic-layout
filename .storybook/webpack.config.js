@@ -10,7 +10,14 @@ const entryPropertyName = {
 const resolveBuildPath = (relativeProjectPath, moduleType) => {
   const projectPath = path.resolve(__dirname, '../', relativeProjectPath)
   const packageJson = require(`${projectPath}/package.json`)
-  return path.resolve(projectPath, packageJson[entryPropertyName[moduleType]])
+  const buildPath = path.resolve(
+    projectPath,
+    packageJson[entryPropertyName[moduleType]],
+  )
+
+  console.log({ relativeProjectPath, projectPath, moduleType, buildPath })
+
+  return buildPath
 }
 
 module.exports = async ({ config }) => {
@@ -20,7 +27,7 @@ module.exports = async ({ config }) => {
 
   console.log(
     `
-Building Storybook with the ${MODULE_TYPE.toUpperCase()} build of "atomic-layout"
+Building Storybook with the ${MODULE_TYPE.toUpperCase()} build of "${PACKAGE}"
 Imports of "atomic-layout" aliased to "${moduleFilePath}"
 Storybook stories loaded from "${examplesDir}"
 `,

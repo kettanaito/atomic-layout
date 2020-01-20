@@ -67,5 +67,3 @@ export const Only: React.FC<OnlyProps> = ({
   // Render always when no constrains are provided
   return <>children</>
 }
-
-export default Only
