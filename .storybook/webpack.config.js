@@ -15,8 +15,6 @@ const resolveBuildPath = (relativeProjectPath, moduleType) => {
     packageJson[entryPropertyName[moduleType]],
   )
 
-  console.log({ relativeProjectPath, projectPath, moduleType, buildPath })
-
   return buildPath
 }
 
@@ -57,6 +55,7 @@ Please make sure you point to the existing build module.
    */
   const patchBabelLoader = (rule) => {
     if (rule.include) {
+      console.log('babel-loader successfully patched!')
       rule.include = rule.include.concat(examplesDir)
     }
   }

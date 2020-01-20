@@ -96,6 +96,7 @@ const buildCjs = {
   plugins: [
     resolve(),
     typescript(),
+    commonjs(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
