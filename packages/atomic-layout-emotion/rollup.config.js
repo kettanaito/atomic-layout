@@ -94,9 +94,28 @@ const buildUmd = {
   onwarn: warnOnMissingDependency,
 }
 
+const buildEsm = {
+  input,
+  external,
+  output: {
+    file: getPath(packageJson.module),
+    format: 'esm',
+    sourcemap: PRODUCTION,
+  },
+  plugins: [
+    resolve({
+      mainFields: ['esnext'],
+    }),
+    typescript(),
+    babel(),
+    PRODUCTION && sourceMaps(),
+  ],
+}
+
 const buildTargets = {
   cjs: buildCjs,
   umd: buildUmd,
+  esm: buildEsm,
 }
 
 export default TARGET ? buildTargets[TARGET] : Object.values(buildTargets)
