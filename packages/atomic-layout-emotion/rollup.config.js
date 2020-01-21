@@ -62,9 +62,8 @@ const buildUmd = {
     sourcemap: PRODUCTION,
     globals: {
       react: 'React',
-      /**
-       * @TODO add "@emotion/core" and "@emotion/styled" as globals.
-       */
+      '@emotion/core': 'emotionCore',
+      '@emotion/styled': 'emotionStyled',
     },
   },
   plugins: [
