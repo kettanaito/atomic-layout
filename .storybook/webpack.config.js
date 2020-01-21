@@ -22,6 +22,9 @@ module.exports = async ({ config }) => {
   const { PACKAGE, MODULE_TYPE } = process.env
   const moduleFilePath = resolveBuildPath(PACKAGE, MODULE_TYPE)
   const examplesDir = path.resolve(__dirname, '../examples')
+  const stylingModule = PACKAGE.includes('emotion')
+    ? '@emotion/styled'
+    : 'styled-components'
 
   console.log(
     `
@@ -77,6 +80,7 @@ Please make sure you point to the existing build module.
   config.resolve.alias = {
     ...config.resolve.alias,
     'atomic-layout': moduleFilePath,
+    'supported-styling-library': stylingModule,
     '@stories': examplesDir,
   }
 
