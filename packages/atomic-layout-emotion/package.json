@@ -6,6 +6,7 @@
   "esnext": "src/index.ts",
   "main": "lib/cjs/index.js",
   "umd:main": "lib/umd/index.js",
+  "module": "lib/esm/index.js",
   "scripts": {
     "start": "rollup -c -w",
     "storybook": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=cjs start-storybook -p 6020 -c ../../.storybook",
@@ -15,11 +16,14 @@
     "build:all": "rollup -c --environment NODE_ENV:production",
     "build:cjs": "rollup -c --environment NODE_ENV:production,TARGET:cjs",
     "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
+    "build:esm": "rollup -c --environment NODE_ENV:production,TARGET:esm",
     "build:storybook": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=cjs build-storybook -c ../../.storybook",
     "build:storybook:umd": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=umd build-storybook -c ../../.storybook",
+    "build:storybook:esm": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=esm build-storybook -c ../../.storybook",
     "bundlesize": "bundlesize",
     "bundlesize:cjs": "bundlesize -f lib/cjs/index.js",
     "bundlesize:umd": "bundlesize -f lib/umd/index.js",
+    "bundlesize:esm": "bundlesize -f lib/esm/index.js",
     "cypress": "(cd ../../ && cypress open --env envName=dev)",
     "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)",
     "tsc": "tsc"
@@ -31,6 +35,10 @@
     },
     {
       "path": "lib/umd/index.js",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "lib/esm/index.js",
       "maxSize": "10 kB"
     }
   ],
