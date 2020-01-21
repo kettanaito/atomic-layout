@@ -202,6 +202,16 @@ jobs:
   ##
   # Emotion
   ##
+  emotion-test-unit:
+    <<: *node-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: Running unit tests
+          command: yarn test:unit
+          working_directory: packages/atomic-layout-emotion
+
   emotion-build-cjs:
     <<: *node-env
     steps:
@@ -352,6 +362,10 @@ workflows:
             - styled-build-esm
 
       # emotion
+      - emotion-test-unit:
+          requires:
+            - bootstrap
+
       - emotion-build-cjs:
           requires:
             - bootstrap
