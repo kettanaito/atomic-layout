@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'supported-styling-library'
 import { useResponsiveProps } from 'atomic-layout'
 
 const Avatar = styled.div`
