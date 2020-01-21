@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'supported-styling-library'
 
 const Square = styled.span`
   box-sizing: border-box;

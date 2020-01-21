@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'supported-styling-library'
 import { useResponsiveComponent } from 'atomic-layout'
 
 const Text = useResponsiveComponent(
