@@ -247,6 +247,73 @@ jobs:
           working_directory: packages/atomic-layout-emotion
       - persist_to_workspace: *persist-build
 
+  emotion-test-e2e-cjs:
+    <<: *e2e-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout-emotion/lib
+      - run:
+          name: Building Storybook (CJS)
+          command: yarn build:storybook
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Integration tests
+          command: yarn test:e2e
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Creating test results directory
+          command: mkdir test-results
+          working_directory: packages/atomic-layout-emotion
+      - store_test_results:
+          path: packages/atomic-layout-emotion/test-results
+      - store_artifacts:
+          path: packages/atomic-layout-emotion/cypress/screenshots
+
+  emotion-test-e2e-umd:
+    <<: *e2e-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout-emotion/lib
+      - run:
+          name: Building Storybook (UMD)
+          command: yarn build:storybook:umd
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Integration tests
+          command: yarn test:e2e
+          working_directory: packages/atomic-layout-emotion
+      - store_test_results:
+          path: packages/atomic-layout-emotion/test-results
+      - store_artifacts:
+          path: packages/atomic-layout-emotion/cypress/screenshots
+
+  emotion-test-e2e-esm:
+    <<: *e2e-env
+    steps:
+      - attach_workspace: *workspace
+      - restore_cache: *yarn-cache
+      - run:
+          name: DEBUG Check that CJS build exists
+          command: ls -R packages/atomic-layout-emotion/lib
+      - run:
+          name: Building Storybook (ESM)
+          command: yarn build:storybook:esm
+          working_directory: packages/atomic-layout-emotion
+      - run:
+          name: Integration tests
+          command: yarn test:e2e
+          working_directory: packages/atomic-layout-emotion
+      - store_test_results:
+          path: packages/atomic-layout-emotion/test-results
+      - store_artifacts:
+          path: packages/atomic-layout-emotion/cypress/screenshots
+
 workflows:
   version: 2
   release:
@@ -268,7 +335,6 @@ workflows:
             - bootstrap
       - styled-test-e2e-cjs:
           requires:
-            - bootstrap
             - styled-build-cjs
 
       - styled-build-umd:
@@ -276,7 +342,6 @@ workflows:
             - bootstrap
       - styled-test-e2e-umd:
           requires:
-            - bootstrap
             - styled-build-umd
 
       - styled-build-esm:
@@ -284,7 +349,6 @@ workflows:
             - bootstrap
       - styled-test-e2e-esm:
           requires:
-            - bootstrap
             - styled-build-esm
 
       # emotion
@@ -299,3 +363,13 @@ workflows:
       - emotion-build-esm:
           requires:
             - bootstrap
+
+      - emotion-test-e2e-cjs:
+          requires:
+            - emotion-build-cjs
+      - emotion-test-e2e-umd:
+          requires:
+            - emotion-build-umd
+      - emotion-test-e2e-esm:
+          requires:
+            - emotion-build-esm
