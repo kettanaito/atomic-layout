@@ -25,6 +25,8 @@
     "bundlesize:umd": "bundlesize -f lib/umd/index.js",
     "bundlesize:esm": "bundlesize -f lib/esm/index.js",
     "cypress": "(cd ../../ && cypress open --env envName=dev)",
+    "test": "yarn test:unit && yarn test:e2e",
+    "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
     "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)",
     "tsc": "tsc"
   },
@@ -52,7 +54,8 @@
   },
   "devDependencies": {
     "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.23"
+    "@emotion/styled": "10.0.23",
+    "react-dom": "^16.12.0"
   },
   "files": [
     "lib",
