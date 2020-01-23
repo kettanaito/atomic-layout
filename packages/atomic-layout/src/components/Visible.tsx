@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   openBreakpoint,
   closeBreakpoint,
@@ -13,7 +13,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery'
 const VisibleContainer = styled(Box)<{ matches: boolean }>`
   ${({ matches }) =>
     !matches &&
-    css`
+    `
       visibility: hidden;
     `}
 `
