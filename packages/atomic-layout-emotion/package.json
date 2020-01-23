@@ -58,6 +58,7 @@
   "devDependencies": {
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.23",
+    "babel-plugin-transform-rename-import": "^2.3.0",
     "react-dom": "^16.12.0"
   },
   "files": [
