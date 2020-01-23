@@ -29,7 +29,9 @@
     "cypress": "(cd ../../ && cypress open --env envName=dev)",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
-    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)"
+    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)",
+    "verify": "yarn lint && yarn build && yarn bundlesize && yarn build:storybook && yarn test",
+    "prepublishOnly": "yarn verify"
   },
   "bundlesize": [
     {
