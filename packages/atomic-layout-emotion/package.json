@@ -7,12 +7,14 @@
   "main": "lib/cjs/index.js",
   "umd:main": "lib/umd/index.js",
   "module": "lib/esm/index.js",
+  "types": "lib/types/atomic-layout-emotion/src/index.d.ts",
   "scripts": {
     "start": "rollup -c -w",
     "storybook": "cross-env PACKAGE=packages/atomic-layout-emotion MODULE_TYPE=cjs start-storybook -p 6020 -c ../../.storybook",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "clean": "rimraf lib",
-    "build": "yarn clean && yarn build:all",
+    "build": "yarn clean && yarn build:types && yarn build:all",
+    "build:types": "ttsc --skipLibCheck",
     "build:all": "rollup -c --environment NODE_ENV:production",
     "build:cjs": "rollup -c --environment NODE_ENV:production,TARGET:cjs",
     "build:umd": "rollup -c --environment NODE_ENV:production,TARGET:umd",
@@ -27,8 +29,7 @@
     "cypress": "(cd ../../ && cypress open --env envName=dev)",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "cross-env BABEL_ENV=test jest --runInBand",
-    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)",
-    "tsc": "tsc"
+    "test:e2e": "(cd ../../ && cypress run --spec ./examples/all.test.js --browser chrome --env envName=ci,package=packages/atomic-layout-emotion)"
   },
   "bundlesize": [
     {
