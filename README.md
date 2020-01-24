@@ -1,16 +1,10 @@
-[![Package version](https://img.shields.io/npm/v/atomic-layout.svg)][npm-url]
-[![Package size](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)][bundlephobia-url]
-[![Build status](https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg)][build-url]
-[![Test coverage](https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg)][test-coverage-url]
-[![Dependencies status](https://img.shields.io/david/kettanaito/atomic-layout.svg)][dependencies-url]
-
 [![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat)][community-reactiflux]
 [![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
 
 <br/>
 
 <p align="center">
-  <img src="./logo.svg" width="200" alt="Atomic Layout logo" />
+  <img src="https://raw.githubusercontent.com/kettanaito/atomic-layout/d10ba4587cf70cfacba05d8d71055520ff904d39/logo.svg?sanitize=true" width="200" alt="Atomic Layout logo" />
 </p>
 
 <h1 align="center">Atomic Layout</h1>
