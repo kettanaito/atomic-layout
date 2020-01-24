@@ -73,11 +73,14 @@ Atomic Layout helps you to compose your elements by introducing a dedicated spac
 
 ## Install
 
-```bash
-npm install atomic-layout
-```
+Atomic Layout ships multiple packages that are compatible with different CSS-in-JS libraries.
 
-> Make sure to have [React][react] (16.0+) and [styled-components][styled-components] (4.0+) installed.
+Find a detailed installation instructions by clicking on the Atomic Layout package related to a styling solution you would like to use.
+
+| Atomic Layout package                                        | Latest version                                                              | Styling library     |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------- |
+| [`atomic-layout`](./packages/atomic-layout)                  | ![Package version](https://img.shields.io/npm/v/atomic-layout.svg)          | `styled-components` |
+| [`@atomic-layout/emotion`](./packages/atomic-layout-emotion) | ![Package version](https://img.shields.io/npm/v/@atomic-layout/emotion.svg) | `@emotion/styled`   |
 
 ## Documentation
 
@@ -91,6 +94,8 @@ There are some shortcuts to get you started:
 - [Recipes](https://redd.gitbook.io/atomic-layout/recipes/semantics)
 
 ## Examples
+
+> The examples below are going to use the `atomic-layout` library based on `styled-components`. To apply these examples to other Atomic Layout packages (i.e. `@atomic-layout/styled`) install that package properly and follow _the very same example_.
 
 ### Basics
 
