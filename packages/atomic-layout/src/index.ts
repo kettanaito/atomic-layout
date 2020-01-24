@@ -9,9 +9,9 @@ export { default as Only } from './components/Only'
 export { default as Visible } from './components/Visible'
 
 /* Hooks */
+export { useMediaQuery } from './hooks/useMediaQuery'
 export { default as useViewportChange } from './hooks/useViewportChange'
-export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 export { default as useBreakpointChange } from './hooks/useBreakpointChange'
+export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 export { default as useResponsiveProps } from './hooks/useResponsiveProps'
 export { default as useResponsiveComponent } from './hooks/useResponsiveComponent'
-export { useMediaQuery } from './hooks/useMediaQuery'

@@ -13,6 +13,11 @@ import {
 } from '../atomic-layout/rollup.config'
 import packageJson from './package.json'
 
+// Require `@atomic-layout/emotion` speciric Babel config
+// to explicitly pass it to "babel" Rollup plugin in order
+// for import replacement of "styled-components" to be applied.
+const babelConfig = require('./babel.config')
+
 const { nodeEnv, TARGET, PRODUCTION } = getEnv(process.env)
 
 const BUILD_DIR = '.'
@@ -34,6 +39,7 @@ const buildCjs = {
   plugins: [
     resolve(),
     typescript(),
+    babel(babelConfig),
     replace({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
@@ -72,7 +78,7 @@ const buildUmd = {
     replace({
       'process.env.NODE_ENV': JSON.stringify(nodeEnv),
     }),
-    babel(),
+    babel(babelConfig),
     commonjs({
       namedExports: {
         tslib: ['__makeTemplateObject', '__rest'],
@@ -106,7 +112,7 @@ const buildEsm = {
       mainFields: ['esnext'],
     }),
     typescript(),
-    babel(),
+    babel(babelConfig),
     PRODUCTION && sourceMaps(),
   ],
 }
