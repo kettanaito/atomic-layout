@@ -1,19 +1,18 @@
 import { Layout } from '@atomic-layout/core'
 export default Layout
 
-/* Components */
-export { Box } from './components/Box'
-export { Composition } from './components/Composition'
-export { Only } from './components/Only'
-export { Visible } from './components/Visible'
-
-/* Hooks */
 export {
+  /* Components */
+  Box,
+  Composition,
+  Only,
+  Visible,
   MediaQuery,
-  useBreakpointChange,
-  useResponsiveComponent,
-  useResponsiveProps,
-  useResponsiveValue,
-  useViewportChange,
+  /* Hooks */
   useMediaQuery,
+  useViewportChange,
+  useBreakpointChange,
+  useResponsiveValue,
+  useResponsiveProps,
+  useResponsiveComponent,
 } from '../../atomic-layout/src'
