@@ -10,7 +10,7 @@
 <br/>
 
 <p align="center">
-  <img src="./logo.svg" width="200" alt="Atomic Layout" />
+  <img src="./logo.svg" width="200" alt="Atomic Layout logo" />
 </p>
 
 <h1 align="center">Atomic Layout</h1>
