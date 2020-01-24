@@ -39,6 +39,7 @@
     "@storybook/addon-actions": "5.3.7",
     "@storybook/addon-links": "5.3.7",
     "@storybook/react": "5.3.7",
+    "chalk": "3.0.0",
     "cross-env": "5.2.0",
     "husky": "3.1.0",
     "jest": "24.9.0",

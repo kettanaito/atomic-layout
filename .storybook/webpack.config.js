@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const chalk = require('chalk')
 
 const entryPropertyName = {
   cjs: 'main',
@@ -27,12 +28,10 @@ module.exports = async ({ config }) => {
     : 'styled-components'
 
   console.log(
-    `
-Building Storybook with the ${MODULE_TYPE.toUpperCase()} build of "${PACKAGE}"
-Imports of "atomic-layout" aliased to "${moduleFilePath}"
-Storybook stories loaded from "${examplesDir}"
-`,
+    `Build: ${chalk.cyan(PACKAGE)} (${chalk.gray(MODULE_TYPE.toUpperCase())})`,
   )
+  console.log(`Module: ${chalk.magenta(moduleFilePath)}`)
+  console.log(`Examples: ${chalk.magenta(examplesDir)}`)
 
   if (!fs.existsSync(moduleFilePath)) {
     throw new Error(
@@ -44,6 +43,7 @@ Please make sure you point to the existing build module.
   }
 
   /**
+   * @see https://github.com/storybookjs/storybook/issues/3346
    * @todo Replace this workaround with something native to Storybook
    * or find a better solution how to compile external "examples" directory.
    *
@@ -58,8 +58,13 @@ Please make sure you point to the existing build module.
    */
   const patchBabelLoader = (rule) => {
     if (rule.include) {
-      console.log('babel-loader successfully patched!')
       rule.include = rule.include.concat(examplesDir)
+
+      console.log(
+        chalk.green(
+          `Patched babel-loader successfully to include "${examplesDir}"`,
+        ),
+      )
     }
   }
 
