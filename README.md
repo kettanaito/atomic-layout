@@ -119,6 +119,34 @@ Here are some shortcuts for quick access:
   </tr>
 </table>
 
+### Intermediate
+
+<table border="0">
+  <tr>
+    <td width="33%" valign="top">
+      <a href="#" target="_blank">
+        <img src="materials/example-thumbnails/conditional-rendering.jpg" alt="Conditional rendering" />
+        <h4>Conditional rendering</h4>
+      </a>
+      <p>Render or display elements conditionally based on a breakpoint.</p>
+    </td>
+    <td width="33%" valign="top">
+      <a href="#" target="_blank">
+        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="Custom configuration" />
+        <h4>Custom configuration</h4>
+      </a>
+      <p>Configure a custom measurement unit, unique breakpoints, and behaviors.</p>
+    </td>
+    <td width="33%" valign="top">
+      <a href="#" target="_blank">
+        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="..." />
+        <h4>???</h4>
+      </a>
+      <p>???</p>
+    </td>
+  </tr>
+</table>
+
 ## Materials
 
 <table border="0">
