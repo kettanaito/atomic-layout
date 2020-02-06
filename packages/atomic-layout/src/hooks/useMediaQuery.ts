@@ -1,4 +1,4 @@
-import { useState, useMemo, useLayoutEffect } from 'react'
+import { useState, useMemo, useEffect, useLayoutEffect } from 'react'
 import {
   MediaQuery as MediaQueryParams,
   compose,
@@ -40,6 +40,8 @@ export const useMediaQuery: UseMediaQuery = (
   queryParams,
   initialMatches = false,
 ): boolean => {
+  const useSafeEffect =
+    typeof window === 'undefined' ? useEffect : useLayoutEffect
   const [matches, setMatches] = useState(initialMatches)
   const query = useMemo(() => {
     return []
@@ -54,7 +56,7 @@ export const useMediaQuery: UseMediaQuery = (
     setMatches(mediaQueryList.matches)
   }
 
-  useLayoutEffect(() => {
+  useSafeEffect(() => {
     const mediaQueryList = matchMedia(query)
     handleMediaQueryChange(mediaQueryList)
     mediaQueryList.addListener(handleMediaQueryChange)
