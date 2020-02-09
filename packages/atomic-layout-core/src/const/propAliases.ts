@@ -100,6 +100,9 @@ const propAliases: PropAliases = {
   autoFlow: {
     props: ['grid-auto-flow'],
   },
+  order: {
+    props: ['order'],
+  },
   align: {
     props: ['align-self'],
   },
