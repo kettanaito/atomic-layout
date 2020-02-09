@@ -3,13 +3,20 @@ name: Bug report
 about: Create a report to help us improve
 ---
 
-## What:
+## When:
 
-A clear and concise description of what the bug is.
+<!-- Describe the steps to reproduce the issue -->
 
-## Why:
+1. Declare the following Composition: ...
+2. And change the breakpoint to ...
 
-Your best guess why the issue occurs, or what may cause it.
+## Current behavior:
+
+<!-- Describe what happens currently -->
+
+## Expected behavior:
+
+<!-- What would you expect to happen? -->
 
 ## Environment:
 
@@ -17,19 +24,6 @@ Your best guess why the issue occurs, or what may cause it.
 - npm version: `0.0.0`
 - atomic-layout version: `0.0.0`
 
-## Steps to reproduce:
-
-Steps to reproduce the behavior:
-
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-## Expected behavior:
-
-A clear and concise description of what you expected to happen.
-
 ## Screenshots:
 
-If applicable, add screenshots to help explain your problem.
+<!-- If the issue is visually evident, please attach a screenshot -->
