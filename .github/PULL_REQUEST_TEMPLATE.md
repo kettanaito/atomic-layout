@@ -1,13 +1,12 @@
 ## Changes
 
-<!-- Please describe the changes introduced by your Pull request -->
+<!-- Describe the changes introduced by this Pull request -->
 
-- Updates A
-- Removes B
+- Changes A
 
-## GitHub
+## Issues
 
-<!-- Reference GitHub issues related or affected by your Pull request -->
+<!-- Reference GitHub issues closed or related this this Pull request -->
 
 - Closes #ISSUE_NUMBER
 
@@ -15,13 +14,26 @@
 
 <!-- Check the character of your changes -->
 
-- [ ] patch (internal improvements)
+- [ ] internal (no release required)
+- [ ] patch (bug fixes)
 - [ ] minor (backward-compatible changes)
-- [ ] major (breaking, backward-incompatible changes)
+- [ ] major (backward-incompatible, breaking changes)
 
 ## Contributor's checklist
 
-<!-- Make sure all of the below are checked -->
+<!-- Make sure you've done all of the checks below -->
 
 - [ ] My branch is up-to-date with the latest `master`
-- [ ] I ran `yarn verify` and verified the build and tests passing
+
+<!--
+$ git checkout master
+$ git pull --rebase
+$ git checkout MY_BRANCH
+$ git rebase master
+-->
+
+- [ ] I ran `yarn verify` to see the build and tests pass
+
+<!--
+$ yarn verify
+-->
