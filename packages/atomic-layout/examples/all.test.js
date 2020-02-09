@@ -20,6 +20,7 @@ describe('Components', () => {
       require('./components/Composition/declaration/TemplatePeriod.test')
       require('./components/Composition/declaration/Templateless.test')
       require('./components/Composition/declaration/GridTemplate.test')
+      require('./components/Composition/declaration/OrderProp.test')
     })
 
     describe('Rendering', () => {
