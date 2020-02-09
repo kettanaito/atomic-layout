@@ -73,6 +73,12 @@ export interface GenericProps {
    */
   flexWrap?: string
   /**
+   * Order to lay out an item in a flex or grid container.
+   * @css `order`
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/order
+   */
+  order?: number | CSSGlobalValues
+  /**
    * Aligns flex items of the current flex.
    * @css `align-self`
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
