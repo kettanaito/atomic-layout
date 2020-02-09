@@ -33,11 +33,13 @@ import TemplateIndentation from './components/Composition/declaration/TemplateIn
 import Templateless from './components/Composition/declaration/Templateless'
 import TemplatePeriod from './components/Composition/declaration/TemplatePeriod'
 import GridTemplate from './components/Composition/declaration/GridTemplate'
+import CompositionOrderProp from './components/Composition/declaration/OrderProp'
 storiesOf('Components|Composition/Declaration', module)
   .add('Template indentation', TemplateIndentation)
   .add('Template-less composition', Templateless)
   .add('Template period', TemplatePeriod)
   .add('Grid template syntax', GridTemplate)
+  .add('Order prop', CompositionOrderProp)
 
 import WeakArea from './components/Composition/rendering/WeakArea'
 import NamespaceCollision from './components/Composition/rendering/NamespaceCollision'
