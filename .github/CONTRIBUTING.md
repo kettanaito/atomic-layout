@@ -1,8 +1,8 @@
 # Contributing guidelines
 
-Thank you for deciding to contribute to Atomic Layout! We've put up a few useful instructions on how to get started and get going with your contributions. Please take some time to read through them.
+Thank you for deciding to contribute to Atomic Layout! This document will aim to make your contribution a smooth process, so please read it thoroughly. You're awesome.
 
-## Preparations
+## Pre-requisites
 
 ### 1. Fork the repository
 
@@ -12,12 +12,21 @@ $ git clone git@github.com:kettanaito/atomic-layout.git
 
 ### 2. Install Yarn
 
-We are using [Yarn][yarn] for package management. Please refer to the [Yarn installation][yarn-installation] for instructions on how to install Yarn on your machine.
+Atomic Layout uses [Yarn][yarn] for package management. See the [Yarn installation guidelines][yarn-installation] for instructions on how to install Yarn on your machine.
+
+Verify that Yarn is installed by running:
+
+```bash
+$ yarn --version
+1.19.0
+```
 
 ### 3. Install dependencies
 
 ```bash
+# Go to the library's directory
 $ cd atomic-layout
+# And install its dependencies
 $ yarn install
 ```
 
@@ -25,7 +34,7 @@ $ yarn install
 
 ## Git workflow
 
-### 1. Create a feature branch
+### 1. Create a branch
 
 ```bash
 $ git checkout -b ISSUE_NUMBER-BRANCH_NAME
@@ -35,16 +44,16 @@ $ git checkout -b ISSUE_NUMBER-BRANCH_NAME
 
 ### 2. Develop
 
-Create, fix and experiment. Follow the [Development guidelines](#development) for the development process overview.
+Create, fix or experiment. Follow the [Development guidelines](#development) for the development process overview.
 
-### 3. Commit your changes
+### 3. Commit
 
 ```bash
 $ git add path/to/changes.js
 $ git commit -m 'Improves initial render'
 ```
 
-### 4. Push to the remote
+### 4. Push
 
 ```bash
 $ git push -u origin <BRANCH_NAME>
@@ -58,13 +67,13 @@ Click on the link below to create a new Pull request. Please choose `base: maste
 
 Once created, fill in the Pull request template with the requested information.
 
-### 6. Undergo a code review
+### 6. Code review
 
 Once your pull request is opened one of the core contributors of the library will give you a code review. Please be patient and polite, we're on the same side here!
 
 ### 7. Welcome to contributors!
 
-Once approved, your changes will be merged into `master` by one of the library's core maintainers. With your avatar proudly shining in the [Contributors list][repo-contributors], welcome to the contributors!
+When approved, your changes will be merged into `master` by one of the library's core maintainers. With your avatar proudly shining in the [Contributors list][repo-contributors], welcome to the contributors!
 
 ---
 
@@ -72,7 +81,26 @@ Once approved, your changes will be merged into `master` by one of the library's
 
 - [**TypeScript**][typescript] (_JavaScript superset with strong types_)
 
-### Running the build
+### Monorepo structure
+
+- [Lerna](https://github.com/lerna/lerna) (_monorepo manager_)
+
+Atomic Layout is a _mono-repository_. This means that it contains multiple repositories listed in the `packages/` directory. Examples of such repositories are:
+
+- `packages/atomic-layout-core`
+- `packages/atomic-layout`
+
+When developing a feature or fixing an issue, navigate to the respective repository in the `packages/` directory. For example, to fix an issue in `atomic-layout` library perform the following commands:
+
+```bash
+$ cd packages/atomic-layout
+```
+
+Each package has the set of similar commands for development and testing, but always check the list of commands in the respective `package.json` file. Instructions below will explain a general development workflow using `packages/atomic-layout` as an example.
+
+### Running a local build
+
+To build the package in development mode run:
 
 ```bash
 $ yarn start
@@ -176,7 +204,7 @@ $ yarn jest path/to/my-new-module.spec.ts
 
 - [Cypress][cypress] (_JavaScript end-to-end testing framework_)
 
-End-to-end tests run against a running Storybook instance. **This means you should [run Storybook](#running-storybook) first, before trying to run end-to-end tests**.
+End-to-end tests are being run against a running Storybook instance. **This means you should [run Storybook](#running-storybook) first, before trying to run end-to-end tests**.
 
 #### Running E2E tests
 
@@ -232,7 +260,7 @@ $ yarn verify
 
 ## Afterword
 
-Use these guidelines as a runbook for your contributions. Be productive, and see you soon in Pull requests!
+In case of any questions please ping one of the library's maintainers in [Discord](https://discordapp.com/channels/102860784329052160/543033450924474378) or [Spectrum](https://spectrum.chat/atomic-layout) communities. And don't worry, we are more than happy to assist you during the code review phase. Looking forward to your contributions!
 
 [repo-contributors]: https://github.com/kettanaito/atomic-layout/graphs/contributors
 [repo-pull-request]: https://github.com/kettanaito/atomic-layout/compare
