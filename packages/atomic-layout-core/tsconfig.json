@@ -11,6 +11,6 @@
     "baseUrl": ".",
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*"],
+  "include": ["global.d.ts", "src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
