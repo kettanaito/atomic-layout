@@ -5,8 +5,8 @@ describe('Order prop', function() {
     cy.loadStory(['components', 'composition', 'declaration'], ['order-prop'])
   })
 
-  describe('given template-less composition', () => {
-    it('should render the child with negative order first', () => {
+  describe('Template-less composition', () => {
+    it('Renders the child with negative "order" first', () => {
       cy.get('#box-third').then(([thirdElement]) => {
         cy.get('#box-first').then(([firstElement]) => {
           expect(thirdElement.offsetTop).to.be.lessThan(firstElement.offsetTop)
@@ -14,7 +14,7 @@ describe('Order prop', function() {
       })
     })
 
-    it('should render other children as-is', () => {
+    it('Renders other children as-is', () => {
       cy.get('#box-first').then(([firstElement]) => {
         cy.get('#box-second').then(([secondElement]) => {
           expect(firstElement.offsetTop).to.be.lessThan(secondElement.offsetTop)
@@ -23,8 +23,8 @@ describe('Order prop', function() {
     })
   })
 
-  describe('given composition with a template', () => {
-    it('should ignore the "order" prop on area component', () => {
+  describe('Composition with a template', () => {
+    it('Ignores the "order" prop on area component', () => {
       cy.get('[data-area="right"]').then(([rightElement]) => {
         cy.get('[data-area="left"]').then(([leftElement]) => {
           expect(rightElement.offsetLeft).to.be.greaterThan(
@@ -34,7 +34,7 @@ describe('Order prop', function() {
       })
     })
 
-    it('should render areas according to the template', () => {
+    it('Renders areas according to the template', () => {
       cy.get('#regular-composition').assertAreas([['left', 'center', 'right']])
     })
   })
