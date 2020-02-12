@@ -58,8 +58,8 @@ export default function generateComponents(
             return components[areaName]
           }
 
-          // @ts-ignore-line
           if (!__PROD__) {
+            // tslint:disable-next-line
             console.warn(
               'Prevented render of the area "%s", which is not found in the template definition. Please render one of the existing areas ("%s"), or modify the template to include "%s".',
               areaName,
