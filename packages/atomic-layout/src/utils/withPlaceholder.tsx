@@ -11,10 +11,19 @@ export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
-  const Placeholder: React.FC<GenericProps> = ({ children, ...restProps }) => {
+  const Placeholder: React.FC<GenericProps> = React.forwardRef<
+    unknown,
+    React.PropsWithChildren<GenericProps>
+  >(({ children, ...restProps }, ref) => {
     const matches = useMediaQuery(breakpoints)
-    return matches && <Component {...restProps}>{children}</Component>
-  }
+    return (
+      matches && (
+        <Component ref={ref} {...restProps}>
+          {children}
+        </Component>
+      )
+    )
+  })
 
   Placeholder.displayName = `Placeholder(${Component.displayName})`
 
