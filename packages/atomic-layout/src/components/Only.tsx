@@ -7,17 +7,23 @@ import useResponsiveQuery, {
 
 export type OnlyProps = BoxProps & ResponsiveQueryParams
 
-const Only: React.FC<OnlyProps> = ({
-  children,
-  except,
-  for: exactBreakpoint,
-  from,
-  to,
-  ...restProps
-}) => {
-  const matches = useResponsiveQuery({ for: exactBreakpoint, from, to, except })
-  return matches && <Box {...restProps}>{children}</Box>
-}
+const Only = React.forwardRef<unknown, OnlyProps>(
+  ({ children, except, for: exactBreakpoint, from, to, ...restProps }, ref) => {
+    const matches = useResponsiveQuery({
+      for: exactBreakpoint,
+      from,
+      to,
+      except,
+    })
+    return (
+      matches && (
+        <Box ref={ref} {...restProps}>
+          {children}
+        </Box>
+      )
+    )
+  },
+)
 
 Only.displayName = 'Only'
 

@@ -26,40 +26,39 @@ const createAreaComponent = (areaName: string): AreaComponent => (
   return <Box area={areaName} {...props} />
 }
 
-const Composition: React.FC<CompositionProps> = ({
-  children,
-  ...restProps
-}) => {
-  const areasList = parseTemplates(restProps)
+const Composition = React.forwardRef<unknown, CompositionProps>(
+  ({ children, ...restProps }, ref) => {
+    const areasList = parseTemplates(restProps)
 
-  // Memoize areas generation so parental updates do not re-generate areas,
-  // making area components preserve their internal state.
-  const Areas = React.useMemo(() => {
-    return generateComponents(areasList, createAreaComponent, withPlaceholder)
-  }, [areasList])
+    // Memoize areas generation so parental updates do not re-generate areas,
+    // making area components preserve their internal state.
+    const Areas = React.useMemo(() => {
+      return generateComponents(areasList, createAreaComponent, withPlaceholder)
+    }, [areasList])
 
-  const hasAreaComponents = Object.keys(Areas).length > 0
-  const childrenType = typeof children
-  const hasChildrenFunction = childrenType === 'function'
+    const hasAreaComponents = Object.keys(Areas).length > 0
+    const childrenType = typeof children
+    const hasChildrenFunction = childrenType === 'function'
 
-  // Warn when provided "areas"/"template" props, but didn't use a render prop pattern.
-  warn(
-    !(hasAreaComponents && !hasChildrenFunction),
-    `Failed to render Composition with template areas ["${Object.keys(
-      Areas,
-    ).join(
-      '", "',
-    )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props (\`areas\`/\`template\`).`,
-  )
+    // Warn when provided "areas"/"template" props, but didn't use a render prop pattern.
+    warn(
+      !(hasAreaComponents && !hasChildrenFunction),
+      `Failed to render 'Composition' with template areas ["${Object.keys(
+        Areas,
+      ).join(
+        '", "',
+      )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props (\`areas\`/\`template\`).`,
+    )
 
-  return (
-    <CompositionWrapper {...restProps}>
-      {hasAreaComponents && hasChildrenFunction
-        ? (children as CompositionRenderProp)(Areas)
-        : children}
-    </CompositionWrapper>
-  )
-}
+    return (
+      <CompositionWrapper ref={ref} {...restProps}>
+        {hasAreaComponents && hasChildrenFunction
+          ? (children as CompositionRenderProp)(Areas)
+          : children}
+      </CompositionWrapper>
+    )
+  },
+)
 
 Composition.displayName = 'Composition'
 
