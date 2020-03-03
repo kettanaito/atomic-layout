@@ -1,8 +1,10 @@
-[![Package version](https://img.shields.io/npm/v/atomic-layout.svg)][npm-url]
-[![Package size](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg)][bundlephobia-url]
+[![Package version](https://img.shields.io/npm/v/atomic-layout.svg?color=%237B85FF)][npm-url]
+[![Package size](https://img.shields.io/bundlephobia/minzip/atomic-layout.svg?color=%237B85FF)][bundlephobia-url]
 [![Build status](https://img.shields.io/circleci/project/github/kettanaito/atomic-layout/master.svg)][build-url]
-[![Test coverage](https://coveralls.io/repos/github/kettanaito/atomic-layout/badge.svg)][test-coverage-url]
-[![Dependencies status](https://img.shields.io/david/kettanaito/atomic-layout.svg)][dependencies-url]
+[![Dependencies status](https://img.shields.io/david/kettanaito/atomic-layout.svg?color=%237B85FF)][dependencies-url]
+
+[![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat&color=%237B85FF)][community-reactiflux]
+[![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
 
 <br />
 
@@ -88,7 +90,6 @@ Thank you for deciding to contribute! Your involvement makes a significant impac
 [npm-url]: https://npmjs.com/package/atomic-layout
 [bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
 [build-url]: https://circleci.com/gh/kettanaito/atomic-layout
-[test-coverage-url]: https://coveralls.io/github/kettanaito/atomic-layout
 [dependencies-url]: https://david-dm.org/kettanaito/atomic-layout
 [community-spectrum]: https://spectrum.chat/atomic-layout
 [community-reactiflux]: https://discordapp.com/channels/102860784329052160/543033450924474378

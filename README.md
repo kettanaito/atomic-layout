@@ -1,5 +1,9 @@
-[![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat)][community-reactiflux]
+<div align="center">
+
+[![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat&color=%237B85FF)][community-reactiflux]
 [![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
+
+</div>
 
 <br/>
 

@@ -1,4 +1,4 @@
-[![Package version](https://img.shields.io/npm/v/@atomic-layout/core.svg)](https://npmjs.com/package/@atomic-layout/core)
+[![Package version](https://img.shields.io/npm/v/@atomic-layout/core.svg?color=%237B85FF)](https://npmjs.com/package/@atomic-layout/core)
 
 # `@atomic-layout/core`
 
