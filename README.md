@@ -130,7 +130,13 @@ Here are some shortcuts for quick access:
       </a>
       <p>Make any React component support the <a href="https://redd.gitbook.io/atomic-layout/fundamentals/responsive-props">Responsive props</a> declaration pattern.</p>
     </td>
-    <td width="33%" valign="top"></td>
+    <td width="33%" valign="top">
+      <a href="https://codesandbox.io/s/ssr-of-conditional-components-v2gum" target="_blank">
+        <img src="materials/example-thumbnails/ssr-conditional-components.jpg#" alt="Responsive component" />
+        <h4>Server-side rendering (SSR) of conditional components</h4>
+      </a>
+      <p>Utilize the <code>Visible</code> component to conditionally render content and preserve hydration.</p>
+    </td>
     <td width="33%" valign="top"></td>
   </tr>
 </table>
