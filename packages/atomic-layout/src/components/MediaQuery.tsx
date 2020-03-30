@@ -17,6 +17,7 @@ const MediaQuery: React.FC<MediaQueryProps> = ({
   return children(matches)
 }
 
+MediaQuery.displayName = 'MediaQuery'
 MediaQuery.defaultProps = {
   matches: false,
 }

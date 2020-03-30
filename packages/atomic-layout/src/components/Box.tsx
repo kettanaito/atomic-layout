@@ -17,4 +17,6 @@ const Box: React.FC<BoxProps> = styled.div<BoxProps>`
   }
 `
 
+Box.displayName = 'Box'
+
 export default Box
