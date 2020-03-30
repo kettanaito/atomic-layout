@@ -57,4 +57,6 @@ const Composition: React.FC<CompositionProps> = ({
   )
 }
 
+Composition.displayName = 'Composition'
+
 export default Composition

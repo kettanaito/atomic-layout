@@ -106,4 +106,6 @@ const Only: React.FC<OnlyProps> = ({
   return <>children</>
 }
 
+Only.displayName = 'Only'
+
 export default Only

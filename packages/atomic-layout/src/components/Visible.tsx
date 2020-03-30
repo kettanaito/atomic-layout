@@ -74,4 +74,6 @@ const Visible: React.FC<OnlyProps> = ({
   )
 }
 
+Visible.displayName = 'Visible'
+
 export default Visible
