@@ -118,11 +118,13 @@ import IterativeAreas from './recipes/IterativeAreas'
 storiesOf('Recipes|All', module).add('Iterative areas', IterativeAreas)
 
 /**
- * Bugfixes
+ * Regression
  */
+import DisplayNames from './regression/DisplayNames'
 import StylesUndefined from './regression/StylesUndefined'
 import SingleResponsiveProp from './regression/SingleResponsiveProp'
 
 storiesOf('Regression|All', module)
+  .add('Display names', DisplayNames)
   .add('Styles undefined', StylesUndefined)
   .add('Single responsive prop', SingleResponsiveProp)
