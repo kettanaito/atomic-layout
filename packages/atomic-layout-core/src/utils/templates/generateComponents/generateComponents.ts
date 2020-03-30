@@ -36,7 +36,7 @@ export default function generateComponents(
 
     const Component = createAreaComponent(areaName)
     const capitalizedAreaName = capitalize(areaName)
-    Component.displayName = capitalizedAreaName
+    Component.displayName = `Area(${capitalizedAreaName})`
 
     const ResponsiveComponent = shouldAlwaysRender
       ? Component
