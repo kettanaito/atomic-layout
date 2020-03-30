@@ -75,10 +75,10 @@ Atomic Layout ships multiple packages that are compatible with different CSS-in-
 
 Find a detailed installation instructions by clicking on the Atomic Layout package related to a styling solution you would like to use.
 
-| Atomic Layout package                                        | Latest version                                                              | Styling library     |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------- | ------------------- |
-| [`atomic-layout`](./packages/atomic-layout)                  | ![Package version](https://img.shields.io/npm/v/atomic-layout.svg)          | `styled-components` |
-| [`@atomic-layout/emotion`](./packages/atomic-layout-emotion) | ![Package version](https://img.shields.io/npm/v/@atomic-layout/emotion.svg) | `@emotion/styled`   |
+| Atomic Layout package                                        | Latest version                                                                                                                      | Styling library     |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| [`atomic-layout`](./packages/atomic-layout)                  | [![Package version](https://img.shields.io/npm/v/atomic-layout.svg)](https://www.npmjs.com/package/atomic-layout)                   | `styled-components` |
+| [`@atomic-layout/emotion`](./packages/atomic-layout-emotion) | [![Package version](https://img.shields.io/npm/v/@atomic-layout/emotion.svg)](https://www.npmjs.com/package/@atomic-layout/emotion) | `@emotion/styled`   |
 
 ## Documentation
 
