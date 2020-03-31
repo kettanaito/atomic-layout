@@ -15,4 +15,5 @@ export {
   useResponsiveValue,
   useResponsiveProps,
   useResponsiveComponent,
+  useResponsiveQuery,
 } from '../../atomic-layout/src'

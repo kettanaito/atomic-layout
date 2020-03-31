@@ -10,7 +10,7 @@ import {
 /**
  * Creates a media querty string based on the given params.
  */
-const createMediaQuery = (queryParams: MediaQueryParams): string => {
+export const createMediaQuery = (queryParams: MediaQueryParams): string => {
   return compose(
     joinQueryList(([paramName, paramValue]) => {
       /**

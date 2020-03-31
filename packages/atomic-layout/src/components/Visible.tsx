@@ -7,8 +7,9 @@ import {
 } from '@atomic-layout/core'
 
 import Box from './Box'
-import { OnlyProps, resolveBreakpoint } from './Only'
+import { OnlyProps } from './Only'
 import { useMediaQuery } from '../hooks/useMediaQuery'
+import { resolveBreakpoint } from '../hooks/useResponsiveQuery'
 
 const VisibleContainer = styled(Box)<{ matches: boolean }>`
   ${({ matches }) =>
