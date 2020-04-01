@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import {
   Breakpoint,
   Layout,
@@ -98,7 +98,10 @@ export default function useResponsiveQuery(
   const [matches, setMatches] = useState(initialMatches)
 
   const { for: exactBreakpoint, from, to, except } = params
-  const breakpoints = getBreakpoints(exactBreakpoint, from, to, except)
+  const breakpoints = useMemo(
+    () => getBreakpoints(exactBreakpoint, from, to, except),
+    [exactBreakpoint, from, to, except],
+  )
   const breakpointsList = [].concat(breakpoints).map(createMediaQuery)
 
   useViewportChange(() => {
