@@ -1,7 +1,7 @@
 {
   "name": "@atomic-layout/emotion",
   "description": "Physical representation of layout composition to create declarative, responsive layouts in React.",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "license": "MIT",
   "esnext": "src/index.ts",
   "main": "lib/cjs/index.js",
@@ -53,7 +53,7 @@
     "react": ">= 16.8"
   },
   "dependencies": {
-    "@atomic-layout/core": "^0.12.1"
+    "@atomic-layout/core": "^0.13.0"
   },
   "devDependencies": {
     "@emotion/core": "10.0.22",
