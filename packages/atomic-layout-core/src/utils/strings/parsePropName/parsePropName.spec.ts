@@ -60,6 +60,42 @@ describe('parsePropName', () => {
     })
   })
 
+  it('ignores valid breakpoint written in lowercase', () => {
+    expect(parsePropName('guttermd')).toEqual({
+      originPropName: 'guttermd',
+      purePropName: 'guttermd',
+      behavior: 'up',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
+  })
+
+  it('ignores valid behavior written in lowercase', () => {
+    expect(parsePropName('gutterdown')).toEqual({
+      originPropName: 'gutterdown',
+      purePropName: 'gutterdown',
+      behavior: 'up',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
+  })
+
+  it('ignores valid breakpoint and behavior written in lowercase', () => {
+    expect(parsePropName('gutterlgdown')).toEqual({
+      originPropName: 'gutterlgdown',
+      purePropName: 'gutterlgdown',
+      behavior: 'up',
+      breakpoint: {
+        name: 'xs',
+        isDefault: true,
+      },
+    })
+  })
+
   it('ignores unknown suffixes', () => {
     expect(parsePropName('gutterFoo')).toEqual({
       originPropName: 'gutterFoo',

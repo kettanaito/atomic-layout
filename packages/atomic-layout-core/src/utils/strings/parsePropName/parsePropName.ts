@@ -1,6 +1,7 @@
 import { BreakpointBehavior } from '../../../const/defaultOptions'
 import Layout from '../../../Layout'
 import toLowerCaseFirst from '../toLowerCaseFirst'
+import capitalize from '../capitalize'
 
 export interface Props {
   [propName: string]: any
@@ -27,10 +28,12 @@ export interface ParsedBreakpoint {
  * lookbehind is supported everywhere.
  */
 export default function parsePropName(originPropName: string): ParsedProp {
-  const joinedBreakpointNames = Object.keys(Layout.breakpoints).join('|')
-  const joinedBehaviors = ['down', 'only'].join('|')
-  const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'gi')
-  const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'gi')
+  const joinedBreakpointNames = Object.keys(Layout.breakpoints)
+    .map(capitalize)
+    .join('|')
+  const joinedBehaviors = ['down', 'only'].map(capitalize).join('|')
+  const breakpointExp = new RegExp(`(${joinedBreakpointNames})$`, 'g')
+  const behaviorExp = new RegExp(`(${joinedBehaviors})$`, 'g')
 
   const behaviorMatch = originPropName.match(behaviorExp)
   const behavior = behaviorMatch ? behaviorMatch[0] : ''
