@@ -98,11 +98,15 @@ export default function useResponsiveQuery(
   const [matches, setMatches] = useState(initialMatches)
 
   const { for: exactBreakpoint, from, to, except } = params
-  const breakpoints = useMemo(
-    () => getBreakpoints(exactBreakpoint, from, to, except),
-    [exactBreakpoint, from, to, except],
-  )
-  const breakpointsList = [].concat(breakpoints).map(createMediaQuery)
+  const breakpointsList = useMemo(() => {
+    const breakpoints = getBreakpoints(exactBreakpoint, from, to, except)
+
+    if (!breakpoints) {
+      return []
+    }
+
+    return [].concat(breakpoints).map(createMediaQuery)
+  }, [exactBreakpoint, from, to, except])
 
   useViewportChange(() => {
     const hasMatchingQuery = breakpointsList.some((mediaQuery) => {
