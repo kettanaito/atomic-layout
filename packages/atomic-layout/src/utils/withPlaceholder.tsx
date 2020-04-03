@@ -1,33 +1,19 @@
 import * as React from 'react'
 import { Breakpoint, AreaComponent, GenericProps } from '@atomic-layout/core'
-import MediaQuery from '../components/MediaQuery'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 
 /**
- * Wraps the given area component in a placeholder.
+ * Wraps the given area component in a placeholder component.
  * This is used for conditional components, where placeholder component is rendered
- * until the condition for the area component is met (i.e. breakpoint).
+ * until the condition for that area component is met (i.e. viewport matches a breakpoint).
  */
 export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
   const Placeholder: React.FC<GenericProps> = ({ children, ...restProps }) => {
-    const PlaceholderComponent = breakpoints.reduce<JSX.Element[]>(
-      (components, breakpoint, index) => {
-        return components.concat(
-          <MediaQuery {...breakpoint} key={`${Component.displayName}_${index}`}>
-            {(matches) =>
-              matches && <Component {...restProps}>{children}</Component>
-            }
-          </MediaQuery>,
-        )
-      },
-      [],
-    )
-
-    // Wrapping in a Fragment due to a type issue
-    // when returning JSX.Element[].
-    return <>{PlaceholderComponent}</>
+    const matches = useMediaQuery(breakpoints)
+    return matches && <Component {...restProps}>{children}</Component>
   }
 
   Placeholder.displayName = `Placeholder(${Component.displayName})`

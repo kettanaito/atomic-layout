@@ -22,7 +22,9 @@ const CompositionWrapper = styled.div<CompositionProps>`
 
 const createAreaComponent = (areaName: string): AreaComponent => (
   props: BoxProps,
-) => <Box area={areaName} {...props} />
+) => {
+  return <Box area={areaName} {...props} />
+}
 
 const Composition: React.FC<CompositionProps> = ({
   children,
@@ -41,11 +43,11 @@ const Composition: React.FC<CompositionProps> = ({
   // Warn when provided "areas"/"template" props, but didn't use a render prop pattern.
   warn(
     !(hasAreaComponents && !hasChildrenFunction),
-    `Failed to render 'Composition' with template areas ["${Object.keys(
+    `Failed to render Composition with template areas ["${Object.keys(
       Areas,
     ).join(
       '", "',
-    )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props.`,
+    )}"]: expected children to be a function, but got: ${childrenType}. Please provide render function as children, or remove assigned template props (\`areas\`/\`template\`).`,
   )
 
   return (
