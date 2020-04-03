@@ -7,7 +7,6 @@ export {
   Composition,
   Only,
   Visible,
-  MediaQuery,
   /* Hooks */
   useMediaQuery,
   useViewportChange,
