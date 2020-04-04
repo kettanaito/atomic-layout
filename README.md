@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./logo-full.png" width="400" alt="Atomic Layout logo" />
+</p>
+
 <div align="center">
 
 [![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat&color=%237B85FF)][community-reactiflux]
@@ -6,12 +10,6 @@
 </div>
 
 <br/>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/kettanaito/atomic-layout/d10ba4587cf70cfacba05d8d71055520ff904d39/logo.svg?sanitize=true" width="200" alt="Atomic Layout logo" />
-</p>
-
-<h1 align="center">Atomic Layout</h1>
 
 **Atomic Layout** is a spatial distribution library for React. It uses [CSS Grid][css-grid] to define layout areas and render them as React components. This pattern encourages separation of elements and spacing, preventing contextual implementations and boosting maintenance of layouts.
 
@@ -59,23 +57,21 @@ const Card = ({ title, imageUrl, actions }) => (
 export default Card
 ```
 
-> Atomic Layout comes with built-in responsive support. It uses [Bootstrap 4 breakpoints][bootstrap-4-breakpoints] by default, which you can always [override with the custom breakpoints](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints) to match your requirements.
+> Atomic Layout is responsive-first. It uses [Bootstrap 4 breakpoints][bootstrap-4-breakpoints] by default, which you can always [customize for your needs](https://redd.gitbook.io/atomic-layout/api/layout/configure#breakpoints).
 
 ## Motivation
 
 Modern layout development is about modularity and composition. Following the best practices of [Atomic design][atomic-design], we strive toward independent UI units that gradually compose into more meaningful pieces. While the attention paid to units implementation is thorough, we often overlook how to achieve layout composition that scales. It's as if we forget that _spacing defines composition_.
 
-When it comes to distributing the spacing things get more difficult. First of all, true contextless spacing is hard. To make things worse, all present solutions couple spacing with UI elements, inevitably making small resusable pieces **contextful** and, thus, hard to maintain.
+When it comes to distributing the spacing things get more difficult. First of all, true contextless spacing is hard. To make things worse, all present solutions couple spacing with UI elements, inevitably making small reusable pieces **contextful** and, thus, hard to maintain.
 
 Atomic Layout helps you to compose your elements by introducing a dedicated spacing layer called _Composition_. It encourages you to separate concerns between UI elements' visual appearance and spacing between them. With the first-class responsive support at your disposal you can build gorgeous responsive permutations of your elements without leaving the dedicated spacing layer, keeping UI elements contextless and predictable. Embrace the era of a true layout composition!
 
-## Install
+## Implementations
 
-Atomic Layout ships multiple packages that are compatible with different CSS-in-JS libraries.
+Atomic Layout has multiple implementations depending on the styling solution:
 
-Find a detailed installation instructions by clicking on the Atomic Layout package related to a styling solution you would like to use.
-
-| Atomic Layout package                                        | Latest version                                                                                                                      | Styling library     |
+| Package name                                                 | Latest version                                                                                                                      | Styling library     |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | [`atomic-layout`](./packages/atomic-layout)                  | [![Package version](https://img.shields.io/npm/v/atomic-layout.svg)](https://www.npmjs.com/package/atomic-layout)                   | `styled-components` |
 | [`@atomic-layout/emotion`](./packages/atomic-layout-emotion) | [![Package version](https://img.shields.io/npm/v/@atomic-layout/emotion.svg)](https://www.npmjs.com/package/@atomic-layout/emotion) | `@emotion/styled`   |
@@ -84,7 +80,7 @@ Find a detailed installation instructions by clicking on the Atomic Layout packa
 
 > **See the [Official documentation][atomic-layout-docs].**
 
-There are some shortcuts to get you started:
+Here are some shortcuts for quick access:
 
 - [Motivation](https://redd.gitbook.io/atomic-layout/motivation)
 - [**Getting started**](https://redd.gitbook.io/atomic-layout/getting-started)
@@ -93,7 +89,7 @@ There are some shortcuts to get you started:
 
 ## Examples
 
-> The examples below are going to use the `atomic-layout` library based on `styled-components`. To apply these examples to other Atomic Layout packages (i.e. `@atomic-layout/styled`) install that package properly and follow _the very same example_.
+> Although the examples below use `atomic-layout` package, they are fully compliant with other styling implementations (i.e. `@atomic-layout/emotion`).
 
 ### Basics
 
@@ -156,7 +152,7 @@ There are some shortcuts to get you started:
       </a>
     </td>
     <td>
-      <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The Future of Layouts (React Vienna, 2018)</a></h3>
+      <h3><a href="https://www.youtube.com/watch?v=x_93DjN_bUA">The future of layouts (React Vienna, 2018)</a></h3>
       <p>Watch Artem discussing the biggest obstacle to achieve maintainable layouts, and showcases a way to combine existing technologies to build clean UI implementations using Atomic layout.</p>
       <ul>
         <li><a href="https://codesandbox.io/s/8z6xnmnnnj"><strong>Live demo</strong></a></li>
@@ -167,6 +163,8 @@ There are some shortcuts to get you started:
 </table>
 
 ## Community
+
+Reach out to us to share an awesome project you're building, or ask a question:
 
 - [Spectrum][community-spectrum]
 - [Reactiflux][community-reactiflux]
@@ -179,9 +177,9 @@ Atomic Layout's browser support is made by the browser support of underlying tec
 
 ## Contributing
 
-Thank you for deciding to contribute! Your involvement makes a significant impact on the library and its future.
+By contributing to Atomic Layout you shape the way developers create reusable UI.
 
-**Please read the [Contribution guidelines](./.github/CONTRIBUTING.md)** to get familiar with the contributing process. The issues labeled [`help wanted`](https://github.com/kettanaito/atomic-layout/labels/help%20wanted) or [`good first issue`](https://github.com/kettanaito/atomic-layout/labels/good%20first%20issue) are a good place to start cooperating on Atomic Layout. Feature suggestions or bug reports, discussion, and pull requests are always welcome!
+Please refer to the [Contribution guidelines](./.github/CONTRIBUTING.md) before committing to this project. We are thankful for any kind of contribution you may bring: discussion, issue report, or a pull request.
 
 [npm-url]: https://npmjs.com/package/atomic-layout
 [bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
