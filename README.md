@@ -97,21 +97,21 @@ Here are some shortcuts for quick access:
   <tr>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/basic-composition-5mvlr" target="_blank">
-        <img src="materials/example-thumbnails/basic-composition.jpg" alt="Basic composition: square and circle" />
+        <img src="materials/example-thumbnails/basic-composition.jpg#" alt="Basic composition: square and circle" />
         <h4>Basic composition</h4>
       </a>
       <p>Combine two UI elements into a single one using Composition.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/responsive-props-8m14f" target="_blank">
-        <img src="materials/example-thumbnails/responsive-props.jpg" alt="Component with responsive props" />
+        <img src="materials/example-thumbnails/responsive-props.jpg#" alt="Component with responsive props" />
         <h4>Responsive props</h4>
       </a>
       <p>Learn how to change a prop's value depending on a breakpoint.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/nested-composition-8p8pk" target="_blank">
-        <img src="materials/example-thumbnails/nested-composition.jpg" alt="Composition of other compositions" />
+        <img src="materials/example-thumbnails/nested-composition.jpg#" alt="Composition of other compositions" />
         <h4>Nested composition</h4>
       </a>
       <p>Any element can be a composition <i>and</i> a composite at the same time.</p>
