@@ -12,6 +12,7 @@ import {
 } from '@atomic-layout/core'
 import Box from './Box'
 import { withPlaceholder } from '../utils/withPlaceholder'
+import { forwardRef } from '../utils/forwardRef'
 
 const CompositionWrapper = styled.div<CompositionProps>`
   && {
@@ -20,13 +21,12 @@ const CompositionWrapper = styled.div<CompositionProps>`
   }
 `
 
-const createAreaComponent = (areaName: string): AreaComponent => (
-  props: BoxProps,
-) => {
-  return <Box area={areaName} {...props} />
-}
+const createAreaComponent = (areaName: string): AreaComponent =>
+  forwardRef((props: BoxProps, ref) => {
+    return <Box ref={ref} area={areaName} {...props} />
+  })
 
-const Composition = React.forwardRef<unknown, CompositionProps>(
+const Composition = forwardRef<unknown, CompositionProps>(
   ({ children, ...restProps }, ref) => {
     const areasList = parseTemplates(restProps)
 
