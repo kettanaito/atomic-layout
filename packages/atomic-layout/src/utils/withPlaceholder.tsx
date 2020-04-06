@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Breakpoint, AreaComponent, GenericProps } from '@atomic-layout/core'
+import { forwardRef } from './forwardRef'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 
 /**
@@ -11,19 +12,18 @@ export const withPlaceholder = (
   Component: AreaComponent,
   breakpoints: Breakpoint[],
 ) => {
-  const Placeholder: React.FC<GenericProps> = React.forwardRef<
-    unknown,
-    React.PropsWithChildren<GenericProps>
-  >(({ children, ...restProps }, ref) => {
-    const matches = useMediaQuery(breakpoints)
-    return (
-      matches && (
-        <Component ref={ref} {...restProps}>
-          {children}
-        </Component>
+  const Placeholder = forwardRef<unknown, GenericProps>(
+    ({ children, ...restProps }, ref) => {
+      const matches = useMediaQuery(breakpoints)
+      return (
+        matches && (
+          <Component ref={ref} {...restProps}>
+            {children}
+          </Component>
+        )
       )
-    )
-  })
+    },
+  )
 
   Placeholder.displayName = `Placeholder(${Component.displayName})`
 

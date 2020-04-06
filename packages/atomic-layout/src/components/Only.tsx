@@ -4,10 +4,11 @@ import Box from './Box'
 import useResponsiveQuery, {
   ResponsiveQueryParams,
 } from '../hooks/useResponsiveQuery'
+import { forwardRef } from '../utils/forwardRef'
 
 export type OnlyProps = BoxProps & ResponsiveQueryParams
 
-const Only = React.forwardRef<unknown, OnlyProps>(
+const Only = forwardRef<unknown, OnlyProps>(
   ({ children, except, for: exactBreakpoint, from, to, ...restProps }, ref) => {
     const matches = useResponsiveQuery({
       for: exactBreakpoint,
@@ -15,6 +16,7 @@ const Only = React.forwardRef<unknown, OnlyProps>(
       to,
       except,
     })
+
     return (
       matches && (
         <Box ref={ref} {...restProps}>

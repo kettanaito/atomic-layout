@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Box from './Box'
 import { OnlyProps } from './Only'
 import useResponsiveQuery from '../hooks/useResponsiveQuery'
+import { forwardRef } from '../utils/forwardRef'
 
 const VisibleContainer = styled(Box)<{ matches: boolean }>`
   ${({ matches }) =>
@@ -12,10 +13,7 @@ const VisibleContainer = styled(Box)<{ matches: boolean }>`
     `}
 `
 
-/**
- * Displays children when the given responsive query matches.
- */
-const Visible = React.forwardRef<unknown, OnlyProps>(
+const Visible = forwardRef<unknown, OnlyProps>(
   (
     { children, except, for: exactBreakpointName, from, to, ...boxProps },
     ref,
