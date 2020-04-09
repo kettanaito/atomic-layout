@@ -15,3 +15,6 @@ export { default as useResponsiveValue } from './hooks/useResponsiveValue'
 export { default as useResponsiveProps } from './hooks/useResponsiveProps'
 export { default as useResponsiveComponent } from './hooks/useResponsiveComponent'
 export { default as useResponsiveQuery } from './hooks/useResponsiveQuery'
+
+/* Utils */
+export { query } from './utils/query'
