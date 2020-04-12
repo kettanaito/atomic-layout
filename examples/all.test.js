@@ -65,6 +65,13 @@ describe('Hooks', () => {
 })
 
 /**
+ * Utils
+ */
+describe('Utilities', () => {
+  require('./utils/query.test')
+})
+
+/**
  * Semantics
  */
 describe('Semantics', () => {

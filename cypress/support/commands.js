@@ -28,6 +28,7 @@ Cypress.Commands.add('setBreakpoint', (breakpointName) => {
     breakpoint = breakpointName
   }
 
+  cy.log(`Set breakpoint "${breakpointName}"`)
   cy.viewport(
     parseFloat(breakpoint.minWidth) || 500,
     parseFloat(breakpoint.minHeight) || 500,

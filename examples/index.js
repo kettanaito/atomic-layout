@@ -104,6 +104,12 @@ storiesOf('Hooks', module)
   .add('useResponsiveComponent', () => <UseResponsiveComponent />)
 
 /**
+ * Utilities
+ */
+import QueryExample from './utils/Query'
+storiesOf('Utilities', module).add('query', () => <QueryExample />)
+
+/**
  * Semantics
  */
 import PolymorphicProp from './semantics/PolymorphicProp'
