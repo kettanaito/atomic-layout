@@ -12,9 +12,10 @@ node_modules
 lib
 
 # Cypress
-**/cypress/fixtures
-**/cypress/videos
-**/cypress/screenshots
+cypress/fixtures
+cypress/screenshots
+cypress/videos
+packages/**/cypress
 storybook-static
 
 # Editors
