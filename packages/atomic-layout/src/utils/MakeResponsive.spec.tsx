@@ -3,13 +3,13 @@
  */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import useResponsiveComponent from './useResponsiveComponent'
+import { makeResponsive } from './makeResponsive'
 
-const Component = useResponsiveComponent((props) => {
+const Component = makeResponsive((props) => {
   return <img {...props} />
 })
 
-describe('useResponsiveComponent', () => {
+describe('makeResponsive', () => {
   describe('given rendered on a server', () => {
     let html: ReturnType<typeof renderToString>
 

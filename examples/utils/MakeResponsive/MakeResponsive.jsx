@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'supported-styling-library'
-import { useResponsiveComponent } from 'atomic-layout'
+import { makeResponsive } from 'atomic-layout'
 
-const Text = useResponsiveComponent(
+const Text = makeResponsive(
   styled.h1`
     color: ${({ color }) => color};
     font-size: ${({ size }) => size}px;

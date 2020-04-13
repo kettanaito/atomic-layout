@@ -61,14 +61,14 @@ describe('Hooks', () => {
   require('./hooks/useBreakpointChange.test')
   require('./hooks/useResponsiveValue.test')
   require('./hooks/useResponsiveProps.test')
-  require('./hooks/useResponsiveComponent.test')
 })
 
 /**
  * Utils
  */
 describe('Utilities', () => {
-  require('./utils/query.test')
+  require('./utils/Query/query.test')
+  require('./utils/MakeResponsive/makeResponsive.test')
 })
 
 /**

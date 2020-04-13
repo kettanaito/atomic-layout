@@ -1,12 +1,12 @@
 import React from 'react'
 import { Numeric } from '@atomic-layout/core'
-import useResponsiveProps from './useResponsiveProps'
+import useResponsiveProps from '../hooks/useResponsiveProps'
 
 /**
  * Returns a new React component based on the given one
  * that enables support for Responsive Props API on arbitrary props.
  */
-function useResponsiveComponent<
+export function makeResponsive<
   OwnProps extends Record<string, any>,
   ResponsiveProps extends Record<string, Numeric>,
   RefType = unknown
@@ -26,5 +26,3 @@ function useResponsiveComponent<
     },
   )
 }
-
-export default useResponsiveComponent

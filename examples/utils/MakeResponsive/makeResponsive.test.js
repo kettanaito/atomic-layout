@@ -1,6 +1,6 @@
-describe('useResponsiveComponent', () => {
+describe('makeResponsive', () => {
   before(() => {
-    cy.loadStory(['hooks'], ['useresponsivecomponent'])
+    cy.loadStory(['utilities'], ['makeresponsive'])
   })
 
   describe('Prmiary behavior', () => {
