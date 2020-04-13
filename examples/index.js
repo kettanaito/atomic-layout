@@ -94,20 +94,22 @@ import UseViewportChange from './hooks/UseViewportChange'
 import UseResponsiveValue from './hooks/UseResponsiveValue'
 import UseBreakpointChange from './hooks/UseBreakpointChange'
 import UseResponsiveProps from './hooks/UseResponsiveProps'
-import UseResponsiveComponent from './hooks/UseResponsiveComponent'
 
 storiesOf('Hooks', module)
   .add('useViewportChange', () => <UseViewportChange />)
   .add('useResponsiveValue', () => <UseResponsiveValue />)
   .add('useBreakpointChange', () => <UseBreakpointChange />)
   .add('useResponsiveProps', () => <UseResponsiveProps />)
-  .add('useResponsiveComponent', () => <UseResponsiveComponent />)
 
 /**
  * Utilities
  */
-import QueryExample from './utils/Query'
-storiesOf('Utilities', module).add('query', () => <QueryExample />)
+import QueryExample from './utils/Query/Query'
+import MakeResponsive from './utils/MakeResponsive/MakeResponsive'
+
+storiesOf('Utilities', module)
+  .add('query', () => <QueryExample />)
+  .add('makeResponsive', MakeResponsive)
 
 /**
  * Semantics

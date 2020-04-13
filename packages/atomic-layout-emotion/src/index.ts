@@ -13,8 +13,8 @@ export {
   useBreakpointChange,
   useResponsiveValue,
   useResponsiveProps,
-  useResponsiveComponent,
   useResponsiveQuery,
   /* Utils */
   query,
+  makeResponsive,
 } from '../../atomic-layout/src'
