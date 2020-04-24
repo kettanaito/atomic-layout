@@ -31,11 +31,13 @@ const Composition: React.FC<CompositionProps> = ({
   ...restProps
 }) => {
   const areasList = parseTemplates(restProps)
-  const Areas = generateComponents(
-    areasList,
-    createAreaComponent,
-    withPlaceholder,
-  )
+
+  // Memoize areas generation so parental updates do not re-generate areas,
+  // making area components preserve their internal state.
+  const Areas = React.useMemo(() => {
+    return generateComponents(areasList, createAreaComponent, withPlaceholder)
+  }, [areasList])
+
   const hasAreaComponents = Object.keys(Areas).length > 0
   const childrenType = typeof children
   const hasChildrenFunction = childrenType === 'function'
