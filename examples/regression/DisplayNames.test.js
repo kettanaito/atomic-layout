@@ -26,8 +26,4 @@ describe('Display names', () => {
   it('Visible should have meaningful display name', () => {
     cy.get('#visible').should('have.text', 'Visible')
   })
-
-  it('MediaQuery should have meaningful display name', () => {
-    cy.get('#media-query').should('have.text', 'MediaQuery')
-  })
 })
