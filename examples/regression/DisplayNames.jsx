@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Composition, Only, Visible, MediaQuery } from 'atomic-layout'
+import { Box, Composition, Only, Visible } from 'atomic-layout'
 
 const DisplayNames = () => (
   <div>
@@ -19,9 +19,6 @@ const DisplayNames = () => (
     <Visible id="visible" from="xs">
       {Visible.displayName}
     </Visible>
-    <MediaQuery matches={true}>
-      {() => <p id="media-query">{MediaQuery.displayName}</p>}
-    </MediaQuery>
   </div>
 )
 
