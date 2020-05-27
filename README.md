@@ -128,21 +128,21 @@ Here are some shortcuts for quick access:
         <img src="materials/example-thumbnails/conditional-rendering.jpg" alt="Conditional rendering" />
         <h4>Conditional rendering</h4>
       </a>
-      <p>Render or display elements conditionally based on a breakpoint.</p>
+      <p>Render or display elements conditionally based on breakpoints.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/custom-configuration-d01ku" target="_blank">
         <img src="materials/example-thumbnails/custom-configuration.jpg" alt="Custom configuration" />
         <h4>Custom configuration</h4>
       </a>
-      <p>Configure a custom measurement unit, unique breakpoints, and behaviors.</p>
+      <p>Configure a default measurement unit, custom breakpoints, and responsive behaviors.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/atomic-layout-query-d2mdl" target="_blank">
         <img src="materials/example-thumbnails/shorthand-media-query.jpg" alt="Shorthand media query" />
         <h4>Shorthand media query</h4>
       </a>
-      <p>Utilize a shorthand <code>query</code> function to compose an inline media query in CSS.</p>
+      <p>Use a shorthand <code>query</code> function to declare inline media queries in CSS.</p>
     </td>
   </tr>
 </table>
