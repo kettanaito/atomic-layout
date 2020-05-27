@@ -97,21 +97,21 @@ Here are some shortcuts for quick access:
   <tr>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/basic-composition-5mvlr" target="_blank">
-        <img src="materials/example-thumbnails/basic-composition.jpg#" alt="Basic composition: square and circle" />
+        <img src="materials/example-thumbnails/basic-composition.jpg" alt="Basic composition: square and circle" />
         <h4>Basic composition</h4>
       </a>
       <p>Combine two UI elements into a single one using Composition.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/responsive-props-8m14f" target="_blank">
-        <img src="materials/example-thumbnails/responsive-props.jpg#" alt="Component with responsive props" />
+        <img src="materials/example-thumbnails/responsive-props.jpg" alt="Component with responsive props" />
         <h4>Responsive props</h4>
       </a>
       <p>Change a prop's value depending on a breakpoint.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/nested-composition-8p8pk" target="_blank">
-        <img src="materials/example-thumbnails/nested-composition.jpg#" alt="Composition of other compositions" />
+        <img src="materials/example-thumbnails/nested-composition.jpg" alt="Composition of other compositions" />
         <h4>Nested composition</h4>
       </a>
       <p>Any element can be a composition <i>and</i> a composite at the same time.</p>
@@ -132,14 +132,14 @@ Here are some shortcuts for quick access:
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/custom-configuration-d01ku" target="_blank">
-        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="Custom configuration" />
+        <img src="materials/example-thumbnails/custom-configuration.jpg" alt="Custom configuration" />
         <h4>Custom configuration</h4>
       </a>
       <p>Configure a custom measurement unit, unique breakpoints, and behaviors.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/atomic-layout-query-d2mdl" target="_blank">
-        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="Shorthand media query" />
+        <img src="materials/example-thumbnails/shorthand-media-query.jpg" alt="Shorthand media query" />
         <h4>Shorthand media query</h4>
       </a>
       <p>Utilize a shorthand <code>query</code> function to compose an inline media query in CSS.</p>
