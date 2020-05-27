@@ -89,7 +89,7 @@ Here are some shortcuts for quick access:
 
 ## Examples
 
-> Although the examples below use `atomic-layout` package, they are fully compliant with other styling implementations (i.e. `@atomic-layout/emotion`).
+> Although the examples below use `atomic-layout` package, they are fully compatible with other styling implementations of the library (i.e. `@atomic-layout/emotion`).
 
 ### Basics
 
@@ -107,7 +107,7 @@ Here are some shortcuts for quick access:
         <img src="materials/example-thumbnails/responsive-props.jpg#" alt="Component with responsive props" />
         <h4>Responsive props</h4>
       </a>
-      <p>Learn how to change a prop's value depending on a breakpoint.</p>
+      <p>Change a prop's value depending on a breakpoint.</p>
     </td>
     <td width="33%" valign="top">
       <a href="https://codesandbox.io/s/nested-composition-8p8pk" target="_blank">
@@ -124,25 +124,25 @@ Here are some shortcuts for quick access:
 <table border="0">
   <tr>
     <td width="33%" valign="top">
-      <a href="#" target="_blank">
+      <a href="https://codesandbox.io/s/conditional-rendering-4k90o" target="_blank">
         <img src="materials/example-thumbnails/conditional-rendering.jpg" alt="Conditional rendering" />
         <h4>Conditional rendering</h4>
       </a>
       <p>Render or display elements conditionally based on a breakpoint.</p>
     </td>
     <td width="33%" valign="top">
-      <a href="#" target="_blank">
+      <a href="https://codesandbox.io/s/custom-configuration-d01ku" target="_blank">
         <img src="materials/example-thumbnails/custom-config-02.jpg" alt="Custom configuration" />
         <h4>Custom configuration</h4>
       </a>
       <p>Configure a custom measurement unit, unique breakpoints, and behaviors.</p>
     </td>
     <td width="33%" valign="top">
-      <a href="#" target="_blank">
-        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="..." />
-        <h4>???</h4>
+      <a href="https://codesandbox.io/s/atomic-layout-query-d2mdl" target="_blank">
+        <img src="materials/example-thumbnails/custom-config-02.jpg" alt="Shorthand media query" />
+        <h4>Shorthand media query</h4>
       </a>
-      <p>???</p>
+      <p>Utilize a shorthand <code>query</code> function to compose an inline media query in CSS.</p>
     </td>
   </tr>
 </table>
