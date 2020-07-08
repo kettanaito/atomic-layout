@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { withBreakpoints } from '@atomic-layout/core'
 import useBreakpointChange from './useBreakpointChange'
 
@@ -13,10 +13,14 @@ const useResponsiveValue = <ValueType>(
 ): ValueType => {
   const [value, setValue] = useState<ValueType>(defaultValue)
 
-  useBreakpointChange(() => {
+  const callback = () => {
     const nextValue = withBreakpoints<ValueType>(breakpoints, defaultValue)
     setValue(nextValue)
-  })
+  }
+
+  useEffect(callback, [breakpoints, defaultValue])
+
+  useBreakpointChange(callback)
 
   return value
 }
