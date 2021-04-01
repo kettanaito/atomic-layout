@@ -5,7 +5,6 @@
 <div align="center">
 
 [![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat&color=%237B85FF)][community-reactiflux]
-[![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
 
 </div>
 
@@ -214,7 +213,6 @@ Please refer to the [Contribution guidelines](./.github/CONTRIBUTING.md) before 
 [build-url]: https://circleci.com/gh/kettanaito/atomic-layout
 [test-coverage-url]: https://coveralls.io/github/kettanaito/atomic-layout
 [dependencies-url]: https://david-dm.org/kettanaito/atomic-layout
-[community-spectrum]: https://spectrum.chat/atomic-layout
 [community-reactiflux]: https://discordapp.com/channels/102860784329052160/543033450924474378
 [bootstrap-4-breakpoints]: https://getbootstrap.com/docs/4.0/layout/grid/#grid-options
 [css-grid]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout

@@ -10,7 +10,6 @@
 [![Dependencies status](https://img.shields.io/david/kettanaito/atomic-layout.svg?color=%237B85FF)][dependencies-url]
 
 [![Discord channel](https://img.shields.io/discord/102860784329052160.svg?label=Chat&logo=discord&style=flat&color=%237B85FF)][community-reactiflux]
-[![Spectrum channel](https://withspectrum.github.io/badge/badge.svg)][community-spectrum]
 
 </div>
 
@@ -86,6 +85,5 @@ There are some shortcuts to get you started:
 [bundlephobia-url]: https://bundlephobia.com/result?p=atomic-layout
 [build-url]: https://circleci.com/gh/kettanaito/atomic-layout
 [dependencies-url]: https://david-dm.org/kettanaito/atomic-layout
-[community-spectrum]: https://spectrum.chat/atomic-layout
 [community-reactiflux]: https://discordapp.com/channels/102860784329052160/543033450924474378
 [css-grid]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
