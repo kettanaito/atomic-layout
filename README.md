@@ -193,7 +193,6 @@ Here are some shortcuts for quick access:
 
 Reach out to us to share an awesome project you're building, or ask a question:
 
-- [Spectrum][community-spectrum]
 - [Reactiflux][community-reactiflux]
 
 ## Browser support

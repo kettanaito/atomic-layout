@@ -260,7 +260,7 @@ $ yarn verify
 
 ## Afterword
 
-In case of any questions please ping one of the library's maintainers in [Discord](https://discordapp.com/channels/102860784329052160/543033450924474378) or [Spectrum](https://spectrum.chat/atomic-layout) communities. And don't worry, we are more than happy to assist you during the code review phase. Looking forward to your contributions!
+In case of any questions please ping one of the library's maintainers on [Discord](https://discordapp.com/channels/102860784329052160/543033450924474378). And don't worry, we are more than happy to assist you during the code review phase. Looking forward to your contributions!
 
 [repo-contributors]: https://github.com/kettanaito/atomic-layout/graphs/contributors
 [repo-pull-request]: https://github.com/kettanaito/atomic-layout/compare
